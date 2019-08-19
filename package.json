@@ -8,7 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "webpack -w",
     "webpack:production": "NODE_ENV=production webpack",
-    "server": "webpack-dev-server"
+    "server": "webpack-dev-server",
+    "now-build": "npm run build && npm run webpack:production"
   },
   "keywords": [
     "BuckleScript"
