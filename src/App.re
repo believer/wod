@@ -78,6 +78,7 @@ let make = () => {
           {React.string("All")}
         </Pill>
         <Pill
+          className="mr-4"
           onClick={_ => dispatch(SetCategory(Some(`Hero)))}
           selected={state.category === Some(`Hero)}>
           {React.string("Hero")}
