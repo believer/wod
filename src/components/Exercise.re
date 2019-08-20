@@ -29,6 +29,14 @@ module Unit = {
       | `Num(st) => st->soi
       | `Meter(m) => m->soi ++ "m "
       | `OneSide(a, b) => a->soi ++ "/" ++ b->soi
+      | `Span(a, b) =>
+        switch (a, b) {
+        | (`Num(ast), `Num(bst)) => ast->soi ++ "-" ++ bst->soi
+        | (`Cal(ast), `Cal(bst)) => ast->soi ++ "-" ++ bst->soi ++ " cal "
+        | (`OneSide(aa, ab), `OneSide(ba, bb)) =>
+          aa->soi ++ "/" ++ ab->soi ++ "-" ++ ba->soi ++ "/" ++ bb->soi
+        | _ => ""
+        }
       }
     )
     |> React.string;

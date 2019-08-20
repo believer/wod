@@ -70,12 +70,18 @@ let make = () => {
             <Pill
               className="mr-4"
               onClick={_ => dispatch(SetFilter(Some(`ForTime)))}
-              selected={state.filter === Some(`ForTime)}>
+              selected={state.filter == Some(`ForTime)}>
               {React.string("For time")}
             </Pill>
             <Pill
+              className="mr-4"
+              onClick={_ => dispatch(SetFilter(Some(`EMOM(0))))}
+              selected={state.filter == Some(`EMOM(0))}>
+              {React.string("EMOM")}
+            </Pill>
+            <Pill
               onClick={_ => dispatch(SetFilter(Some(`AMRAP)))}
-              selected={state.filter === Some(`AMRAP)}>
+              selected={state.filter == Some(`AMRAP)}>
               {React.string("AMRAP")}
             </Pill>
           </div>
@@ -105,11 +111,11 @@ let make = () => {
           {switch (state.system) {
            | Metric =>
              <Button onClick={_ => dispatch(SetSystem(Imperial))}>
-               {React.string("lbs")}
+               {React.string("Imperial")}
              </Button>
            | Imperial =>
              <Button onClick={_ => dispatch(SetSystem(Metric))}>
-               {React.string("kg")}
+               {React.string("Metric")}
              </Button>
            }}
         </div>
@@ -118,7 +124,9 @@ let make = () => {
         {Wod.wods
          ->Belt.List.keep(wod =>
              switch (state.filter) {
-             | Some(f) => f === wod.wodType
+             | Some(`EMOM(_)) =>
+               Pervasives.compare(wod.wodType, `EMOM(0)) === 1
+             | Some(f) => f == wod.wodType
              | None => true
              }
            )
@@ -158,9 +166,21 @@ let make = () => {
                   | None => React.null
                   }}
                </header>
+               {switch (wod.wodType) {
+                | `AltEMOM(min) =>
+                  <div className="text-sm text-gray-500">
+                    {""
+                     ++ (min / wod.parts->Belt.List.length)->string_of_int
+                     ++ " of each"
+                     |> React.string}
+                  </div>
+                | _ => React.null
+                }}
                {switch (wod.rounds) {
                 | Some(r) =>
-                  <div> {r->string_of_int ++ " rounds" |> React.string} </div>
+                  <div className="text-sm text-gray-500">
+                    {r->string_of_int ++ " rounds" |> React.string}
+                  </div>
                 | None => React.null
                 }}
                <ul className="text-gray-700 mt-4">

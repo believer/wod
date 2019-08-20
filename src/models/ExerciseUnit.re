@@ -4,4 +4,5 @@ type t = [
   | `Num(int)
   | `Cal(int)
   | `Cal2(int, int)
+  | `Span(t, t)
 ];

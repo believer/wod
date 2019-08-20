@@ -4,10 +4,12 @@ module Exercise = {
     | `BackwardLunge
     | `BoxJump
     | `Burpee
+    | `BurpeeBoxOver
     | `BurpeeOverBar
     | `Clean
     | `Deadlift
     | `DevilPress
+    | `HangingKneeRaise
     | `HangPowerClean
     | `KBS
     | `SnatchPower
@@ -23,6 +25,7 @@ module Exercise = {
     | `SumoDeadliftHighPull
     | `Thruster
     | `VUps
+    | `VUpsSide
     | `WB
   ];
 
@@ -32,10 +35,12 @@ module Exercise = {
     | `BackwardLunge => "backward lunge"
     | `BoxJump => "box jumps"
     | `Burpee => "burpees"
+    | `BurpeeBoxOver => "burpee box overs"
     | `BurpeeOverBar => "burpee over bar"
     | `Clean => "clean"
     | `Deadlift => "deadlift"
     | `DevilPress => "devil press"
+    | `HangingKneeRaise => "hanging knee raises"
     | `HangPowerClean => "hang power clean"
     | `KBS => "kettlebell swing"
     | `PullUp => "pull-up"
@@ -50,7 +55,8 @@ module Exercise = {
     | `SnatchPower => "power snatch"
     | `SumoDeadliftHighPull => "sumo deadlift high pull"
     | `Thruster => "thrusters"
-    | `VUps => "V-ups"
+    | `VUps => "v-ups"
+    | `VUpsSide => "side v-ups"
     | `WB => "wall balls";
 };
 
@@ -496,6 +502,53 @@ let wods = [
         weight: (Some(`kg(40)), Some(`kg(30))),
         exercise: `PushJerk,
         equipment: Some(`Barbell),
+      },
+    ],
+  },
+  {
+    id: "da5ae974-deeb-4205-a80b-1ad2529459da",
+    name: None,
+    wodType: `AltEMOM(24),
+    category: None,
+    description: None,
+    timeCap: None,
+    rounds: None,
+    parts: [
+      {
+        reps: `Span((`Num(8), `Num(12))),
+        weight: (Some(`bodyweight), Some(`bodyweight)),
+        exercise: `HangingKneeRaise,
+        equipment: None,
+      },
+      {
+        reps: `Span((`Cal(6), `Cal(14))),
+        weight: (None, None),
+        exercise: `SkiErg,
+        equipment: None,
+      },
+      {
+        reps: `Span((`OneSide((8, 8)), `OneSide((14, 14)))),
+        weight: (Some(`kg(15)), Some(`kg(10))),
+        exercise: `RussianTwist,
+        equipment: None,
+      },
+      {
+        reps: `Span((`Num(5), `Num(10))),
+        weight: (Some(`kg2(12)), Some(`kg2(8))),
+        exercise: `BurpeeBoxOver,
+        equipment: Some(`Dumbbell),
+      },
+      {
+        reps: `Span((`OneSide((6, 6)), `OneSide((9, 9)))),
+        weight: (Some(`bodyweight), Some(`bodyweight)),
+        exercise: `VUpsSide,
+        equipment: None,
+      },
+      {
+        reps: `Span((`Cal(6), `Cal(14))),
+        weight: (None, None),
+        exercise: `Row,
+        equipment: None,
       },
     ],
   },
