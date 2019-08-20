@@ -9,14 +9,14 @@
           @semantic-release/github
       script:
         - npx semantic-release
-		- stage: deploy
-			language: node_js
-			node_js:
-				- 12
-			install:
-				- npm i -g now
-			script:
-				- now --token=$NOW_TOKEN --target=production
+	  - stage: deploy
+      language: node_js
+      node_js:
+        - 12
+      install:
+        - npm i -g now
+      script:
+        - now --token=$NOW_TOKEN --target=production
 stages:
   - release
     if: branch = master AND type != pull_request
