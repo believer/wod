@@ -26,7 +26,7 @@ module Exercise = {
     | `Thruster
     | `VUps
     | `VUpsSide
-    | `WB
+    | `WallBall
   ];
 
   let toString =
@@ -57,7 +57,7 @@ module Exercise = {
     | `Thruster => "thrusters"
     | `VUps => "v-ups"
     | `VUpsSide => "side v-ups"
-    | `WB => "wall balls";
+    | `WallBall => "wall balls";
 };
 
 module WodPart = {
@@ -134,7 +134,7 @@ let wods = [
       {
         reps: `Num(10),
         weight: (Some(`kg(9)), Some(`kg(6))),
-        exercise: `WB,
+        exercise: `WallBall,
         equipment: Some(`WallBall),
       },
       {
@@ -549,6 +549,53 @@ let wods = [
         weight: (None, None),
         exercise: `Row,
         equipment: None,
+      },
+    ],
+  },
+  {
+    id: "5b09b0e8-52a9-4446-9b9e-2879320d8a8c",
+    name: None,
+    wodType: `ForTime,
+    category: None,
+    description: Some("Rest 3 min between rounds"),
+    timeCap: None,
+    rounds: Some(2),
+    parts: [
+      {
+        reps: `Cal(21),
+        weight: (None, None),
+        exercise: `SkiErg,
+        equipment: None,
+      },
+      {
+        reps: `Num(21),
+        weight: (Some(`kg(9)), Some(`kg(6))),
+        exercise: `WallBall,
+        equipment: Some(`WallBall),
+      },
+      {
+        reps: `Cal(15),
+        weight: (None, None),
+        exercise: `SkiErg,
+        equipment: None,
+      },
+      {
+        reps: `Num(15),
+        weight: (Some(`kg(9)), Some(`kg(6))),
+        exercise: `WallBall,
+        equipment: Some(`WallBall),
+      },
+      {
+        reps: `Cal(9),
+        weight: (None, None),
+        exercise: `SkiErg,
+        equipment: None,
+      },
+      {
+        reps: `Num(9),
+        weight: (Some(`kg(9)), Some(`kg(6))),
+        exercise: `WallBall,
+        equipment: Some(`WallBall),
       },
     ],
   },
