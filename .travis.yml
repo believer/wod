@@ -9,7 +9,7 @@
           @semantic-release/github
       script:
         - npx semantic-release
-	  - stage: deploy
+    - stage: deploy
       language: node_js
       node_js:
         - 12
