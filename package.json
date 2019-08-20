@@ -1,6 +1,6 @@
 {
   "name": "wod",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "scripts": {
     "build": "bsb -make-world",
     "start": "BS_WATCH_CLEAR=true bsb -make-world -w",
