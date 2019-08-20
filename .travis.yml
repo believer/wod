@@ -6,7 +6,7 @@
         - 12
       install:
         - npm i -D @semantic-release/commit-analyzer @semantic-release/release-notes-generator
-          @semantic-release/github
+          @semantic-release/git @semantic-release/changelog
       script:
         - npx semantic-release
     - stage: deploy
