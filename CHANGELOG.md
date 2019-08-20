@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/believer/wod/compare/v1.1.0...v1.2.0) (2019-08-20)
+
+
+### Features
+
+* **wod:** add workout ([3a697cd](https://github.com/believer/wod/commit/3a697cd))
+
 # [1.1.0](https://github.com/believer/wod/compare/v1.0.0...v1.1.0) (2019-08-20)
 
 
