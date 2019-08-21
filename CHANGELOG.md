@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/believer/wod/compare/v1.2.0...v1.3.0) (2019-08-21)
+
+
+### Features
+
+* add github link ([439008e](https://github.com/believer/wod/commit/439008e))
+
 # [1.2.0](https://github.com/believer/wod/compare/v1.1.0...v1.2.0) (2019-08-20)
 
 
