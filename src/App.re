@@ -29,8 +29,14 @@ module Style = {
 
   let filters =
     merge([
-      "mb-8 flex justify-between items-center",
+      "mb-8 md:flex justify-between items-center",
       style([gridColumn(3, 4)]),
+    ]);
+
+  let emptyState =
+    merge([
+      "bg-white text-center p-8 rounded text-gray-600",
+      style([gridColumn(-1, 1)]),
     ]);
 
   let cards =
@@ -55,6 +61,23 @@ let make = () => {
         },
       {category: None, filter: None, system: Metric},
     );
+  let wods =
+    Wod.wods
+    ->Belt.List.keep(wod =>
+        switch (state.filter) {
+        | Some(`EMOM(_)) => Pervasives.compare(wod.wodType, `EMOM(0)) === 1
+        | Some(f) => f == wod.wodType
+        | None => true
+        }
+      )
+    ->Belt.List.keep(wod =>
+        switch (state.category, wod.category) {
+        | (Some(c), Some(wc)) => Pervasives.compare(c, wc) === 0
+        | (Some(_), None) => false
+        | (None, Some(_))
+        | (None, None) => true
+        }
+      );
 
   <Settings.Provider value={Settings.system: state.system}>
     <main className=Style.wrap>
@@ -115,7 +138,7 @@ let make = () => {
             </Pill>
           </div>
         </div>
-        <div className="flex items-center">
+        <div className="flex items-center mt-4 md:mt-0">
           {switch (state.system) {
            | Metric =>
              <Button onClick={_ => dispatch(SetSystem(Imperial))}>
@@ -141,23 +164,15 @@ let make = () => {
         </div>
       </div>
       <div className=Style.cards>
-        {Wod.wods
-         ->Belt.List.keep(wod =>
-             switch (state.filter) {
-             | Some(`EMOM(_)) =>
-               Pervasives.compare(wod.wodType, `EMOM(0)) === 1
-             | Some(f) => f == wod.wodType
-             | None => true
-             }
-           )
-         ->Belt.List.keep(wod =>
-             switch (state.category, wod.category) {
-             | (Some(c), Some(wc)) => Pervasives.compare(c, wc) === 0
-             | (Some(_), None) => false
-             | (None, Some(_))
-             | (None, None) => true
-             }
-           )
+        {switch (wods->Belt.List.length) {
+         | 0 =>
+           <div className=Style.emptyState>
+             {React.string(
+                {j|I don't have any WODs with this combination yet 💪|j},
+              )}
+           </div>
+         | _ =>
+           wods
          ->Belt.List.map(wod =>
              <div className="bg-white rounded shadow-lg p-6" key={wod.id}>
                <header className="flex items-center justify-between">
@@ -246,7 +261,9 @@ let make = () => {
                         <Exercise.Unit reps={part.reps} />
                         <Exercise.Equipment equipment={part.equipment} />
                         {React.string(
-                           " " ++ Wod.Exercise.toString(part.exercise) ++ " ",
+                             " "
+                             ++ Wod.Exercise.toString(part.exercise)
+                             ++ " ",
                          )}
                         <Exercise.Weight weight={part.weight} />
                       </li>
@@ -264,7 +281,8 @@ let make = () => {
              </div>
            )
          ->Belt.List.toArray
-         ->React.array}
+           ->React.array
+         }}
       </div>
     </main>
   </Settings.Provider>;
