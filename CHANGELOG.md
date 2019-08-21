@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/believer/wod/compare/v1.3.0...v1.4.0) (2019-08-21)
+
+
+### Features
+
+* add first rep scheme, 21-15-9 ([07f68bf](https://github.com/believer/wod/commit/07f68bf))
+
 # [1.3.0](https://github.com/believer/wod/compare/v1.2.0...v1.3.0) (2019-08-21)
 
 
