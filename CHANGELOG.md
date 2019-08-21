@@ -1,3 +1,12 @@
+# [1.5.0](https://github.com/believer/wod/compare/v1.4.0...v1.5.0) (2019-08-21)
+
+
+### Features
+
+* **wod:** display latest wod first ([c8b91c9](https://github.com/believer/wod/commit/c8b91c9))
+* add empty state ([54fe383](https://github.com/believer/wod/commit/54fe383))
+* **wod:** add first open workout 18.2 ([c9342fa](https://github.com/believer/wod/commit/c9342fa))
+
 # [1.4.0](https://github.com/believer/wod/compare/v1.3.0...v1.4.0) (2019-08-21)
 
 
