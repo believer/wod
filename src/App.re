@@ -173,114 +173,115 @@ let make = () => {
            </div>
          | _ =>
            wods
-         ->Belt.List.map(wod =>
-             <div className="bg-white rounded shadow-lg p-6" key={wod.id}>
-               <header className="flex items-center justify-between">
-                 <div className="font-bold">
-                   {switch (wod.name) {
-                    | Some(name) => React.string(name)
-                    | None => React.string(WodType.toString(wod.wodType))
-                    }}
-                   {switch (wod.timeCap) {
-                    | Some(t) =>
-                      " " ++ t->string_of_int ++ " min" |> React.string
+           ->Belt.List.reverse
+           ->Belt.List.map(wod =>
+               <div className="bg-white rounded shadow-lg p-6" key={wod.id}>
+                 <header className="flex items-center justify-between">
+                   <div className="font-bold">
+                     {switch (wod.name) {
+                      | Some(name) => React.string(name)
+                      | None => React.string(WodType.toString(wod.wodType))
+                      }}
+                     {switch (wod.timeCap) {
+                      | Some(t) =>
+                        " " ++ t->string_of_int ++ " min" |> React.string
+                      | None => React.null
+                      }}
+                   </div>
+                   {switch (wod.category) {
+                    | Some(c) =>
+                      switch (c) {
+                      | `Hero =>
+                        <Pill background=`Red> {React.string("Hero")} </Pill>
+                      | `Girl => <Pill> {React.string("Girl")} </Pill>
+                      | `Wodapalooza(year) =>
+                        <Pill>
+                          {React.string("Wodapalooza " ++ year->string_of_int)}
+                        </Pill>
+                      | `Open(year, num, style) =>
+                        switch (style) {
+                        | `Scaled =>
+                          <Pill>
+                            {React.string(
+                               "Open "
+                               ++ year->string_of_int
+                               ++ "."
+                               ++ num->string_of_int
+                               ++ " (Scaled)",
+                             )}
+                          </Pill>
+                        | `RX =>
+                          <Pill>
+                            {React.string(
+                               "Open "
+                               ++ year->string_of_int
+                               ++ "."
+                               ++ num->string_of_int,
+                             )}
+                          </Pill>
+                        }
+                      }
                     | None => React.null
                     }}
-                 </div>
-                 {switch (wod.category) {
-                  | Some(c) =>
-                    switch (c) {
-                    | `Hero =>
-                      <Pill background=`Red> {React.string("Hero")} </Pill>
-                    | `Girl => <Pill> {React.string("Girl")} </Pill>
-                    | `Wodapalooza(year) =>
-                      <Pill>
-                        {React.string("Wodapalooza " ++ year->string_of_int)}
-                      </Pill>
-                    | `Open(year, num, style) =>
-                      switch (style) {
-                      | `Scaled =>
-                        <Pill>
-                          {React.string(
-                             "Open "
-                             ++ year->string_of_int
-                             ++ "."
-                             ++ num->string_of_int
-                             ++ " (Scaled)",
-                           )}
-                        </Pill>
-                      | `RX =>
-                        <Pill>
-                          {React.string(
-                             "Open "
-                             ++ year->string_of_int
-                             ++ "."
-                             ++ num->string_of_int,
-                           )}
-                        </Pill>
-                      }
-                    }
+                 </header>
+                 {switch (wod.wodType) {
+                  | `AltEMOM(min) =>
+                    <div className="text-sm text-gray-500">
+                      {""
+                       ++ (min / wod.parts->Belt.List.length)->string_of_int
+                       ++ " of each"
+                       |> React.string}
+                    </div>
+                  | _ => React.null
+                  }}
+                 {switch (wod.rounds) {
+                  | Some(r) =>
+                    <div className="text-sm text-gray-500">
+                      {r->string_of_int ++ " rounds" |> React.string}
+                    </div>
                   | None => React.null
                   }}
-               </header>
-               {switch (wod.wodType) {
-                | `AltEMOM(min) =>
-                  <div className="text-sm text-gray-500">
-                    {""
-                     ++ (min / wod.parts->Belt.List.length)->string_of_int
-                     ++ " of each"
-                     |> React.string}
-                  </div>
-                | _ => React.null
-                }}
-               {switch (wod.rounds) {
-                | Some(r) =>
-                  <div className="text-sm text-gray-500">
-                    {r->string_of_int ++ " rounds" |> React.string}
-                  </div>
-                | None => React.null
-                }}
-               {switch (wod.repScheme) {
-                | Some(scheme) =>
-                  <div className="mt-4 text-gray-700">
-                    {scheme->Belt.List.reduceWithIndex("", (acc, curr, i) =>
-                       switch (i) {
-                       | 0 => curr->string_of_int
-                       | _ => acc ++ "-" ++ curr->string_of_int
-                       }
-                     )
-                     ++ " reps for time of:"
-                     |> React.string}
-                  </div>
-                | None => React.null
-                }}
-               <ul className="text-gray-700 mt-4">
-                 {wod.parts
-                  ->Belt.List.mapWithIndex((i, part) =>
-                      <li key={i->string_of_int}>
-                        <Exercise.Unit reps={part.reps} />
-                        <Exercise.Equipment equipment={part.equipment} />
-                        {React.string(
+                 {switch (wod.repScheme) {
+                  | Some(scheme) =>
+                    <div className="mt-4 text-gray-700">
+                      {scheme->Belt.List.reduceWithIndex("", (acc, curr, i) =>
+                         switch (i) {
+                         | 0 => curr->string_of_int
+                         | _ => acc ++ "-" ++ curr->string_of_int
+                         }
+                       )
+                       ++ " reps for time of:"
+                       |> React.string}
+                    </div>
+                  | None => React.null
+                  }}
+                 <ul className="text-gray-700 mt-4">
+                   {wod.parts
+                    ->Belt.List.mapWithIndex((i, part) =>
+                        <li key={i->string_of_int}>
+                          <Exercise.Unit reps={part.reps} />
+                          <Exercise.Equipment equipment={part.equipment} />
+                          {React.string(
                              " "
                              ++ Wod.Exercise.toString(part.exercise)
                              ++ " ",
-                         )}
-                        <Exercise.Weight weight={part.weight} />
-                      </li>
-                    )
-                  ->Belt.List.toArray
-                  ->React.array}
-               </ul>
-               {switch (wod.description) {
-                | Some(desc) =>
-                  <div className="mt-4 text-xs text-gray-500">
-                    {React.string(desc)}
-                  </div>
-                | None => React.null
-                }}
-             </div>
-           )
-         ->Belt.List.toArray
+                           )}
+                          <Exercise.Weight weight={part.weight} />
+                        </li>
+                      )
+                    ->Belt.List.toArray
+                    ->React.array}
+                 </ul>
+                 {switch (wod.description) {
+                  | Some(desc) =>
+                    <div className="mt-4 text-xs text-gray-500">
+                      {React.string(desc)}
+                    </div>
+                  | None => React.null
+                  }}
+               </div>
+             )
+           ->Belt.List.toArray
            ->React.array
          }}
       </div>
