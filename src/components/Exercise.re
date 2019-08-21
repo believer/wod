@@ -24,6 +24,7 @@ module Unit = {
   let make = (~reps) => {
     (
       switch (reps) {
+      | `RepScheme => ""
       | `Cal(c) => c->soi ++ " cal "
       | `Cal2(m, f) => m->soi ++ "/" ++ f->soi ++ " cal "
       | `Num(st) => st->soi

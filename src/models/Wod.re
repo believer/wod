@@ -69,6 +69,10 @@ module WodPart = {
   };
 };
 
+module RepScheme = {
+  type t = [ | `Three(int, int, int)];
+};
+
 type t = {
   category: option(Category.t),
   description: option(string),
@@ -77,6 +81,7 @@ type t = {
   wodType: WodType.t,
   timeCap: option(int),
   rounds: option(int),
+  repScheme: option(RepScheme.t),
   parts: list(WodPart.t),
 };
 
@@ -89,6 +94,7 @@ let wods = [
     wodType: `AMRAP,
     timeCap: Some(30),
     rounds: None,
+    repScheme: None,
     parts: [
       {
         reps: `Meter(500),
@@ -130,6 +136,7 @@ let wods = [
     wodType: `ForTime,
     timeCap: None,
     rounds: Some(5),
+    repScheme: None,
     parts: [
       {
         reps: `Num(10),
@@ -153,6 +160,7 @@ let wods = [
     description: None,
     timeCap: None,
     rounds: Some(10),
+    repScheme: None,
     parts: [
       {
         reps: `Cal(9),
@@ -186,6 +194,7 @@ let wods = [
       ),
     timeCap: None,
     rounds: Some(5),
+    repScheme: None,
     parts: [
       {
         reps: `Num(12),
@@ -218,6 +227,7 @@ let wods = [
       ),
     timeCap: None,
     rounds: None,
+    repScheme: None,
     parts: [
       {
         reps: `Meter(800),
@@ -259,6 +269,7 @@ let wods = [
     description: None,
     timeCap: None,
     rounds: None,
+    repScheme: None,
     parts: [
       {
         reps: `Num(5),
@@ -337,6 +348,7 @@ let wods = [
       Some("For every break on single unders, add 5 cal to last Ski-Erg"),
     timeCap: None,
     rounds: None,
+    repScheme: None,
     parts: [
       {
         reps: `Cal2((30, 20)),
@@ -378,6 +390,7 @@ let wods = [
     description: None,
     timeCap: None,
     rounds: Some(5),
+    repScheme: None,
     parts: [
       {
         reps: `Num(100),
@@ -401,6 +414,7 @@ let wods = [
     description: None,
     timeCap: None,
     rounds: None,
+    repScheme: None,
     parts: [
       {
         reps: `Cal2((50, 35)),
@@ -442,6 +456,7 @@ let wods = [
     description: None,
     timeCap: None,
     rounds: None,
+    repScheme: None,
     parts: [
       {
         reps: `Num(100),
@@ -513,6 +528,7 @@ let wods = [
     description: None,
     timeCap: None,
     rounds: None,
+    repScheme: None,
     parts: [
       {
         reps: `Span((`Num(8), `Num(12))),
@@ -560,39 +576,16 @@ let wods = [
     description: Some("Rest 3 min between rounds"),
     timeCap: None,
     rounds: Some(2),
+    repScheme: Some(`Three((21, 15, 9))),
     parts: [
       {
-        reps: `Cal(21),
+        reps: `RepScheme,
         weight: (None, None),
         exercise: `SkiErg,
         equipment: None,
       },
       {
-        reps: `Num(21),
-        weight: (Some(`kg(9)), Some(`kg(6))),
-        exercise: `WallBall,
-        equipment: Some(`WallBall),
-      },
-      {
-        reps: `Cal(15),
-        weight: (None, None),
-        exercise: `SkiErg,
-        equipment: None,
-      },
-      {
-        reps: `Num(15),
-        weight: (Some(`kg(9)), Some(`kg(6))),
-        exercise: `WallBall,
-        equipment: Some(`WallBall),
-      },
-      {
-        reps: `Cal(9),
-        weight: (None, None),
-        exercise: `SkiErg,
-        equipment: None,
-      },
-      {
-        reps: `Num(9),
+        reps: `RepScheme,
         weight: (Some(`kg(9)), Some(`kg(6))),
         exercise: `WallBall,
         equipment: Some(`WallBall),

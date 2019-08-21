@@ -195,6 +195,21 @@ let make = () => {
                   </div>
                 | None => React.null
                 }}
+               {switch (wod.repScheme) {
+                | Some(scheme) =>
+                  switch (scheme) {
+                  | `Three(one, two, three) =>
+                    <div className="mt-4 text-gray-700">
+                      {one->string_of_int
+                       ++ "-"
+                       ++ two->string_of_int
+                       ++ "-"
+                       ++ three->string_of_int
+                       |> React.string}
+                    </div>
+                  }
+                | None => React.null
+                }}
                <ul className="text-gray-700 mt-4">
                  {wod.parts
                   ->Belt.List.mapWithIndex((i, part) =>

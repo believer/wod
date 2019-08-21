@@ -5,4 +5,5 @@ type t = [
   | `Cal(int)
   | `Cal2(int, int)
   | `Span(t, t)
+  | `RepScheme
 ];
