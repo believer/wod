@@ -99,11 +99,19 @@ let make = () => {
               {React.string("Hero")}
             </Pill>
             <Pill
+              className="mr-4"
               onClick={_ =>
                 dispatch(SetCategory(Some(`Wodapalooza(2019))))
               }
               selected={state.category == Some(`Wodapalooza(2019))}>
               {React.string("Wodapalooza 2019")}
+            </Pill>
+            <Pill
+              onClick={_ =>
+                dispatch(SetCategory(Some(`Open((18, 2, `Scaled)))))
+              }
+              selected={state.category == Some(`Open((18, 2, `Scaled)))}>
+              {React.string("Open 2018")}
             </Pill>
           </div>
         </div>
@@ -144,7 +152,7 @@ let make = () => {
            )
          ->Belt.List.keep(wod =>
              switch (state.category, wod.category) {
-             | (Some(c), Some(wc)) => c == wc
+             | (Some(c), Some(wc)) => Pervasives.compare(c, wc) === 0
              | (Some(_), None) => false
              | (None, Some(_))
              | (None, None) => true
@@ -174,6 +182,28 @@ let make = () => {
                       <Pill>
                         {React.string("Wodapalooza " ++ year->string_of_int)}
                       </Pill>
+                    | `Open(year, num, style) =>
+                      switch (style) {
+                      | `Scaled =>
+                        <Pill>
+                          {React.string(
+                             "Open "
+                             ++ year->string_of_int
+                             ++ "."
+                             ++ num->string_of_int
+                             ++ " (Scaled)",
+                           )}
+                        </Pill>
+                      | `RX =>
+                        <Pill>
+                          {React.string(
+                             "Open "
+                             ++ year->string_of_int
+                             ++ "."
+                             ++ num->string_of_int,
+                           )}
+                        </Pill>
+                      }
                     }
                   | None => React.null
                   }}
@@ -197,17 +227,16 @@ let make = () => {
                 }}
                {switch (wod.repScheme) {
                 | Some(scheme) =>
-                  switch (scheme) {
-                  | `Three(one, two, three) =>
-                    <div className="mt-4 text-gray-700">
-                      {one->string_of_int
-                       ++ "-"
-                       ++ two->string_of_int
-                       ++ "-"
-                       ++ three->string_of_int
-                       |> React.string}
-                    </div>
-                  }
+                  <div className="mt-4 text-gray-700">
+                    {scheme->Belt.List.reduceWithIndex("", (acc, curr, i) =>
+                       switch (i) {
+                       | 0 => curr->string_of_int
+                       | _ => acc ++ "-" ++ curr->string_of_int
+                       }
+                     )
+                     ++ " reps for time of:"
+                     |> React.string}
+                  </div>
                 | None => React.null
                 }}
                <ul className="text-gray-700 mt-4">

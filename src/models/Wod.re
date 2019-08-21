@@ -5,14 +5,13 @@ module Exercise = {
     | `BoxJump
     | `Burpee
     | `BurpeeBoxOver
-    | `BurpeeOverBar
+    | `BarFacingBurpee
     | `Clean
     | `Deadlift
     | `DevilPress
     | `HangingKneeRaise
     | `HangPowerClean
     | `KBS
-    | `SnatchPower
     | `PullUp
     | `PushJerk
     | `PushPress
@@ -22,6 +21,8 @@ module Exercise = {
     | `RussianTwist
     | `SingleUnder
     | `SkiErg
+    | `SnatchPower
+    | `Squat
     | `SumoDeadliftHighPull
     | `Thruster
     | `VUps
@@ -36,7 +37,7 @@ module Exercise = {
     | `BoxJump => "box jumps"
     | `Burpee => "burpees"
     | `BurpeeBoxOver => "burpee box overs"
-    | `BurpeeOverBar => "burpee over bar"
+    | `BarFacingBurpee => "bar-facing burpee"
     | `Clean => "clean"
     | `Deadlift => "deadlift"
     | `DevilPress => "devil press"
@@ -53,6 +54,7 @@ module Exercise = {
     | `SingleUnder => "single unders"
     | `SkiErg => "SkiErg"
     | `SnatchPower => "power snatch"
+    | `Squat => "squat"
     | `SumoDeadliftHighPull => "sumo deadlift high pull"
     | `Thruster => "thrusters"
     | `VUps => "v-ups"
@@ -70,7 +72,7 @@ module WodPart = {
 };
 
 module RepScheme = {
-  type t = [ | `Three(int, int, int)];
+  type t = list(int);
 };
 
 type t = {
@@ -274,7 +276,7 @@ let wods = [
       {
         reps: `Num(5),
         weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `BurpeeOverBar,
+        exercise: `BarFacingBurpee,
         equipment: None,
       },
       {
@@ -286,7 +288,7 @@ let wods = [
       {
         reps: `Num(5),
         weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `BurpeeOverBar,
+        exercise: `BarFacingBurpee,
         equipment: None,
       },
       {
@@ -298,7 +300,7 @@ let wods = [
       {
         reps: `Num(5),
         weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `BurpeeOverBar,
+        exercise: `BarFacingBurpee,
         equipment: None,
       },
       {
@@ -310,7 +312,7 @@ let wods = [
       {
         reps: `Num(5),
         weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `BurpeeOverBar,
+        exercise: `BarFacingBurpee,
         equipment: None,
       },
       {
@@ -322,7 +324,7 @@ let wods = [
       {
         reps: `Num(5),
         weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `BurpeeOverBar,
+        exercise: `BarFacingBurpee,
         equipment: None,
       },
       {
@@ -334,7 +336,7 @@ let wods = [
       {
         reps: `Num(5),
         weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `BurpeeOverBar,
+        exercise: `BarFacingBurpee,
         equipment: None,
       },
     ],
@@ -576,7 +578,7 @@ let wods = [
     description: Some("Rest 3 min between rounds"),
     timeCap: None,
     rounds: Some(2),
-    repScheme: Some(`Three((21, 15, 9))),
+    repScheme: Some([21, 15, 9]),
     parts: [
       {
         reps: `RepScheme,
@@ -589,6 +591,33 @@ let wods = [
         weight: (Some(`kg(9)), Some(`kg(6))),
         exercise: `WallBall,
         equipment: Some(`WallBall),
+      },
+    ],
+  },
+  {
+    id: "bd199c6f-bfa3-484d-b703-1361f9bef768",
+    name: None,
+    wodType: `ForTime,
+    category: Some(`Open((18, 2, `Scaled))),
+    description:
+      Some(
+        "After all rounds are complete establish a 1-rep-max clean in remaining time",
+      ),
+    timeCap: Some(12),
+    rounds: None,
+    repScheme: Some([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
+    parts: [
+      {
+        reps: `RepScheme,
+        weight: (Some(`kg2(15)), Some(`kg2(10))),
+        exercise: `Squat,
+        equipment: Some(`Dumbbell),
+      },
+      {
+        reps: `RepScheme,
+        weight: (Some(`bodyweight), Some(`bodyweight)),
+        exercise: `BarFacingBurpee,
+        equipment: None,
       },
     ],
   },
