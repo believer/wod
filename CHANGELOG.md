@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/believer/wod/compare/v1.6.0...v1.6.1) (2019-08-22)
+
+
+### Bug Fixes
+
+* **wod:** remove wod ([5d94a2c](https://github.com/believer/wod/commit/5d94a2c))
+
 # [1.6.0](https://github.com/believer/wod/compare/v1.5.0...v1.6.0) (2019-08-22)
 
 
