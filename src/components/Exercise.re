@@ -191,6 +191,7 @@ module Weight = {
          | `kg(m)
          | `kg2(m)
          | `cm(m) => singleWeight(~m, ~weight)
+         | `kg2cm(_, _)
          | `bodyweight => React.null
          }
        | (None, None) => React.null
