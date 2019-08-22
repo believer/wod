@@ -7,6 +7,7 @@ module Exercise = {
     | `BurpeeBoxOver
     | `BarFacingBurpee
     | `Clean
+    | `CleanAndJerk
     | `Deadlift
     | `DevilPress
     | `HangingKneeRaise
@@ -28,6 +29,7 @@ module Exercise = {
     | `VUps
     | `VUpsSide
     | `WallBall
+    | `WeightedStepUp
   ];
 
   let toString =
@@ -39,6 +41,7 @@ module Exercise = {
     | `BurpeeBoxOver => "burpee box overs"
     | `BarFacingBurpee => "bar-facing burpee"
     | `Clean => "clean"
+    | `CleanAndJerk => "clean and jerk"
     | `Deadlift => "deadlift"
     | `DevilPress => "devil press"
     | `HangingKneeRaise => "hanging knee raises"
@@ -59,7 +62,8 @@ module Exercise = {
     | `Thruster => "thrusters"
     | `VUps => "v-ups"
     | `VUpsSide => "side v-ups"
-    | `WallBall => "wall balls";
+    | `WallBall => "wall balls"
+    | `WeightedStepUp => "weighted step-ups";
 };
 
 module WodPart = {
@@ -570,6 +574,60 @@ let wods = [
         weight: (Some(`kg(40)), Some(`kg(30))),
         exercise: `PushPress,
         equipment: Some(`Barbell),
+      },
+    ],
+  },
+  {
+    id: "grace",
+    name: Some("Grace"),
+    wodType: `ForTime,
+    category: Some(`Girl),
+    description: None,
+    timeCap: None,
+    rounds: None,
+    repScheme: None,
+    parts: [
+      {
+        reps: `Num(30),
+        weight: (Some(`kg(61)), Some(`kg(43))),
+        exercise: `CleanAndJerk,
+        equipment: Some(`Barbell),
+      },
+    ],
+  },
+  {
+    id: "5942a30a-eedf-402f-8ba7-267ea0713efc",
+    name: None,
+    wodType: `ForTime,
+    category: None,
+    description: None,
+    timeCap: None,
+    rounds: Some(3),
+    repScheme: None,
+    parts: [
+      {
+        reps: `Num(15),
+        weight: (Some(`kg2(15)), Some(`kg2(10))),
+        exercise: `PushJerk,
+        equipment: Some(`Dumbbell),
+      },
+      {
+        reps: `Num(50),
+        weight: (Some(`bodyweight), Some(`bodyweight)),
+        exercise: `SingleUnder,
+        equipment: None,
+      },
+      {
+        reps: `Num(15),
+        weight: (Some(`kg2cm((15, 60))), Some(`kg2cm((10, 45)))),
+        exercise: `WeightedStepUp,
+        equipment: None,
+      },
+      {
+        reps: `Num(50),
+        weight: (Some(`bodyweight), Some(`bodyweight)),
+        exercise: `SingleUnder,
+        equipment: None,
       },
     ],
   },

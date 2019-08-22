@@ -123,6 +123,12 @@ let make = () => {
             </Pill>
             <Pill
               className="mr-4"
+              onClick={_ => dispatch(SetCategory(Some(`Girl)))}
+              selected={state.category == Some(`Girl)}>
+              {React.string("The Girls")}
+            </Pill>
+            <Pill
+              className="mr-4"
               onClick={_ =>
                 dispatch(SetCategory(Some(`Wodapalooza(2019))))
               }
@@ -187,8 +193,13 @@ let make = () => {
                     | Some(c) =>
                       switch (c) {
                       | `Hero =>
-                        <Pill background=`Red> {React.string("Hero")} </Pill>
-                      | `Girl => <Pill> {React.string("Girl")} </Pill>
+                        <Pill background=`Green>
+                          {React.string("Hero")}
+                        </Pill>
+                      | `Girl =>
+                        <Pill background=`Pink>
+                          {React.string("The Girls")}
+                        </Pill>
                       | `Wodapalooza(year) =>
                         <Pill>
                           {React.string("Wodapalooza " ++ year->string_of_int)}

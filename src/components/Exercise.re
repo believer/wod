@@ -47,11 +47,12 @@ module Unit = {
 let weightUnit =
   fun
   | `lbs => "lbs"
-  | `bodyweight => ""
   | `cm(_) => "cm"
   | `inch => "in"
   | `kg(_)
-  | `kg2(_) => "kg";
+  | `kg2(_) => "kg"
+  | `bodyweight
+  | `kg2cm(_, _) => "";
 
 let round5 = x => Js.Math.ceil_float(x /. 5.0) *. 5.0;
 
@@ -117,6 +118,44 @@ let splitWeight = (~m, ~f, ~weight as w, ~system) =>
     }
   };
 
+let weightAndHeight =
+    (~maleWeight, ~maleHeight, ~femaleWeight, ~femaleHeight, ~system) => {
+  switch (system) {
+  | Settings.Metric =>
+    str(
+      "(2*"
+      ++ maleWeight->soi
+      ++ "/"
+      ++ femaleWeight->soi
+      ++ " "
+      ++ weightUnit(`kg(0))
+      ++ " - "
+      ++ maleHeight->soi
+      ++ "/"
+      ++ femaleHeight->soi
+      ++ " "
+      ++ weightUnit(`cm(0))
+      ++ ")",
+    )
+  | Settings.Imperial =>
+    str(
+      "(2*"
+      ++ maleWeight->Pounds.make->sof
+      ++ "/"
+      ++ femaleWeight->Pounds.make->sof
+      ++ " "
+      ++ weightUnit(`lbs)
+      ++ " - "
+      ++ maleHeight->Inches.make->soi
+      ++ "/"
+      ++ femaleHeight->Inches.make->soi
+      ++ " "
+      ++ weightUnit(`inch)
+      ++ ")",
+    )
+  };
+};
+
 let singleWeight = (~m, ~weight as w) =>
   switch (w) {
   | `kg2(_) => str("(2*" ++ m->soi ++ " " ++ weightUnit(w) ++ ")")
@@ -132,6 +171,14 @@ module Weight = {
       {switch (weight) {
        | (Some(male), Some(female)) =>
          switch (male, female) {
+         | (`kg2cm(m, mcm), `kg2cm(f, fcm)) =>
+           weightAndHeight(
+             ~maleWeight=m,
+             ~maleHeight=mcm,
+             ~femaleWeight=f,
+             ~femaleHeight=fcm,
+             ~system,
+           )
          | (`kg(m), `kg(f))
          | (`kg2(m), `kg2(f))
          | (`cm(m), `cm(f)) => splitWeight(~m, ~f, ~weight=male, ~system)

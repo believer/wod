@@ -5,6 +5,8 @@ let make =
     switch (background) {
     | `Gray => "bg-gray-200 text-gray-700"
     | `Red => "bg-red-200 text-red-700"
+    | `Green => "bg-green-200 text-green-700"
+    | `Pink => "bg-pink-200 text-pink-700"
     };
 
   let className =
