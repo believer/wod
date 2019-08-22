@@ -621,4 +621,28 @@ let wods = [
       },
     ],
   },
+  {
+    id: "0394b4ee-983d-4d54-8f5a-9466cdb5c609",
+    name: None,
+    wodType: `ForTime,
+    category: None,
+    description: None,
+    timeCap: Some(6),
+    rounds: None,
+    repScheme: Some([100, 10, 80, 8, 60, 6, 40, 4, 20, 2]),
+    parts: [
+      {
+        reps: `RepScheme,
+        weight: (Some(`bodyweight), Some(`bodyweight)),
+        exercise: `SingleUnder,
+        equipment: None,
+      },
+      {
+        reps: `RepScheme,
+        weight: (Some(`kg(40)), Some(`kg(30))),
+        exercise: `PushPress,
+        equipment: Some(`Barbell),
+      },
+    ],
+  },
 ];
