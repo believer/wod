@@ -1,3 +1,15 @@
+# [1.7.0](https://github.com/believer/wod/compare/v1.6.1...v1.7.0) (2019-08-22)
+
+
+### Bug Fixes
+
+* weight and height for single value hidden ([2086044](https://github.com/believer/wod/commit/2086044))
+
+
+### Features
+
+* add two wods, change pill colors, add weight ([edd5139](https://github.com/believer/wod/commit/edd5139))
+
 ## [1.6.1](https://github.com/believer/wod/compare/v1.6.0...v1.6.1) (2019-08-22)
 
 
