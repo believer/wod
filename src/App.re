@@ -182,11 +182,6 @@ let make = () => {
                       | Some(name) => React.string(name)
                       | None => React.string(WodType.toString(wod.wodType))
                       }}
-                     {switch (wod.timeCap) {
-                      | Some(t) =>
-                        " " ++ t->string_of_int ++ " min" |> React.string
-                      | None => React.null
-                      }}
                    </div>
                    {switch (wod.category) {
                     | Some(c) =>
@@ -279,6 +274,16 @@ let make = () => {
                     ->Belt.List.toArray
                     ->React.array}
                  </ul>
+                 {switch (wod.timeCap) {
+                  | Some(t) =>
+                    <div className="mt-4 text-sm text-gray-700">
+                      <span className="font-semibold">
+                        {React.string("Time cap:")}
+                      </span>
+                      {" " ++ t->string_of_int ++ " min" |> React.string}
+                    </div>
+                  | None => React.null
+                  }}
                  {switch (wod.description) {
                   | Some(desc) =>
                     <div className="mt-4 text-xs text-gray-500">
