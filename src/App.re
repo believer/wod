@@ -261,11 +261,18 @@ let make = () => {
                         <li key={i->string_of_int}>
                           <Exercise.Unit reps={part.reps} />
                           <Exercise.Equipment equipment={part.equipment} />
-                          {React.string(
-                             " "
-                             ++ Wod.Exercise.toString(part.exercise)
-                             ++ " ",
-                           )}
+                          {" "
+                           ++ (
+                             switch (wod.repScheme) {
+                             | Some(_) =>
+                               part.exercise
+                               ->Wod.Exercise.toString
+                               ->Utils.capitalizeFirst
+                             | None => Wod.Exercise.toString(part.exercise)
+                             }
+                           )
+                           ++ " "
+                           |> React.string}
                           <Exercise.Weight weight={part.weight} />
                         </li>
                       )
