@@ -1,10 +1,12 @@
 type state = {
   category: option(Category.t),
   filter: option(WodType.t),
+  query: option(string),
   system: Settings.system,
 };
 
 type action =
+  | UpdateQuery(option(string))
   | SetCategory(option(Category.t))
   | SetFilter(option(WodType.t))
   | SetSystem(Settings.system);
@@ -66,11 +68,25 @@ let make = () => {
         | SetCategory(c) => {...state, category: c}
         | SetFilter(f) => {...state, filter: f}
         | SetSystem(w) => {...state, system: w}
+        | UpdateQuery(q) => {...state, query: q}
         },
-      {category: None, filter: None, system: Metric},
+      {category: None, filter: None, system: Metric, query: None},
     );
+
   let wods =
     Wod.wods
+    ->Belt.List.keep(wod =>
+        switch (state.query, wod.name) {
+        | (Some(q), Some(n)) =>
+          Js.String.includes(
+            q->Js.String.toLowerCase,
+            n->Js.String.toLowerCase,
+          )
+        | (Some(_), None) => false
+        | (None, Some(_))
+        | (None, None) => true
+        }
+      )
     ->Belt.List.keep(wod =>
         switch (state.filter) {
         | Some(`EMOM(_)) => Pervasives.compare(wod.wodType, `EMOM(0)) === 1
@@ -89,6 +105,25 @@ let make = () => {
 
   <Settings.Provider value={Settings.system: state.system}>
     <main className=Style.wrap>
+      <Search
+        onChange={e =>
+          switch (e->ReactEvent.Form.target##value) {
+          | "" => dispatch(UpdateQuery(None))
+          | v =>
+            switch (v->Js.String.toLowerCase) {
+            | "the girls"
+            | "girls" =>
+              dispatch(SetCategory(Some(`Girl)));
+              dispatch(UpdateQuery(None));
+            | "hero" =>
+              dispatch(SetCategory(Some(`Hero)));
+              dispatch(UpdateQuery(None));
+            | _ => dispatch(UpdateQuery(Some(v)))
+            }
+          }
+        }
+        query={state.query}
+      />
       <div className=Style.filters>
         <div>
           <div className="mb-2">
