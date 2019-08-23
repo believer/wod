@@ -5,15 +5,15 @@
       node_js:
         - 12
        before_install:
-         # GPG signing - https://github.com/semantic-release/git
-         - openssl aes-256-cbc -K $encrypted_f1b76d0cc8ab_key -iv $encrypted_f1b76d0cc8ab_iv -in git_gpg_keys.asc.enc -out /tmp/git_gpg_keys.asc -d
-         - chmod 600 /tmp/git_gpg_keys.asc
-         - gpg --batch --yes --import /tmp/git_gpg_keys.asc
-         - echo '/usr/bin/gpg2 --passphrase ${GPG_PASSPHRASE} --batch --no-tty "$@"' > /tmp/gpg-with-passphrase && chmod +x /tmp/gpg-with-passphrase
-         - git config gpg.program "/tmp/gpg-with-passphrase"
-         - git config commit.gpgsign true
-         - git config --global gpg.program gpg2
-         - git config --global user.signingkey ${GPG_KEY_ID}
+        # GPG signing - https://github.com/semantic-release/git
+        - openssl aes-256-cbc -K $encrypted_f1b76d0cc8ab_key -iv $encrypted_f1b76d0cc8ab_iv -in git_gpg_keys.asc.enc -out /tmp/git_gpg_keys.asc -d
+        - chmod 600 /tmp/git_gpg_keys.asc
+        - gpg --batch --yes --import /tmp/git_gpg_keys.asc
+        - echo '/usr/bin/gpg2 --passphrase ${GPG_PASSPHRASE} --batch --no-tty "$@"' > /tmp/gpg-with-passphrase && chmod +x /tmp/gpg-with-passphrase
+        - git config gpg.program "/tmp/gpg-with-passphrase"
+        - git config commit.gpgsign true
+        - git config --global gpg.program gpg2
+        - git config --global user.signingkey ${GPG_KEY_ID}
       install:
         - npm i -D @semantic-release/git @semantic-release/changelog
       script:
