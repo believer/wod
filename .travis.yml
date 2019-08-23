@@ -13,11 +13,10 @@
         - git config --global gpg.program "/tmp/gpg-with-passphrase"
         - git config --global commit.gpgsign true
         - git config --global user.signingkey ${GPG_KEY_ID}
-        - gpgconf --kill gpg-agent
       install:
-        - npm i -D @semantic-release/git @semantic-release/changelog
+        - npm ci
       script:
-        - npx semantic-release
+        - npx semantic-release@16
     - stage: deploy
       language: node_js
       node_js:
