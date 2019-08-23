@@ -51,6 +51,14 @@ module Style = {
 
 [@react.component]
 let make = () => {
+  let lastVisit = Cookie.getAsString("lastVisit");
+
+  Cookie.setStringConfig(
+    "lastVisit",
+    Js.Date.make() |> Js.Date.toISOString,
+    Cookie.Config.make(~expires=3650, ()),
+  );
+
   let (state, dispatch) =
     React.useReducer(
       (state, action) =>
@@ -182,6 +190,19 @@ let make = () => {
            ->Belt.List.reverse
            ->Belt.List.map(wod =>
                <div className="bg-white rounded shadow-lg p-6" key={wod.id}>
+                 {switch (lastVisit) {
+                  | Some(last) =>
+                    Js.Date.fromString(wod.createdAt)
+                    |> Js.Date.getTime
+                    > (Js.Date.fromString(last) |> Js.Date.getTime)
+                      ? <div
+                          className="mb-4 uppercase rounded bg-green-200 text-xs text-green-700
+                      inline-block px-2 py-1">
+                          {React.string("New")}
+                        </div>
+                      : React.null
+                  | None => React.null
+                  }}
                  <header className="flex items-center justify-between">
                    <div className="font-bold">
                      {switch (wod.name) {

@@ -17,4 +17,3 @@
   "bs-dependencies": ["reason-react", "bs-css", "re-classnames"],
   "refmt": 3
 }
-
