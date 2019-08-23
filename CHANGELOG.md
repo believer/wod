@@ -1,3 +1,15 @@
+# [1.9.0](https://github.com/believer/wod/compare/v1.8.0...v1.9.0) (2019-08-23)
+
+
+### Bug Fixes
+
+* **wod:** add hero tag to keithroy maynard ([5fa7c26](https://github.com/believer/wod/commit/5fa7c26))
+
+
+### Features
+
+* add markdown support for description ([de671c7](https://github.com/believer/wod/commit/de671c7))
+
 # [1.8.0](https://github.com/believer/wod/compare/v1.7.0...v1.8.0) (2019-08-23)
 
 

@@ -29,9 +29,9 @@
     "reason-react": "0.7.0"
   },
   "devDependencies": {
-    "@semantic-release/changelog": "3.0.4",
+    "@semantic-release/changelog": "^3.0.4",
     "@semantic-release/commit-analyzer": "6.3.0",
-    "@semantic-release/git": "7.0.16",
+    "@semantic-release/git": "^7.0.16",
     "@semantic-release/release-notes-generator": "7.3.0",
     "autoprefixer": "9.6.1",
     "bs-platform": "5.0.6",
