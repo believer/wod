@@ -318,9 +318,10 @@ let make = () => {
                   }}
                  {switch (wod.description) {
                   | Some(desc) =>
-                    <div className="mt-4 text-xs text-gray-500">
-                      {React.string(desc)}
-                    </div>
+                    <div
+                      className="mt-4 text-xs text-gray-500"
+                      dangerouslySetInnerHTML={"__html": Markdown.make(desc)}
+                    />
                   | None => React.null
                   }}
                </div>

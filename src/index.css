@@ -6,3 +6,11 @@ html,
 body {
   @apply font-normal m-0 p-0 text-gray-900 bg-gray-100;
 }
+
+p {
+  @apply mb-2;
+}
+
+p:last-of-type {
+  @apply mb-0;
+}
