@@ -3,6 +3,7 @@ module Exercise = {
     | `AirSquat
     | `BackwardLunge
     | `BoxJump
+    | `BoxStepUp
     | `Burpee
     | `BurpeeBoxOver
     | `BarFacingBurpee
@@ -37,9 +38,10 @@ module Exercise = {
     | `AirSquat => "air squat"
     | `BackwardLunge => "backward lunge"
     | `BoxJump => "box jumps"
+    | `BoxStepUp => "box step-ups"
     | `Burpee => "burpees"
     | `BurpeeBoxOver => "burpee box overs"
-    | `BarFacingBurpee => "bar-facing burpee"
+    | `BarFacingBurpee => "bar-facing burpees"
     | `Clean => "clean"
     | `CleanAndJerk => "clean and jerk"
     | `Deadlift => "deadlift"
@@ -81,6 +83,7 @@ module RepScheme = {
 
 type t = {
   category: option(Category.t),
+  createdAt: string,
   description: option(string),
   id: string,
   name: option(string),
@@ -95,6 +98,7 @@ let wods = [
   {
     id: "dfa983fb-1fdb-4b67-8b8c-a15184798dc4",
     category: None,
+    createdAt: "2019-08-18T22:00:00.000Z",
     description: None,
     name: None,
     wodType: `AMRAP,
@@ -138,6 +142,7 @@ let wods = [
     id: "d2b07e7e-a1c1-487e-ad5a-ec9dd89d5fd4",
     name: None,
     category: None,
+    createdAt: "2019-08-18T22:00:00.000Z",
     description: None,
     wodType: `ForTime,
     timeCap: None,
@@ -160,6 +165,7 @@ let wods = [
   },
   {
     id: "22cdb52b-bb43-4848-957b-5d1006560e78",
+    createdAt: "2019-08-18T22:00:00.000Z",
     name: None,
     wodType: `ForTime,
     category: None,
@@ -190,6 +196,7 @@ let wods = [
   },
   {
     id: "dt",
+    createdAt: "2019-08-18T22:00:00.000Z",
     name: Some("DT"),
     wodType: `ForTime,
     category: Some(`Hero),
@@ -224,6 +231,7 @@ let wods = [
   },
   {
     id: "half-murph",
+    createdAt: "2019-08-18T22:00:00.000Z",
     name: Some("Half Murph"),
     wodType: `ForTime,
     category: Some(`Hero),
@@ -269,6 +277,7 @@ let wods = [
   },
   {
     id: "chip-through-monday",
+    createdAt: "2019-08-19T22:00:00.000Z",
     name: Some("Chip Through Monday"),
     wodType: `ForTime,
     category: None,
@@ -347,6 +356,7 @@ let wods = [
   },
   {
     id: "ski-school",
+    createdAt: "2019-08-19T22:00:00.000Z",
     name: Some("Ski School"),
     wodType: `ForTime,
     category: Some(`Wodapalooza(2019)),
@@ -390,6 +400,7 @@ let wods = [
   },
   {
     id: "2d1574ad-daf0-41f2-bb18-af0e57fdb136",
+    createdAt: "2019-08-19T22:00:00.000Z",
     name: None,
     wodType: `ForTime,
     category: None,
@@ -414,6 +425,7 @@ let wods = [
   },
   {
     id: "waterworks",
+    createdAt: "2019-08-19T22:00:00.000Z",
     name: Some("Waterworks"),
     wodType: `ForTime,
     category: None,
@@ -456,6 +468,7 @@ let wods = [
   },
   {
     id: "da5ae974-deeb-4205-a80b-1ad2529459da",
+    createdAt: "2019-08-19T22:00:00.000Z",
     name: None,
     wodType: `AltEMOM(24),
     category: None,
@@ -504,6 +517,7 @@ let wods = [
   },
   {
     id: "5b09b0e8-52a9-4446-9b9e-2879320d8a8c",
+    createdAt: "2019-08-20T22:00:00.000Z",
     name: None,
     wodType: `ForTime,
     category: None,
@@ -528,6 +542,7 @@ let wods = [
   },
   {
     id: "bd199c6f-bfa3-484d-b703-1361f9bef768",
+    createdAt: "2019-08-20T22:00:00.000Z",
     name: None,
     wodType: `ForTime,
     category: Some(`Open((18, 2, `Scaled))),
@@ -555,6 +570,7 @@ let wods = [
   },
   {
     id: "0394b4ee-983d-4d54-8f5a-9466cdb5c609",
+    createdAt: "2019-08-20T22:00:00.000Z",
     name: None,
     wodType: `ForTime,
     category: None,
@@ -579,6 +595,7 @@ let wods = [
   },
   {
     id: "grace",
+    createdAt: "2019-08-21T22:00:00.000Z",
     name: Some("Grace"),
     wodType: `ForTime,
     category: Some(`Girl),
@@ -597,6 +614,7 @@ let wods = [
   },
   {
     id: "5942a30a-eedf-402f-8ba7-267ea0713efc",
+    createdAt: "2019-08-21T22:00:00.000Z",
     name: None,
     wodType: `ForTime,
     category: None,
@@ -627,6 +645,40 @@ let wods = [
         reps: `Num(50),
         weight: (Some(`bodyweight), Some(`bodyweight)),
         exercise: `SingleUnder,
+        equipment: None,
+      },
+    ],
+  },
+  {
+    id: "keithroy-maynard",
+    createdAt: "2019-08-22T22:00:00.000Z",
+    name: Some("Keithroy Maynard"),
+    wodType: `ForTime,
+    category: None,
+    description:
+      Some(
+        "Wear a weighted west if available. On the last round, do 15 air squats. This Firefighter Hero WOD is dedicated to Keithroy Maynard, FDNY, Engine 33, who was killed on September 11, 2001.",
+      ),
+    timeCap: None,
+    rounds: Some(5),
+    repScheme: None,
+    parts: [
+      {
+        reps: `Num(44),
+        weight: (Some(`bodyweight), Some(`bodyweight)),
+        exercise: `BoxStepUp,
+        equipment: None,
+      },
+      {
+        reps: `Num(12),
+        weight: (Some(`bodyweight), Some(`bodyweight)),
+        exercise: `PushUp,
+        equipment: None,
+      },
+      {
+        reps: `Num(12),
+        weight: (Some(`bodyweight), Some(`bodyweight)),
+        exercise: `AirSquat,
         equipment: None,
       },
     ],
