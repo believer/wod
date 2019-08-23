@@ -16,7 +16,7 @@
       install:
         - npm ci
       script:
-        - npx semantic-release@16
+        - npx semantic-release@15
     - stage: deploy
       language: node_js
       node_js:
