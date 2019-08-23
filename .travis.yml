@@ -12,6 +12,9 @@
         - echo '/usr/bin/gpg2 --passphrase ${GPG_PASSPHRASE} --batch --no-tty "$@"' > /tmp/gpg-with-passphrase && chmod +x /tmp/gpg-with-passphrase
         - git config --global gpg.program "/tmp/gpg-with-passphrase"
         - git config --global commit.gpgsign true
+        - git config --global tag.gpgsign true
+        - git config --global user.email ${GIT_EMAIL}
+        - git config --global user.name ${GIT_USERNAME}
         - git config --global user.signingkey ${GPG_KEY_ID}
       install:
         - npm i -D @semantic-release/git @semantic-release/changelog
