@@ -1,3 +1,10 @@
+# [1.10.0](https://github.com/believer/wod/compare/v1.9.0...v1.10.0) (2019-08-23)
+
+
+### Features
+
+* add basic search ([f0878fb](https://github.com/believer/wod/commit/f0878fb))
+
 # [1.9.0](https://github.com/believer/wod/compare/v1.8.0...v1.9.0) (2019-08-23)
 
 
