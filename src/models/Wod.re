@@ -654,7 +654,7 @@ let wods = [
     createdAt: "2019-08-22T22:00:00.000Z",
     name: Some("Keithroy Maynard"),
     wodType: `ForTime,
-    category: None,
+    category: Some(`Hero),
     description:
       Some(
         "Wear a weighted west if available. On the last round, do 15 air squats. This Firefighter Hero WOD is dedicated to Keithroy Maynard, FDNY, Engine 33, who was killed on September 11, 2001.",
