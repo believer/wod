@@ -1,3 +1,11 @@
+# [1.8.0](https://github.com/believer/wod/compare/v1.7.0...v1.8.0) (2019-08-23)
+
+
+### Features
+
+* **wod:** add keithroy maynard wod ([3393807](https://github.com/believer/wod/commit/3393807))
+* add banner for new wods since last visit ([7ed82fc](https://github.com/believer/wod/commit/7ed82fc))
+
 # [1.7.0](https://github.com/believer/wod/compare/v1.6.1...v1.7.0) (2019-08-22)
 
 
