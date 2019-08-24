@@ -1,3 +1,11 @@
+# [1.11.0](https://github.com/believer/wod/compare/v1.10.0...v1.11.0) (2019-08-24)
+
+
+### Features
+
+* add buy-in, buy-out ([2964bf9](https://github.com/believer/wod/commit/2964bf9))
+* **wod:** add 7-7-7 ([9e6e7c8](https://github.com/believer/wod/commit/9e6e7c8))
+
 # [1.10.0](https://github.com/believer/wod/compare/v1.9.0...v1.10.0) (2019-08-23)
 
 
