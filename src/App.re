@@ -244,6 +244,12 @@ let make = () => {
                       | Some(name) => React.string(name)
                       | None => React.string(WodType.toString(wod.wodType))
                       }}
+                     {switch (wod.timeCap, wod.wodType) {
+                      | (Some(t), `AMRAP) =>
+                        " " ++ t->string_of_int ++ " min" |> React.string
+                      | (Some(_), _)
+                      | (None, _) => React.null
+                      }}
                    </div>
                    {switch (wod.category) {
                     | Some(c) =>
@@ -299,7 +305,9 @@ let make = () => {
                  {switch (wod.rounds) {
                   | Some(r) =>
                     <div className="text-sm text-gray-500">
-                      {r->string_of_int ++ " rounds" |> React.string}
+                      {r->string_of_int
+                       ++ " rounds for time of:"
+                       |> React.string}
                     </div>
                   | None => React.null
                   }}
@@ -315,6 +323,21 @@ let make = () => {
                        ++ " reps for time of:"
                        |> React.string}
                     </div>
+                  | None => React.null
+                  }}
+                 {switch (wod.buyInOut) {
+                  | Some((Some(buyIn), _)) =>
+                    <div className="mt-4">
+                      <strong> {React.string("Buy-in: ")} </strong>
+                      <Exercise.Unit reps={buyIn.reps} />
+                      <Exercise.Equipment equipment={buyIn.equipment} />
+                      {" "
+                       ++ Wod.Exercise.toString(buyIn.exercise)
+                       ++ " "
+                       |> React.string}
+                      <Exercise.Weight weight={buyIn.weight} />
+                    </div>
+                  | Some((None, _))
                   | None => React.null
                   }}
                  <ul className="text-gray-700 mt-4">
@@ -341,15 +364,31 @@ let make = () => {
                     ->Belt.List.toArray
                     ->React.array}
                  </ul>
-                 {switch (wod.timeCap) {
-                  | Some(t) =>
+                 {switch (wod.buyInOut) {
+                  | Some((_, Some(buyOut))) =>
+                    <div className="mt-4">
+                      <strong> {React.string("Buy-out: ")} </strong>
+                      <Exercise.Unit reps={buyOut.reps} />
+                      <Exercise.Equipment equipment={buyOut.equipment} />
+                      {" "
+                       ++ Wod.Exercise.toString(buyOut.exercise)
+                       ++ " "
+                       |> React.string}
+                      <Exercise.Weight weight={buyOut.weight} />
+                    </div>
+                  | Some((_, None))
+                  | None => React.null
+                  }}
+                 {switch (wod.timeCap, wod.wodType) {
+                  | (Some(t), `ForTime) =>
                     <div className="mt-4 text-sm text-gray-700">
                       <span className="font-semibold">
                         {React.string("Time cap:")}
                       </span>
                       {" " ++ t->string_of_int ++ " min" |> React.string}
                     </div>
-                  | None => React.null
+                  | (Some(_), _)
+                  | (None, _) => React.null
                   }}
                  {switch (wod.description) {
                   | Some(desc) =>

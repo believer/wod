@@ -7,13 +7,16 @@ module Exercise = {
     | `Burpee
     | `BurpeeBoxOver
     | `BarFacingBurpee
+    | `BentOverRow
     | `Clean
     | `CleanAndJerk
     | `Deadlift
     | `DevilPress
+    | `GroundToOverhead
     | `HangingKneeRaise
     | `HangPowerClean
     | `KBS
+    | `Lunge
     | `PullUp
     | `PushJerk
     | `PushPress
@@ -37,6 +40,7 @@ module Exercise = {
     fun
     | `AirSquat => "air squat"
     | `BackwardLunge => "backward lunge"
+    | `BentOverRow => "bent-over row"
     | `BoxJump => "box jumps"
     | `BoxStepUp => "box step-ups"
     | `Burpee => "burpees"
@@ -46,9 +50,11 @@ module Exercise = {
     | `CleanAndJerk => "clean and jerk"
     | `Deadlift => "deadlifts"
     | `DevilPress => "devil press"
+    | `GroundToOverhead => "ground to overhead"
     | `HangingKneeRaise => "hanging knee raises"
     | `HangPowerClean => "hang power clean"
     | `KBS => "kettlebell swing"
+    | `Lunge => "lunge"
     | `PullUp => "pull-up"
     | `PushJerk => "push jerk"
     | `PushPress => "push press"
@@ -83,6 +89,7 @@ module RepScheme = {
 
 type t = {
   category: option(Category.t),
+  buyInOut: option((option(WodPart.t), option(WodPart.t))),
   createdAt: string,
   description: option(string),
   id: string,
@@ -97,6 +104,7 @@ type t = {
 let wods = [
   {
     id: "dfa983fb-1fdb-4b67-8b8c-a15184798dc4",
+    buyInOut: None,
     category: None,
     createdAt: "2019-08-18T22:00:00.000Z",
     description: None,
@@ -141,6 +149,7 @@ let wods = [
   {
     id: "d2b07e7e-a1c1-487e-ad5a-ec9dd89d5fd4",
     name: None,
+    buyInOut: None,
     category: None,
     createdAt: "2019-08-18T22:00:00.000Z",
     description: None,
@@ -167,6 +176,7 @@ let wods = [
     id: "22cdb52b-bb43-4848-957b-5d1006560e78",
     createdAt: "2019-08-18T22:00:00.000Z",
     name: None,
+    buyInOut: None,
     wodType: `ForTime,
     category: None,
     description: None,
@@ -198,6 +208,7 @@ let wods = [
     id: "dt",
     createdAt: "2019-08-18T22:00:00.000Z",
     name: Some("DT"),
+    buyInOut: None,
     wodType: `ForTime,
     category: Some(`Hero),
     description:
@@ -234,6 +245,7 @@ let wods = [
     createdAt: "2019-08-18T22:00:00.000Z",
     name: Some("Half Murph"),
     wodType: `ForTime,
+    buyInOut: None,
     category: Some(`Hero),
     description:
       Some(
@@ -281,6 +293,7 @@ let wods = [
     name: Some("Chip Through Monday"),
     wodType: `ForTime,
     category: None,
+    buyInOut: None,
     description: None,
     timeCap: None,
     rounds: None,
@@ -359,6 +372,7 @@ let wods = [
     createdAt: "2019-08-19T22:00:00.000Z",
     name: Some("Ski School"),
     wodType: `ForTime,
+    buyInOut: None,
     category: Some(`Wodapalooza(2019)),
     description:
       Some("For every break on single unders, add 5 cal to last Ski-Erg"),
@@ -402,6 +416,7 @@ let wods = [
     id: "2d1574ad-daf0-41f2-bb18-af0e57fdb136",
     createdAt: "2019-08-19T22:00:00.000Z",
     name: None,
+    buyInOut: None,
     wodType: `ForTime,
     category: None,
     description: None,
@@ -429,6 +444,7 @@ let wods = [
     name: Some("Waterworks"),
     wodType: `ForTime,
     category: None,
+    buyInOut: None,
     description: None,
     timeCap: None,
     rounds: None,
@@ -474,6 +490,7 @@ let wods = [
     category: None,
     description: None,
     timeCap: None,
+    buyInOut: None,
     rounds: None,
     repScheme: None,
     parts: [
@@ -519,6 +536,7 @@ let wods = [
     id: "5b09b0e8-52a9-4446-9b9e-2879320d8a8c",
     createdAt: "2019-08-20T22:00:00.000Z",
     name: None,
+    buyInOut: None,
     wodType: `ForTime,
     category: None,
     description: Some("Rest 3 min between rounds"),
@@ -544,6 +562,7 @@ let wods = [
     id: "bd199c6f-bfa3-484d-b703-1361f9bef768",
     createdAt: "2019-08-20T22:00:00.000Z",
     name: None,
+    buyInOut: None,
     wodType: `ForTime,
     category: Some(`Open((18, 2, `Scaled))),
     description:
@@ -572,6 +591,7 @@ let wods = [
     id: "0394b4ee-983d-4d54-8f5a-9466cdb5c609",
     createdAt: "2019-08-20T22:00:00.000Z",
     name: None,
+    buyInOut: None,
     wodType: `ForTime,
     category: None,
     description: None,
@@ -598,6 +618,7 @@ let wods = [
     createdAt: "2019-08-21T22:00:00.000Z",
     name: Some("Grace"),
     wodType: `ForTime,
+    buyInOut: None,
     category: Some(`Girl),
     description: None,
     timeCap: None,
@@ -618,6 +639,7 @@ let wods = [
     name: None,
     wodType: `ForTime,
     category: None,
+    buyInOut: None,
     description: None,
     timeCap: None,
     rounds: Some(3),
@@ -654,6 +676,7 @@ let wods = [
     createdAt: "2019-08-22T22:00:00.000Z",
     name: Some("Keithroy Maynard"),
     wodType: `ForTime,
+    buyInOut: None,
     category: Some(`Hero),
     description:
       Some(
@@ -693,6 +716,7 @@ This Firefighter Hero WOD is dedicated to Keithroy Maynard, FDNY, Engine 33, who
     name: Some("7-7-7"),
     wodType: `ForTime,
     category: None,
+    buyInOut: None,
     description: None,
     timeCap: None,
     rounds: Some(7),
@@ -715,6 +739,52 @@ This Firefighter Hero WOD is dedicated to Keithroy Maynard, FDNY, Engine 33, who
         weight: (Some(`bodyweight), Some(`bodyweight)),
         exercise: `Burpee,
         equipment: None,
+      },
+    ],
+  },
+  {
+    id: "a6b8a163-ae96-47fd-a8e6-bd0c21ae1781",
+    createdAt: "2019-08-24T10:10:43.893Z",
+    name: None,
+    wodType: `AMRAP,
+    category: None,
+    buyInOut:
+      Some((
+        Some({
+          reps: `Meter(500),
+          weight: (None, None),
+          exercise: `Row,
+          equipment: None,
+        }),
+        Some({
+          reps: `Meter(500),
+          weight: (None, None),
+          exercise: `SkiErg,
+          equipment: None,
+        }),
+      )),
+    description: None,
+    timeCap: Some(8),
+    rounds: None,
+    repScheme: None,
+    parts: [
+      {
+        reps: `OneSide((5, 5)),
+        weight: (Some(`kg(15)), Some(`kg(10))),
+        exercise: `Lunge,
+        equipment: Some(`BulgarianBag),
+      },
+      {
+        reps: `Num(10),
+        weight: (Some(`kg2(15)), Some(`kg2(10))),
+        exercise: `GroundToOverhead,
+        equipment: Some(`Dumbbell),
+      },
+      {
+        reps: `Num(10),
+        weight: (Some(`kg2(15)), Some(`kg2(10))),
+        exercise: `BentOverRow,
+        equipment: Some(`Dumbbell),
       },
     ],
   },
