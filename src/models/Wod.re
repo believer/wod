@@ -692,7 +692,7 @@ This Firefighter Hero WOD is dedicated to Keithroy Maynard, FDNY, Engine 33, who
     parts: [
       {
         reps: `Num(44),
-        weight: (Some(`bodyweight), Some(`bodyweight)),
+        weight: (Some(`cm(60)), Some(`cm(45))),
         exercise: `BoxStepUp,
         equipment: None,
       },
