@@ -1,3 +1,10 @@
+## [1.11.1](https://github.com/believer/wod/compare/v1.11.0...v1.11.1) (2019-08-24)
+
+
+### Bug Fixes
+
+* add box height to hero wod ([eedc2ce](https://github.com/believer/wod/commit/eedc2ce))
+
 # [1.11.0](https://github.com/believer/wod/compare/v1.10.0...v1.11.0) (2019-08-24)
 
 
