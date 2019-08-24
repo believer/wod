@@ -44,7 +44,7 @@ module Exercise = {
     | `BarFacingBurpee => "bar-facing burpees"
     | `Clean => "clean"
     | `CleanAndJerk => "clean and jerk"
-    | `Deadlift => "deadlift"
+    | `Deadlift => "deadlifts"
     | `DevilPress => "devil press"
     | `HangingKneeRaise => "hanging knee raises"
     | `HangPowerClean => "hang power clean"
@@ -683,6 +683,37 @@ This Firefighter Hero WOD is dedicated to Keithroy Maynard, FDNY, Engine 33, who
         reps: `Num(12),
         weight: (Some(`bodyweight), Some(`bodyweight)),
         exercise: `AirSquat,
+        equipment: None,
+      },
+    ],
+  },
+  {
+    id: "7-7-7",
+    createdAt: "2019-08-24T10:05:54.996Z",
+    name: Some("7-7-7"),
+    wodType: `ForTime,
+    category: None,
+    description: None,
+    timeCap: None,
+    rounds: Some(7),
+    repScheme: None,
+    parts: [
+      {
+        reps: `Num(7),
+        weight: (Some(`kg(40)), Some(`kg(30))),
+        exercise: `Deadlift,
+        equipment: Some(`Barbell),
+      },
+      {
+        reps: `Num(7),
+        weight: (Some(`kg(40)), Some(`kg(30))),
+        exercise: `Thruster,
+        equipment: Some(`Barbell),
+      },
+      {
+        reps: `Num(7),
+        weight: (Some(`bodyweight), Some(`bodyweight)),
+        exercise: `Burpee,
         equipment: None,
       },
     ],
