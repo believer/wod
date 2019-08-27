@@ -399,6 +399,17 @@ let make = () => {
                     />
                   | None => React.null
                   }}
+                 {switch (wod.externalLink) {
+                  | Some((name, href)) =>
+                    <a
+                      className="text-blue-600 text-xs block mt-2"
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      href>
+                      {React.string(name)}
+                    </a>
+                  | None => React.null
+                  }}
                </div>
              )
            ->Belt.List.toArray
