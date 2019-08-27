@@ -980,7 +980,7 @@ Add 3 repetitions to each of the barbell movements (3/3/30, 6/6/30, 9/9/30, 12/1
       {
         reps: `Increasing(3),
         weight: (Some(`kg(34)), Some(`kg(25))),
-        exercise: `CleanPower,
+        exercise: `SnatchHangPower,
         equipment: Some(`Barbell),
       },
       {
