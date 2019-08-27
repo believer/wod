@@ -10,22 +10,27 @@ module Exercise = {
     | `BentOverRow
     | `Clean
     | `CleanAndJerk
+    | `CleanPower
     | `Deadlift
     | `DevilPress
+    | `DoubleUnder
     | `GroundToOverhead
     | `HangingKneeRaise
     | `HangPowerClean
     | `KBS
     | `Lunge
+    | `OverheadSquat
     | `PullUp
     | `PushJerk
     | `PushPress
     | `PushUp
+    | `Rest
     | `Row
     | `Run
     | `RussianTwist
     | `SingleUnder
     | `SkiErg
+    | `SnatchHangPower
     | `SnatchPower
     | `Squat
     | `SumoDeadliftHighPull
@@ -48,22 +53,27 @@ module Exercise = {
     | `BarFacingBurpee => "bar-facing burpees"
     | `Clean => "clean"
     | `CleanAndJerk => "clean and jerk"
+    | `CleanPower => "power cleans"
     | `Deadlift => "deadlifts"
     | `DevilPress => "devil press"
+    | `DoubleUnder => "double unders"
     | `GroundToOverhead => "ground to overhead"
     | `HangingKneeRaise => "hanging knee raises"
-    | `HangPowerClean => "hang power clean"
+    | `HangPowerClean => "hang power cleans"
     | `KBS => "kettlebell swing"
     | `Lunge => "lunge"
+    | `OverheadSquat => "overhead squats"
     | `PullUp => "pull-up"
     | `PushJerk => "push jerk"
     | `PushPress => "push press"
     | `PushUp => "push-up"
+    | `Rest => "rest"
     | `Row => "row"
     | `Run => "run"
     | `RussianTwist => "russian twist"
     | `SingleUnder => "single unders"
     | `SkiErg => "SkiErg"
+    | `SnatchHangPower => "hang power snatches"
     | `SnatchPower => "power snatch"
     | `Squat => "squat"
     | `SumoDeadliftHighPull => "sumo deadlift high pull"
@@ -93,6 +103,7 @@ type t = {
   createdAt: string,
   description: option(string),
   id: string,
+  externalLink: option((string, string)),
   name: option(string),
   wodType: WodType.t,
   timeCap: option(int),
@@ -109,6 +120,7 @@ let wods = [
     createdAt: "2019-08-18T22:00:00.000Z",
     description: None,
     name: None,
+    externalLink: None,
     wodType: `AMRAP,
     timeCap: Some(30),
     rounds: None,
@@ -153,6 +165,7 @@ let wods = [
     category: None,
     createdAt: "2019-08-18T22:00:00.000Z",
     description: None,
+    externalLink: None,
     wodType: `ForTime,
     timeCap: None,
     rounds: Some(5),
@@ -177,6 +190,7 @@ let wods = [
     createdAt: "2019-08-18T22:00:00.000Z",
     name: None,
     buyInOut: None,
+    externalLink: None,
     wodType: `ForTime,
     category: None,
     description: None,
@@ -209,6 +223,7 @@ let wods = [
     createdAt: "2019-08-18T22:00:00.000Z",
     name: Some("DT"),
     buyInOut: None,
+    externalLink: None,
     wodType: `ForTime,
     category: Some(`Hero),
     description:
@@ -245,6 +260,7 @@ let wods = [
     createdAt: "2019-08-18T22:00:00.000Z",
     name: Some("Half Murph"),
     wodType: `ForTime,
+    externalLink: None,
     buyInOut: None,
     category: Some(`Hero),
     description:
@@ -294,6 +310,7 @@ let wods = [
     wodType: `ForTime,
     category: None,
     buyInOut: None,
+    externalLink: None,
     description: None,
     timeCap: None,
     rounds: None,
@@ -373,7 +390,8 @@ let wods = [
     name: Some("Ski School"),
     wodType: `ForTime,
     buyInOut: None,
-    category: Some(`Wodapalooza(2019)),
+    category: Some(`Wodapalooza(2018)),
+    externalLink: None,
     description:
       Some("For every break on single unders, add 5 cal to last Ski-Erg"),
     timeCap: None,
@@ -418,6 +436,7 @@ let wods = [
     name: None,
     buyInOut: None,
     wodType: `ForTime,
+    externalLink: None,
     category: None,
     description: None,
     timeCap: None,
@@ -444,6 +463,7 @@ let wods = [
     name: Some("Waterworks"),
     wodType: `ForTime,
     category: None,
+    externalLink: None,
     buyInOut: None,
     description: None,
     timeCap: None,
@@ -486,6 +506,7 @@ let wods = [
     id: "da5ae974-deeb-4205-a80b-1ad2529459da",
     createdAt: "2019-08-19T22:00:00.000Z",
     name: None,
+    externalLink: None,
     wodType: `AltEMOM(24),
     category: None,
     description: None,
@@ -539,6 +560,7 @@ let wods = [
     buyInOut: None,
     wodType: `ForTime,
     category: None,
+    externalLink: None,
     description: Some("Rest 3 min between rounds"),
     timeCap: None,
     rounds: Some(2),
@@ -565,6 +587,7 @@ let wods = [
     buyInOut: None,
     wodType: `ForTime,
     category: Some(`Open((18, 2, `Scaled))),
+    externalLink: None,
     description:
       Some(
         "After all rounds are complete establish a 1-rep-max clean in remaining time",
@@ -595,6 +618,7 @@ let wods = [
     wodType: `ForTime,
     category: None,
     description: None,
+    externalLink: None,
     timeCap: Some(6),
     rounds: None,
     repScheme: Some([100, 10, 80, 8, 60, 6, 40, 4, 20, 2]),
@@ -621,6 +645,7 @@ let wods = [
     buyInOut: None,
     category: Some(`Girl),
     description: None,
+    externalLink: None,
     timeCap: None,
     rounds: None,
     repScheme: None,
@@ -640,6 +665,7 @@ let wods = [
     wodType: `ForTime,
     category: None,
     buyInOut: None,
+    externalLink: None,
     description: None,
     timeCap: None,
     rounds: Some(3),
@@ -678,6 +704,7 @@ let wods = [
     wodType: `ForTime,
     buyInOut: None,
     category: Some(`Hero),
+    externalLink: None,
     description:
       Some(
         {j|
@@ -718,6 +745,7 @@ This Firefighter Hero WOD is dedicated to Keithroy Maynard, FDNY, Engine 33, who
     category: None,
     buyInOut: None,
     description: None,
+    externalLink: None,
     timeCap: None,
     rounds: Some(7),
     repScheme: None,
@@ -748,6 +776,7 @@ This Firefighter Hero WOD is dedicated to Keithroy Maynard, FDNY, Engine 33, who
     name: None,
     wodType: `AMRAP,
     category: None,
+    externalLink: None,
     buyInOut:
       Some((
         Some({
@@ -785,6 +814,186 @@ This Firefighter Hero WOD is dedicated to Keithroy Maynard, FDNY, Engine 33, who
         weight: (Some(`kg2(15)), Some(`kg2(10))),
         exercise: `BentOverRow,
         equipment: Some(`Dumbbell),
+      },
+    ],
+  },
+  {
+    id: "190617-mayhem",
+    createdAt: "2019-08-27T16:37:11.543Z",
+    name: Some("190617-Mayhem"),
+    wodType: `EMOM(23),
+    category: None,
+    buyInOut: None,
+    externalLink:
+      Some((
+        "CrossFit Mayhem",
+        "https://www.crossfitmayhem.com/daily-workout-posts/2019/6/16/6172019",
+      )),
+    description:
+      Some(
+        {j|
+  Each set EMOM 5 min, then 1 min rest before next EMOM.
+
+  * First set (5 reps) light weight, touch and go
+  * Second set (3 reps) medium weight, touch and go
+  * Third set (1 rep - E30s) heavy weight
+  * Last set (5 reps) same as first set
+    |j},
+      ),
+    timeCap: None,
+    rounds: None,
+    repScheme: None,
+    parts: [
+      {
+        reps: `Num(5),
+        weight: (None, None),
+        exercise: `SnatchPower,
+        equipment: Some(`Barbell),
+      },
+      {
+        reps: `Min(1),
+        weight: (None, None),
+        exercise: `Rest,
+        equipment: None,
+      },
+      {
+        reps: `Num(3),
+        weight: (None, None),
+        exercise: `SnatchPower,
+        equipment: Some(`Barbell),
+      },
+      {
+        reps: `Min(1),
+        weight: (None, None),
+        exercise: `Rest,
+        equipment: None,
+      },
+      {
+        reps: `Num(1),
+        weight: (None, None),
+        exercise: `SnatchPower,
+        equipment: Some(`Barbell),
+      },
+      {
+        reps: `Min(1),
+        weight: (None, None),
+        exercise: `Rest,
+        equipment: None,
+      },
+      {
+        reps: `Num(5),
+        weight: (None, None),
+        exercise: `SnatchPower,
+        equipment: Some(`Barbell),
+      },
+    ],
+  },
+  {
+    id: "190617-mayhem-clean",
+    createdAt: "2019-08-27T16:51:40.140Z",
+    name: Some("190617-Mayhem with Cleans"),
+    wodType: `EMOM(23),
+    externalLink: None,
+    category: None,
+    buyInOut: None,
+    description:
+      Some(
+        {j|
+  Each set EMOM 5 min, then 1 min rest before next EMOM.
+
+  * First set (5 reps) light weight, touch and go
+  * Second set (3 reps) medium weight, touch and go
+  * Third set (1 rep - E30s) heavy weight
+  * Last set (5 reps) same as first set
+    |j},
+      ),
+    timeCap: None,
+    rounds: None,
+    repScheme: None,
+    parts: [
+      {
+        reps: `Num(5),
+        weight: (None, None),
+        exercise: `CleanPower,
+        equipment: Some(`Barbell),
+      },
+      {
+        reps: `Min(1),
+        weight: (None, None),
+        exercise: `Rest,
+        equipment: None,
+      },
+      {
+        reps: `Num(3),
+        weight: (None, None),
+        exercise: `CleanPower,
+        equipment: Some(`Barbell),
+      },
+      {
+        reps: `Min(1),
+        weight: (None, None),
+        exercise: `Rest,
+        equipment: None,
+      },
+      {
+        reps: `Num(1),
+        weight: (None, None),
+        exercise: `CleanPower,
+        equipment: Some(`Barbell),
+      },
+      {
+        reps: `Min(1),
+        weight: (None, None),
+        exercise: `Rest,
+        equipment: None,
+      },
+      {
+        reps: `Num(5),
+        weight: (None, None),
+        exercise: `CleanPower,
+        equipment: Some(`Barbell),
+      },
+    ],
+  },
+  {
+    id: "wzaoc191",
+    createdAt: "2019-08-27T16:51:40.140Z",
+    name: Some("WZAOC 1"),
+    wodType: `EMOM(23),
+    category: Some(`Wodapalooza(2019)),
+    buyInOut: None,
+    externalLink:
+      Some((
+        "Wodapalooza",
+        "https://wodapalooza.com/workout/2019-2020-indy-oc-wod-1/",
+      )),
+    description:
+      Some(
+        {j|
+Add 3 repetitions to each of the barbell movements (3/3/30, 6/6/30, 9/9/30, 12/12/30... etc..) at the conclusion of each round.<Paste>
+    |j},
+      ),
+    timeCap: None,
+    rounds: None,
+    repScheme: None,
+    parts: [
+      {
+        reps: `Increasing(3),
+        weight: (Some(`kg(34)), Some(`kg(25))),
+        exercise: `CleanPower,
+        equipment: Some(`Barbell),
+      },
+      {
+        reps: `Increasing(3),
+        weight: (Some(`kg(34)), Some(`kg(25))),
+        exercise: `OverheadSquat,
+        equipment: Some(`Barbell),
+      },
+      {
+        reps: `Num(30),
+        weight: (Some(`bodyweight), Some(`bodyweight)),
+        exercise: `DoubleUnder,
+        equipment: Some(`JumpRope),
       },
     ],
   },

@@ -96,7 +96,9 @@ let make = () => {
       )
     ->Belt.List.keep(wod =>
         switch (state.category, wod.category) {
-        | (Some(c), Some(wc)) => Pervasives.compare(c, wc) === 0
+        | (Some(`Wodapalooza(_)), Some(`Wodapalooza(_))) => true
+        | (Some(`Open(_)), Some(`Open(_))) => true
+        | (Some(c), Some(wc)) => c == wc
         | (Some(_), None) => false
         | (None, Some(_))
         | (None, None) => true
@@ -172,18 +174,16 @@ let make = () => {
             </Pill>
             <Pill
               className="mr-4"
-              onClick={_ =>
-                dispatch(SetCategory(Some(`Wodapalooza(2019))))
-              }
-              selected={state.category == Some(`Wodapalooza(2019))}>
-              {React.string("Wodapalooza 2019")}
+              onClick={_ => dispatch(SetCategory(Some(`Wodapalooza(0))))}
+              selected={state.category == Some(`Wodapalooza(0))}>
+              {React.string("Wodapalooza")}
             </Pill>
             <Pill
               onClick={_ =>
                 dispatch(SetCategory(Some(`Open((18, 2, `Scaled)))))
               }
               selected={state.category == Some(`Open((18, 2, `Scaled)))}>
-              {React.string("Open 2018")}
+              {React.string("Open")}
             </Pill>
           </div>
         </div>
@@ -288,6 +288,7 @@ let make = () => {
                              )}
                           </Pill>
                         }
+                      | `Mayhem => React.null
                       }
                     | None => React.null
                     }}
@@ -393,7 +394,7 @@ let make = () => {
                  {switch (wod.description) {
                   | Some(desc) =>
                     <div
-                      className="mt-4 text-xs text-gray-500"
+                      className="mt-4 text-xs text-gray-500 markdown"
                       dangerouslySetInnerHTML={"__html": Markdown.make(desc)}
                     />
                   | None => React.null

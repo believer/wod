@@ -1,5 +1,7 @@
 type t = [
+  | `Increasing(int)
   | `Meter(int)
+  | `Min(int)
   | `OneSide(int, int)
   | `Num(int)
   | `Cal(int)

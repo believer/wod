@@ -14,3 +14,11 @@ p {
 p:last-of-type {
   @apply mb-0;
 }
+
+.markdown ul {
+  @apply list-disc ml-4 mt-4;
+}
+
+.markdown li:not(:last-child) {
+  @apply mb-1;
+}

@@ -12,6 +12,7 @@ module Equipment = {
       | `Dumbbell => " " ++ Equipment.toString(eq) |> str
       | `WallBall
       | `Barbell
+      | `JumpRope
       | `Kettlebell => React.null
       }
     | None => React.null
@@ -24,6 +25,8 @@ module Unit = {
   let make = (~reps) => {
     (
       switch (reps) {
+      | `Increasing(i) => "+" ++ i->soi
+      | `Min(min) => min->soi ++ " min "
       | `RepScheme => ""
       | `Cal(c) => c->soi ++ " cal "
       | `Cal2(m, f) => m->soi ++ "/" ++ f->soi ++ " cal "
@@ -59,19 +62,22 @@ let round5 = x => Js.Math.ceil_float(x /. 5.0) *. 5.0;
 module Pounds = {
   let approx = 2.205;
 
-  let make = kg => (kg->float_of_int *. approx)->round5;
+  let make = kg =>
+    switch (kg) {
+    | 25 => 55.0
+    | _ => (kg->float_of_int *. approx)->round5
+    };
 };
 
 module Inches = {
   let approx = 2.54;
 
-  let make = cm => {
+  let make = cm =>
     switch (cm) {
     | 60 => 24
     | 45 => 20
     | _ => (cm->float_of_int /. approx)->round5->int_of_float
     };
-  };
 };
 
 let splitWeight = (~m, ~f, ~weight as w, ~system) =>
