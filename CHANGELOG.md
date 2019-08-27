@@ -1,3 +1,16 @@
+# [1.12.0](https://github.com/believer/wod/compare/v1.11.1...v1.12.0) (2019-08-27)
+
+
+### Bug Fixes
+
+* correct wzaoc1 ([d06bd80](https://github.com/believer/wod/commit/d06bd80))
+
+
+### Features
+
+* add external links ([79c5e2a](https://github.com/believer/wod/commit/79c5e2a))
+* add wods from mayhem and wodapalooza ([0f833fe](https://github.com/believer/wod/commit/0f833fe))
+
 ## [1.11.1](https://github.com/believer/wod/compare/v1.11.0...v1.11.1) (2019-08-24)
 
 
