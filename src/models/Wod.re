@@ -10,13 +10,13 @@ module Exercise = {
     | `BentOverRow
     | `Clean
     | `CleanAndJerk
+    | `CleanHangPower
     | `CleanPower
     | `Deadlift
     | `DevilPress
     | `DoubleUnder
     | `GroundToOverhead
     | `HangingKneeRaise
-    | `HangPowerClean
     | `KBS
     | `Lunge
     | `OverheadSquat
@@ -53,13 +53,13 @@ module Exercise = {
     | `BarFacingBurpee => "bar-facing burpees"
     | `Clean => "clean"
     | `CleanAndJerk => "clean and jerk"
+    | `CleanHangPower => "hang power cleans"
     | `CleanPower => "power cleans"
     | `Deadlift => "deadlifts"
     | `DevilPress => "devil press"
     | `DoubleUnder => "double unders"
     | `GroundToOverhead => "ground to overhead"
     | `HangingKneeRaise => "hanging knee raises"
-    | `HangPowerClean => "hang power cleans"
     | `KBS => "kettlebell swing"
     | `Lunge => "lunge"
     | `OverheadSquat => "overhead squats"
@@ -244,7 +244,7 @@ let wods = [
       {
         reps: `Num(9),
         weight: (Some(`kg(70)), Some(`kg(47))),
-        exercise: `HangPowerClean,
+        exercise: `CleanHangPower,
         equipment: Some(`Barbell),
       },
       {
@@ -361,7 +361,7 @@ let wods = [
       {
         reps: `Num(25),
         weight: (Some(`kg(40)), Some(`kg(30))),
-        exercise: `HangPowerClean,
+        exercise: `CleanHangPower,
         equipment: Some(`Barbell),
       },
       {
