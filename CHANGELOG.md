@@ -1,3 +1,10 @@
+# [1.13.0](https://github.com/believer/wod/compare/v1.12.0...v1.13.0) (2019-08-29)
+
+
+### Features
+
+* add rx/scaled switch ([8bbfa20](https://github.com/believer/wod/commit/8bbfa20))
+
 # [1.12.0](https://github.com/believer/wod/compare/v1.11.1...v1.12.0) (2019-08-27)
 
 
