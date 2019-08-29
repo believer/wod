@@ -1,89 +1,3 @@
-module Exercise = {
-  type t = [
-    | `AirSquat
-    | `BackwardLunge
-    | `BoxJump
-    | `BoxStepUp
-    | `Burpee
-    | `BurpeeBoxOver
-    | `BarFacingBurpee
-    | `BentOverRow
-    | `Clean
-    | `CleanAndJerk
-    | `CleanHangPower
-    | `CleanPower
-    | `Deadlift
-    | `DevilPress
-    | `DoubleUnder
-    | `GroundToOverhead
-    | `HangingKneeRaise
-    | `KBS
-    | `Lunge
-    | `OverheadSquat
-    | `PullUp
-    | `PushJerk
-    | `PushPress
-    | `PushUp
-    | `Rest
-    | `Row
-    | `Run
-    | `RussianTwist
-    | `SingleUnder
-    | `SkiErg
-    | `SnatchHangPower
-    | `SnatchPower
-    | `Squat
-    | `SumoDeadliftHighPull
-    | `Thruster
-    | `VUps
-    | `VUpsSide
-    | `WallBall
-    | `WeightedStepUp
-  ];
-
-  let toString =
-    fun
-    | `AirSquat => "air squat"
-    | `BackwardLunge => "backward lunge"
-    | `BentOverRow => "bent-over row"
-    | `BoxJump => "box jumps"
-    | `BoxStepUp => "box step-ups"
-    | `Burpee => "burpees"
-    | `BurpeeBoxOver => "burpee box overs"
-    | `BarFacingBurpee => "bar-facing burpees"
-    | `Clean => "clean"
-    | `CleanAndJerk => "clean and jerk"
-    | `CleanHangPower => "hang power cleans"
-    | `CleanPower => "power cleans"
-    | `Deadlift => "deadlifts"
-    | `DevilPress => "devil press"
-    | `DoubleUnder => "double unders"
-    | `GroundToOverhead => "ground to overhead"
-    | `HangingKneeRaise => "hanging knee raises"
-    | `KBS => "kettlebell swing"
-    | `Lunge => "lunge"
-    | `OverheadSquat => "overhead squats"
-    | `PullUp => "pull-up"
-    | `PushJerk => "push jerk"
-    | `PushPress => "push press"
-    | `PushUp => "push-up"
-    | `Rest => "rest"
-    | `Row => "row"
-    | `Run => "run"
-    | `RussianTwist => "russian twist"
-    | `SingleUnder => "single unders"
-    | `SkiErg => "SkiErg"
-    | `SnatchHangPower => "hang power snatches"
-    | `SnatchPower => "power snatch"
-    | `Squat => "squat"
-    | `SumoDeadliftHighPull => "sumo deadlift high pull"
-    | `Thruster => "thrusters"
-    | `VUps => "v-ups"
-    | `VUpsSide => "side v-ups"
-    | `WallBall => "wall balls"
-    | `WeightedStepUp => "weighted step-ups";
-};
-
 module WodPart = {
   type t = {
     weight: (option(Weight.t), option(Weight.t)),
@@ -110,6 +24,7 @@ type t = {
   rounds: option(int),
   repScheme: option(RepScheme.t),
   parts: list(WodPart.t),
+  scaledParts: option(list(WodPart.t)),
 };
 
 let wods = [
@@ -125,6 +40,7 @@ let wods = [
     timeCap: Some(30),
     rounds: None,
     repScheme: None,
+    scaledParts: None,
     parts: [
       {
         reps: `Meter(500),
@@ -165,6 +81,7 @@ let wods = [
     category: None,
     createdAt: "2019-08-18T22:00:00.000Z",
     description: None,
+    scaledParts: None,
     externalLink: None,
     wodType: `ForTime,
     timeCap: None,
@@ -192,6 +109,7 @@ let wods = [
     buyInOut: None,
     externalLink: None,
     wodType: `ForTime,
+    scaledParts: None,
     category: None,
     description: None,
     timeCap: None,
@@ -225,6 +143,7 @@ let wods = [
     buyInOut: None,
     externalLink: None,
     wodType: `ForTime,
+    scaledParts: None,
     category: Some(`Hero),
     description:
       Some(
@@ -261,6 +180,7 @@ let wods = [
     name: Some("Half Murph"),
     wodType: `ForTime,
     externalLink: None,
+    scaledParts: None,
     buyInOut: None,
     category: Some(`Hero),
     description:
@@ -310,6 +230,7 @@ let wods = [
     wodType: `ForTime,
     category: None,
     buyInOut: None,
+    scaledParts: None,
     externalLink: None,
     description: None,
     timeCap: None,
@@ -391,6 +312,7 @@ let wods = [
     wodType: `ForTime,
     buyInOut: None,
     category: Some(`Wodapalooza(2018)),
+    scaledParts: None,
     externalLink: None,
     description:
       Some("For every break on single unders, add 5 cal to last Ski-Erg"),
@@ -437,6 +359,7 @@ let wods = [
     buyInOut: None,
     wodType: `ForTime,
     externalLink: None,
+    scaledParts: None,
     category: None,
     description: None,
     timeCap: None,
@@ -465,6 +388,7 @@ let wods = [
     category: None,
     externalLink: None,
     buyInOut: None,
+    scaledParts: None,
     description: None,
     timeCap: None,
     rounds: None,
@@ -510,6 +434,7 @@ let wods = [
     wodType: `AltEMOM(24),
     category: None,
     description: None,
+    scaledParts: None,
     timeCap: None,
     buyInOut: None,
     rounds: None,
@@ -560,6 +485,7 @@ let wods = [
     buyInOut: None,
     wodType: `ForTime,
     category: None,
+    scaledParts: None,
     externalLink: None,
     description: Some("Rest 3 min between rounds"),
     timeCap: None,
@@ -585,6 +511,7 @@ let wods = [
     createdAt: "2019-08-20T22:00:00.000Z",
     name: None,
     buyInOut: None,
+    scaledParts: None,
     wodType: `ForTime,
     category: Some(`Open((18, 2, `Scaled))),
     externalLink: None,
@@ -616,6 +543,7 @@ let wods = [
     name: None,
     buyInOut: None,
     wodType: `ForTime,
+    scaledParts: None,
     category: None,
     description: None,
     externalLink: None,
@@ -644,6 +572,7 @@ let wods = [
     wodType: `ForTime,
     buyInOut: None,
     category: Some(`Girl),
+    scaledParts: None,
     description: None,
     externalLink: None,
     timeCap: None,
@@ -666,6 +595,7 @@ let wods = [
     category: None,
     buyInOut: None,
     externalLink: None,
+    scaledParts: None,
     description: None,
     timeCap: None,
     rounds: Some(3),
@@ -705,6 +635,7 @@ let wods = [
     buyInOut: None,
     category: Some(`Hero),
     externalLink: None,
+    scaledParts: None,
     description:
       Some(
         {j|
@@ -744,6 +675,7 @@ This Firefighter Hero WOD is dedicated to Keithroy Maynard, FDNY, Engine 33, who
     wodType: `ForTime,
     category: None,
     buyInOut: None,
+    scaledParts: None,
     description: None,
     externalLink: None,
     timeCap: None,
@@ -776,6 +708,7 @@ This Firefighter Hero WOD is dedicated to Keithroy Maynard, FDNY, Engine 33, who
     name: None,
     wodType: `AMRAP,
     category: None,
+    scaledParts: None,
     externalLink: None,
     buyInOut:
       Some((
@@ -824,6 +757,7 @@ This Firefighter Hero WOD is dedicated to Keithroy Maynard, FDNY, Engine 33, who
     wodType: `EMOM(23),
     category: None,
     buyInOut: None,
+    scaledParts: None,
     externalLink:
       Some((
         "CrossFit Mayhem",
@@ -894,6 +828,7 @@ This Firefighter Hero WOD is dedicated to Keithroy Maynard, FDNY, Engine 33, who
     name: Some("190617-Mayhem with Cleans"),
     wodType: `EMOM(23),
     externalLink: None,
+    scaledParts: None,
     category: None,
     buyInOut: None,
     description:
@@ -961,6 +896,27 @@ This Firefighter Hero WOD is dedicated to Keithroy Maynard, FDNY, Engine 33, who
     name: Some("WZAOC 1"),
     wodType: `EMOM(23),
     category: Some(`Wodapalooza(2019)),
+    scaledParts:
+      Some([
+        {
+          reps: `Increasing(3),
+          weight: (Some(`kg(20)), Some(`kg(13))),
+          exercise: `SnatchHangPower,
+          equipment: Some(`Barbell),
+        },
+        {
+          reps: `Increasing(3),
+          weight: (Some(`kg(20)), Some(`kg(13))),
+          exercise: `OverheadSquat,
+          equipment: Some(`Barbell),
+        },
+        {
+          reps: `Num(30),
+          weight: (Some(`bodyweight), Some(`bodyweight)),
+          exercise: `SingleUnder,
+          equipment: Some(`JumpRope),
+        },
+      ]),
     buyInOut: None,
     externalLink:
       Some((
