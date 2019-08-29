@@ -1,14 +1,25 @@
+type workoutType =
+  | EMOM
+  | AMRAP
+  | ForTime;
+
+type workoutCategory =
+  | Hero
+  | Girl
+  | WZA
+  | Open;
+
 type state = {
-  category: option(Category.t),
-  filter: option(WodType.t),
+  category: option(workoutCategory),
+  workoutType: option(workoutType),
   query: option(string),
   system: Settings.system,
 };
 
 type action =
   | UpdateQuery(option(string))
-  | SetCategory(option(Category.t))
-  | SetFilter(option(WodType.t))
+  | SetCategory(option(workoutCategory))
+  | SetWorkoutType(option(workoutType))
   | SetSystem(Settings.system);
 
 module Style = {
@@ -65,12 +76,12 @@ let make = () => {
     React.useReducer(
       (state, action) =>
         switch (action) {
-        | SetCategory(c) => {...state, category: c}
-        | SetFilter(f) => {...state, filter: f}
-        | SetSystem(w) => {...state, system: w}
-        | UpdateQuery(q) => {...state, query: q}
+        | SetCategory(category) => {...state, category}
+        | SetWorkoutType(workoutType) => {...state, workoutType}
+        | SetSystem(system) => {...state, system}
+        | UpdateQuery(query) => {...state, query}
         },
-      {category: None, filter: None, system: Metric, query: None},
+      {category: None, workoutType: None, system: Metric, query: None},
     );
 
   let wods =
@@ -88,18 +99,27 @@ let make = () => {
         }
       )
     ->Belt.List.keep(wod =>
-        switch (state.filter) {
-        | Some(`EMOM(_)) => Pervasives.compare(wod.wodType, `EMOM(0)) === 1
-        | Some(f) => f == wod.wodType
-        | None => true
+        switch (state.workoutType, wod.wodType) {
+        | (Some(EMOM), `AltEMOM(_))
+        | (Some(EMOM), `EMOM(_)) => true
+        | (Some(EMOM), _) => false
+        | (Some(AMRAP), `AMRAP) => true
+        | (Some(AMRAP), _) => false
+        | (Some(ForTime), `ForTime) => true
+        | (Some(ForTime), _) => false
+        | (None, _) => true
         }
       )
     ->Belt.List.keep(wod =>
         switch (state.category, wod.category) {
-        | (Some(`Wodapalooza(_)), Some(`Wodapalooza(_))) => true
-        | (Some(`Open(_)), Some(`Open(_))) => true
-        | (Some(c), Some(wc)) => c == wc
-        | (Some(_), None) => false
+        | (Some(WZA), Some(`Wodapalooza(_))) => true
+        | (Some(WZA), _) => false
+        | (Some(Open), Some(`Open(_))) => true
+        | (Some(Open), _) => false
+        | (Some(Girl), Some(`Girl)) => true
+        | (Some(Girl), _) => false
+        | (Some(Hero), Some(`Hero)) => true
+        | (Some(Hero), _) => false
         | (None, Some(_))
         | (None, None) => true
         }
@@ -115,10 +135,10 @@ let make = () => {
             switch (v->Js.String.toLowerCase) {
             | "the girls"
             | "girls" =>
-              dispatch(SetCategory(Some(`Girl)));
+              dispatch(SetCategory(Some(Girl)));
               dispatch(UpdateQuery(None));
             | "hero" =>
-              dispatch(SetCategory(Some(`Hero)));
+              dispatch(SetCategory(Some(Hero)));
               dispatch(UpdateQuery(None));
             | _ => dispatch(UpdateQuery(Some(v)))
             }
@@ -131,25 +151,25 @@ let make = () => {
           <div className="mb-2">
             <Pill
               className="mr-4"
-              onClick={_ => dispatch(SetFilter(None))}
-              selected={Belt.Option.isNone(state.filter)}>
+              onClick={_ => dispatch(SetWorkoutType(None))}
+              selected={Belt.Option.isNone(state.workoutType)}>
               {React.string("All")}
             </Pill>
             <Pill
               className="mr-4"
-              onClick={_ => dispatch(SetFilter(Some(`ForTime)))}
-              selected={state.filter == Some(`ForTime)}>
+              onClick={_ => dispatch(SetWorkoutType(Some(ForTime)))}
+              selected={state.workoutType === Some(ForTime)}>
               {React.string("For time")}
             </Pill>
             <Pill
               className="mr-4"
-              onClick={_ => dispatch(SetFilter(Some(`EMOM(0))))}
-              selected={state.filter == Some(`EMOM(0))}>
+              onClick={_ => dispatch(SetWorkoutType(Some(EMOM)))}
+              selected={state.workoutType === Some(EMOM)}>
               {React.string("EMOM")}
             </Pill>
             <Pill
-              onClick={_ => dispatch(SetFilter(Some(`AMRAP)))}
-              selected={state.filter == Some(`AMRAP)}>
+              onClick={_ => dispatch(SetWorkoutType(Some(AMRAP)))}
+              selected={state.workoutType === Some(AMRAP)}>
               {React.string("AMRAP")}
             </Pill>
           </div>
@@ -162,27 +182,25 @@ let make = () => {
             </Pill>
             <Pill
               className="mr-4"
-              onClick={_ => dispatch(SetCategory(Some(`Hero)))}
-              selected={state.category == Some(`Hero)}>
+              onClick={_ => dispatch(SetCategory(Some(Hero)))}
+              selected={state.category === Some(Hero)}>
               {React.string("Hero")}
             </Pill>
             <Pill
               className="mr-4"
-              onClick={_ => dispatch(SetCategory(Some(`Girl)))}
-              selected={state.category == Some(`Girl)}>
+              onClick={_ => dispatch(SetCategory(Some(Girl)))}
+              selected={state.category === Some(Girl)}>
               {React.string("The Girls")}
             </Pill>
             <Pill
               className="mr-4"
-              onClick={_ => dispatch(SetCategory(Some(`Wodapalooza(0))))}
-              selected={state.category == Some(`Wodapalooza(0))}>
+              onClick={_ => dispatch(SetCategory(Some(WZA)))}
+              selected={state.category === Some(WZA)}>
               {React.string("Wodapalooza")}
             </Pill>
             <Pill
-              onClick={_ =>
-                dispatch(SetCategory(Some(`Open((18, 2, `Scaled)))))
-              }
-              selected={state.category == Some(`Open((18, 2, `Scaled)))}>
+              onClick={_ => dispatch(SetCategory(Some(Open)))}
+              selected={state.category === Some(Open)}>
               {React.string("Open")}
             </Pill>
           </div>
