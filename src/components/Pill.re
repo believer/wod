@@ -21,7 +21,7 @@ let make =
   let className =
     Css.(
       merge([
-        "inline-block rounded-full px-3 py-1 text-sm font-semibold",
+        "inline-block rounded-full px-3 py-1 text-sm font-semibold text-center",
         bg,
         className->Cn.unpack,
         {

@@ -28,11 +28,11 @@ let make = (~lastVisit, ~wod: Wod.t) => {
            | Some(name) => React.string(name)
            | None => React.string(WodType.toString(wod.wodType))
            }}
-          {switch (wod.timeCap, wod.wodType) {
-           | (Some(t), `AMRAP) =>
+          {switch (wod.timeCap, wod.wodType, wod.name) {
+           | (Some(t), `AMRAP, None) =>
              " " ++ t->string_of_int ++ " min" |> React.string
-           | (Some(_), _)
-           | (None, _) => React.null
+           | (Some(_), _, _)
+           | (None, _, _) => React.null
            }}
         </div>
         {switch (wod.category) {
@@ -99,6 +99,15 @@ let make = (~lastVisit, ~wod: Wod.t) => {
             |> React.string}
          </div>
        | None => React.null
+       }}
+      {switch (wod.timeCap, wod.wodType, wod.name) {
+       | (Some(t), `AMRAP, Some(_)) =>
+         <div className="mt-4 text-gray-700 text-sm">
+           <span className="font-semibold"> {React.string("AMRAP:")} </span>
+           {" " ++ t->string_of_int ++ " min" |> React.string}
+         </div>
+       | (Some(_), _, _)
+       | (None, _, _) => React.null
        }}
       {switch (wod.buyInOut) {
        | Some((Some(buyIn), _)) =>

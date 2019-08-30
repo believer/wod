@@ -894,7 +894,7 @@ This Firefighter Hero WOD is dedicated to Keithroy Maynard, FDNY, Engine 33, who
     id: "wzaoc191",
     createdAt: "2019-08-27T16:51:40.140Z",
     name: Some("WZAOC 1"),
-    wodType: `EMOM(23),
+    wodType: `AMRAP,
     category: Some(`Wodapalooza(2019)),
     scaledParts:
       Some([
@@ -929,7 +929,7 @@ This Firefighter Hero WOD is dedicated to Keithroy Maynard, FDNY, Engine 33, who
 Add 3 repetitions to each of the barbell movements (3/3/30, 6/6/30, 9/9/30, 12/12/30... etc..) at the conclusion of each round.<Paste>
     |j},
       ),
-    timeCap: None,
+    timeCap: Some(9),
     rounds: None,
     repScheme: None,
     parts: [
@@ -950,6 +950,103 @@ Add 3 repetitions to each of the barbell movements (3/3/30, 6/6/30, 9/9/30, 12/1
         weight: (Some(`bodyweight), Some(`bodyweight)),
         exercise: `DoubleUnder,
         equipment: Some(`JumpRope),
+      },
+    ],
+  },
+  {
+    id: "wzaoc192",
+    createdAt: "2019-08-30T12:18:15.258Z",
+    name: Some("WZAOC 2"),
+    wodType: `AMRAP,
+    category: Some(`Wodapalooza(2019)),
+    scaledParts:
+      Some([
+        {
+          reps: `Num(40),
+          weight: (Some(`kg(15)), Some(`kg(10))),
+          exercise: `SnatchAlt,
+          equipment: Some(`Dumbbell),
+        },
+        {
+          reps: `Num(40),
+          weight: (Some(`bodyweight), Some(`bodyweight)),
+          exercise: `PullUpJumping,
+          equipment: None,
+        },
+        {
+          reps: `Num(30),
+          weight: (Some(`kg(15)), Some(`kg(10))),
+          exercise: `Burpee,
+          equipment: Some(`Dumbbell),
+        },
+        {
+          reps: `Num(30),
+          weight: (Some(`bodyweight), Some(`bodyweight)),
+          exercise: `RingRow,
+          equipment: None,
+        },
+        {
+          reps: `Num(20),
+          weight: (Some(`kg(15)), Some(`kg(10))),
+          exercise: `DevilPress,
+          equipment: None,
+        },
+        {
+          reps: `Num(20),
+          weight: (Some(`bodyweight), Some(`bodyweight)),
+          exercise: `PullUp,
+          equipment: None,
+        },
+      ]),
+    buyInOut: None,
+    externalLink:
+      Some((
+        "Wodapalooza",
+        "https://wodapalooza.com/workout/2019-2020-indy-oc-wod-2/",
+      )),
+    description: None,
+    timeCap: Some(16),
+    rounds: None,
+    repScheme: None,
+    parts: [
+      {
+        reps: `Num(40),
+        // TODO(@believer) - kg float
+        weight: (Some(`kg(22)), Some(`kg(15))),
+        exercise: `SnatchAlt,
+        equipment: Some(`Dumbbell),
+      },
+      {
+        reps: `Num(40),
+        weight: (Some(`bodyweight), Some(`bodyweight)),
+        exercise: `PullUp,
+        equipment: None,
+      },
+      {
+        reps: `Num(30),
+        // TODO(@believer) - kg float
+        weight: (Some(`kg(22)), Some(`kg(15))),
+        exercise: `Burpee,
+        equipment: Some(`Dumbbell),
+      },
+      {
+        reps: `Num(30),
+        weight: (Some(`bodyweight), Some(`bodyweight)),
+        exercise: `C2B,
+        equipment: None,
+      },
+      {
+        reps: `Num(20),
+        // TODO(@believer) - kg float
+        weight: (Some(`kg(22)), Some(`kg(15))),
+        exercise: `DevilPress,
+        equipment: None,
+      },
+      {
+        reps: `Num(20),
+        weight: (Some(`bodyweight), Some(`bodyweight)),
+        exercise: `BarMuscleUp,
+        equipment: None,
       },
     ],
   },
