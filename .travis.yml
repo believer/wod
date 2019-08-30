@@ -1,5 +1,13 @@
  jobs:
   include:
+    - stage: test
+      language: node_js
+      node_js:
+        - 12
+      install:
+        - npm ci
+      script:
+        - npm test
     - stage: release
       language: node_js
       node_js:
@@ -17,7 +25,8 @@
       script:
         - now --token=$NOW_TOKEN --target=production
 stages:
+  - test
   - release
     if: branch = master AND type != pull_request
-  - name: deploy
+  - deploy
     if: branch = master AND type != pull_request

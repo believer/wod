@@ -62,6 +62,32 @@ module Style = {
     ]);
 };
 
+let filterWorkoutType = (workoutType, wodType) =>
+  switch (workoutType, wodType) {
+  | (Some(EMOM), `AltEMOM(_))
+  | (Some(EMOM), `EMOM(_)) => true
+  | (Some(EMOM), _) => false
+  | (Some(AMRAP), `AMRAP) => true
+  | (Some(AMRAP), _) => false
+  | (Some(ForTime), `ForTime) => true
+  | (Some(ForTime), _) => false
+  | (None, _) => true
+  };
+
+let filterWorkoutCategory = (stateCategory, category) =>
+  switch (stateCategory, category) {
+  | (Some(WZA), Some(`Wodapalooza(_))) => true
+  | (Some(WZA), _) => false
+  | (Some(Open), Some(`Open(_))) => true
+  | (Some(Open), _) => false
+  | (Some(Girl), Some(`Girl)) => true
+  | (Some(Girl), _) => false
+  | (Some(Hero), Some(`Hero)) => true
+  | (Some(Hero), _) => false
+  | (None, Some(_))
+  | (None, None) => true
+  };
+
 [@react.component]
 let make = () => {
   let lastVisit = Cookie.getAsString("wod-last-visit");
@@ -108,31 +134,11 @@ let make = () => {
   let wods =
     Wod.wods
     ->Belt.List.keep(({name}) => Search.filter(state.query, name))
-    ->Belt.List.keep(wod =>
-        switch (state.workoutType, wod.wodType) {
-        | (Some(EMOM), `AltEMOM(_))
-        | (Some(EMOM), `EMOM(_)) => true
-        | (Some(EMOM), _) => false
-        | (Some(AMRAP), `AMRAP) => true
-        | (Some(AMRAP), _) => false
-        | (Some(ForTime), `ForTime) => true
-        | (Some(ForTime), _) => false
-        | (None, _) => true
-        }
+    ->Belt.List.keep(({wodType}) =>
+        filterWorkoutType(state.workoutType, wodType)
       )
-    ->Belt.List.keep(wod =>
-        switch (state.category, wod.category) {
-        | (Some(WZA), Some(`Wodapalooza(_))) => true
-        | (Some(WZA), _) => false
-        | (Some(Open), Some(`Open(_))) => true
-        | (Some(Open), _) => false
-        | (Some(Girl), Some(`Girl)) => true
-        | (Some(Girl), _) => false
-        | (Some(Hero), Some(`Hero)) => true
-        | (Some(Hero), _) => false
-        | (None, Some(_))
-        | (None, None) => true
-        }
+    ->Belt.List.keep(({category}) =>
+        filterWorkoutCategory(state.category, category)
       );
 
   let workoutTypes =
