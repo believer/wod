@@ -24,4 +24,6 @@ module Make = (Config: Config) => {
       } =
       "";
   };
+
+  let use = () => React.useContext(t);
 };
