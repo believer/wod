@@ -1,3 +1,12 @@
+# [1.15.0](https://github.com/believer/wod/compare/v1.14.0...v1.15.0) (2019-08-30)
+
+
+### Features
+
+* convert weight and height to float ([32360b2](https://github.com/believer/wod/commit/32360b2))
+* **wod:** add wodapalooza online challenge 2 2019 ([bfb7a21](https://github.com/believer/wod/commit/bfb7a21))
+* 404 ([87fa5c4](https://github.com/believer/wod/commit/87fa5c4))
+
 # [1.14.0](https://github.com/believer/wod/compare/v1.13.0...v1.14.0) (2019-08-30)
 
 
