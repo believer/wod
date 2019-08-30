@@ -9,7 +9,7 @@ let make = (~lastVisit, ~wod: Wod.t) => {
   <div
     className="bg-white rounded shadow-lg flex flex-col
                justify-between">
-    <div className="p-6" key={wod.id}>
+    <div className="p-6">
       {switch (lastVisit) {
        | Some(last) =>
          Js.Date.fromString(wod.createdAt)

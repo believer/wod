@@ -64,25 +64,46 @@ module Style = {
 
 [@react.component]
 let make = () => {
-  let lastVisit = Cookie.getAsString("lastVisit");
+  let lastVisit = Cookie.getAsString("wod-last-visit");
 
   Cookie.setStringConfig(
-    "lastVisit",
+    "wod-last-visit",
     Js.Date.make() |> Js.Date.toISOString,
     Cookie.Config.make(~expires=3650, ()),
   );
 
   let (state, dispatch) =
-    React.useReducer(
-      (state, action) =>
-        switch (action) {
-        | SetCategory(category) => {...state, category}
-        | SetWorkoutType(workoutType) => {...state, workoutType}
-        | SetSystem(system) => {...state, system}
-        | UpdateQuery(query) => {...state, query}
-        },
+    ReactUpdate.useReducer(
       {category: None, workoutType: None, system: Metric, query: None},
+      (action, state) =>
+      switch (action) {
+      | SetCategory(category) => Update({...state, category})
+      | SetWorkoutType(workoutType) => Update({...state, workoutType})
+      | SetSystem(system) =>
+        UpdateWithSideEffects(
+          {...state, system},
+          _ => {
+            Storage.set("wod-system", Settings.toString(system)) |> ignore;
+
+            None;
+          },
+        )
+      | UpdateQuery(query) => Update({...state, query})
+      }
     );
+
+  React.useEffect0(() => {
+    Js.Promise.(
+      Storage.get("wod-system")
+      |> then_(value => {
+           dispatch(SetSystem(Settings.fromString(value)));
+           resolve();
+         })
+      |> ignore
+    );
+
+    None;
+  });
 
   let wods =
     Wod.wods
@@ -161,6 +182,7 @@ let make = () => {
                    className={
                      i < workoutTypes->Belt.List.length - 1 ? "mr-4" : ""
                    }
+                   key={pill.label}
                    onClick={_ => dispatch(SetWorkoutType(pill.value))}
                    selected={
                      switch (pill.value) {
@@ -181,6 +203,7 @@ let make = () => {
                    className={
                      i < workoutCategories->Belt.List.length - 1 ? "mr-4" : ""
                    }
+                   key={pill.label}
                    onClick={_ => dispatch(SetCategory(pill.value))}
                    selected={
                      switch (pill.value) {
@@ -224,7 +247,7 @@ let make = () => {
          | _ =>
            wods
            ->Belt.List.reverse
-           ->Belt.List.map(wod => <Workout lastVisit wod />)
+           ->Belt.List.map(wod => <Workout key={wod.id} lastVisit wod />)
            ->Belt.List.toArray
            ->React.array
          }}

@@ -14,7 +14,12 @@
   ],
   "suffix": ".bs.js",
   "namespace": true,
-  "bs-dependencies": ["reason-react", "bs-css", "re-classnames"],
+  "bs-dependencies": [
+    "reason-react",
+    "bs-css",
+    "re-classnames",
+    "reason-react-update"
+  ],
   "refmt": 3,
   "warnings": {
     "number": "+A-9-40-42-48",

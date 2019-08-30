@@ -4,6 +4,16 @@ type system =
 
 type t = {system};
 
+let toString =
+  fun
+  | Metric => "metric"
+  | Imperial => "imperial";
+
+let fromString =
+  fun
+  | "metric" => Metric
+  | _ => Imperial;
+
 module Context = {
   include ReactContext.Make({
     type context = t;
