@@ -64,9 +64,9 @@ module Pounds = {
 
   let make = kg =>
     switch (kg) {
-    | 13 => 33.0
-    | 25 => 55.0
-    | _ => (kg->float_of_int *. approx)->round5
+    | 13.0 => 33.0
+    | 25.0 => 55.0
+    | _ => (kg *. approx)->round5
     };
 };
 
@@ -75,9 +75,9 @@ module Inches = {
 
   let make = cm =>
     switch (cm) {
-    | 60 => 24
-    | 45 => 20
-    | _ => (cm->float_of_int /. approx)->round5->int_of_float
+    | 60.0 => 24.0
+    | 45.0 => 20.0
+    | _ => (cm /. approx)->round5
     };
 };
 
@@ -86,8 +86,8 @@ let splitWeight = (~m, ~f, ~weight as w, ~system) =>
   | Settings.Metric =>
     switch (w) {
     | `kg2(_) =>
-      str("(2*" ++ m->soi ++ "/" ++ f->soi ++ " " ++ weightUnit(w) ++ ")")
-    | _ => str("(" ++ m->soi ++ "/" ++ f->soi ++ " " ++ weightUnit(w) ++ ")")
+      str("(2*" ++ m->sof ++ "/" ++ f->sof ++ " " ++ weightUnit(w) ++ ")")
+    | _ => str("(" ++ m->sof ++ "/" ++ f->sof ++ " " ++ weightUnit(w) ++ ")")
     }
   | Settings.Imperial =>
     switch (w) {
@@ -114,14 +114,14 @@ let splitWeight = (~m, ~f, ~weight as w, ~system) =>
     | `cm(_) =>
       str(
         "("
-        ++ m->Inches.make->soi
+        ++ m->Inches.make->sof
         ++ "/"
-        ++ f->Inches.make->soi
+        ++ f->Inches.make->sof
         ++ " "
         ++ weightUnit(`inch)
         ++ ")",
       )
-    | _ => str("(" ++ m->soi ++ "/" ++ f->soi ++ " " ++ weightUnit(w) ++ ")")
+    | _ => str("(" ++ m->sof ++ "/" ++ f->sof ++ " " ++ weightUnit(w) ++ ")")
     }
   };
 
@@ -131,15 +131,15 @@ let weightAndHeight =
   | Settings.Metric =>
     str(
       "(2*"
-      ++ maleWeight->soi
+      ++ maleWeight->sof
       ++ "/"
-      ++ femaleWeight->soi
+      ++ femaleWeight->sof
       ++ " "
       ++ weightUnit(`kg(0))
       ++ " - "
-      ++ maleHeight->soi
+      ++ maleHeight->sof
       ++ "/"
-      ++ femaleHeight->soi
+      ++ femaleHeight->sof
       ++ " "
       ++ weightUnit(`cm(0))
       ++ ")",
@@ -153,9 +153,9 @@ let weightAndHeight =
       ++ " "
       ++ weightUnit(`lbs)
       ++ " - "
-      ++ maleHeight->Inches.make->soi
+      ++ maleHeight->Inches.make->sof
       ++ "/"
-      ++ femaleHeight->Inches.make->soi
+      ++ femaleHeight->Inches.make->sof
       ++ " "
       ++ weightUnit(`inch)
       ++ ")",
@@ -165,8 +165,8 @@ let weightAndHeight =
 
 let singleWeight = (~m, ~weight as w) =>
   switch (w) {
-  | `kg2(_) => str("(2*" ++ m->soi ++ " " ++ weightUnit(w) ++ ")")
-  | _ => str("(" ++ m->soi ++ " " ++ weightUnit(w) ++ ")")
+  | `kg2(_) => str("(2*" ++ m->sof ++ " " ++ weightUnit(w) ++ ")")
+  | _ => str("(" ++ m->sof ++ " " ++ weightUnit(w) ++ ")")
   };
 
 module Weight = {

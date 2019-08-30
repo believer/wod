@@ -1,7 +1,7 @@
 type t = [
-  | `kg(int)
-  | `kg2(int)
+  | `kg(float)
+  | `kg2(float)
   | `bodyweight
-  | `cm(int)
-  | `kg2cm(int, int)
+  | `cm(float)
+  | `kg2cm(float, float)
 ];

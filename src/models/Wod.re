@@ -50,19 +50,19 @@ let wods = [
       },
       {
         reps: `OneSide((5, 5)),
-        weight: (Some(`kg(20)), Some(`kg(15))),
+        weight: (Some(`kg(20.0)), Some(`kg(15.0))),
         exercise: `PushPress,
         equipment: Some(`Dumbbell),
       },
       {
         reps: `OneSide((5, 5)),
-        weight: (Some(`kg2(15)), Some(`kg2(12))),
+        weight: (Some(`kg2(15.0)), Some(`kg2(12.0))),
         exercise: `BackwardLunge,
         equipment: Some(`Dumbbell),
       },
       {
         reps: `OneSide((5, 5)),
-        weight: (Some(`kg(16)), Some(`kg(12))),
+        weight: (Some(`kg(16.0)), Some(`kg(12.0))),
         exercise: `KBS,
         equipment: Some(`Kettlebell),
       },
@@ -90,13 +90,13 @@ let wods = [
     parts: [
       {
         reps: `Num(10),
-        weight: (Some(`kg(9)), Some(`kg(6))),
+        weight: (Some(`kg(9.0)), Some(`kg(6.0))),
         exercise: `WallBall,
         equipment: Some(`WallBall),
       },
       {
         reps: `Num(10),
-        weight: (Some(`kg(15)), Some(`kg(12))),
+        weight: (Some(`kg(15.0)), Some(`kg(12.0))),
         exercise: `Clean,
         equipment: Some(`BulgarianBag),
       },
@@ -124,13 +124,13 @@ let wods = [
       },
       {
         reps: `Num(6),
-        weight: (Some(`cm(60)), Some(`cm(45))),
+        weight: (Some(`cm(60.0)), Some(`cm(45.0))),
         exercise: `BoxJump,
         equipment: None,
       },
       {
         reps: `Num(3),
-        weight: (Some(`kg(15)), Some(`kg(10))),
+        weight: (Some(`kg(15.0)), Some(`kg(10.0))),
         exercise: `DevilPress,
         equipment: Some(`Dumbbell),
       },
@@ -156,19 +156,19 @@ let wods = [
     parts: [
       {
         reps: `Num(12),
-        weight: (Some(`kg(70)), Some(`kg(47))),
+        weight: (Some(`kg(70.0)), Some(`kg(47.0))),
         exercise: `Deadlift,
         equipment: Some(`Barbell),
       },
       {
         reps: `Num(9),
-        weight: (Some(`kg(70)), Some(`kg(47))),
+        weight: (Some(`kg(70.0)), Some(`kg(47.0))),
         exercise: `CleanHangPower,
         equipment: Some(`Barbell),
       },
       {
         reps: `Num(6),
-        weight: (Some(`kg(70)), Some(`kg(47))),
+        weight: (Some(`kg(70.0)), Some(`kg(47.0))),
         exercise: `PushJerk,
         equipment: Some(`Barbell),
       },
@@ -245,7 +245,7 @@ let wods = [
       },
       {
         reps: `Num(10),
-        weight: (Some(`kg(40)), Some(`kg(30))),
+        weight: (Some(`kg(40.0)), Some(`kg(30.0))),
         exercise: `Thruster,
         equipment: Some(`Barbell),
       },
@@ -257,7 +257,7 @@ let wods = [
       },
       {
         reps: `Num(15),
-        weight: (Some(`kg(40)), Some(`kg(30))),
+        weight: (Some(`kg(40.0)), Some(`kg(30.0))),
         exercise: `SumoDeadliftHighPull,
         equipment: Some(`Barbell),
       },
@@ -269,7 +269,7 @@ let wods = [
       },
       {
         reps: `Num(20),
-        weight: (Some(`kg(40)), Some(`kg(30))),
+        weight: (Some(`kg(40.0)), Some(`kg(30.0))),
         exercise: `PushPress,
         equipment: Some(`Barbell),
       },
@@ -281,7 +281,7 @@ let wods = [
       },
       {
         reps: `Num(25),
-        weight: (Some(`kg(40)), Some(`kg(30))),
+        weight: (Some(`kg(40.0)), Some(`kg(30.0))),
         exercise: `CleanHangPower,
         equipment: Some(`Barbell),
       },
@@ -293,7 +293,7 @@ let wods = [
       },
       {
         reps: `Num(30),
-        weight: (Some(`kg(40)), Some(`kg(30))),
+        weight: (Some(`kg(40.0)), Some(`kg(30.0))),
         exercise: `Deadlift,
         equipment: Some(`Barbell),
       },
@@ -374,7 +374,7 @@ let wods = [
       },
       {
         reps: `Num(5),
-        weight: (Some(`kg(40)), Some(`kg(30))),
+        weight: (Some(`kg(40.0)), Some(`kg(30.0))),
         exercise: `SnatchPower,
         equipment: Some(`Barbell),
       },
@@ -402,19 +402,19 @@ let wods = [
       },
       {
         reps: `Num(40),
-        weight: (Some(`kg(24)), Some(`kg(16))),
+        weight: (Some(`kg(24.0)), Some(`kg(16.0))),
         exercise: `KBS,
         equipment: Some(`Kettlebell),
       },
       {
         reps: `Num(30),
-        weight: (Some(`kg(50)), Some(`kg(35))),
+        weight: (Some(`kg(50.0)), Some(`kg(35.0))),
         exercise: `PushPress,
         equipment: Some(`Barbell),
       },
       {
         reps: `Num(40),
-        weight: (Some(`kg(24)), Some(`kg(16))),
+        weight: (Some(`kg(24.0)), Some(`kg(16.0))),
         exercise: `KBS,
         equipment: Some(`Kettlebell),
       },
@@ -454,13 +454,13 @@ let wods = [
       },
       {
         reps: `Span((`OneSide((8, 8)), `OneSide((14, 14)))),
-        weight: (Some(`kg(15)), Some(`kg(10))),
+        weight: (Some(`kg(15.0)), Some(`kg(10.0))),
         exercise: `RussianTwist,
         equipment: None,
       },
       {
         reps: `Span((`Num(5), `Num(10))),
-        weight: (Some(`kg2(12)), Some(`kg2(8))),
+        weight: (Some(`kg2(12.0)), Some(`kg2(8.0))),
         exercise: `BurpeeBoxOver,
         equipment: Some(`Dumbbell),
       },
@@ -500,7 +500,7 @@ let wods = [
       },
       {
         reps: `RepScheme,
-        weight: (Some(`kg(9)), Some(`kg(6))),
+        weight: (Some(`kg(9.0)), Some(`kg(6.0))),
         exercise: `WallBall,
         equipment: Some(`WallBall),
       },
@@ -525,7 +525,7 @@ let wods = [
     parts: [
       {
         reps: `RepScheme,
-        weight: (Some(`kg2(15)), Some(`kg2(10))),
+        weight: (Some(`kg2(15.0)), Some(`kg2(10.0))),
         exercise: `Squat,
         equipment: Some(`Dumbbell),
       },
@@ -559,7 +559,7 @@ let wods = [
       },
       {
         reps: `RepScheme,
-        weight: (Some(`kg(40)), Some(`kg(30))),
+        weight: (Some(`kg(40.0)), Some(`kg(30.0))),
         exercise: `PushPress,
         equipment: Some(`Barbell),
       },
@@ -581,7 +581,7 @@ let wods = [
     parts: [
       {
         reps: `Num(30),
-        weight: (Some(`kg(61)), Some(`kg(43))),
+        weight: (Some(`kg(61.0)), Some(`kg(43.0))),
         exercise: `CleanAndJerk,
         equipment: Some(`Barbell),
       },
@@ -603,7 +603,7 @@ let wods = [
     parts: [
       {
         reps: `Num(15),
-        weight: (Some(`kg2(15)), Some(`kg2(10))),
+        weight: (Some(`kg2(15.0)), Some(`kg2(10.0))),
         exercise: `PushJerk,
         equipment: Some(`Dumbbell),
       },
@@ -615,7 +615,7 @@ let wods = [
       },
       {
         reps: `Num(15),
-        weight: (Some(`kg2cm((15, 60))), Some(`kg2cm((10, 45)))),
+        weight: (Some(`kg2cm((15.0, 60.0))), Some(`kg2cm((10.0, 45.0)))),
         exercise: `WeightedStepUp,
         equipment: None,
       },
@@ -650,7 +650,7 @@ This Firefighter Hero WOD is dedicated to Keithroy Maynard, FDNY, Engine 33, who
     parts: [
       {
         reps: `Num(44),
-        weight: (Some(`cm(60)), Some(`cm(45))),
+        weight: (Some(`cm(60.0)), Some(`cm(45.0))),
         exercise: `BoxStepUp,
         equipment: None,
       },
@@ -684,13 +684,13 @@ This Firefighter Hero WOD is dedicated to Keithroy Maynard, FDNY, Engine 33, who
     parts: [
       {
         reps: `Num(7),
-        weight: (Some(`kg(40)), Some(`kg(30))),
+        weight: (Some(`kg(40.0)), Some(`kg(30.0))),
         exercise: `Deadlift,
         equipment: Some(`Barbell),
       },
       {
         reps: `Num(7),
-        weight: (Some(`kg(40)), Some(`kg(30))),
+        weight: (Some(`kg(40.0)), Some(`kg(30.0))),
         exercise: `Thruster,
         equipment: Some(`Barbell),
       },
@@ -732,19 +732,19 @@ This Firefighter Hero WOD is dedicated to Keithroy Maynard, FDNY, Engine 33, who
     parts: [
       {
         reps: `OneSide((5, 5)),
-        weight: (Some(`kg(15)), Some(`kg(10))),
+        weight: (Some(`kg(15.0)), Some(`kg(10.0))),
         exercise: `Lunge,
         equipment: Some(`BulgarianBag),
       },
       {
         reps: `Num(10),
-        weight: (Some(`kg2(15)), Some(`kg2(10))),
+        weight: (Some(`kg2(15.0)), Some(`kg2(10.0))),
         exercise: `GroundToOverhead,
         equipment: Some(`Dumbbell),
       },
       {
         reps: `Num(10),
-        weight: (Some(`kg2(15)), Some(`kg2(10))),
+        weight: (Some(`kg2(15.0)), Some(`kg2(10.0))),
         exercise: `BentOverRow,
         equipment: Some(`Dumbbell),
       },
@@ -900,13 +900,13 @@ This Firefighter Hero WOD is dedicated to Keithroy Maynard, FDNY, Engine 33, who
       Some([
         {
           reps: `Increasing(3),
-          weight: (Some(`kg(20)), Some(`kg(13))),
+          weight: (Some(`kg(20.0)), Some(`kg(13.0))),
           exercise: `SnatchHangPower,
           equipment: Some(`Barbell),
         },
         {
           reps: `Increasing(3),
-          weight: (Some(`kg(20)), Some(`kg(13))),
+          weight: (Some(`kg(20.0)), Some(`kg(13.0))),
           exercise: `OverheadSquat,
           equipment: Some(`Barbell),
         },
@@ -935,13 +935,13 @@ Add 3 repetitions to each of the barbell movements (3/3/30, 6/6/30, 9/9/30, 12/1
     parts: [
       {
         reps: `Increasing(3),
-        weight: (Some(`kg(34)), Some(`kg(25))),
+        weight: (Some(`kg(34.0)), Some(`kg(25.0))),
         exercise: `SnatchHangPower,
         equipment: Some(`Barbell),
       },
       {
         reps: `Increasing(3),
-        weight: (Some(`kg(34)), Some(`kg(25))),
+        weight: (Some(`kg(34.0)), Some(`kg(25.0))),
         exercise: `OverheadSquat,
         equipment: Some(`Barbell),
       },
@@ -963,7 +963,7 @@ Add 3 repetitions to each of the barbell movements (3/3/30, 6/6/30, 9/9/30, 12/1
       Some([
         {
           reps: `Num(40),
-          weight: (Some(`kg(15)), Some(`kg(10))),
+          weight: (Some(`kg(15.0)), Some(`kg(10.0))),
           exercise: `SnatchAlt,
           equipment: Some(`Dumbbell),
         },
@@ -975,7 +975,7 @@ Add 3 repetitions to each of the barbell movements (3/3/30, 6/6/30, 9/9/30, 12/1
         },
         {
           reps: `Num(30),
-          weight: (Some(`kg(15)), Some(`kg(10))),
+          weight: (Some(`kg(15.0)), Some(`kg(10.0))),
           exercise: `Burpee,
           equipment: Some(`Dumbbell),
         },
@@ -987,7 +987,7 @@ Add 3 repetitions to each of the barbell movements (3/3/30, 6/6/30, 9/9/30, 12/1
         },
         {
           reps: `Num(20),
-          weight: (Some(`kg(15)), Some(`kg(10))),
+          weight: (Some(`kg(15.0)), Some(`kg(10.0))),
           exercise: `DevilPress,
           equipment: None,
         },
@@ -1011,8 +1011,7 @@ Add 3 repetitions to each of the barbell movements (3/3/30, 6/6/30, 9/9/30, 12/1
     parts: [
       {
         reps: `Num(40),
-        // TODO(@believer) - kg float
-        weight: (Some(`kg(22)), Some(`kg(15))),
+        weight: (Some(`kg(22.5)), Some(`kg(15.0))),
         exercise: `SnatchAlt,
         equipment: Some(`Dumbbell),
       },
@@ -1024,8 +1023,7 @@ Add 3 repetitions to each of the barbell movements (3/3/30, 6/6/30, 9/9/30, 12/1
       },
       {
         reps: `Num(30),
-        // TODO(@believer) - kg float
-        weight: (Some(`kg(22)), Some(`kg(15))),
+        weight: (Some(`kg(22.5)), Some(`kg(15.0))),
         exercise: `Burpee,
         equipment: Some(`Dumbbell),
       },
@@ -1037,8 +1035,7 @@ Add 3 repetitions to each of the barbell movements (3/3/30, 6/6/30, 9/9/30, 12/1
       },
       {
         reps: `Num(20),
-        // TODO(@believer) - kg float
-        weight: (Some(`kg(22)), Some(`kg(15))),
+        weight: (Some(`kg(22.5)), Some(`kg(15.0))),
         exercise: `DevilPress,
         equipment: None,
       },
