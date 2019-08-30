@@ -172,7 +172,7 @@ let singleWeight = (~m, ~weight as w) =>
 module Weight = {
   [@react.component]
   let make = (~weight) => {
-    let {system}: Settings.t = React.useContext(Settings.context);
+    let {system}: Settings.t = Settings.use();
 
     <span className="text-gray-500">
       {switch (weight) {

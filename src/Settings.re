@@ -4,13 +4,12 @@ type system =
 
 type t = {system};
 
-let context = React.createContext({system: Metric});
+module Context = {
+  include ReactContext.Make({
+    type context = t;
 
-module Provider = {
-  let make = React.Context.provider(context);
-
-  let makeProps = (~value, ~children, ()) => {
-    "value": value,
-    "children": children,
-  };
+    let defaultValue = {system: Metric};
+  });
 };
+
+let use = () => React.useContext(Context.t);

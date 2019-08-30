@@ -1,3 +1,13 @@
+let filter = (query, name) =>
+  Js.String.(
+    switch (query, name) {
+    | (Some(q), Some(n)) => includes(q->toLowerCase, n->toLowerCase)
+    | (Some(_), None) => false
+    | (None, Some(_))
+    | (None, None) => true
+    }
+  );
+
 [@react.component]
 let make = (~query, ~onChange) => {
   let className = Css.(merge(["mb-8", style([gridColumn(3, 4)])]));

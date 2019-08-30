@@ -1,3 +1,12 @@
+module Item = {
+  type t('value) = {
+    value: option('value),
+    label: string,
+  };
+
+  let make = (~value=None, ~label, ()) => {value, label};
+};
+
 [@react.component]
 let make =
     (~onClick=?, ~children, ~background=`Gray, ~className=?, ~selected=?) => {
