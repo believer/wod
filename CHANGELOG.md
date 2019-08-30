@@ -1,3 +1,10 @@
+# [1.14.0](https://github.com/believer/wod/compare/v1.13.0...v1.14.0) (2019-08-30)
+
+
+### Features
+
+* persist if user uses metric or imperial ([7cc2692](https://github.com/believer/wod/commit/7cc2692))
+
 # [1.13.0](https://github.com/believer/wod/compare/v1.12.0...v1.13.0) (2019-08-29)
 
 
