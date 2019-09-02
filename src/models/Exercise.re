@@ -32,6 +32,7 @@ type t = [
   | `Row
   | `Run
   | `RussianTwist
+  | `ShoulderToOverhead
   | `SingleUnder
   | `SkiErg
   | `SnatchAlt
@@ -41,10 +42,12 @@ type t = [
   | `SumoDeadliftHighPull
   | `Swim
   | `Thruster
+  | `ToesToBar
   | `VUps
   | `VUpsSide
   | `WallBall
   | `WeightedStepUp
+  | `WeightedButterflySitUp
 ];
 
 let toString =
@@ -82,6 +85,7 @@ let toString =
   | `Row => "row"
   | `Run => "run"
   | `RussianTwist => "russian twist"
+  | `ShoulderToOverhead => "shoulder-to-overhead"
   | `SingleUnder => "single unders"
   | `SkiErg => "SkiErg"
   | `SnatchAlt => "alt snatches"
@@ -91,7 +95,9 @@ let toString =
   | `SumoDeadliftHighPull => "sumo deadlift high pull"
   | `Swim => "swim"
   | `Thruster => "thrusters"
+  | `ToesToBar => "toes-to-bar"
   | `VUps => "v-ups"
   | `VUpsSide => "side v-ups"
   | `WallBall => "wall balls"
-  | `WeightedStepUp => "weighted step-ups";
+  | `WeightedStepUp => "weighted step-ups"
+  | `WeightedButterflySitUp => "weighted butterfly sit-ups";

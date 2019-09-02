@@ -1112,4 +1112,120 @@ Add 3 repetitions to each of the barbell movements (3/3/30, 6/6/30, 9/9/30, 12/1
       },
     ],
   },
+  {
+    id: "wza-oc-19-3",
+    createdAt: "2019-09-02T18:28:00.514Z",
+    name: Some("WZAOC 3"),
+    wodType: `ForTime,
+    category: Some(`Wodapalooza(2019)),
+    scaledParts:
+      Some([
+        {
+          reps: `Num(12),
+          weight: (Some(`kg(34.0)), Some(`kg(25.0))),
+          exercise: `Deadlift,
+          equipment: Some(`Barbell),
+        },
+        {
+          reps: `Num(9),
+          weight: (Some(`kg(34.0)), Some(`kg(25.0))),
+          exercise: `CleanHangPower,
+          equipment: Some(`Barbell),
+        },
+        {
+          reps: `Num(6),
+          weight: (Some(`kg(34.0)), Some(`kg(25.0))),
+          exercise: `ShoulderToOverhead,
+          equipment: Some(`Barbell),
+        },
+      ]),
+    buyInOut: None,
+    externalLink:
+      Some((
+        "Wodapalooza",
+        "https://wodapalooza.com/workout/2019-2020-indy-oc-wod-3/",
+      )),
+    description:
+      Some(
+        {j|
+Every 4 minutes, complete 3 rounds of the exercises. Starting at these weights.
+
+If you complete the three rounds at a given weight within the 4 min window, increase the weight to the next load, add another 4:00 to your time-cap, and immediately begin on the next three rounds.
+
+See Wodapalooza link for round weight increases.
+|j},
+      ),
+    timeCap: None,
+    rounds: None,
+    repScheme: None,
+    parts: [
+      {
+        reps: `Num(12),
+        weight: (Some(`kg(43.0)), Some(`kg(30.0))),
+        exercise: `Deadlift,
+        equipment: Some(`Barbell),
+      },
+      {
+        reps: `Num(9),
+        weight: (Some(`kg(43.0)), Some(`kg(30.0))),
+        exercise: `CleanHangPower,
+        equipment: Some(`Barbell),
+      },
+      {
+        reps: `Num(6),
+        weight: (Some(`kg(43.0)), Some(`kg(30.0))),
+        exercise: `ShoulderToOverhead,
+        equipment: Some(`Barbell),
+      },
+    ],
+  },
+  {
+    id: "wza-oc-19-4",
+    createdAt: "2019-09-02T18:21:12.046Z",
+    name: Some("WZAOC 4"),
+    wodType: `ForTime,
+    category: Some(`Wodapalooza(2019)),
+    scaledParts:
+      Some([
+        {
+          reps: `Num(100),
+          weight: (Some(`kg(6.0)), Some(`kg(4.0))),
+          exercise: `WallBall,
+          equipment: Some(`WallBall),
+        },
+        {
+          reps: `Num(50),
+          weight: (Some(`bodyweight), Some(`bodyweight)),
+          exercise: `WeightedButterflySitUp,
+          equipment: None,
+        },
+      ]),
+    buyInOut: None,
+    externalLink:
+      Some((
+        "Wodapalooza",
+        "https://wodapalooza.com/workout/2019-2020-indy-oc-wod-4/",
+      )),
+    description:
+      Some(
+        "Perform in any order, until completion of total work. Can be broken down or performed in any order.",
+      ),
+    timeCap: Some(20),
+    rounds: None,
+    repScheme: None,
+    parts: [
+      {
+        reps: `Num(150),
+        weight: (Some(`kg(9.0)), Some(`kg(6.0))),
+        exercise: `WallBall,
+        equipment: Some(`WallBall),
+      },
+      {
+        reps: `Num(75),
+        weight: (Some(`bodyweight), Some(`bodyweight)),
+        exercise: `ToesToBar,
+        equipment: None,
+      },
+    ],
+  },
 ];

@@ -65,8 +65,10 @@ module Pounds = {
 
   let make = kg =>
     switch (kg) {
+    | 6.0 => 14.0
     | 13.0 => 33.0
     | 25.0 => 55.0
+    | 30.0 => 65.0
     | _ => (kg *. approx)->round5
     };
 };
