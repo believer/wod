@@ -558,11 +558,10 @@ Scaled may exchange singles to 25 dubs.
     ],
   },
   {
-    id: "bd199c6f-bfa3-484d-b703-1361f9bef768",
+    id: "cf-open-18-2",
     createdAt: "2019-08-20T22:00:00.000Z",
     name: None,
     buyInOut: None,
-    scaledParts: None,
     wodType: `ForTime,
     category: Some(`Open((18, 2, `Scaled))),
     externalLink: None,
@@ -573,10 +572,25 @@ Scaled may exchange singles to 25 dubs.
     timeCap: Some(12),
     rounds: None,
     repScheme: Some([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
+    scaledParts:
+      Some([
+        {
+          reps: `RepScheme,
+          weight: (Some(`kg2(15.0)), Some(`kg2(10.0))),
+          exercise: `Squat,
+          equipment: Some(`Dumbbell),
+        },
+        {
+          reps: `RepScheme,
+          weight: (Some(`bodyweight), Some(`bodyweight)),
+          exercise: `BarFacingBurpee,
+          equipment: None,
+        },
+      ]),
     parts: [
       {
         reps: `RepScheme,
-        weight: (Some(`kg2(15.0)), Some(`kg2(10.0))),
+        weight: (Some(`kg2(22.5)), Some(`kg2(15.0))),
         exercise: `Squat,
         equipment: Some(`Dumbbell),
       },
