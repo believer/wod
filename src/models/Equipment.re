@@ -5,6 +5,7 @@ type t = [
   | `WallBall
   | `BulgarianBag
   | `JumpRope
+  | `Unbroken
 ];
 
 let toString =
@@ -14,4 +15,5 @@ let toString =
   | `Dumbbell => "DB"
   | `Kettlebell => "KB"
   | `WallBall => "medicine ball"
-  | `BulgarianBag => "bulgarian bag";
+  | `BulgarianBag => "bulgarian bag"
+  | `Unbroken => "UB";

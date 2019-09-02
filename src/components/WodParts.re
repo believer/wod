@@ -9,6 +9,7 @@ module Equipment = {
     | Some(eq) =>
       switch (eq) {
       | `BulgarianBag
+      | `Unbroken
       | `Dumbbell => " " ++ Equipment.toString(eq) |> str
       | `WallBall
       | `Barbell

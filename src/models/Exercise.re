@@ -16,6 +16,7 @@ type t = [
   | `Deadlift
   | `DevilPress
   | `DoubleUnder
+  | `DoubleUnderHeavy
   | `GroundToOverhead
   | `HangingKneeRaise
   | `KBS
@@ -38,6 +39,7 @@ type t = [
   | `SnatchPower
   | `Squat
   | `SumoDeadliftHighPull
+  | `Swim
   | `Thruster
   | `VUps
   | `VUpsSide
@@ -64,6 +66,7 @@ let toString =
   | `Deadlift => "deadlifts"
   | `DevilPress => "devil presses"
   | `DoubleUnder => "double unders"
+  | `DoubleUnderHeavy => "heavy double unders"
   | `GroundToOverhead => "ground to overhead"
   | `HangingKneeRaise => "hanging knee raises"
   | `KBS => "kettlebell swing"
@@ -86,6 +89,7 @@ let toString =
   | `SnatchPower => "power snatch"
   | `Squat => "squat"
   | `SumoDeadliftHighPull => "sumo deadlift high pull"
+  | `Swim => "swim"
   | `Thruster => "thrusters"
   | `VUps => "v-ups"
   | `VUpsSide => "side v-ups"

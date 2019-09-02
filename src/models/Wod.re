@@ -306,46 +306,97 @@ let wods = [
     ],
   },
   {
-    id: "ski-school",
+    id: "wza-ski-school",
     createdAt: "2019-08-19T22:00:00.000Z",
     name: Some("Ski School"),
     wodType: `ForTime,
     buyInOut: None,
     category: Some(`Wodapalooza(2018)),
-    scaledParts: None,
-    externalLink: None,
+    externalLink:
+      Some(("Wodapalooza", "https://wodapalooza.com/workout/ski-school/")),
     description:
-      Some("For every break on single unders, add 5 cal to last Ski-Erg"),
-    timeCap: None,
+      Some(
+        {j|
+For every break on single unders, add 5 cal to last Ski-Erg.
+
+Scaled may exchange singles to 25 dubs.
+        |j},
+      ),
+    timeCap: Some(14),
     rounds: None,
     repScheme: None,
+    scaledParts:
+      Some([
+        {
+          reps: `Cal2((30, 20)),
+          weight: (None, None),
+          exercise: `SkiErg,
+          equipment: None,
+        },
+        {
+          reps: `Meter(250),
+          weight: (None, None),
+          exercise: `Swim,
+          equipment: None,
+        },
+        {
+          reps: `Num(75),
+          weight: (None, None),
+          exercise: `SingleUnder,
+          equipment: Some(`Unbroken),
+        },
+        {
+          reps: `Num(75),
+          weight: (None, None),
+          exercise: `SingleUnder,
+          equipment: Some(`Unbroken),
+        },
+        {
+          reps: `Num(75),
+          weight: (None, None),
+          exercise: `SingleUnder,
+          equipment: Some(`Unbroken),
+        },
+        {
+          reps: `Cal2((30, 20)),
+          weight: (None, None),
+          exercise: `SkiErg,
+          equipment: None,
+        },
+      ]),
     parts: [
       {
-        reps: `Cal2((30, 20)),
+        reps: `Cal2((40, 30)),
         weight: (None, None),
         exercise: `SkiErg,
         equipment: None,
       },
       {
-        reps: `Num(75),
+        reps: `Meter(250),
         weight: (None, None),
-        exercise: `SingleUnder,
+        exercise: `Swim,
         equipment: None,
       },
       {
-        reps: `Num(75),
+        reps: `Num(50),
         weight: (None, None),
-        exercise: `SingleUnder,
-        equipment: None,
+        exercise: `DoubleUnderHeavy,
+        equipment: Some(`Unbroken),
       },
       {
-        reps: `Num(75),
+        reps: `Num(50),
         weight: (None, None),
-        exercise: `SingleUnder,
-        equipment: None,
+        exercise: `DoubleUnderHeavy,
+        equipment: Some(`Unbroken),
       },
       {
-        reps: `Cal2((30, 20)),
+        reps: `Num(50),
+        weight: (None, None),
+        exercise: `DoubleUnderHeavy,
+        equipment: Some(`Unbroken),
+      },
+      {
+        reps: `Cal2((40, 30)),
         weight: (None, None),
         exercise: `SkiErg,
         equipment: None,
