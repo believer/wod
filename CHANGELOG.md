@@ -1,3 +1,12 @@
+# [1.16.0](https://github.com/believer/wod/compare/v1.15.0...v1.16.0) (2019-09-02)
+
+
+### Features
+
+* **wod:** add 18.2 rx ([a7552c2](https://github.com/believer/wod/commit/a7552c2))
+* **wod:** add wza oc 3 and 4 ([92ad208](https://github.com/believer/wod/commit/92ad208))
+* **wod:** update wza ski school with rx ([fe1b7da](https://github.com/believer/wod/commit/fe1b7da))
+
 # [1.15.0](https://github.com/believer/wod/compare/v1.14.0...v1.15.0) (2019-08-30)
 
 
