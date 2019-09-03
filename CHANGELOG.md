@@ -1,3 +1,10 @@
+# [1.18.0](https://github.com/believer/wod/compare/v1.17.0...v1.18.0) (2019-09-03)
+
+
+### Features
+
+* handle pluralization ([61be80e](https://github.com/believer/wod/commit/61be80e))
+
 # [1.17.0](https://github.com/believer/wod/compare/v1.16.0...v1.17.0) (2019-09-03)
 
 
