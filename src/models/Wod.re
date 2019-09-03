@@ -15,7 +15,7 @@ type t = {
   category: option(Category.t),
   buyInOut: option((option(WodPart.t), option(WodPart.t))),
   createdAt: string,
-  description: option(string),
+  description: option((option(string), option(string))),
   id: string,
   externalLink: option((string, string)),
   name: option(string),
@@ -146,10 +146,13 @@ let wods = [
     scaledParts: None,
     category: Some(`Hero),
     description:
-      Some(
-        "In honor of US Air Force SSgt Timothy P. Davis, 28, who
+      Some((
+        Some(
+          "In honor of US Air Force SSgt Timothy P. Davis, 28, who
     was killed on Feburary, 20 2009 supporting operations in OEF when his vehicle was struck by an IED.",
-      ),
+        ),
+        None,
+      )),
     timeCap: None,
     rounds: Some(5),
     repScheme: None,
@@ -184,9 +187,15 @@ let wods = [
     buyInOut: None,
     category: Some(`Hero),
     description:
-      Some(
-        "In memory of Navy Lieutenant Michael P. Murphy, who was killed in Afghanistan June 28, 2005. Murphy was awarded the U.S. military's highest decoration, the Medal of Honor, for his actions during the War in Afghanistan.",
-      ),
+      Some((
+        Some(
+          "In memory of Navy Lieutenant Michael P. Murphy, who was killed in
+             Afghanistan June 28, 2005. Murphy was awarded the U.S. military's
+             highest decoration, the Medal of Honor, for his actions during the
+             War in Afghanistan.",
+        ),
+        None,
+      )),
     timeCap: None,
     rounds: None,
     repScheme: None,
@@ -315,13 +324,16 @@ let wods = [
     externalLink:
       Some(("Wodapalooza", "https://wodapalooza.com/workout/ski-school/")),
     description:
-      Some(
-        {j|
-For every break on single unders, add 5 cal to last Ski-Erg.
+      Some((
+        Some(
+          {j|
+For every break on jump rope, add 5 cal to last Ski-Erg.
 
 Scaled may exchange singles to 25 dubs.
         |j},
-      ),
+        ),
+        None,
+      )),
     timeCap: Some(14),
     rounds: None,
     repScheme: None,
@@ -538,7 +550,7 @@ Scaled may exchange singles to 25 dubs.
     category: None,
     scaledParts: None,
     externalLink: None,
-    description: Some("Rest 3 min between rounds"),
+    description: Some((Some("Rest 3 min between rounds"), None)),
     timeCap: None,
     rounds: Some(2),
     repScheme: Some([21, 15, 9]),
@@ -566,9 +578,13 @@ Scaled may exchange singles to 25 dubs.
     category: Some(`Open((18, 2, `Scaled))),
     externalLink: None,
     description:
-      Some(
-        "After all rounds are complete establish a 1-rep-max clean in remaining time",
-      ),
+      Some((
+        Some(
+          "After all rounds are complete establish a 1-rep-max clean in
+                remaining time",
+        ),
+        None,
+      )),
     timeCap: Some(12),
     rounds: None,
     repScheme: Some([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
@@ -702,13 +718,16 @@ Scaled may exchange singles to 25 dubs.
     externalLink: None,
     scaledParts: None,
     description:
-      Some(
-        {j|
+      Some((
+        Some(
+          {j|
 Wear a weighted west if available. On the last round, do 15 air squats.
 
 This Firefighter Hero WOD is dedicated to Keithroy Maynard, FDNY, Engine 33, who was killed on September 11, 2001.
-        |j},
-      ),
+          |j},
+        ),
+        None,
+      )),
     timeCap: None,
     rounds: Some(5),
     repScheme: None,
@@ -829,16 +848,19 @@ This Firefighter Hero WOD is dedicated to Keithroy Maynard, FDNY, Engine 33, who
         "https://www.crossfitmayhem.com/daily-workout-posts/2019/6/16/6172019",
       )),
     description:
-      Some(
-        {j|
-  Each set EMOM 5 min, then 1 min rest before next EMOM.
+      Some((
+        Some(
+          {j|
+Each set EMOM 5 min, then 1 min rest before next EMOM.
 
-  * First set (5 reps) light weight, touch and go
-  * Second set (3 reps) medium weight, touch and go
-  * Third set (1 rep - E30s) heavy weight
-  * Last set (5 reps) same as first set
-    |j},
-      ),
+* First set (5 reps) light weight, touch and go
+* Second set (3 reps) medium weight, touch and go
+* Third set (1 rep - E30s) heavy weight
+* Last set (5 reps) same as first set
+|j},
+        ),
+        None,
+      )),
     timeCap: None,
     rounds: None,
     repScheme: None,
@@ -897,16 +919,19 @@ This Firefighter Hero WOD is dedicated to Keithroy Maynard, FDNY, Engine 33, who
     category: None,
     buyInOut: None,
     description:
-      Some(
-        {j|
-  Each set EMOM 5 min, then 1 min rest before next EMOM.
+      Some((
+        Some(
+          {j|
+Each set EMOM 5 min, then 1 min rest before next EMOM.
 
-  * First set (5 reps) light weight, touch and go
-  * Second set (3 reps) medium weight, touch and go
-  * Third set (1 rep - E30s) heavy weight
-  * Last set (5 reps) same as first set
-    |j},
-      ),
+* First set (5 reps) light weight, touch and go
+* Second set (3 reps) medium weight, touch and go
+* Third set (1 rep - E30s) heavy weight
+* Last set (5 reps) same as first set
+          |j},
+        ),
+        None,
+      )),
     timeCap: None,
     rounds: None,
     repScheme: None,
@@ -989,11 +1014,14 @@ This Firefighter Hero WOD is dedicated to Keithroy Maynard, FDNY, Engine 33, who
         "https://wodapalooza.com/workout/2019-2020-indy-oc-wod-1/",
       )),
     description:
-      Some(
-        {j|
-Add 3 repetitions to each of the barbell movements (3/3/30, 6/6/30, 9/9/30, 12/12/30... etc..) at the conclusion of each round.<Paste>
-    |j},
-      ),
+      Some((
+        Some(
+          {j|
+Add 3 repetitions to each of the barbell movements (3/3/30, 6/6/30, 9/9/30, 12/12/30... etc..) at the conclusion of each round.
+          |j},
+        ),
+        None,
+      )),
     timeCap: Some(9),
     rounds: None,
     repScheme: None,
@@ -1146,15 +1174,35 @@ Add 3 repetitions to each of the barbell movements (3/3/30, 6/6/30, 9/9/30, 12/1
         "https://wodapalooza.com/workout/2019-2020-indy-oc-wod-3/",
       )),
     description:
-      Some(
-        {j|
+      Some((
+        Some(
+          {j|
 Every 4 minutes, complete 3 rounds of the exercises. Starting at these weights.
 
 If you complete the three rounds at a given weight within the 4 min window, increase the weight to the next load, add another 4:00 to your time-cap, and immediately begin on the next three rounds.
 
-See Wodapalooza link for round weight increases.
-|j},
-      ),
+* Round 1 - 43/30 kg (95/65 lbs)
+* Round 2 - 61/43 kg (135/95 lbs)
+* Round 3 - 70/48 kg (155/105 lbs)
+* Round 4 - 84/59 kg (185/130 lbs)
+* Round 5 - 93/66 kg (205/145 lbs) - AMRAP with remaining time
+          |j},
+        ),
+        Some(
+          {j|
+Every 4 minutes, complete 3 rounds of the exercises. Starting at these weights.
+
+If you complete the three rounds at a given weight within the 4 min window, increase the weight to the next load, add another 4:00 to your time-cap, and immediately begin on the next three rounds.
+
+* Round 1 - 34/25 kg (75/55 lbs)
+* Round 2 - 43/30 kg (95/65 lbs)
+* Round 3 - 52/36 kg (115/80 lbs)
+* Round 4 - 61/43 kg (135/95 lbs)
+* Round 5 - 70/48 kg (155/105 lbs) - AMRAP with remaining time
+
+          |j},
+        ),
+      )),
     timeCap: None,
     rounds: None,
     repScheme: None,
@@ -1207,9 +1255,13 @@ See Wodapalooza link for round weight increases.
         "https://wodapalooza.com/workout/2019-2020-indy-oc-wod-4/",
       )),
     description:
-      Some(
-        "Perform in any order, until completion of total work. Can be broken down or performed in any order.",
-      ),
+      Some((
+        Some(
+          "Perform in any order, until completion of total work. Can be
+                broken down or performed in any order.",
+        ),
+        None,
+      )),
     timeCap: Some(20),
     rounds: None,
     repScheme: None,

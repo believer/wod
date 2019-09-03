@@ -250,9 +250,13 @@ let make = (~lastVisit, ~wod: Wod.t) => {
       </ul>
       <BuyOut buyOut />
       <TimeCap wod />
-      {switch (wod.description) {
-       | Some(text) => <Markdown text />
-       | None => React.null
+      {switch (wod.description, wodVersion) {
+       | (Some((Some(text), _)), RX) => <Markdown text />
+       | (Some((_, Some(text))), Scaled) => <Markdown text />
+       | (Some((None, None)), _)
+       | (Some((None, Some(_))), RX)
+       | (Some((Some(_), None)), Scaled)
+       | (None, _) => React.null
        }}
       {switch (wod.externalLink) {
        | Some((name, href)) =>
