@@ -26,6 +26,7 @@
     "js-cookie": "2.2.1",
     "localforage": "1.7.3",
     "marked": "0.7.0",
+    "pluralize": "8.0.0",
     "re-classnames": "4.0.0",
     "react": "16.9.0",
     "react-dom": "16.9.0",

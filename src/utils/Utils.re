@@ -15,3 +15,5 @@ let padEndWithSpace = str => {
 let padStartWithSpace = str => {
   str |> padStartWith(str->Js.String.length + 1, " ");
 };
+
+[@bs.module] external pluralize: string => string = "pluralize";

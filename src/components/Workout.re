@@ -182,10 +182,21 @@ module WodItem = {
           <WodParts.Unit reps={part.reps} />
           <WodParts.Equipment equipment={part.equipment} />
           {(
-             switch (wod.repScheme) {
-             | Some(_) =>
-               part.exercise->Exercise.toString->Utils.capitalizeFirst
-             | None => Exercise.toString(part.exercise)
+             switch (wod.repScheme, part.reps, part.exercise) {
+             | (Some(_), _, e) => e->Exercise.toString->Utils.capitalizeFirst
+             | (None, `Num(v), `ToesToBar as e) when v > 1 =>
+               e->Exercise.toString
+             | (None, `Span(`Num(v), _), e) when v > 1 =>
+               e->Exercise.toString->Utils.pluralize
+             | (None, `Span(`OneSide(v, _), _), e) when v > 1 =>
+               e->Exercise.toString->Utils.pluralize
+             | (None, `OneSide(v, _), e) when v > 1 =>
+               e->Exercise.toString->Utils.pluralize
+             | (None, `Increasing(v), e) when v > 1 =>
+               e->Exercise.toString->Utils.pluralize
+             | (None, `Num(v), e) when v > 1 =>
+               e->Exercise.toString->Utils.pluralize
+             | (None, _, e) => e->Exercise.toString
              }
            )
            |> Utils.padStartWithSpace
