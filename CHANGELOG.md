@@ -1,3 +1,10 @@
+# [1.17.0](https://github.com/believer/wod/compare/v1.16.0...v1.17.0) (2019-09-03)
+
+
+### Features
+
+* add rx/scaled descriptions ([de9bf8b](https://github.com/believer/wod/commit/de9bf8b))
+
 # [1.16.0](https://github.com/believer/wod/compare/v1.15.0...v1.16.0) (2019-09-02)
 
 
