@@ -262,11 +262,11 @@ let make = (~lastVisit, ~wod: Wod.t) => {
       <BuyOut buyOut />
       <TimeCap wod />
       {switch (wod.description, wodVersion) {
-       | (Some((Some(text), _)), RX) => <Markdown text />
-       | (Some((_, Some(text))), Scaled) => <Markdown text />
+       | (Some((Some(text), _)), RX)
+       | (Some((_, Some(text))), Scaled)
+       | (Some((None, Some(text))), RX)
+       | (Some((Some(text), None)), Scaled) => <Markdown text />
        | (Some((None, None)), _)
-       | (Some((None, Some(_))), RX)
-       | (Some((Some(_), None)), Scaled)
        | (None, _) => React.null
        }}
       {switch (wod.externalLink) {
