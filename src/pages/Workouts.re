@@ -237,11 +237,6 @@ let make = () => {
                {React.string("Metric")}
              </Button>
            }}
-          <a
-            className="ml-4 text-gray-500 hover:text-gray-700"
-            href="https://github.com/believer/wod">
-            <Icon name=`GitHub />
-          </a>
         </div>
       </div>
       <div className=Style.cards>
