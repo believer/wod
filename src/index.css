@@ -22,3 +22,15 @@ p:last-of-type {
 .markdown li:not(:last-child) {
   @apply mb-1;
 }
+
+.markdown h1 {
+  @apply text-6xl font-semibold mb-8;
+}
+
+.markdown h2 {
+  @apply text-xl font-semibold mb-2 mt-6;
+}
+
+.markdown blockquote {
+  @apply text-gray-600 italic mt-4;
+}

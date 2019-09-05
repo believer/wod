@@ -265,7 +265,8 @@ let make = (~lastVisit, ~wod: Wod.t) => {
        | (Some((Some(text), _)), RX)
        | (Some((_, Some(text))), Scaled)
        | (Some((None, Some(text))), RX)
-       | (Some((Some(text), None)), Scaled) => <Markdown text />
+       | (Some((Some(text), None)), Scaled) =>
+         <Markdown className="mt-4 text-xs text-gray-500 markdown" text />
        | (Some((None, None)), _)
        | (None, _) => React.null
        }}

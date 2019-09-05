@@ -27,7 +27,7 @@ module Style = {
 
   let wrap =
     merge([
-      "my-20",
+      "mt-10 mb-20",
       style([
         display(`grid),
         gridTemplateColumns([
@@ -42,7 +42,7 @@ module Style = {
 
   let filters =
     merge([
-      "mb-8 md:flex justify-between items-center",
+      "mb-10 md:flex justify-between items-center",
       style([gridColumn(3, 4)]),
     ]);
 
@@ -91,7 +91,7 @@ module Filter = {
 };
 
 [@react.component]
-let make = () => {
+let make = (~query) => {
   let lastVisit = Cookie.getAsString("wod-last-visit");
 
   Cookie.setStringConfig(
@@ -133,6 +133,28 @@ let make = () => {
     None;
   });
 
+  React.useEffect1(
+    () => {
+      switch (query) {
+      | None => dispatch(UpdateQuery(None))
+      | Some(q) =>
+        switch (q->Js.String.toLowerCase) {
+        | "the girls"
+        | "girls" =>
+          dispatch(SetCategory(Some(Girl)));
+          dispatch(UpdateQuery(None));
+        | "hero" =>
+          dispatch(SetCategory(Some(Hero)));
+          dispatch(UpdateQuery(None));
+        | _ => dispatch(UpdateQuery(Some(q)))
+        }
+      };
+
+      None;
+    },
+    [|query|],
+  );
+
   let wods =
     Wod.wods
     ->Belt.List.keep(({name}) => Search.filter(state.query, name))
@@ -162,25 +184,6 @@ let make = () => {
 
   <Settings.Context.Provider value={Settings.system: state.system}>
     <main className=Style.wrap>
-      <Search
-        onChange={e =>
-          switch (e->ReactEvent.Form.target##value) {
-          | "" => dispatch(UpdateQuery(None))
-          | v =>
-            switch (v->Js.String.toLowerCase) {
-            | "the girls"
-            | "girls" =>
-              dispatch(SetCategory(Some(Girl)));
-              dispatch(UpdateQuery(None));
-            | "hero" =>
-              dispatch(SetCategory(Some(Hero)));
-              dispatch(UpdateQuery(None));
-            | _ => dispatch(UpdateQuery(Some(v)))
-            }
-          }
-        }
-        query={state.query}
-      />
       <div className=Style.filters>
         <div>
           <div className="mb-2">

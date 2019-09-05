@@ -10,20 +10,33 @@ let filter = (query, name) =>
 
 [@react.component]
 let make = (~query, ~onChange) => {
-  let className = Css.(merge(["mb-8", style([gridColumn(3, 4)])]));
-
-  <div className>
-    <input
-      className="bg-transparent text-lg text-gray-700 border-b w-full py-4"
-      onChange
-      placeholder="Search"
-      type_="text"
-      value={
-        switch (query) {
-        | Some(value) => value
-        | None => ""
+  <div className="flex text-gray-700 items-center justify-end">
+    <div
+      className="bg-gray-200 flex items-center px-4 py-3 border-2 border-gray-200
+    focus-within:bg-white rounded focus-within:border-blue-400">
+      <svg
+        className="w-4 mr-4"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20">
+        <path
+          className="fill-current"
+          d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"
+        />
+      </svg>
+      <input
+        className="appearance-none block w-full bg-transparent text-gray-700
+    leading-tight focus:outline-none"
+        id="grid-last-name"
+        type_="text"
+        onChange
+        placeholder="Doe"
+        value={
+          switch (query) {
+          | Some(value) => value
+          | None => ""
+          }
         }
-      }
-    />
+      />
+    </div>
   </div>;
 };
