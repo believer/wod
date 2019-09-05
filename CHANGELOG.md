@@ -1,3 +1,10 @@
+## [1.18.1](https://github.com/believer/wod/compare/v1.18.0...v1.18.1) (2019-09-05)
+
+
+### Bug Fixes
+
+* always display description if one exists ([daffd06](https://github.com/believer/wod/commit/daffd06))
+
 # [1.18.0](https://github.com/believer/wod/compare/v1.17.0...v1.18.0) (2019-09-03)
 
 
