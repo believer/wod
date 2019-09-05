@@ -1,3 +1,10 @@
+# [1.19.0](https://github.com/believer/wod/compare/v1.18.1...v1.19.0) (2019-09-05)
+
+
+### Features
+
+* add crossfit glossary ([f12a0c1](https://github.com/believer/wod/commit/f12a0c1))
+
 ## [1.18.1](https://github.com/believer/wod/compare/v1.18.0...v1.18.1) (2019-09-05)
 
 
