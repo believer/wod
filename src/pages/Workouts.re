@@ -9,9 +9,13 @@ type workoutCategory =
   | WZA
   | Open;
 
-type state = {system: Settings.system};
+type state = {
+  globalWodVersion: Workout.t,
+  system: Settings.system,
+};
 
 type action =
+  | SetGlobalWodVersion(Workout.t)
   | SetSystem(Settings.system);
 
 module Style = {
@@ -144,11 +148,28 @@ let make = (~query, ~category="", ~workoutType="") => {
   );
 
   let (state, dispatch) =
-    ReactUpdate.useReducer({system: Metric}, (action, _state) =>
+    ReactUpdate.useReducer(
+      {system: Metric, globalWodVersion: RX}, (action, state) =>
       switch (action) {
+      | SetGlobalWodVersion(globalWodVersion) =>
+        UpdateWithSideEffects(
+          {...state, globalWodVersion},
+          _ => {
+            Storage.set(
+              "wod-wod-version",
+              switch (globalWodVersion) {
+              | RX => "rx"
+              | Scaled => "scaled"
+              },
+            )
+            |> ignore;
+
+            None;
+          },
+        )
       | SetSystem(system) =>
         UpdateWithSideEffects(
-          {system: system},
+          {...state, system},
           _ => {
             Storage.set("wod-system", Settings.toString(system)) |> ignore;
 
@@ -163,6 +184,22 @@ let make = (~query, ~category="", ~workoutType="") => {
       Storage.get("wod-system")
       |> then_(value => {
            dispatch(SetSystem(Settings.fromString(value)));
+           resolve();
+         })
+      |> ignore
+    );
+
+    Js.Promise.(
+      Storage.get("wod-wod-version")
+      |> then_(value => {
+           dispatch(
+             SetGlobalWodVersion(
+               switch (value) {
+               | "scaled" => Scaled
+               | _ => RX
+               },
+             ),
+           );
            resolve();
          })
       |> ignore
@@ -295,6 +332,20 @@ let make = (~query, ~category="", ~workoutType="") => {
           </div>
         </div>
         <div className="flex items-center mt-4 md:mt-0">
+          {switch (state.globalWodVersion) {
+           | RX =>
+             <Button
+               className="mr-4"
+               onClick={_ => dispatch(SetGlobalWodVersion(Scaled))}>
+               {React.string("Scaled")}
+             </Button>
+           | Scaled =>
+             <Button
+               className="mr-4"
+               onClick={_ => dispatch(SetGlobalWodVersion(RX))}>
+               {React.string("RX")}
+             </Button>
+           }}
           {switch (state.system) {
            | Metric =>
              <Button onClick={_ => dispatch(SetSystem(Imperial))}>
@@ -318,7 +369,14 @@ let make = (~query, ~category="", ~workoutType="") => {
          | _ =>
            wods
            ->Belt.List.reverse
-           ->Belt.List.map(wod => <Workout key={wod.id} lastVisit wod />)
+           ->Belt.List.map(wod =>
+               <Workout
+                 key={wod.id}
+                 globalWodVersion={state.globalWodVersion}
+                 lastVisit
+                 wod
+               />
+             )
            ->Belt.List.toArray
            ->React.array
          }}

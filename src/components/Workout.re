@@ -239,7 +239,7 @@ module TimeCap = {
 };
 
 [@react.component]
-let make = (~lastVisit, ~wod: Wod.t) => {
+let make = (~lastVisit, ~wod: Wod.t, ~globalWodVersion) => {
   let (wodVersion, setWodVersion) = React.useState(() => RX);
 
   let (buyIn, buyOut) =
@@ -250,6 +250,20 @@ let make = (~lastVisit, ~wod: Wod.t) => {
     | Some((None, _))
     | None => (None, None)
     };
+
+  React.useEffect2(
+    () => {
+      {
+        switch (wod.scaledParts) {
+        | Some(_) => setWodVersion(_ => globalWodVersion)
+        | None => ()
+        };
+      };
+
+      None;
+    },
+    (globalWodVersion, wod),
+  );
 
   <div className="bg-white rounded shadow-lg flex flex-col justify-between">
     <div className="p-6">
