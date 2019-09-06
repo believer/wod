@@ -13,6 +13,7 @@ type t = [
   | `CleanAndJerk
   | `CleanHangPower
   | `CleanPower
+  | `CleanSquat
   | `Deadlift
   | `DevilPress
   | `DoubleUnder
@@ -29,6 +30,7 @@ type t = [
   | `PushPress
   | `PushUp
   | `Rest
+  | `RingDip
   | `RingRow
   | `Row
   | `Run
@@ -68,6 +70,7 @@ let toString =
   | `CleanAndJerk => "clean and jerk"
   | `CleanHangPower => "hang power clean"
   | `CleanPower => "power clean"
+  | `CleanSquat => "squat clean"
   | `Deadlift => "deadlift"
   | `DevilPress => "devil presse"
   | `DoubleUnder => "double under"
@@ -84,6 +87,7 @@ let toString =
   | `PushPress => "push press"
   | `PushUp => "push-up"
   | `Rest => "rest"
+  | `RingDip => "ring dip"
   | `RingRow => "ring row"
   | `Row => "row"
   | `Run => "run"

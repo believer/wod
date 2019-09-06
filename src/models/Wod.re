@@ -1509,4 +1509,40 @@ _Diane_, one of CrossFit's original six "Girls" WODs, was first posted on crossf
       },
     ],
   },
+  {
+    id: "elizabeth",
+    createdAt: "2019-09-06T08:04:01.214Z",
+    name: Some("Elizabeth"),
+    wodType: `ForTime,
+    category: Some(`Girl),
+    scaledParts: None,
+    buyInOut: None,
+    externalLink: None,
+    description:
+      Some((
+        Some(
+          {j|
+  _Elizabeth_, one of CrossFit's original six "Girls" WODs. It was first posted on the CrossFit Main Site as the workout of the day for Friday, September 12, 2003.
+    |j},
+        ),
+        None,
+      )),
+    timeCap: None,
+    rounds: None,
+    repScheme: Some([21, 15, 9]),
+    parts: [
+      {
+        reps: `RepScheme,
+        weight: (Some(`kg(60.0)), Some(`kg(43.0))),
+        exercise: `CleanSquat,
+        equipment: Some(`Barbell),
+      },
+      {
+        reps: `RepScheme,
+        weight: (Some(`bodyweight), Some(`bodyweight)),
+        exercise: `RingDip,
+        equipment: None,
+      },
+    ],
+  },
 ];
