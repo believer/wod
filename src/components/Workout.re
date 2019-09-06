@@ -78,11 +78,18 @@ module Header = {
 module AltEMOM = {
   [@react.component]
   let make = (~wod: Wod.t) => {
-    switch (wod.wodType) {
-    | `AltEMOM(min) =>
+    switch (wod.wodType, wod.name) {
+    | (`AltEMOM(min), _) =>
       <div className="text-sm text-gray-500">
         {(min / wod.parts->Belt.List.length)->string_of_int
          ++ " of each"
+         |> React.string}
+      </div>
+    | (`EMOM(min), Some(_)) =>
+      <div className="text-sm text-gray-500">
+        {"EMOM "
+         ++ (min / wod.parts->Belt.List.length)->string_of_int
+         ++ " min"
          |> React.string}
       </div>
     | _ => React.null
