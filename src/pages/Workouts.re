@@ -224,7 +224,7 @@ let make = (~query, ~category="", ~workoutType="") => {
     () => {
       ReasonReactRouter.(
         switch (query) {
-        | None => push(Router.toRoute(workoutType, None))
+        | None => ()
         | Some(q) =>
           switch (q->Js.String.toLowerCase) {
           | "girl"
