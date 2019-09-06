@@ -1,3 +1,10 @@
+# [1.22.0](https://github.com/believer/wod/compare/v1.21.0...v1.22.0) (2019-09-06)
+
+
+### Features
+
+* add version number and total workout count ([6539d6f](https://github.com/believer/wod/commit/6539d6f))
+
 # [1.21.0](https://github.com/believer/wod/compare/v1.20.1...v1.21.0) (2019-09-06)
 
 
