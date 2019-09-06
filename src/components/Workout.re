@@ -85,10 +85,6 @@ module AltEMOM = {
          ++ " of each"
          |> React.string}
       </div>
-    | (`EMOM(min), Some(_)) =>
-      <div className="text-sm text-gray-500">
-        {"EMOM " ++ min->string_of_int ++ " min" |> React.string}
-      </div>
     | _ => React.null
     };
   };
@@ -136,6 +132,11 @@ module NamedAMRAP = {
     | (Some(t), `AMRAP, Some(_)) =>
       <div className="mt-4 text-gray-700 text-sm">
         <span className="font-semibold"> {React.string("AMRAP:")} </span>
+        {t->string_of_int ++ " min" |> Utils.padStartWithSpace |> React.string}
+      </div>
+    | (_, `EMOM(t), Some(_)) =>
+      <div className="mt-4 text-gray-700 text-sm">
+        <span className="font-semibold"> {React.string("EMOM:")} </span>
         {t->string_of_int ++ " min" |> Utils.padStartWithSpace |> React.string}
       </div>
     | (Some(_), _, _)
