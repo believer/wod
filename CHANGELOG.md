@@ -1,3 +1,17 @@
+# [1.23.0](https://github.com/believer/wod/compare/v1.22.1...v1.23.0) (2019-09-06)
+
+
+### Bug Fixes
+
+* category redirect after reload ([1180c92](https://github.com/believer/wod/commit/1180c92))
+
+
+### Features
+
+* **wod:** add cindy ([3ba2530](https://github.com/believer/wod/commit/3ba2530))
+* **wod:** add the chief ([e2741aa](https://github.com/believer/wod/commit/e2741aa))
+* global scaled/rx switcher ([d66de2d](https://github.com/believer/wod/commit/d66de2d))
+
 ## [1.22.1](https://github.com/believer/wod/compare/v1.22.0...v1.22.1) (2019-09-06)
 
 

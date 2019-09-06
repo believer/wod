@@ -1,6 +1,6 @@
 {
   "name": "wod",
-  "version": "1.22.1",
+  "version": "1.23.0",
   "scripts": {
     "build": "bsb -make-world",
     "start": "cross-env BS_WATCH_CLEAR=true bsb -make-world -w",
