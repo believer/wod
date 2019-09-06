@@ -18,7 +18,7 @@ module Style = {
 
   let inner =
     merge([
-      "flex items-center justify-between border-b pb-4 flex-wrap",
+      "flex items-center justify-between border-b pb-4 flex-wrap sm:h-16 ",
       style([gridColumn(3, 4)]),
     ]);
 };
