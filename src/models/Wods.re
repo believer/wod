@@ -1,4 +1,4 @@
-let wods: list(Wod.t) = [
+let wods = [
   Wod.make(
     ~createdAt="2019-08-18T22:00:00.000Z",
     ~wodType=`AMRAP,
