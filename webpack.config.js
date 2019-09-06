@@ -1,3 +1,4 @@
+const webpack = require("webpack");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const outputDir = path.join(__dirname, "dist/");
@@ -14,6 +15,11 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "public/index.html"
+    }),
+    new webpack.DefinePlugin({
+      "process.env.WOD_VERSION": JSON.stringify(
+        require("./package.json").version
+      )
     })
   ],
   devServer: {

@@ -29,3 +29,5 @@ module UUID: {
 
   let toString = id => id;
 };
+
+[@bs.val] external version: string = "process.env.WOD_VERSION";

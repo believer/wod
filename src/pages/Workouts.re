@@ -52,6 +52,9 @@ module Style = {
       media("(max-width: 480px)", [gridTemplateColumns([`fr(1.0)])]),
       unsafe("gridTemplateColumns", "repeat(auto-fill, minmax(310px, 1fr))"),
     ]);
+
+  let versionNumber =
+    merge(["text-center text-gray-500 mt-10", style([gridColumn(3, 4)])]);
 };
 
 module Filter = {
@@ -320,6 +323,17 @@ let make = (~query, ~category="", ~workoutType="") => {
            ->React.array
          }}
       </div>
+      <a
+        className=Style.versionNumber
+        href="https://github.com/believer/wod/blob/master/CHANGELOG.md"
+        target="_blank"
+        rel="noreferrer noopener">
+        {React.string(
+           Wods.wods->Belt.List.length->string_of_int
+           ++ " workouts - v"
+           ++ Utils.version,
+         )}
+      </a>
     </main>
   </Settings.Context.Provider>;
 };
