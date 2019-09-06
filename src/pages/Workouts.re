@@ -136,9 +136,12 @@ let make = (~query) => {
   React.useEffect1(
     () => {
       switch (query) {
-      | None => dispatch(UpdateQuery(None))
+      | None =>
+        dispatch(SetCategory(None));
+        dispatch(UpdateQuery(None));
       | Some(q) =>
         switch (q->Js.String.toLowerCase) {
+        | "girl"
         | "the girls"
         | "girls" =>
           dispatch(SetCategory(Some(Girl)));
