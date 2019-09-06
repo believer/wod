@@ -1280,4 +1280,43 @@ If you complete the three rounds at a given weight within the 4 min window, incr
       },
     ],
   },
+  {
+    id: "fran",
+    createdAt: "2019-09-06T06:06:13.922Z",
+    name: Some("Fran"),
+    wodType: `ForTime,
+    category: Some(`Girl),
+    scaledParts: None,
+    buyInOut: None,
+    externalLink: None,
+    description:
+      Some((
+        Some(
+          {j|
+  _Fran_ is arguably the most famous of the original six CrossFit "Girls" WODs.
+    It was first posted on crossfit.com as the workout of the day for November
+    21, 2004, but it was created by CrossFit founder Greg Glassman years
+    earlier, in the 1970's, to help him build conditioning as a competitive gymnast.
+    |j},
+        ),
+        None,
+      )),
+    timeCap: None,
+    rounds: None,
+    repScheme: Some([21, 15, 9]),
+    parts: [
+      {
+        reps: `RepScheme,
+        weight: (Some(`kg(43.0)), Some(`kg(30.0))),
+        exercise: `Thruster,
+        equipment: Some(`Barbell),
+      },
+      {
+        reps: `RepScheme,
+        weight: (Some(`bodyweight), Some(`bodyweight)),
+        exercise: `PullUp,
+        equipment: None,
+      },
+    ],
+  },
 ];

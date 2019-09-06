@@ -34,6 +34,7 @@ type t = [
   | `RussianTwist
   | `ShoulderToOverhead
   | `SingleUnder
+  | `SitUp
   | `SkiErg
   | `SnatchAlt
   | `SnatchHangPower
@@ -87,6 +88,7 @@ let toString =
   | `RussianTwist => "russian twist"
   | `ShoulderToOverhead => "shoulder-to-overhead"
   | `SingleUnder => "single under"
+  | `SitUp => "sit-up"
   | `SkiErg => "SkiErg"
   | `SnatchAlt => "alt snatch"
   | `SnatchHangPower => "hang power snatch"
