@@ -156,7 +156,7 @@ let make = (~query) => {
   );
 
   let wods =
-    Wod.wods
+    Wods.wods
     ->Belt.List.keep(({name}) => Search.filter(state.query, name))
     ->Belt.List.keep(({wodType}) =>
         Filter.workoutType(state.workoutType, wodType)
