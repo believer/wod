@@ -1427,4 +1427,50 @@ _Angie_, one of CrossFit's first six "Girls" WODs, was first posted on the Cross
       },
     ],
   },
+  {
+    id: "chelsea",
+    createdAt: "2019-09-06T06:23:39.000Z",
+    name: Some("Chelsea"),
+    wodType: `EMOM(30),
+    category: Some(`Girl),
+    scaledParts: None,
+    buyInOut: None,
+    externalLink: None,
+    description:
+      Some((
+        Some(
+          {j|
+If you fall behind the clock, keep going for 30 minutes and see how many rounds you can complete.
+
+If you’ve finished the workout before, this time add 1 rep to each exercise—i.e., 6 pull-ups, 11 push-ups, and 16 squats each minute—and see if you can go the full 30 minutes.
+
+_Chelsea_, one of CrossFit's first six "Girls" WODs, was first posted on crossfit.com as the workout of the day for Sunday, September 7, 2003.
+    |j},
+        ),
+        None,
+      )),
+    timeCap: None,
+    rounds: None,
+    repScheme: None,
+    parts: [
+      {
+        reps: `Num(5),
+        weight: (Some(`bodyweight), Some(`bodyweight)),
+        exercise: `PullUp,
+        equipment: None,
+      },
+      {
+        reps: `Num(10),
+        weight: (Some(`bodyweight), Some(`bodyweight)),
+        exercise: `PushUp,
+        equipment: None,
+      },
+      {
+        reps: `Num(15),
+        weight: (Some(`bodyweight), Some(`bodyweight)),
+        exercise: `AirSquat,
+        equipment: None,
+      },
+    ],
+  },
 ];
