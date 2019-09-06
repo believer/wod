@@ -1377,4 +1377,54 @@ _Barbara_, one of CrossFit's first six "Girls" WODs, was first posted on
       },
     ],
   },
+  {
+    id: "angie",
+    createdAt: "2019-09-06T06:19:42.380Z",
+    name: Some("Angie"),
+    wodType: `ForTime,
+    category: Some(`Girl),
+    scaledParts: None,
+    buyInOut: None,
+    externalLink: None,
+    description:
+      Some((
+        Some(
+          {j|
+Complete all reps of each exercise before moving on to the next.
+
+_Angie_, one of CrossFit's first six "Girls" WODs, was first posted on the CrossFit Main Site as the workout of the day for Saturday, April 16, 2005.
+    |j},
+        ),
+        None,
+      )),
+    timeCap: None,
+    rounds: None,
+    repScheme: None,
+    parts: [
+      {
+        reps: `Num(100),
+        weight: (Some(`bodyweight), Some(`bodyweight)),
+        exercise: `PullUp,
+        equipment: None,
+      },
+      {
+        reps: `Num(100),
+        weight: (Some(`bodyweight), Some(`bodyweight)),
+        exercise: `PushUp,
+        equipment: None,
+      },
+      {
+        reps: `Num(100),
+        weight: (Some(`bodyweight), Some(`bodyweight)),
+        exercise: `SitUp,
+        equipment: None,
+      },
+      {
+        reps: `Num(100),
+        weight: (Some(`bodyweight), Some(`bodyweight)),
+        exercise: `AirSquat,
+        equipment: None,
+      },
+    ],
+  },
 ];
