@@ -1,3 +1,10 @@
+## [1.20.1](https://github.com/believer/wod/compare/v1.20.0...v1.20.1) (2019-09-06)
+
+
+### Bug Fixes
+
+* search placeholder text ([6dbac6a](https://github.com/believer/wod/commit/6dbac6a))
+
 # [1.20.0](https://github.com/believer/wod/compare/v1.19.0...v1.20.0) (2019-09-06)
 
 
