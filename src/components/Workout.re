@@ -87,10 +87,7 @@ module AltEMOM = {
       </div>
     | (`EMOM(min), Some(_)) =>
       <div className="text-sm text-gray-500">
-        {"EMOM "
-         ++ (min / wod.parts->Belt.List.length)->string_of_int
-         ++ " min"
-         |> React.string}
+        {"EMOM " ++ min->string_of_int ++ " min" |> React.string}
       </div>
     | _ => React.null
     };
