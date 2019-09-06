@@ -1402,4 +1402,41 @@ _Amanda_ is one of the classic CrossFit "Girl" workouts, but not one of the
     ],
     (),
   ),
+  Wod.make(
+    ~createdAt="2019-09-06T13:51:00.595Z",
+    ~name=Some("The Chief"),
+    ~wodType=`AMRAP,
+    ~description=
+      Some((
+        Some(
+          {j|
+Complete as many rounds as possible in 3 minutes, then rest 1 minute. Start each 3-minute cycle where you left off on the previous cycle. Repeat for a total of 5 cycles. Count total rounds and reps completed.
+          |j},
+        ),
+        None,
+      )),
+    ~timeCap=Some(3),
+    ~rounds=Some(5),
+    ~parts=[
+      {
+        reps: `Num(3),
+        weight: (Some(`kg(60.0)), Some(`kg(43.0))),
+        exercise: `CleanPower,
+        equipment: None,
+      },
+      {
+        reps: `Num(6),
+        weight: (Some(`bodyweight), Some(`bodyweight)),
+        exercise: `PushUp,
+        equipment: None,
+      },
+      {
+        reps: `Num(9),
+        weight: (Some(`bodyweight), Some(`bodyweight)),
+        exercise: `AirSquat,
+        equipment: None,
+      },
+    ],
+    (),
+  ),
 ];
