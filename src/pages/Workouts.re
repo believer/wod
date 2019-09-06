@@ -9,13 +9,9 @@ type workoutCategory =
   | WZA
   | Open;
 
-type state = {
-  query: option(string),
-  system: Settings.system,
-};
+type state = {system: Settings.system};
 
 type action =
-  | UpdateQuery(option(string))
   | SetSystem(Settings.system);
 
 module Style = {
@@ -145,18 +141,17 @@ let make = (~query, ~category="", ~workoutType="") => {
   );
 
   let (state, dispatch) =
-    ReactUpdate.useReducer({system: Metric, query: None}, (action, state) =>
+    ReactUpdate.useReducer({system: Metric}, (action, _state) =>
       switch (action) {
       | SetSystem(system) =>
         UpdateWithSideEffects(
-          {...state, system},
+          {system: system},
           _ => {
             Storage.set("wod-system", Settings.toString(system)) |> ignore;
 
             None;
           },
         )
-      | UpdateQuery(query) => Update({...state, query})
       }
     );
 
@@ -173,25 +168,38 @@ let make = (~query, ~category="", ~workoutType="") => {
     None;
   });
 
+  let noQuery = [
+    Some("girl"),
+    Some("girls"),
+    Some("the girls"),
+    Some("hero"),
+    Some("heroes"),
+    Some("wza"),
+    Some("wodapalooza"),
+    Some("open"),
+    Some("games"),
+  ];
+
   React.useEffect1(
     () => {
-      switch (query) {
-      | None =>
-        ReasonReactRouter.push(Router.toRoute(workoutType, None));
-        dispatch(UpdateQuery(None));
-      | Some(q) =>
-        switch (q->Js.String.toLowerCase) {
-        | "girl"
-        | "the girls"
-        | "girls" =>
-          ReasonReactRouter.push(Router.toRoute(workoutType, Some(Girl)));
-          dispatch(UpdateQuery(None));
-        | "hero" =>
-          ReasonReactRouter.push(Router.toRoute(workoutType, Some(Hero)));
-          dispatch(UpdateQuery(None));
-        | _ => dispatch(UpdateQuery(Some(q)))
+      ReasonReactRouter.(
+        switch (query) {
+        | None => push(Router.toRoute(workoutType, None))
+        | Some(q) =>
+          switch (q->Js.String.toLowerCase) {
+          | "girl"
+          | "the girls"
+          | "girls" => push(Router.toRoute(workoutType, Some(Girl)))
+          | "hero"
+          | "heroes" => push(Router.toRoute(workoutType, Some(Hero)))
+          | "wza"
+          | "wodapalooza" => push(Router.toRoute(workoutType, Some(WZA)))
+          | "open"
+          | "games" => push(Router.toRoute(workoutType, Some(Open)))
+          | _ => ()
+          }
         }
-      };
+      );
 
       None;
     },
@@ -200,7 +208,12 @@ let make = (~query, ~category="", ~workoutType="") => {
 
   let wods =
     Wods.wods
-    ->Belt.List.keep(({name}) => Search.filter(state.query, name))
+    ->Belt.List.keep(({name}) =>
+        Search.filter(
+          noQuery |> List.exists(q => q === query) ? None : query,
+          name,
+        )
+      )
     ->Belt.List.keep(({wodType}) =>
         Filter.workoutType(workoutType, wodType)
       )
