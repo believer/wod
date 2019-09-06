@@ -1,3 +1,26 @@
+# [1.20.0](https://github.com/believer/wod/compare/v1.19.0...v1.20.0) (2019-09-06)
+
+
+### Bug Fixes
+
+* add "girl" as search term for the girls ([3f4f6d7](https://github.com/believer/wod/commit/3f4f6d7))
+* display emom type for named workouts ([105f578](https://github.com/believer/wod/commit/105f578))
+* don't split emom time ([2584001](https://github.com/believer/wod/commit/2584001))
+* fixed header height ([b3fa49a](https://github.com/believer/wod/commit/b3fa49a))
+* pluralize rep scheme workouts ([7776b9f](https://github.com/believer/wod/commit/7776b9f))
+
+
+### Features
+
+* route based filtering ([400c119](https://github.com/believer/wod/commit/400c119))
+* **wod:** add amanda ([cbd12cd](https://github.com/believer/wod/commit/cbd12cd))
+* **wod:** add angie ([84f1121](https://github.com/believer/wod/commit/84f1121))
+* **wod:** add barbara ([a3574e7](https://github.com/believer/wod/commit/a3574e7))
+* **wod:** add chelsea ([6a59e37](https://github.com/believer/wod/commit/6a59e37))
+* **wod:** add diane ([fb7c0c6](https://github.com/believer/wod/commit/fb7c0c6))
+* **wod:** add elizabeth ([69d2a11](https://github.com/believer/wod/commit/69d2a11))
+* **wod:** add fran ([4fba275](https://github.com/believer/wod/commit/4fba275))
+
 # [1.19.0](https://github.com/believer/wod/compare/v1.18.1...v1.19.0) (2019-09-05)
 
 
