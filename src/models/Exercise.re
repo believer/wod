@@ -23,6 +23,7 @@ type t = [
   | `HandstandPushUp
   | `KBS
   | `Lunge
+  | `MuscleUp
   | `OverheadSquat
   | `PullUp
   | `PullUpJumping
@@ -42,6 +43,7 @@ type t = [
   | `SnatchAlt
   | `SnatchHangPower
   | `SnatchPower
+  | `SnatchSquat
   | `Squat
   | `SumoDeadliftHighPull
   | `Swim
@@ -80,6 +82,7 @@ let toString =
   | `HangingKneeRaise => "hanging knee raise"
   | `KBS => "kettlebell swing"
   | `Lunge => "lunge"
+  | `MuscleUp => "muscle-up"
   | `OverheadSquat => "overhead squat"
   | `PullUp => "pull-up"
   | `PullUpJumping => "jumping pull-up"
@@ -99,6 +102,7 @@ let toString =
   | `SnatchAlt => "alt snatch"
   | `SnatchHangPower => "hang power snatch"
   | `SnatchPower => "power snatch"
+  | `SnatchSquat => "squat snatch"
   | `Squat => "squat"
   | `SumoDeadliftHighPull => "sumo deadlift high pull"
   | `Swim => "swim"

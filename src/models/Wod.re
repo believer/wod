@@ -1545,4 +1545,42 @@ _Diane_, one of CrossFit's original six "Girls" WODs, was first posted on crossf
       },
     ],
   },
+  {
+    id: "amanda",
+    createdAt: "2019-09-06T08:07:48.979Z",
+    name: Some("Amanda"),
+    wodType: `ForTime,
+    category: Some(`Girl),
+    scaledParts: None,
+    buyInOut: None,
+    externalLink: None,
+    description:
+      Some((
+        Some(
+          {j|
+_Amanda_ is one of the classic CrossFit "Girl" workouts, but not one of the
+  original six from 2003. This workout was added to the list of Girls when it
+  was posted as the CrossFit workout of the day on Saturday, July 17, 2010.
+    |j},
+        ),
+        None,
+      )),
+    timeCap: None,
+    rounds: None,
+    repScheme: Some([9, 7, 5]),
+    parts: [
+      {
+        reps: `RepScheme,
+        weight: (Some(`bodyweight), Some(`bodyweight)),
+        exercise: `MuscleUp,
+        equipment: None,
+      },
+      {
+        reps: `RepScheme,
+        weight: (Some(`kg(60.0)), Some(`kg(43.0))),
+        exercise: `SnatchSquat,
+        equipment: None,
+      },
+    ],
+  },
 ];
