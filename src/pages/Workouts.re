@@ -10,16 +10,12 @@ type workoutCategory =
   | Open;
 
 type state = {
-  category: option(workoutCategory),
-  workoutType: option(workoutType),
   query: option(string),
   system: Settings.system,
 };
 
 type action =
   | UpdateQuery(option(string))
-  | SetCategory(option(workoutCategory))
-  | SetWorkoutType(option(workoutType))
   | SetSystem(Settings.system);
 
 module Style = {
@@ -90,9 +86,57 @@ module Filter = {
     };
 };
 
+module Router = {
+  module WorkoutType = {
+    let fromString =
+      fun
+      | "emom" => Some(EMOM)
+      | "for-time" => Some(ForTime)
+      | "amrap" => Some(AMRAP)
+      | _ => None;
+
+    let toString =
+      fun
+      | Some(EMOM) => "emom"
+      | Some(ForTime) => "for-time"
+      | Some(AMRAP) => "amrap"
+      | None => "all";
+  };
+
+  module Category = {
+    let fromString =
+      fun
+      | "hero" => Some(Hero)
+      | "girl" => Some(Girl)
+      | "wza" => Some(WZA)
+      | "open" => Some(Open)
+      | _ => None;
+
+    let toString =
+      fun
+      | Some(Hero) => "hero"
+      | Some(Girl) => "girl"
+      | Some(WZA) => "wza"
+      | Some(Open) => "open"
+      | None => "all";
+  };
+
+  let toRoute = (workoutType, category) => {
+    "/"
+    ++ WorkoutType.toString(workoutType)
+    ++ "/"
+    ++ Category.toString(category);
+  };
+};
+
 [@react.component]
-let make = (~query) => {
+let make = (~query, ~category="", ~workoutType="") => {
   let lastVisit = Cookie.getAsString("wod-last-visit");
+
+  let (workoutType, category) = (
+    Router.WorkoutType.fromString(workoutType),
+    Router.Category.fromString(category),
+  );
 
   Cookie.setStringConfig(
     "wod-last-visit",
@@ -101,12 +145,8 @@ let make = (~query) => {
   );
 
   let (state, dispatch) =
-    ReactUpdate.useReducer(
-      {category: None, workoutType: None, system: Metric, query: None},
-      (action, state) =>
+    ReactUpdate.useReducer({system: Metric, query: None}, (action, state) =>
       switch (action) {
-      | SetCategory(category) => Update({...state, category})
-      | SetWorkoutType(workoutType) => Update({...state, workoutType})
       | SetSystem(system) =>
         UpdateWithSideEffects(
           {...state, system},
@@ -137,17 +177,17 @@ let make = (~query) => {
     () => {
       switch (query) {
       | None =>
-        dispatch(SetCategory(None));
+        ReasonReactRouter.push(Router.toRoute(workoutType, None));
         dispatch(UpdateQuery(None));
       | Some(q) =>
         switch (q->Js.String.toLowerCase) {
         | "girl"
         | "the girls"
         | "girls" =>
-          dispatch(SetCategory(Some(Girl)));
+          ReasonReactRouter.push(Router.toRoute(workoutType, Some(Girl)));
           dispatch(UpdateQuery(None));
         | "hero" =>
-          dispatch(SetCategory(Some(Hero)));
+          ReasonReactRouter.push(Router.toRoute(workoutType, Some(Hero)));
           dispatch(UpdateQuery(None));
         | _ => dispatch(UpdateQuery(Some(q)))
         }
@@ -162,11 +202,9 @@ let make = (~query) => {
     Wods.wods
     ->Belt.List.keep(({name}) => Search.filter(state.query, name))
     ->Belt.List.keep(({wodType}) =>
-        Filter.workoutType(state.workoutType, wodType)
+        Filter.workoutType(workoutType, wodType)
       )
-    ->Belt.List.keep(({category: wc}) =>
-        Filter.category(state.category, wc)
-      );
+    ->Belt.List.keep(({category: wc}) => Filter.category(category, wc));
 
   let workoutTypes =
     Pill.[
@@ -197,11 +235,15 @@ let make = (~query) => {
                      i < workoutTypes->Belt.List.length - 1 ? "mr-4" : ""
                    }
                    key={pill.label}
-                   onClick={_ => dispatch(SetWorkoutType(pill.value))}
+                   onClick={_ =>
+                     ReasonReactRouter.push(
+                       Router.toRoute(pill.value, category),
+                     )
+                   }
                    selected={
                      switch (pill.value) {
-                     | None => Belt.Option.isNone(state.workoutType)
-                     | Some(value) => state.workoutType === Some(value)
+                     | None => Belt.Option.isNone(workoutType)
+                     | Some(value) => workoutType === Some(value)
                      }
                    }>
                    {React.string(pill.label)}
@@ -218,11 +260,15 @@ let make = (~query) => {
                      i < workoutCategories->Belt.List.length - 1 ? "mr-4" : ""
                    }
                    key={pill.label}
-                   onClick={_ => dispatch(SetCategory(pill.value))}
+                   onClick={_ =>
+                     ReasonReactRouter.push(
+                       Router.toRoute(workoutType, pill.value),
+                     )
+                   }
                    selected={
                      switch (pill.value) {
-                     | None => Belt.Option.isNone(state.category)
-                     | Some(value) => state.category === Some(value)
+                     | None => Belt.Option.isNone(category)
+                     | Some(value) => category === Some(value)
                      }
                    }>
                    {React.string(pill.label)}

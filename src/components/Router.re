@@ -27,6 +27,7 @@ module ExternalLink = {
 module NavLink = {
   let isActiveLink = (path, href) => {
     switch (path, href) {
+    | ([_, _], "/")
     | ([], "/") => true
     | (p, _) =>
       p

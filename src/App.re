@@ -29,36 +29,44 @@ let make = () => {
   let (query, setQuery) = React.useState(() => None);
 
   <div>
-    <header className=Style.wrap>
-      <div className=Style.inner>
-        <div>
-          <Router.NavLink
-            activeClassName="text-blue-500" className="mr-8" href="/">
-            {React.string("Workouts")}
-          </Router.NavLink>
-          <Router.NavLink
-            activeClassName="text-blue-500" className="" href="/glossary">
-            {React.string("Glossary")}
-          </Router.NavLink>
-        </div>
-        {switch (url.path) {
-         | [] =>
-           <Search
-             onChange={e =>
-               switch (e->ReactEvent.Form.target##value) {
-               | "" => setQuery(_ => None)
-               | v => setQuery(_ => Some(v))
-               }
-             }
-             query
-           />
-         | _ => React.null
-         }}
-      </div>
-    </header>
+    {switch (url.path) {
+     | []
+     | [_]
+     | [_, _] =>
+       <header className=Style.wrap>
+         <div className=Style.inner>
+           <div>
+             <Router.NavLink
+               activeClassName="text-blue-500" className="mr-8" href="/">
+               {React.string("Workouts")}
+             </Router.NavLink>
+             <Router.NavLink
+               activeClassName="text-blue-500" className="" href="/glossary">
+               {React.string("Glossary")}
+             </Router.NavLink>
+           </div>
+           {switch (url.path) {
+            | []
+            | [_, _] =>
+              <Search
+                onChange={e =>
+                  switch (e->ReactEvent.Form.target##value) {
+                  | "" => setQuery(_ => None)
+                  | v => setQuery(_ => Some(v))
+                  }
+                }
+                query
+              />
+            | _ => React.null
+            }}
+         </div>
+       </header>
+     | _ => React.null
+     }}
     {switch (url.path) {
      | [] => <Workouts query />
      | ["glossary"] => <Glossary />
+     | [workoutType, category] => <Workouts query workoutType category />
      | _ => <FourOFour />
      }}
   </div>;
