@@ -1473,4 +1473,40 @@ _Chelsea_, one of CrossFit's first six "Girls" WODs, was first posted on crossfi
       },
     ],
   },
+  {
+    id: "diane",
+    createdAt: "2019-09-06T08:00:14.695Z",
+    name: Some("Diane"),
+    wodType: `ForTime,
+    category: Some(`Girl),
+    scaledParts: None,
+    buyInOut: None,
+    externalLink: None,
+    description:
+      Some((
+        Some(
+          {j|
+_Diane_, one of CrossFit's original six "Girls" WODs, was first posted on crossfit.com as the workout of the day for Friday, June 25, 2004.
+    |j},
+        ),
+        None,
+      )),
+    timeCap: None,
+    rounds: None,
+    repScheme: Some([21, 15, 9]),
+    parts: [
+      {
+        reps: `RepScheme,
+        weight: (Some(`kg(100.0)), Some(`kg(70.0))),
+        exercise: `Deadlift,
+        equipment: None,
+      },
+      {
+        reps: `RepScheme,
+        weight: (Some(`bodyweight), Some(`bodyweight)),
+        exercise: `HandstandPushUp,
+        equipment: None,
+      },
+    ],
+  },
 ];

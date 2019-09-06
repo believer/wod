@@ -19,6 +19,7 @@ type t = [
   | `DoubleUnderHeavy
   | `GroundToOverhead
   | `HangingKneeRaise
+  | `HandstandPushUp
   | `KBS
   | `Lunge
   | `OverheadSquat
@@ -72,6 +73,7 @@ let toString =
   | `DoubleUnder => "double under"
   | `DoubleUnderHeavy => "heavy double under"
   | `GroundToOverhead => "ground-to-overhead"
+  | `HandstandPushUp => "handstand push-up"
   | `HangingKneeRaise => "hanging knee raise"
   | `KBS => "kettlebell swing"
   | `Lunge => "lunge"
