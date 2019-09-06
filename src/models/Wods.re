@@ -1367,4 +1367,39 @@ _Amanda_ is one of the classic CrossFit "Girl" workouts, but not one of the
     ],
     (),
   ),
+  Wod.make(
+    ~createdAt="2019-09-06T13:43:41.746Z",
+    ~name=Some("Cindy"),
+    ~wodType=`AMRAP,
+    ~category=Some(`Girl),
+    ~description=
+      Some((
+        Some(
+          {j|_Cindy_, typically thought of as one of CrossFit's classic "Girls" workouts, has been around since 2005, but was not actually not named as one of "The Girls" in a 2010 CrossFit Journal article. Despite that, it remains one of the most popular CrossFit workouts.|j},
+        ),
+        None,
+      )),
+    ~timeCap=Some(20),
+    ~parts=[
+      {
+        reps: `Num(5),
+        weight: (Some(`bodyweight), Some(`bodyweight)),
+        exercise: `PullUp,
+        equipment: None,
+      },
+      {
+        reps: `Num(10),
+        weight: (Some(`bodyweight), Some(`bodyweight)),
+        exercise: `PushUp,
+        equipment: None,
+      },
+      {
+        reps: `Num(15),
+        weight: (Some(`bodyweight), Some(`bodyweight)),
+        exercise: `AirSquat,
+        equipment: None,
+      },
+    ],
+    (),
+  ),
 ];
