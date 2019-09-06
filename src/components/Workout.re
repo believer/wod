@@ -187,7 +187,14 @@ module WodItem = {
           <WodParts.Equipment equipment={part.equipment} />
           {(
              switch (wod.repScheme, part.reps, part.exercise) {
-             | (Some(_), _, e) => e->Exercise.toString->Utils.capitalizeFirst
+             | (Some(_), _, e) =>
+               switch (e) {
+               | `Row
+               | `Run
+               | `SkiErg => e->Exercise.toString->Utils.capitalizeFirst
+               | _ =>
+                 e->Exercise.toString->Utils.capitalizeFirst->Utils.pluralize
+               }
              | (None, `Num(v), `ToesToBar as e) when v > 1 =>
                e->Exercise.toString
              | (None, `Span(`Num(v), _), e) when v > 1 =>
