@@ -1,3 +1,10 @@
+## [1.22.1](https://github.com/believer/wod/compare/v1.22.0...v1.22.1) (2019-09-06)
+
+
+### Bug Fixes
+
+* **css:** include index.css in purgecss ([6817acb](https://github.com/believer/wod/commit/6817acb))
+
 # [1.22.0](https://github.com/believer/wod/compare/v1.21.0...v1.22.0) (2019-09-06)
 
 
