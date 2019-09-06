@@ -24,7 +24,7 @@
       install:
         - npm i -g now
       script:
-        - now --token=$NOW_TOKEN --target=production
+        - now --token=$NOW_TOKEN --prod
 stages:
   - test
   - release
