@@ -1319,4 +1319,62 @@ If you complete the three rounds at a given weight within the 4 min window, incr
       },
     ],
   },
+  {
+    id: "barbara",
+    createdAt: "2019-09-06T06:14:07.486Z",
+    name: Some("Barbara"),
+    wodType: `ForTime,
+    category: Some(`Girl),
+    scaledParts: None,
+    buyInOut: None,
+    externalLink: None,
+    description:
+      Some((
+        Some(
+          {j|
+Time each round, score is total time for all rounds.
+
+_Barbara_, one of CrossFit's first six "Girls" WODs, was first posted on
+  crossfit.com as the workout of the day for Sunday, July 13, 2003. The original
+  version allowed 5 minutes rest between sets.
+    |j},
+        ),
+        None,
+      )),
+    timeCap: None,
+    rounds: Some(5),
+    repScheme: None,
+    parts: [
+      {
+        reps: `Num(20),
+        weight: (Some(`bodyweight), Some(`bodyweight)),
+        exercise: `PullUp,
+        equipment: None,
+      },
+      {
+        reps: `Num(30),
+        weight: (Some(`bodyweight), Some(`bodyweight)),
+        exercise: `PushUp,
+        equipment: None,
+      },
+      {
+        reps: `Num(40),
+        weight: (Some(`bodyweight), Some(`bodyweight)),
+        exercise: `SitUp,
+        equipment: None,
+      },
+      {
+        reps: `Num(50),
+        weight: (Some(`bodyweight), Some(`bodyweight)),
+        exercise: `AirSquat,
+        equipment: None,
+      },
+      {
+        reps: `Min(3),
+        weight: (None, None),
+        exercise: `Rest,
+        equipment: None,
+      },
+    ],
+  },
 ];
