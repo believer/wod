@@ -1,16 +1,3 @@
-module WodPart = {
-  type t = {
-    weight: (option(Weight.t), option(Weight.t)),
-    reps: ExerciseUnit.t,
-    exercise: Exercise.t,
-    equipment: option(Equipment.t),
-  };
-};
-
-module RepScheme = {
-  type t = list(int);
-};
-
 type t = {
   category: option(Category.t),
   buyInOut: option((option(WodPart.t), option(WodPart.t))),

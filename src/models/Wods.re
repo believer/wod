@@ -3,84 +3,83 @@ let wods = [
     ~createdAt="2019-08-18T22:00:00.000Z",
     ~wodType=`AMRAP,
     ~timeCap=Some(30),
-    ~parts=[
-      {
-        reps: `Meter(500),
-        weight: (None, None),
-        exercise: `Row,
-        equipment: None,
-      },
-      {
-        reps: `OneSide((5, 5)),
-        weight: (Some(`kg(20.0)), Some(`kg(15.0))),
-        exercise: `PushPress,
-        equipment: Some(`Dumbbell),
-      },
-      {
-        reps: `OneSide((5, 5)),
-        weight: (Some(`kg2(15.0)), Some(`kg2(12.0))),
-        exercise: `BackwardLunge,
-        equipment: Some(`Dumbbell),
-      },
-      {
-        reps: `OneSide((5, 5)),
-        weight: (Some(`kg(16.0)), Some(`kg(12.0))),
-        exercise: `KBS,
-        equipment: Some(`Kettlebell),
-      },
-      {
-        reps: `Num(10),
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `VUps,
-        equipment: None,
-      },
-    ],
+    ~parts=
+      WodPart.[
+        make(~reps=`Meter(500), ~exercise=`Row, ()),
+        make(
+          ~reps=`OneSide((5, 5)),
+          ~weight=(Some(`kg(20.0)), Some(`kg(15.0))),
+          ~exercise=`PushPress,
+          ~equipment=Some(`Dumbbell),
+          (),
+        ),
+        make(
+          ~reps=`OneSide((5, 5)),
+          ~weight=(Some(`kg2(15.0)), Some(`kg2(12.0))),
+          ~exercise=`BackwardLunge,
+          ~equipment=Some(`Dumbbell),
+          (),
+        ),
+        make(
+          ~reps=`OneSide((5, 5)),
+          ~weight=(Some(`kg(16.0)), Some(`kg(12.0))),
+          ~exercise=`KBS,
+          ~equipment=Some(`Kettlebell),
+          (),
+        ),
+        make(
+          ~reps=`Num(10),
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`VUps,
+          (),
+        ),
+      ],
     (),
   ),
   Wod.make(
     ~createdAt="2019-08-18T22:00:00.000Z",
     ~wodType=`ForTime,
     ~rounds=Some(5),
-    ~parts=[
-      {
-        reps: `Num(10),
-        weight: (Some(`kg(9.0)), Some(`kg(6.0))),
-        exercise: `WallBall,
-        equipment: Some(`WallBall),
-      },
-      {
-        reps: `Num(10),
-        weight: (Some(`kg(15.0)), Some(`kg(12.0))),
-        exercise: `Clean,
-        equipment: Some(`BulgarianBag),
-      },
-    ],
+    ~parts=
+      WodPart.[
+        make(
+          ~reps=`Num(10),
+          ~weight=(Some(`kg(9.0)), Some(`kg(6.0))),
+          ~exercise=`WallBall,
+          ~equipment=Some(`WallBall),
+          (),
+        ),
+        make(
+          ~reps=`Num(10),
+          ~weight=(Some(`kg(15.0)), Some(`kg(12.0))),
+          ~exercise=`Clean,
+          ~equipment=Some(`BulgarianBag),
+          (),
+        ),
+      ],
     (),
   ),
   Wod.make(
     ~createdAt="2019-08-18T22:00:00.000Z",
     ~wodType=`ForTime,
     ~rounds=Some(10),
-    ~parts=[
-      {
-        reps: `Cal(9),
-        weight: (None, None),
-        exercise: `Row,
-        equipment: None,
-      },
-      {
-        reps: `Num(6),
-        weight: (Some(`cm(60.0)), Some(`cm(45.0))),
-        exercise: `BoxJump,
-        equipment: None,
-      },
-      {
-        reps: `Num(3),
-        weight: (Some(`kg(15.0)), Some(`kg(10.0))),
-        exercise: `DevilPress,
-        equipment: Some(`Dumbbell),
-      },
-    ],
+    ~parts=
+      WodPart.[
+        make(~reps=`Cal(9), ~weight=(None, None), ~exercise=`Row, ()),
+        make(
+          ~reps=`Num(6),
+          ~weight=(Some(`cm(60.0)), Some(`cm(45.0))),
+          ~exercise=`BoxJump,
+          (),
+        ),
+        make(
+          ~reps=`Num(3),
+          ~weight=(Some(`kg(15.0)), Some(`kg(10.0))),
+          ~exercise=`DevilPress,
+          ~equipment=Some(`Dumbbell),
+          (),
+        ),
+      ],
     (),
   ),
   Wod.make(
@@ -97,26 +96,30 @@ let wods = [
         None,
       )),
     ~rounds=Some(5),
-    ~parts=[
-      {
-        reps: `Num(12),
-        weight: (Some(`kg(70.0)), Some(`kg(47.0))),
-        exercise: `Deadlift,
-        equipment: Some(`Barbell),
-      },
-      {
-        reps: `Num(9),
-        weight: (Some(`kg(70.0)), Some(`kg(47.0))),
-        exercise: `CleanHangPower,
-        equipment: Some(`Barbell),
-      },
-      {
-        reps: `Num(6),
-        weight: (Some(`kg(70.0)), Some(`kg(47.0))),
-        exercise: `PushJerk,
-        equipment: Some(`Barbell),
-      },
-    ],
+    ~parts=
+      WodPart.[
+        make(
+          ~reps=`Num(12),
+          ~weight=(Some(`kg(70.0)), Some(`kg(47.0))),
+          ~exercise=`Deadlift,
+          ~equipment=Some(`Barbell),
+          (),
+        ),
+        make(
+          ~reps=`Num(9),
+          ~weight=(Some(`kg(70.0)), Some(`kg(47.0))),
+          ~exercise=`CleanHangPower,
+          ~equipment=Some(`Barbell),
+          (),
+        ),
+        make(
+          ~reps=`Num(6),
+          ~weight=(Some(`kg(70.0)), Some(`kg(47.0))),
+          ~exercise=`PushJerk,
+          ~equipment=Some(`Barbell),
+          (),
+        ),
+      ],
     (),
   ),
   Wod.make(
@@ -134,112 +137,120 @@ let wods = [
         ),
         None,
       )),
-    ~parts=[
-      {
-        reps: `Meter(800),
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `Run,
-        equipment: None,
-      },
-      {
-        reps: `Num(50),
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `PullUp,
-        equipment: None,
-      },
-      {
-        reps: `Num(100),
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `PushUp,
-        equipment: None,
-      },
-      {
-        reps: `Num(150),
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `AirSquat,
-        equipment: None,
-      },
-      {
-        reps: `Meter(800),
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `Run,
-        equipment: None,
-      },
-    ],
+    ~parts=
+      WodPart.[
+        make(
+          ~reps=`Meter(800),
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`Run,
+          (),
+        ),
+        make(
+          ~reps=`Num(50),
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`PullUp,
+          (),
+        ),
+        make(
+          ~reps=`Num(100),
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`PushUp,
+          (),
+        ),
+        make(
+          ~reps=`Num(150),
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`AirSquat,
+          (),
+        ),
+        make(
+          ~reps=`Meter(800),
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`Run,
+          (),
+        ),
+      ],
     (),
   ),
   Wod.make(
     ~createdAt="2019-08-19T22:00:00.000Z",
     ~name=Some("Chip Through Monday"),
     ~wodType=`ForTime,
-    ~parts=[
-      {
-        reps: `Num(5),
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `BarFacingBurpee,
-        equipment: None,
-      },
-      {
-        reps: `Num(10),
-        weight: (Some(`kg(40.0)), Some(`kg(30.0))),
-        exercise: `Thruster,
-        equipment: Some(`Barbell),
-      },
-      {
-        reps: `Num(5),
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `BarFacingBurpee,
-        equipment: None,
-      },
-      {
-        reps: `Num(15),
-        weight: (Some(`kg(40.0)), Some(`kg(30.0))),
-        exercise: `SumoDeadliftHighPull,
-        equipment: Some(`Barbell),
-      },
-      {
-        reps: `Num(5),
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `BarFacingBurpee,
-        equipment: None,
-      },
-      {
-        reps: `Num(20),
-        weight: (Some(`kg(40.0)), Some(`kg(30.0))),
-        exercise: `PushPress,
-        equipment: Some(`Barbell),
-      },
-      {
-        reps: `Num(5),
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `BarFacingBurpee,
-        equipment: None,
-      },
-      {
-        reps: `Num(25),
-        weight: (Some(`kg(40.0)), Some(`kg(30.0))),
-        exercise: `CleanHangPower,
-        equipment: Some(`Barbell),
-      },
-      {
-        reps: `Num(5),
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `BarFacingBurpee,
-        equipment: None,
-      },
-      {
-        reps: `Num(30),
-        weight: (Some(`kg(40.0)), Some(`kg(30.0))),
-        exercise: `Deadlift,
-        equipment: Some(`Barbell),
-      },
-      {
-        reps: `Num(5),
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `BarFacingBurpee,
-        equipment: None,
-      },
-    ],
+    ~parts=
+      WodPart.[
+        make(
+          ~reps=`Num(5),
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`BarFacingBurpee,
+          (),
+        ),
+        make(
+          ~reps=`Num(10),
+          ~weight=(Some(`kg(40.0)), Some(`kg(30.0))),
+          ~exercise=`Thruster,
+          ~equipment=Some(`Barbell),
+          (),
+        ),
+        make(
+          ~reps=`Num(5),
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`BarFacingBurpee,
+          ~equipment=None,
+          (),
+        ),
+        make(
+          ~reps=`Num(15),
+          ~weight=(Some(`kg(40.0)), Some(`kg(30.0))),
+          ~exercise=`SumoDeadliftHighPull,
+          ~equipment=Some(`Barbell),
+          (),
+        ),
+        make(
+          ~reps=`Num(5),
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`BarFacingBurpee,
+          (),
+        ),
+        make(
+          ~reps=`Num(20),
+          ~weight=(Some(`kg(40.0)), Some(`kg(30.0))),
+          ~exercise=`PushPress,
+          ~equipment=Some(`Barbell),
+          (),
+        ),
+        make(
+          ~reps=`Num(5),
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`BarFacingBurpee,
+          (),
+        ),
+        make(
+          ~reps=`Num(25),
+          ~weight=(Some(`kg(40.0)), Some(`kg(30.0))),
+          ~exercise=`CleanHangPower,
+          ~equipment=Some(`Barbell),
+          (),
+        ),
+        make(
+          ~reps=`Num(5),
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`BarFacingBurpee,
+          (),
+        ),
+        make(
+          ~reps=`Num(30),
+          ~weight=(Some(`kg(40.0)), Some(`kg(30.0))),
+          ~exercise=`Deadlift,
+          ~equipment=Some(`Barbell),
+          (),
+        ),
+        make(
+          ~reps=`Num(5),
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`BarFacingBurpee,
+          (),
+        ),
+      ],
     (),
   ),
   Wod.make(
@@ -262,183 +273,139 @@ Scaled may exchange singles to 25 dubs.
       )),
     ~timeCap=Some(14),
     ~scaledParts=
-      Some([
-        {
-          reps: `Cal2((30, 20)),
-          weight: (None, None),
-          exercise: `SkiErg,
-          equipment: None,
-        },
-        {
-          reps: `Meter(250),
-          weight: (None, None),
-          exercise: `Swim,
-          equipment: None,
-        },
-        {
-          reps: `Num(75),
-          weight: (None, None),
-          exercise: `SingleUnder,
-          equipment: Some(`Unbroken),
-        },
-        {
-          reps: `Num(75),
-          weight: (None, None),
-          exercise: `SingleUnder,
-          equipment: Some(`Unbroken),
-        },
-        {
-          reps: `Num(75),
-          weight: (None, None),
-          exercise: `SingleUnder,
-          equipment: Some(`Unbroken),
-        },
-        {
-          reps: `Cal2((30, 20)),
-          weight: (None, None),
-          exercise: `SkiErg,
-          equipment: None,
-        },
-      ]),
-    ~parts=[
-      {
-        reps: `Cal2((40, 30)),
-        weight: (None, None),
-        exercise: `SkiErg,
-        equipment: None,
-      },
-      {
-        reps: `Meter(250),
-        weight: (None, None),
-        exercise: `Swim,
-        equipment: None,
-      },
-      {
-        reps: `Num(50),
-        weight: (None, None),
-        exercise: `DoubleUnderHeavy,
-        equipment: Some(`Unbroken),
-      },
-      {
-        reps: `Num(50),
-        weight: (None, None),
-        exercise: `DoubleUnderHeavy,
-        equipment: Some(`Unbroken),
-      },
-      {
-        reps: `Num(50),
-        weight: (None, None),
-        exercise: `DoubleUnderHeavy,
-        equipment: Some(`Unbroken),
-      },
-      {
-        reps: `Cal2((40, 30)),
-        weight: (None, None),
-        exercise: `SkiErg,
-        equipment: None,
-      },
-    ],
+      Some(
+        WodPart.[
+          make(~reps=`Cal2((30, 20)), ~exercise=`SkiErg, ()),
+          make(~reps=`Meter(250), ~exercise=`Swim, ()),
+          make(
+            ~reps=`Num(75),
+            ~exercise=`SingleUnder,
+            ~equipment=Some(`Unbroken),
+            (),
+          ),
+          make(
+            ~reps=`Num(75),
+            ~exercise=`SingleUnder,
+            ~equipment=Some(`Unbroken),
+            (),
+          ),
+          make(
+            ~reps=`Num(75),
+            ~exercise=`SingleUnder,
+            ~equipment=Some(`Unbroken),
+            (),
+          ),
+          make(~reps=`Cal2((30, 20)), ~exercise=`SkiErg, ()),
+        ],
+      ),
+    ~parts=
+      WodPart.[
+        make(~reps=`Cal2((40, 30)), ~exercise=`SkiErg, ()),
+        make(~reps=`Meter(250), ~exercise=`Swim, ()),
+        make(
+          ~reps=`Num(50),
+          ~exercise=`DoubleUnderHeavy,
+          ~equipment=Some(`Unbroken),
+          (),
+        ),
+        make(
+          ~reps=`Num(50),
+          ~exercise=`DoubleUnderHeavy,
+          ~equipment=Some(`Unbroken),
+          (),
+        ),
+        make(
+          ~reps=`Num(50),
+          ~exercise=`DoubleUnderHeavy,
+          ~equipment=Some(`Unbroken),
+          (),
+        ),
+        make(~reps=`Cal2((40, 30)), ~exercise=`SkiErg, ()),
+      ],
     (),
   ),
   Wod.make(
     ~createdAt="2019-08-19T22:00:00.000Z",
     ~wodType=`ForTime,
     ~rounds=Some(5),
-    ~parts=[
-      {
-        reps: `Num(100),
-        weight: (None, None),
-        exercise: `SingleUnder,
-        equipment: None,
-      },
-      {
-        reps: `Num(5),
-        weight: (Some(`kg(40.0)), Some(`kg(30.0))),
-        exercise: `SnatchPower,
-        equipment: Some(`Barbell),
-      },
-    ],
+    ~parts=
+      WodPart.[
+        make(~reps=`Num(100), ~exercise=`SingleUnder, ()),
+        make(
+          ~reps=`Num(5),
+          ~weight=(Some(`kg(40.0)), Some(`kg(30.0))),
+          ~exercise=`SnatchPower,
+          ~equipment=Some(`Barbell),
+          (),
+        ),
+      ],
     (),
   ),
   Wod.make(
     ~createdAt="2019-08-19T22:00:00.000Z",
     ~name=Some("Waterworks"),
     ~wodType=`ForTime,
-    ~parts=[
-      {
-        reps: `Cal2((50, 35)),
-        weight: (None, None),
-        exercise: `Row,
-        equipment: None,
-      },
-      {
-        reps: `Num(40),
-        weight: (Some(`kg(24.0)), Some(`kg(16.0))),
-        exercise: `KBS,
-        equipment: Some(`Kettlebell),
-      },
-      {
-        reps: `Num(30),
-        weight: (Some(`kg(50.0)), Some(`kg(35.0))),
-        exercise: `PushPress,
-        equipment: Some(`Barbell),
-      },
-      {
-        reps: `Num(40),
-        weight: (Some(`kg(24.0)), Some(`kg(16.0))),
-        exercise: `KBS,
-        equipment: Some(`Kettlebell),
-      },
-      {
-        reps: `Cal2((50, 35)),
-        weight: (None, None),
-        exercise: `Row,
-        equipment: None,
-      },
-    ],
+    ~parts=
+      WodPart.[
+        make(~reps=`Cal2((50, 35)), ~exercise=`Row, ()),
+        make(
+          ~reps=`Num(40),
+          ~weight=(Some(`kg(24.0)), Some(`kg(16.0))),
+          ~exercise=`KBS,
+          ~equipment=Some(`Kettlebell),
+          (),
+        ),
+        make(
+          ~reps=`Num(30),
+          ~weight=(Some(`kg(50.0)), Some(`kg(35.0))),
+          ~exercise=`PushPress,
+          ~equipment=Some(`Barbell),
+          (),
+        ),
+        make(
+          ~reps=`Num(40),
+          ~weight=(Some(`kg(24.0)), Some(`kg(16.0))),
+          ~exercise=`KBS,
+          ~equipment=Some(`Kettlebell),
+          (),
+        ),
+        make(~reps=`Cal2((50, 35)), ~exercise=`Row, ()),
+      ],
     (),
   ),
   Wod.make(
     ~createdAt="2019-08-19T22:00:00.000Z",
     ~wodType=`AltEMOM(24),
-    ~parts=[
-      {
-        reps: `Span((`Num(8), `Num(12))),
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `HangingKneeRaise,
-        equipment: None,
-      },
-      {
-        reps: `Span((`Cal(6), `Cal(14))),
-        weight: (None, None),
-        exercise: `SkiErg,
-        equipment: None,
-      },
-      {
-        reps: `Span((`OneSide((8, 8)), `OneSide((14, 14)))),
-        weight: (Some(`kg(15.0)), Some(`kg(10.0))),
-        exercise: `RussianTwist,
-        equipment: None,
-      },
-      {
-        reps: `Span((`Num(5), `Num(10))),
-        weight: (Some(`kg2(12.0)), Some(`kg2(8.0))),
-        exercise: `BurpeeBoxOver,
-        equipment: Some(`Dumbbell),
-      },
-      {
-        reps: `Span((`OneSide((6, 6)), `OneSide((9, 9)))),
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `VUpsSide,
-        equipment: None,
-      },
-      {
-        reps: `Span((`Cal(6), `Cal(14))),
-        weight: (None, None),
-        exercise: `Row,
-        equipment: None,
-      },
-    ],
+    ~parts=
+      WodPart.[
+        make(
+          ~reps=`Span((`Num(8), `Num(12))),
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`HangingKneeRaise,
+          (),
+        ),
+        make(~reps=`Span((`Cal(6), `Cal(14))), ~exercise=`SkiErg, ()),
+        make(
+          ~reps=`Span((`OneSide((8, 8)), `OneSide((14, 14)))),
+          ~weight=(Some(`kg(15.0)), Some(`kg(10.0))),
+          ~exercise=`RussianTwist,
+          (),
+        ),
+        make(
+          ~reps=`Span((`Num(5), `Num(10))),
+          ~weight=(Some(`kg2(12.0)), Some(`kg2(8.0))),
+          ~exercise=`BurpeeBoxOver,
+          ~equipment=Some(`Dumbbell),
+          (),
+        ),
+        make(
+          ~reps=`Span((`OneSide((6, 6)), `OneSide((9, 9)))),
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`VUpsSide,
+          (),
+        ),
+        make(~reps=`Span((`Cal(6), `Cal(14))), ~exercise=`Row, ()),
+      ],
     (),
   ),
   Wod.make(
@@ -447,20 +414,17 @@ Scaled may exchange singles to 25 dubs.
     ~description=Some((Some("Rest 3 min between rounds"), None)),
     ~rounds=Some(2),
     ~repScheme=Some([21, 15, 9]),
-    ~parts=[
-      {
-        reps: `RepScheme,
-        weight: (None, None),
-        exercise: `SkiErg,
-        equipment: None,
-      },
-      {
-        reps: `RepScheme,
-        weight: (Some(`kg(9.0)), Some(`kg(6.0))),
-        exercise: `WallBall,
-        equipment: Some(`WallBall),
-      },
-    ],
+    ~parts=
+      WodPart.[
+        make(~reps=`RepScheme, ~exercise=`SkiErg, ()),
+        make(
+          ~reps=`RepScheme,
+          ~weight=(Some(`kg(9.0)), Some(`kg(6.0))),
+          ~exercise=`WallBall,
+          ~equipment=Some(`WallBall),
+          (),
+        ),
+      ],
     (),
   ),
   Wod.make(
@@ -478,34 +442,39 @@ Scaled may exchange singles to 25 dubs.
     ~timeCap=Some(12),
     ~repScheme=Some([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
     ~scaledParts=
-      Some([
-        {
-          reps: `RepScheme,
-          weight: (Some(`kg2(15.0)), Some(`kg2(10.0))),
-          exercise: `Squat,
-          equipment: Some(`Dumbbell),
-        },
-        {
-          reps: `RepScheme,
-          weight: (Some(`bodyweight), Some(`bodyweight)),
-          exercise: `BarFacingBurpee,
-          equipment: None,
-        },
-      ]),
-    ~parts=[
-      {
-        reps: `RepScheme,
-        weight: (Some(`kg2(22.5)), Some(`kg2(15.0))),
-        exercise: `Squat,
-        equipment: Some(`Dumbbell),
-      },
-      {
-        reps: `RepScheme,
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `BarFacingBurpee,
-        equipment: None,
-      },
-    ],
+      Some(
+        WodPart.[
+          make(
+            ~reps=`RepScheme,
+            ~weight=(Some(`kg2(15.0)), Some(`kg2(10.0))),
+            ~exercise=`Squat,
+            ~equipment=Some(`Dumbbell),
+            (),
+          ),
+          make(
+            ~reps=`RepScheme,
+            ~weight=(Some(`bodyweight), Some(`bodyweight)),
+            ~exercise=`BarFacingBurpee,
+            (),
+          ),
+        ],
+      ),
+    ~parts=
+      WodPart.[
+        make(
+          ~reps=`RepScheme,
+          ~weight=(Some(`kg2(22.5)), Some(`kg2(15.0))),
+          ~exercise=`Squat,
+          ~equipment=Some(`Dumbbell),
+          (),
+        ),
+        make(
+          ~reps=`RepScheme,
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`BarFacingBurpee,
+          (),
+        ),
+      ],
     (),
   ),
   Wod.make(
@@ -513,20 +482,22 @@ Scaled may exchange singles to 25 dubs.
     ~wodType=`ForTime,
     ~timeCap=Some(6),
     ~repScheme=Some([100, 10, 80, 8, 60, 6, 40, 4, 20, 2]),
-    ~parts=[
-      {
-        reps: `RepScheme,
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `SingleUnder,
-        equipment: None,
-      },
-      {
-        reps: `RepScheme,
-        weight: (Some(`kg(40.0)), Some(`kg(30.0))),
-        exercise: `PushPress,
-        equipment: Some(`Barbell),
-      },
-    ],
+    ~parts=
+      WodPart.[
+        make(
+          ~reps=`RepScheme,
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`SingleUnder,
+          (),
+        ),
+        make(
+          ~reps=`RepScheme,
+          ~weight=(Some(`kg(40.0)), Some(`kg(30.0))),
+          ~exercise=`PushPress,
+          ~equipment=Some(`Barbell),
+          (),
+        ),
+      ],
     (),
   ),
   Wod.make(
@@ -534,46 +505,53 @@ Scaled may exchange singles to 25 dubs.
     ~name=Some("Grace"),
     ~wodType=`ForTime,
     ~category=Some(`Girl),
-    ~parts=[
-      {
-        reps: `Num(30),
-        weight: (Some(`kg(61.0)), Some(`kg(43.0))),
-        exercise: `CleanAndJerk,
-        equipment: Some(`Barbell),
-      },
-    ],
+    ~parts=
+      WodPart.[
+        make(
+          ~reps=`Num(30),
+          ~weight=(Some(`kg(61.0)), Some(`kg(43.0))),
+          ~exercise=`CleanAndJerk,
+          ~equipment=Some(`Barbell),
+          (),
+        ),
+      ],
     (),
   ),
   Wod.make(
     ~createdAt="2019-08-21T22:00:00.000Z",
     ~wodType=`ForTime,
     ~rounds=Some(3),
-    ~parts=[
-      {
-        reps: `Num(15),
-        weight: (Some(`kg2(15.0)), Some(`kg2(10.0))),
-        exercise: `PushJerk,
-        equipment: Some(`Dumbbell),
-      },
-      {
-        reps: `Num(50),
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `SingleUnder,
-        equipment: None,
-      },
-      {
-        reps: `Num(15),
-        weight: (Some(`kg2cm((15.0, 60.0))), Some(`kg2cm((10.0, 45.0)))),
-        exercise: `WeightedStepUp,
-        equipment: None,
-      },
-      {
-        reps: `Num(50),
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `SingleUnder,
-        equipment: None,
-      },
-    ],
+    ~parts=
+      WodPart.[
+        make(
+          ~reps=`Num(15),
+          ~weight=(Some(`kg2(15.0)), Some(`kg2(10.0))),
+          ~exercise=`PushJerk,
+          ~equipment=Some(`Dumbbell),
+          (),
+        ),
+        make(
+          ~reps=`Num(50),
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`SingleUnder,
+          (),
+        ),
+        make(
+          ~reps=`Num(15),
+          ~weight=(
+            Some(`kg2cm((15.0, 60.0))),
+            Some(`kg2cm((10.0, 45.0))),
+          ),
+          ~exercise=`WeightedStepUp,
+          (),
+        ),
+        make(
+          ~reps=`Num(50),
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`SingleUnder,
+          (),
+        ),
+      ],
     (),
   ),
   Wod.make(
@@ -593,26 +571,27 @@ This Firefighter Hero WOD is dedicated to Keithroy Maynard, FDNY, Engine 33, who
         None,
       )),
     ~rounds=Some(5),
-    ~parts=[
-      {
-        reps: `Num(44),
-        weight: (Some(`cm(60.0)), Some(`cm(45.0))),
-        exercise: `BoxStepUp,
-        equipment: None,
-      },
-      {
-        reps: `Num(12),
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `PushUp,
-        equipment: None,
-      },
-      {
-        reps: `Num(12),
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `AirSquat,
-        equipment: None,
-      },
-    ],
+    ~parts=
+      WodPart.[
+        make(
+          ~reps=`Num(44),
+          ~weight=(Some(`cm(60.0)), Some(`cm(45.0))),
+          ~exercise=`BoxStepUp,
+          (),
+        ),
+        make(
+          ~reps=`Num(12),
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`PushUp,
+          (),
+        ),
+        make(
+          ~reps=`Num(12),
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`AirSquat,
+          (),
+        ),
+      ],
     (),
   ),
   Wod.make(
@@ -620,26 +599,29 @@ This Firefighter Hero WOD is dedicated to Keithroy Maynard, FDNY, Engine 33, who
     ~name=Some("7-7-7"),
     ~wodType=`ForTime,
     ~rounds=Some(7),
-    ~parts=[
-      {
-        reps: `Num(7),
-        weight: (Some(`kg(40.0)), Some(`kg(30.0))),
-        exercise: `Deadlift,
-        equipment: Some(`Barbell),
-      },
-      {
-        reps: `Num(7),
-        weight: (Some(`kg(40.0)), Some(`kg(30.0))),
-        exercise: `Thruster,
-        equipment: Some(`Barbell),
-      },
-      {
-        reps: `Num(7),
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `Burpee,
-        equipment: None,
-      },
-    ],
+    ~parts=
+      WodPart.[
+        make(
+          ~reps=`Num(7),
+          ~weight=(Some(`kg(40.0)), Some(`kg(30.0))),
+          ~exercise=`Deadlift,
+          ~equipment=Some(`Barbell),
+          (),
+        ),
+        make(
+          ~reps=`Num(7),
+          ~weight=(Some(`kg(40.0)), Some(`kg(30.0))),
+          ~exercise=`Thruster,
+          ~equipment=Some(`Barbell),
+          (),
+        ),
+        make(
+          ~reps=`Num(7),
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`Burpee,
+          (),
+        ),
+      ],
     (),
   ),
   Wod.make(
@@ -647,40 +629,34 @@ This Firefighter Hero WOD is dedicated to Keithroy Maynard, FDNY, Engine 33, who
     ~wodType=`AMRAP,
     ~buyInOut=
       Some((
-        Some({
-          reps: `Meter(500),
-          weight: (None, None),
-          exercise: `Row,
-          equipment: None,
-        }),
-        Some({
-          reps: `Meter(500),
-          weight: (None, None),
-          exercise: `SkiErg,
-          equipment: None,
-        }),
+        Some(WodPart.make(~reps=`Meter(500), ~exercise=`Row, ())),
+        Some(WodPart.make(~reps=`Meter(500), ~exercise=`SkiErg, ())),
       )),
     ~timeCap=Some(8),
-    ~parts=[
-      {
-        reps: `OneSide((5, 5)),
-        weight: (Some(`kg(15.0)), Some(`kg(10.0))),
-        exercise: `Lunge,
-        equipment: Some(`BulgarianBag),
-      },
-      {
-        reps: `Num(10),
-        weight: (Some(`kg2(15.0)), Some(`kg2(10.0))),
-        exercise: `GroundToOverhead,
-        equipment: Some(`Dumbbell),
-      },
-      {
-        reps: `Num(10),
-        weight: (Some(`kg2(15.0)), Some(`kg2(10.0))),
-        exercise: `BentOverRow,
-        equipment: Some(`Dumbbell),
-      },
-    ],
+    ~parts=
+      WodPart.[
+        make(
+          ~reps=`OneSide((5, 5)),
+          ~weight=(Some(`kg(15.0)), Some(`kg(10.0))),
+          ~exercise=`Lunge,
+          ~equipment=Some(`BulgarianBag),
+          (),
+        ),
+        make(
+          ~reps=`Num(10),
+          ~weight=(Some(`kg2(15.0)), Some(`kg2(10.0))),
+          ~exercise=`GroundToOverhead,
+          ~equipment=Some(`Dumbbell),
+          (),
+        ),
+        make(
+          ~reps=`Num(10),
+          ~weight=(Some(`kg2(15.0)), Some(`kg2(10.0))),
+          ~exercise=`BentOverRow,
+          ~equipment=Some(`Dumbbell),
+          (),
+        ),
+      ],
     (),
   ),
   Wod.make(
@@ -706,50 +682,37 @@ Each set EMOM 5 min, then 1 min rest before next EMOM.
         ),
         None,
       )),
-    ~parts=[
-      {
-        reps: `Num(5),
-        weight: (None, None),
-        exercise: `SnatchPower,
-        equipment: Some(`Barbell),
-      },
-      {
-        reps: `Min(1),
-        weight: (None, None),
-        exercise: `Rest,
-        equipment: None,
-      },
-      {
-        reps: `Num(3),
-        weight: (None, None),
-        exercise: `SnatchPower,
-        equipment: Some(`Barbell),
-      },
-      {
-        reps: `Min(1),
-        weight: (None, None),
-        exercise: `Rest,
-        equipment: None,
-      },
-      {
-        reps: `Num(1),
-        weight: (None, None),
-        exercise: `SnatchPower,
-        equipment: Some(`Barbell),
-      },
-      {
-        reps: `Min(1),
-        weight: (None, None),
-        exercise: `Rest,
-        equipment: None,
-      },
-      {
-        reps: `Num(5),
-        weight: (None, None),
-        exercise: `SnatchPower,
-        equipment: Some(`Barbell),
-      },
-    ],
+    ~parts=
+      WodPart.[
+        make(
+          ~reps=`Num(5),
+          ~exercise=`SnatchPower,
+          ~equipment=Some(`Barbell),
+          (),
+        ),
+        rest(1),
+        make(
+          ~reps=`Num(3),
+          ~exercise=`SnatchPower,
+          ~equipment=Some(`Barbell),
+          (),
+        ),
+        rest(1),
+        make(
+          ~reps=`Num(1),
+          ~exercise=`SnatchPower,
+          ~equipment=Some(`Barbell),
+          (),
+        ),
+        rest(1),
+        make(
+          ~reps=`Num(5),
+          ~weight=(None, None),
+          ~exercise=`SnatchPower,
+          ~equipment=Some(`Barbell),
+          (),
+        ),
+      ],
     (),
   ),
   Wod.make(
@@ -770,50 +733,36 @@ Each set EMOM 5 min, then 1 min rest before next EMOM.
         ),
         None,
       )),
-    ~parts=[
-      {
-        reps: `Num(5),
-        weight: (None, None),
-        exercise: `CleanPower,
-        equipment: Some(`Barbell),
-      },
-      {
-        reps: `Min(1),
-        weight: (None, None),
-        exercise: `Rest,
-        equipment: None,
-      },
-      {
-        reps: `Num(3),
-        weight: (None, None),
-        exercise: `CleanPower,
-        equipment: Some(`Barbell),
-      },
-      {
-        reps: `Min(1),
-        weight: (None, None),
-        exercise: `Rest,
-        equipment: None,
-      },
-      {
-        reps: `Num(1),
-        weight: (None, None),
-        exercise: `CleanPower,
-        equipment: Some(`Barbell),
-      },
-      {
-        reps: `Min(1),
-        weight: (None, None),
-        exercise: `Rest,
-        equipment: None,
-      },
-      {
-        reps: `Num(5),
-        weight: (None, None),
-        exercise: `CleanPower,
-        equipment: Some(`Barbell),
-      },
-    ],
+    ~parts=
+      WodPart.[
+        make(
+          ~reps=`Num(5),
+          ~exercise=`CleanPower,
+          ~equipment=Some(`Barbell),
+          (),
+        ),
+        rest(1),
+        make(
+          ~reps=`Num(3),
+          ~exercise=`CleanPower,
+          ~equipment=Some(`Barbell),
+          (),
+        ),
+        rest(1),
+        make(
+          ~reps=`Num(1),
+          ~exercise=`CleanPower,
+          ~equipment=Some(`Barbell),
+          (),
+        ),
+        rest(1),
+        make(
+          ~reps=`Num(5),
+          ~exercise=`CleanPower,
+          ~equipment=Some(`Barbell),
+          (),
+        ),
+      ],
     (),
   ),
   Wod.make(
@@ -822,26 +771,31 @@ Each set EMOM 5 min, then 1 min rest before next EMOM.
     ~wodType=`AMRAP,
     ~category=Some(`Wodapalooza(2019)),
     ~scaledParts=
-      Some([
-        {
-          reps: `Increasing(3),
-          weight: (Some(`kg(20.0)), Some(`kg(13.0))),
-          exercise: `SnatchHangPower,
-          equipment: Some(`Barbell),
-        },
-        {
-          reps: `Increasing(3),
-          weight: (Some(`kg(20.0)), Some(`kg(13.0))),
-          exercise: `OverheadSquat,
-          equipment: Some(`Barbell),
-        },
-        {
-          reps: `Num(30),
-          weight: (Some(`bodyweight), Some(`bodyweight)),
-          exercise: `SingleUnder,
-          equipment: Some(`JumpRope),
-        },
-      ]),
+      Some(
+        WodPart.[
+          make(
+            ~reps=`Increasing(3),
+            ~weight=(Some(`kg(20.0)), Some(`kg(13.0))),
+            ~exercise=`SnatchHangPower,
+            ~equipment=Some(`Barbell),
+            (),
+          ),
+          make(
+            ~reps=`Increasing(3),
+            ~weight=(Some(`kg(20.0)), Some(`kg(13.0))),
+            ~exercise=`OverheadSquat,
+            ~equipment=Some(`Barbell),
+            (),
+          ),
+          make(
+            ~reps=`Num(30),
+            ~weight=(Some(`bodyweight), Some(`bodyweight)),
+            ~exercise=`SingleUnder,
+            ~equipment=Some(`JumpRope),
+            (),
+          ),
+        ],
+      ),
     ~externalLink=
       Some((
         "Wodapalooza",
@@ -857,26 +811,30 @@ Add 3 repetitions to each of the barbell movements (3/3/30, 6/6/30, 9/9/30, 12/1
         None,
       )),
     ~timeCap=Some(9),
-    ~parts=[
-      {
-        reps: `Increasing(3),
-        weight: (Some(`kg(34.0)), Some(`kg(25.0))),
-        exercise: `SnatchHangPower,
-        equipment: Some(`Barbell),
-      },
-      {
-        reps: `Increasing(3),
-        weight: (Some(`kg(34.0)), Some(`kg(25.0))),
-        exercise: `OverheadSquat,
-        equipment: Some(`Barbell),
-      },
-      {
-        reps: `Num(30),
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `DoubleUnder,
-        equipment: Some(`JumpRope),
-      },
-    ],
+    ~parts=
+      WodPart.[
+        make(
+          ~reps=`Increasing(3),
+          ~weight=(Some(`kg(34.0)), Some(`kg(25.0))),
+          ~exercise=`SnatchHangPower,
+          ~equipment=Some(`Barbell),
+          (),
+        ),
+        make(
+          ~reps=`Increasing(3),
+          ~weight=(Some(`kg(34.0)), Some(`kg(25.0))),
+          ~exercise=`OverheadSquat,
+          ~equipment=Some(`Barbell),
+          (),
+        ),
+        make(
+          ~reps=`Num(30),
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`DoubleUnder,
+          ~equipment=Some(`JumpRope),
+          (),
+        ),
+      ],
     (),
   ),
   Wod.make(
@@ -885,88 +843,97 @@ Add 3 repetitions to each of the barbell movements (3/3/30, 6/6/30, 9/9/30, 12/1
     ~wodType=`AMRAP,
     ~category=Some(`Wodapalooza(2019)),
     ~scaledParts=
-      Some([
-        {
-          reps: `Num(40),
-          weight: (Some(`kg(15.0)), Some(`kg(10.0))),
-          exercise: `SnatchAlt,
-          equipment: Some(`Dumbbell),
-        },
-        {
-          reps: `Num(40),
-          weight: (Some(`bodyweight), Some(`bodyweight)),
-          exercise: `PullUpJumping,
-          equipment: None,
-        },
-        {
-          reps: `Num(30),
-          weight: (Some(`kg(15.0)), Some(`kg(10.0))),
-          exercise: `Burpee,
-          equipment: Some(`Dumbbell),
-        },
-        {
-          reps: `Num(30),
-          weight: (Some(`bodyweight), Some(`bodyweight)),
-          exercise: `RingRow,
-          equipment: None,
-        },
-        {
-          reps: `Num(20),
-          weight: (Some(`kg(15.0)), Some(`kg(10.0))),
-          exercise: `DevilPress,
-          equipment: None,
-        },
-        {
-          reps: `Num(20),
-          weight: (Some(`bodyweight), Some(`bodyweight)),
-          exercise: `PullUp,
-          equipment: None,
-        },
-      ]),
+      Some(
+        WodPart.[
+          make(
+            ~reps=`Num(40),
+            ~weight=(Some(`kg(15.0)), Some(`kg(10.0))),
+            ~exercise=`SnatchAlt,
+            ~equipment=Some(`Dumbbell),
+            (),
+          ),
+          make(
+            ~reps=`Num(40),
+            ~weight=(Some(`bodyweight), Some(`bodyweight)),
+            ~exercise=`PullUpJumping,
+            (),
+          ),
+          make(
+            ~reps=`Num(30),
+            ~weight=(Some(`kg(15.0)), Some(`kg(10.0))),
+            ~exercise=`Burpee,
+            ~equipment=Some(`Dumbbell),
+            (),
+          ),
+          make(
+            ~reps=`Num(30),
+            ~weight=(Some(`bodyweight), Some(`bodyweight)),
+            ~exercise=`RingRow,
+            (),
+          ),
+          make(
+            ~reps=`Num(20),
+            ~weight=(Some(`kg(15.0)), Some(`kg(10.0))),
+            ~exercise=`DevilPress,
+            ~equipment=Some(`Dumbbell),
+            (),
+          ),
+          make(
+            ~reps=`Num(20),
+            ~weight=(Some(`bodyweight), Some(`bodyweight)),
+            ~exercise=`PullUp,
+            (),
+          ),
+        ],
+      ),
     ~externalLink=
       Some((
         "Wodapalooza",
         "https://wodapalooza.com/workout/2019-2020-indy-oc-wod-2/",
       )),
     ~timeCap=Some(16),
-    ~parts=[
-      {
-        reps: `Num(40),
-        weight: (Some(`kg(22.5)), Some(`kg(15.0))),
-        exercise: `SnatchAlt,
-        equipment: Some(`Dumbbell),
-      },
-      {
-        reps: `Num(40),
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `PullUp,
-        equipment: None,
-      },
-      {
-        reps: `Num(30),
-        weight: (Some(`kg(22.5)), Some(`kg(15.0))),
-        exercise: `Burpee,
-        equipment: Some(`Dumbbell),
-      },
-      {
-        reps: `Num(30),
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `C2B,
-        equipment: None,
-      },
-      {
-        reps: `Num(20),
-        weight: (Some(`kg(22.5)), Some(`kg(15.0))),
-        exercise: `DevilPress,
-        equipment: None,
-      },
-      {
-        reps: `Num(20),
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `BarMuscleUp,
-        equipment: None,
-      },
-    ],
+    ~parts=
+      WodPart.[
+        make(
+          ~reps=`Num(40),
+          ~weight=(Some(`kg(22.5)), Some(`kg(15.0))),
+          ~exercise=`SnatchAlt,
+          ~equipment=Some(`Dumbbell),
+          (),
+        ),
+        make(
+          ~reps=`Num(40),
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`PullUp,
+          (),
+        ),
+        make(
+          ~reps=`Num(30),
+          ~weight=(Some(`kg(22.5)), Some(`kg(15.0))),
+          ~exercise=`Burpee,
+          ~equipment=Some(`Dumbbell),
+          (),
+        ),
+        make(
+          ~reps=`Num(30),
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`C2B,
+          (),
+        ),
+        make(
+          ~reps=`Num(20),
+          ~weight=(Some(`kg(22.5)), Some(`kg(15.0))),
+          ~exercise=`DevilPress,
+          ~equipment=Some(`Dumbbell),
+          (),
+        ),
+        make(
+          ~reps=`Num(20),
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`BarMuscleUp,
+          (),
+        ),
+      ],
     (),
   ),
   Wod.make(
@@ -975,26 +942,31 @@ Add 3 repetitions to each of the barbell movements (3/3/30, 6/6/30, 9/9/30, 12/1
     ~wodType=`ForTime,
     ~category=Some(`Wodapalooza(2019)),
     ~scaledParts=
-      Some([
-        {
-          reps: `Num(12),
-          weight: (Some(`kg(34.0)), Some(`kg(25.0))),
-          exercise: `Deadlift,
-          equipment: Some(`Barbell),
-        },
-        {
-          reps: `Num(9),
-          weight: (Some(`kg(34.0)), Some(`kg(25.0))),
-          exercise: `CleanHangPower,
-          equipment: Some(`Barbell),
-        },
-        {
-          reps: `Num(6),
-          weight: (Some(`kg(34.0)), Some(`kg(25.0))),
-          exercise: `ShoulderToOverhead,
-          equipment: Some(`Barbell),
-        },
-      ]),
+      Some(
+        WodPart.[
+          make(
+            ~reps=`Num(12),
+            ~weight=(Some(`kg(34.0)), Some(`kg(25.0))),
+            ~exercise=`Deadlift,
+            ~equipment=Some(`Barbell),
+            (),
+          ),
+          make(
+            ~reps=`Num(9),
+            ~weight=(Some(`kg(34.0)), Some(`kg(25.0))),
+            ~exercise=`CleanHangPower,
+            ~equipment=Some(`Barbell),
+            (),
+          ),
+          make(
+            ~reps=`Num(6),
+            ~weight=(Some(`kg(34.0)), Some(`kg(25.0))),
+            ~exercise=`ShoulderToOverhead,
+            ~equipment=Some(`Barbell),
+            (),
+          ),
+        ],
+      ),
     ~externalLink=
       Some((
         "Wodapalooza",
@@ -1029,26 +1001,30 @@ If you complete the three rounds at a given weight within the 4 min window, incr
             |j},
         ),
       )),
-    ~parts=[
-      {
-        reps: `Num(12),
-        weight: (Some(`kg(43.0)), Some(`kg(30.0))),
-        exercise: `Deadlift,
-        equipment: Some(`Barbell),
-      },
-      {
-        reps: `Num(9),
-        weight: (Some(`kg(43.0)), Some(`kg(30.0))),
-        exercise: `CleanHangPower,
-        equipment: Some(`Barbell),
-      },
-      {
-        reps: `Num(6),
-        weight: (Some(`kg(43.0)), Some(`kg(30.0))),
-        exercise: `ShoulderToOverhead,
-        equipment: Some(`Barbell),
-      },
-    ],
+    ~parts=
+      WodPart.[
+        make(
+          ~reps=`Num(12),
+          ~weight=(Some(`kg(43.0)), Some(`kg(30.0))),
+          ~exercise=`Deadlift,
+          ~equipment=Some(`Barbell),
+          (),
+        ),
+        make(
+          ~reps=`Num(9),
+          ~weight=(Some(`kg(43.0)), Some(`kg(30.0))),
+          ~exercise=`CleanHangPower,
+          ~equipment=Some(`Barbell),
+          (),
+        ),
+        make(
+          ~reps=`Num(6),
+          ~weight=(Some(`kg(43.0)), Some(`kg(30.0))),
+          ~exercise=`ShoulderToOverhead,
+          ~equipment=Some(`Barbell),
+          (),
+        ),
+      ],
     (),
   ),
   Wod.make(
@@ -1057,20 +1033,24 @@ If you complete the three rounds at a given weight within the 4 min window, incr
     ~wodType=`ForTime,
     ~category=Some(`Wodapalooza(2019)),
     ~scaledParts=
-      Some([
-        {
-          reps: `Num(100),
-          weight: (Some(`kg(6.0)), Some(`kg(4.0))),
-          exercise: `WallBall,
-          equipment: Some(`WallBall),
-        },
-        {
-          reps: `Num(50),
-          weight: (Some(`bodyweight), Some(`bodyweight)),
-          exercise: `WeightedButterflySitUp,
-          equipment: None,
-        },
-      ]),
+      Some(
+        WodPart.[
+          make(
+            ~reps=`Num(100),
+            ~weight=(Some(`kg(6.0)), Some(`kg(4.0))),
+            ~exercise=`WallBall,
+            ~equipment=Some(`WallBall),
+            (),
+          ),
+          make(
+            ~reps=`Num(50),
+            ~weight=(Some(`bodyweight), Some(`bodyweight)),
+            ~exercise=`WeightedButterflySitUp,
+            ~equipment=Some(`WallBall),
+            (),
+          ),
+        ],
+      ),
     ~externalLink=
       Some((
         "Wodapalooza",
@@ -1085,20 +1065,23 @@ If you complete the three rounds at a given weight within the 4 min window, incr
         None,
       )),
     ~timeCap=Some(20),
-    ~parts=[
-      {
-        reps: `Num(150),
-        weight: (Some(`kg(9.0)), Some(`kg(6.0))),
-        exercise: `WallBall,
-        equipment: Some(`WallBall),
-      },
-      {
-        reps: `Num(75),
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `ToesToBar,
-        equipment: None,
-      },
-    ],
+    ~parts=
+      WodPart.[
+        make(
+          ~reps=`Num(150),
+          ~weight=(Some(`kg(9.0)), Some(`kg(6.0))),
+          ~exercise=`WallBall,
+          ~equipment=Some(`WallBall),
+          (),
+        ),
+        make(
+          ~reps=`Num(75),
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`ToesToBar,
+          ~equipment=None,
+          (),
+        ),
+      ],
     (),
   ),
   Wod.make(
@@ -1119,20 +1102,22 @@ _Fran_ is arguably the most famous of the original six CrossFit "Girls" WODs.
         None,
       )),
     ~repScheme=Some([21, 15, 9]),
-    ~parts=[
-      {
-        reps: `RepScheme,
-        weight: (Some(`kg(43.0)), Some(`kg(30.0))),
-        exercise: `Thruster,
-        equipment: Some(`Barbell),
-      },
-      {
-        reps: `RepScheme,
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `PullUp,
-        equipment: None,
-      },
-    ],
+    ~parts=
+      WodPart.[
+        make(
+          ~reps=`RepScheme,
+          ~weight=(Some(`kg(43.0)), Some(`kg(30.0))),
+          ~exercise=`Thruster,
+          ~equipment=Some(`Barbell),
+          (),
+        ),
+        make(
+          ~reps=`RepScheme,
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`PullUp,
+          (),
+        ),
+      ],
     (),
   ),
   Wod.make(
@@ -1154,38 +1139,34 @@ version allowed 5 minutes rest between sets.
         None,
       )),
     ~rounds=Some(5),
-    ~parts=[
-      {
-        reps: `Num(20),
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `PullUp,
-        equipment: None,
-      },
-      {
-        reps: `Num(30),
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `PushUp,
-        equipment: None,
-      },
-      {
-        reps: `Num(40),
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `SitUp,
-        equipment: None,
-      },
-      {
-        reps: `Num(50),
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `AirSquat,
-        equipment: None,
-      },
-      {
-        reps: `Min(3),
-        weight: (None, None),
-        exercise: `Rest,
-        equipment: None,
-      },
-    ],
+    ~parts=
+      WodPart.[
+        make(
+          ~reps=`Num(20),
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`PullUp,
+          (),
+        ),
+        make(
+          ~reps=`Num(30),
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`PushUp,
+          (),
+        ),
+        make(
+          ~reps=`Num(40),
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`SitUp,
+          (),
+        ),
+        make(
+          ~reps=`Num(50),
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`AirSquat,
+          (),
+        ),
+        rest(3),
+      ],
     (),
   ),
   Wod.make(
@@ -1204,32 +1185,33 @@ _Angie_, one of CrossFit's first six "Girls" WODs, was first posted on the Cross
         ),
         None,
       )),
-    ~parts=[
-      {
-        reps: `Num(100),
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `PullUp,
-        equipment: None,
-      },
-      {
-        reps: `Num(100),
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `PushUp,
-        equipment: None,
-      },
-      {
-        reps: `Num(100),
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `SitUp,
-        equipment: None,
-      },
-      {
-        reps: `Num(100),
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `AirSquat,
-        equipment: None,
-      },
-    ],
+    ~parts=
+      WodPart.[
+        make(
+          ~reps=`Num(100),
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`PullUp,
+          (),
+        ),
+        make(
+          ~reps=`Num(100),
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`PushUp,
+          (),
+        ),
+        make(
+          ~reps=`Num(100),
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`SitUp,
+          (),
+        ),
+        make(
+          ~reps=`Num(100),
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`AirSquat,
+          (),
+        ),
+      ],
     (),
   ),
   Wod.make(
@@ -1250,26 +1232,27 @@ _Chelsea_, one of CrossFit's first six "Girls" WODs, was first posted on crossfi
         ),
         None,
       )),
-    ~parts=[
-      {
-        reps: `Num(5),
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `PullUp,
-        equipment: None,
-      },
-      {
-        reps: `Num(10),
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `PushUp,
-        equipment: None,
-      },
-      {
-        reps: `Num(15),
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `AirSquat,
-        equipment: None,
-      },
-    ],
+    ~parts=
+      WodPart.[
+        make(
+          ~reps=`Num(5),
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`PullUp,
+          (),
+        ),
+        make(
+          ~reps=`Num(10),
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`PushUp,
+          (),
+        ),
+        make(
+          ~reps=`Num(15),
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`AirSquat,
+          (),
+        ),
+      ],
     (),
   ),
   Wod.make(
@@ -1287,20 +1270,22 @@ _Diane_, one of CrossFit's original six "Girls" WODs, was first posted on crossf
         None,
       )),
     ~repScheme=Some([21, 15, 9]),
-    ~parts=[
-      {
-        reps: `RepScheme,
-        weight: (Some(`kg(100.0)), Some(`kg(70.0))),
-        exercise: `Deadlift,
-        equipment: None,
-      },
-      {
-        reps: `RepScheme,
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `HandstandPushUp,
-        equipment: None,
-      },
-    ],
+    ~parts=
+      WodPart.[
+        make(
+          ~reps=`RepScheme,
+          ~weight=(Some(`kg(100.0)), Some(`kg(70.0))),
+          ~exercise=`Deadlift,
+          ~equipment=Some(`Barbell),
+          (),
+        ),
+        make(
+          ~reps=`RepScheme,
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`HandstandPushUp,
+          (),
+        ),
+      ],
     (),
   ),
   Wod.make(
@@ -1318,20 +1303,22 @@ _Elizabeth_, one of CrossFit's original six "Girls" WODs. It was first posted on
         None,
       )),
     ~repScheme=Some([21, 15, 9]),
-    ~parts=[
-      {
-        reps: `RepScheme,
-        weight: (Some(`kg(60.0)), Some(`kg(43.0))),
-        exercise: `CleanSquat,
-        equipment: Some(`Barbell),
-      },
-      {
-        reps: `RepScheme,
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `RingDip,
-        equipment: None,
-      },
-    ],
+    ~parts=
+      WodPart.[
+        make(
+          ~reps=`RepScheme,
+          ~weight=(Some(`kg(60.0)), Some(`kg(43.0))),
+          ~exercise=`CleanSquat,
+          ~equipment=Some(`Barbell),
+          (),
+        ),
+        make(
+          ~reps=`RepScheme,
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`RingDip,
+          (),
+        ),
+      ],
     (),
   ),
   Wod.make(
@@ -1351,20 +1338,22 @@ _Amanda_ is one of the classic CrossFit "Girl" workouts, but not one of the
         None,
       )),
     ~repScheme=Some([9, 7, 5]),
-    ~parts=[
-      {
-        reps: `RepScheme,
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `MuscleUp,
-        equipment: None,
-      },
-      {
-        reps: `RepScheme,
-        weight: (Some(`kg(60.0)), Some(`kg(43.0))),
-        exercise: `SnatchSquat,
-        equipment: None,
-      },
-    ],
+    ~parts=
+      WodPart.[
+        make(
+          ~reps=`RepScheme,
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`MuscleUp,
+          (),
+        ),
+        make(
+          ~reps=`RepScheme,
+          ~weight=(Some(`kg(60.0)), Some(`kg(43.0))),
+          ~exercise=`SnatchSquat,
+          ~equipment=Some(`Barbell),
+          (),
+        ),
+      ],
     (),
   ),
   Wod.make(
@@ -1380,26 +1369,27 @@ _Amanda_ is one of the classic CrossFit "Girl" workouts, but not one of the
         None,
       )),
     ~timeCap=Some(20),
-    ~parts=[
-      {
-        reps: `Num(5),
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `PullUp,
-        equipment: None,
-      },
-      {
-        reps: `Num(10),
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `PushUp,
-        equipment: None,
-      },
-      {
-        reps: `Num(15),
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `AirSquat,
-        equipment: None,
-      },
-    ],
+    ~parts=
+      WodPart.[
+        make(
+          ~reps=`Num(5),
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`PullUp,
+          (),
+        ),
+        make(
+          ~reps=`Num(10),
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`PushUp,
+          (),
+        ),
+        make(
+          ~reps=`Num(15),
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`AirSquat,
+          (),
+        ),
+      ],
     (),
   ),
   Wod.make(
@@ -1417,26 +1407,28 @@ Complete as many rounds as possible in 3 minutes, then rest 1 minute. Start each
       )),
     ~timeCap=Some(3),
     ~rounds=Some(5),
-    ~parts=[
-      {
-        reps: `Num(3),
-        weight: (Some(`kg(60.0)), Some(`kg(43.0))),
-        exercise: `CleanPower,
-        equipment: None,
-      },
-      {
-        reps: `Num(6),
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `PushUp,
-        equipment: None,
-      },
-      {
-        reps: `Num(9),
-        weight: (Some(`bodyweight), Some(`bodyweight)),
-        exercise: `AirSquat,
-        equipment: None,
-      },
-    ],
+    ~parts=
+      WodPart.[
+        make(
+          ~reps=`Num(3),
+          ~weight=(Some(`kg(60.0)), Some(`kg(43.0))),
+          ~exercise=`CleanPower,
+          ~equipment=Some(`Barbell),
+          (),
+        ),
+        make(
+          ~reps=`Num(6),
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`PushUp,
+          (),
+        ),
+        make(
+          ~reps=`Num(9),
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`AirSquat,
+          (),
+        ),
+      ],
     (),
   ),
 ];

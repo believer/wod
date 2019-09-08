@@ -147,7 +147,7 @@ module NamedAMRAP = {
 
 module BuyIn = {
   [@react.component]
-  let make = (~buyIn: option(Wod.WodPart.t)) => {
+  let make = (~buyIn: option(WodPart.t)) => {
     switch (buyIn) {
     | Some(buyIn) =>
       <div className="mt-4">
@@ -164,7 +164,7 @@ module BuyIn = {
 
 module BuyOut = {
   [@react.component]
-  let make = (~buyOut: option(Wod.WodPart.t)) => {
+  let make = (~buyOut: option(WodPart.t)) => {
     switch (buyOut) {
     | Some(buyOut) =>
       <div className="mt-4">
@@ -180,14 +180,14 @@ module BuyOut = {
 };
 
 module WodItem = {
-  let toElements = (~parts: list(Wod.WodPart.t), ~wod: Wod.t) => {
+  let toElements = (~parts: list(WodPart.t), ~wod: Wod.t) => {
     parts
-    ->Belt.List.mapWithIndex((i, part) =>
-        <li key={i->string_of_int}>
-          <WodParts.Unit reps={part.reps} />
-          <WodParts.Equipment equipment={part.equipment} />
+    ->Belt.List.map(({id, reps, equipment, exercise, weight}) =>
+        <li key={id->CUID.Generate.toString}>
+          <WodParts.Unit reps />
+          <WodParts.Equipment equipment />
           {(
-             switch (wod.repScheme, part.reps, part.exercise) {
+             switch (wod.repScheme, reps, exercise) {
              | (Some(_), _, e) =>
                switch (e) {
                | `Row
@@ -198,14 +198,10 @@ module WodItem = {
                }
              | (None, `Num(v), `ToesToBar as e) when v > 1 =>
                e->Exercise.toString
-             | (None, `Span(`Num(v), _), e) when v > 1 =>
-               e->Exercise.toString->Utils.pluralize
-             | (None, `Span(`OneSide(v, _), _), e) when v > 1 =>
-               e->Exercise.toString->Utils.pluralize
-             | (None, `OneSide(v, _), e) when v > 1 =>
-               e->Exercise.toString->Utils.pluralize
-             | (None, `Increasing(v), e) when v > 1 =>
-               e->Exercise.toString->Utils.pluralize
+             | (None, `Span(`Num(v), _), e)
+             | (None, `Span(`OneSide(v, _), _), e)
+             | (None, `OneSide(v, _), e)
+             | (None, `Increasing(v), e)
              | (None, `Num(v), e) when v > 1 =>
                e->Exercise.toString->Utils.pluralize
              | (None, _, e) => e->Exercise.toString
@@ -214,7 +210,7 @@ module WodItem = {
            |> Utils.padStartWithSpace
            |> Utils.padEndWithSpace
            |> React.string}
-          <WodParts.Weight weight={part.weight} />
+          <WodParts.Weight weight />
         </li>
       )
     ->Belt.List.toArray
