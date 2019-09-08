@@ -371,7 +371,7 @@ let make = (~query, ~category="", ~workoutType="") => {
            ->Belt.List.reverse
            ->Belt.List.map(wod =>
                <Workout
-                 key={wod.id}
+                 key={wod.id->CUID.Generate.toString}
                  globalWodVersion={state.globalWodVersion}
                  lastVisit
                  wod

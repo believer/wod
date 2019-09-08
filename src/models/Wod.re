@@ -16,7 +16,7 @@ type t = {
   buyInOut: option((option(WodPart.t), option(WodPart.t))),
   createdAt: string,
   description: option((option(string), option(string))),
-  id: string,
+  id: CUID.Generate.t,
   externalLink: option((string, string)),
   name: option(string),
   wodType: WodType.t,
@@ -43,11 +43,7 @@ let make =
       ~scaledParts=None,
       (),
     ) => {
-  id:
-    switch (name) {
-    | Some(name) => Js.String.toLowerCase(name)
-    | None => Utils.UUID.make()->Utils.UUID.toString
-    },
+  id: CUID.Generate.make(),
   buyInOut,
   category,
   createdAt,

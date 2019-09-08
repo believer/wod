@@ -23,6 +23,7 @@
   "license": "MIT",
   "dependencies": {
     "bs-css": "9.0.1",
+    "cuid": "2.1.6",
     "js-cookie": "2.2.1",
     "localforage": "1.7.3",
     "marked": "0.7.0",
@@ -31,15 +32,14 @@
     "react": "16.9.0",
     "react-dom": "16.9.0",
     "reason-react": "0.7.0",
-    "reason-react-update": "0.1.1",
-    "uuid": "^3.3.3"
+    "reason-react-update": "0.1.1"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "1.2.0",
     "@glennsl/bs-jest": "0.4.9",
-    "@semantic-release/changelog": "^3.0.4",
+    "@semantic-release/changelog": "3.0.4",
     "@semantic-release/commit-analyzer": "6.3.0",
-    "@semantic-release/git": "^7.0.16",
+    "@semantic-release/git": "7.0.16",
     "@semantic-release/release-notes-generator": "7.3.0",
     "autoprefixer": "9.6.1",
     "bs-platform": "5.0.6",
