@@ -14,7 +14,7 @@
       node_js:
         - 12
       install:
-        - npm i -D @semantic-release/git @semantic-release/changelog
+        - npm i --save-dev --save-exact @semantic-release/git @semantic-release/changelog
       script:
         - npx semantic-release
     - stage: deploy
