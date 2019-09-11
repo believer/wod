@@ -1431,4 +1431,34 @@ Complete as many rounds as possible in 3 minutes, then rest 1 minute. Start each
       ],
     (),
   ),
+  Wod.make(
+    ~name=Some("Devil in the Row"),
+    ~createdAt="2019-09-11T17:39:15.752Z",
+    ~wodType=`ForTime,
+    ~description=
+      Some((
+        Some(
+          "Perfect pacing practice, try to keep the same pace through all ten rounds.",
+        ),
+        None,
+      )),
+    ~rounds=Some(10),
+    ~parts=
+      WodPart.[
+        make(~reps=`Cal(9), ~exercise=`Row, ()),
+        make(
+          ~reps=`Num(6),
+          ~weight=(Some(`cm(60.0)), Some(`cm(45.0))),
+          ~exercise=`BoxJump,
+          (),
+        ),
+        make(
+          ~reps=`Num(3),
+          ~weight=(Some(`kg(15.0)), Some(`kg(10.0))),
+          ~exercise=`DevilPress,
+          (),
+        ),
+      ],
+    (),
+  ),
 ];
