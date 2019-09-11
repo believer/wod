@@ -1,6 +1,7 @@
 {
   "name": "wod",
   "version": "1.23.0",
+  "description": "A collection of CrossFit WODs",
   "scripts": {
     "build": "bsb -make-world",
     "start": "cross-env BS_WATCH_CLEAR=true bsb -make-world -w",
