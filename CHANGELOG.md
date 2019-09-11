@@ -1,3 +1,15 @@
+# [1.24.0](https://github.com/believer/wod/compare/v1.23.0...v1.24.0) (2019-09-11)
+
+
+### Bug Fixes
+
+* **wod:** add timecap to devil in the row ([8b0747b](https://github.com/believer/wod/commit/8b0747b))
+
+
+### Features
+
+* **wod:** add devil in the row ([48f983c](https://github.com/believer/wod/commit/48f983c))
+
 # [1.23.0](https://github.com/believer/wod/compare/v1.22.1...v1.23.0) (2019-09-06)
 
 
