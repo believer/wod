@@ -24,6 +24,7 @@
   "dependencies": {
     "bs-css": "9.0.1",
     "cuid": "2.1.6",
+    "dedent": "0.7.0",
     "js-cookie": "2.2.1",
     "localforage": "1.7.3",
     "marked": "0.7.0",
@@ -31,6 +32,7 @@
     "re-classnames": "4.0.0",
     "react": "16.9.0",
     "react-dom": "16.9.0",
+    "react-html-parser": "2.0.2",
     "reason-react": "0.7.0",
     "reason-react-update": "0.1.1"
   },
