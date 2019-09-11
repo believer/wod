@@ -1443,6 +1443,7 @@ Complete as many rounds as possible in 3 minutes, then rest 1 minute. Start each
         None,
       )),
     ~rounds=Some(10),
+    ~timeCap=Some(20),
     ~parts=
       WodPart.[
         make(~reps=`Cal(9), ~exercise=`Row, ()),
