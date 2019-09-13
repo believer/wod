@@ -36,6 +36,8 @@ module Style = {
       ]),
     ]);
 
+  let alerts = merge(["mb-10", style([gridColumn(3, 4)])]);
+
   let filters =
     merge([
       "mb-10 md:flex justify-between items-center",
@@ -133,7 +135,7 @@ module Router = {
 };
 
 [@react.component]
-let make = (~query, ~category="", ~workoutType="") => {
+let make = (~query, ~category="", ~workoutType="", ~resetQuery) => {
   let lastVisit = Cookie.getAsString("wod-last-visit");
 
   let (workoutType, category) = (
@@ -358,6 +360,26 @@ let make = (~query, ~category="", ~workoutType="") => {
            }}
         </div>
       </div>
+      {switch (query, workoutType, category) {
+       | (Some(_), _, _)
+       | (None, Some(_), None)
+       | (None, None, Some(_))
+       | (None, Some(_), Some(_)) =>
+         <div className=Style.alerts>
+           <Alert
+             onClick={_ => {
+               Router.toRoute(None, None)->ReasonReactRouter.push;
+               resetQuery();
+             }}
+             text={
+               "Filtered **"
+               ++ wods->Belt.List.length->string_of_int
+               ++ "** workouts"
+             }
+           />
+         </div>
+       | (None, None, None) => React.null
+       }}
       <div className=Style.cards>
         {switch (wods->Belt.List.length) {
          | 0 =>

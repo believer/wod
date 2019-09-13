@@ -34,3 +34,7 @@ p:last-of-type {
 .markdown blockquote {
   @apply text-gray-600 italic mt-4;
 }
+
+.markdown strong {
+  @apply font-semibold;
+}

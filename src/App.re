@@ -64,9 +64,15 @@ let make = () => {
      | _ => React.null
      }}
     {switch (url.path) {
-     | [] => <Workouts query />
+     | [] => <Workouts query resetQuery={_ => setQuery(_ => None)} />
      | ["glossary"] => <Glossary />
-     | [workoutType, category] => <Workouts query workoutType category />
+     | [workoutType, category] =>
+       <Workouts
+         resetQuery={_ => setQuery(_ => None)}
+         query
+         workoutType
+         category
+       />
      | _ => <FourOFour />
      }}
   </div>;
