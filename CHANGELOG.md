@@ -1,3 +1,10 @@
+# [1.25.0](https://github.com/believer/wod/compare/v1.24.0...v1.25.0) (2019-09-13)
+
+
+### Features
+
+* display number of filtered items ([4dc80f4](https://github.com/believer/wod/commit/4dc80f4))
+
 # [1.24.0](https://github.com/believer/wod/compare/v1.23.0...v1.24.0) (2019-09-11)
 
 
