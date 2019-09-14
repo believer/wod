@@ -1,3 +1,3 @@
 require("./index.css");
-require("../lib/js/src/Index.bs");
+require("../lib/es6/src/Index.bs");
 

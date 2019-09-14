@@ -5,7 +5,7 @@ module Generate: {
 } = {
   type t = string;
 
-  [@bs.module] external make: unit => t = "cuid";
+  [@bs.module "cuid"] external make: unit => t = "default";
 
   let toString = id => id;
 };

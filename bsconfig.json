@@ -15,7 +15,7 @@
   ],
   "package-specs": [
     {
-      "module": "commonjs"
+      "module": "es6"
     }
   ],
   "suffix": ".bs.js",

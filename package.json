@@ -38,6 +38,8 @@
     "reason-react-update": "0.1.1"
   },
   "devDependencies": {
+    "@babel/core": "7.6.0",
+    "@babel/preset-env": "7.6.0",
     "@fullhuman/postcss-purgecss": "1.2.0",
     "@glennsl/bs-jest": "0.4.9",
     "@semantic-release/changelog": "3.0.4",
@@ -45,6 +47,8 @@
     "@semantic-release/git": "7.0.16",
     "@semantic-release/release-notes-generator": "7.3.0",
     "autoprefixer": "9.6.1",
+    "babel-jest": "24.9.0",
+    "babel-polyfill": "6.26.0",
     "bs-platform": "5.0.6",
     "cross-env": "5.2.0",
     "css-loader": "3.2.0",
