@@ -29,7 +29,7 @@ let make = (~query, ~onChange) => {
         id="grid-last-name"
         type_="text"
         onChange
-        placeholder="Search workout"
+        placeholder="Find workout"
         value={
           switch (query) {
           | Some(value) => value
