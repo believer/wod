@@ -13,26 +13,16 @@ let make = () => {
            className="flex items-center justify-between border-b pb-4 flex-wrap
            sm:h-16 grid-column-main">
            <div>
-             <Router.NavLink
-               activeClassName="text-blue-500" className="mr-8" href="/">
+             <Router.NavLink className="mr-8" to_={Route.Home((None, None))}>
                {React.string("Workouts")}
              </Router.NavLink>
-             <Router.NavLink
-               activeClassName="text-blue-500" className="" href="/glossary">
+             <Router.NavLink className="" to_=Route.Glossary>
                {React.string("Glossary")}
              </Router.NavLink>
            </div>
            {switch (path) {
             | Home((_, _)) =>
-              <Search
-                onChange={e =>
-                  switch (e->ReactEvent.Form.target##value) {
-                  | "" => setQuery(_ => None)
-                  | v => setQuery(_ => Some(v))
-                  }
-                }
-                query
-              />
+              <Search onChange={v => setQuery(_ => v)} query />
             | Glossary
             | NotFoundRoute => React.null
             }}

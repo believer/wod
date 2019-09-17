@@ -13,13 +13,12 @@ let make = (~query, ~onChange) => {
   <div className="flex text-gray-700 items-center mt-4 sm:mt-0">
     <div
       className="bg-gray-200 flex items-center px-4 py-3 border-2 border-gray-200
-    focus-within:bg-white rounded focus-within:border-blue-400">
+    focus-within:bg-white rounded focus-within:border-blue-400 relative">
       <svg
-        className="w-4 mr-4"
+        className="w-4 mr-4 fill-current"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20">
         <path
-          className="fill-current"
           d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"
         />
       </svg>
@@ -28,7 +27,12 @@ let make = (~query, ~onChange) => {
     leading-tight focus:outline-none"
         id="grid-last-name"
         type_="text"
-        onChange
+        onChange={e =>
+          switch (e->ReactEvent.Form.target##value) {
+          | "" => onChange(None)
+          | v => onChange(Some(v))
+          }
+        }
         placeholder="Find workout"
         value={
           switch (query) {

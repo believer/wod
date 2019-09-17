@@ -8,7 +8,6 @@ type workoutCategory =
   | Girl
   | WZA
   | Open;
-
 type t =
   | Home((option(workoutType), option(workoutCategory)))
   | Glossary
@@ -59,13 +58,12 @@ let fromPath =
     ))
   | _ => NotFoundRoute;
 
-let go = path =>
-  (
-    switch (path) {
-    | Glossary => "/glossary"
-    | Home((wt, wc)) =>
-      "/" ++ WorkoutType.toString(wt) ++ "/" ++ WorkoutCategory.toString(wc)
-    | NotFoundRoute => "/"
-    }
-  )
-  |> ReasonReactRouter.push;
+let toPath =
+  fun
+  | Glossary => "/glossary"
+  | Home((None, None)) => "/"
+  | Home((wt, wc)) =>
+    "/" ++ WorkoutType.toString(wt) ++ "/" ++ WorkoutCategory.toString(wc)
+  | NotFoundRoute => "/";
+
+let go = path => path->toPath->ReasonReactRouter.push;

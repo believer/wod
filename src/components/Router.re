@@ -28,6 +28,8 @@ module NavLink = {
   let isActiveLink = (path, href) => {
     switch (path, href) {
     | ([_, _], "/")
+    | ([_, _], "/all/all")
+    | ([], "/all/all")
     | ([], "/") => true
     | (p, _) =>
       p
@@ -38,13 +40,21 @@ module NavLink = {
   };
 
   [@react.component]
-  let make = (~className, ~activeClassName, ~href, ~children) => {
+  let make = (~className, ~to_, ~children) => {
     let url = ReasonReactRouter.useUrl();
+    let href = Route.toPath(to_);
     let isActive = isActiveLink(url.path, href);
     let className =
-      Cn.make([className, activeClassName->Cn.ifTrue(isActive)]);
+      Cn.make([className, "text-blue-500"->Cn.ifTrue(isActive)]);
 
-    <a ariaSelected=isActive className href onClick=handleLinkClick>
+    <a
+      ariaSelected=isActive
+      className
+      href
+      onClick={e => {
+        ReactEvent.Mouse.preventDefault(e);
+        Route.go(to_);
+      }}>
       children
     </a>;
   };
