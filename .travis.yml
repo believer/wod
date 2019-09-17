@@ -10,6 +10,7 @@
         - npm run build
         - npm test
     - stage: release
+      name: "Create release notes with semantic-release"
       language: node_js
       node_js:
         - 12
@@ -18,10 +19,16 @@
       script:
         - npx semantic-release
     - stage: deploy
+      name: "Deploy to Now"
+      git:
+        clone: false
       language: node_js
       node_js:
         - 12
       install:
+        - git clone https://github.com/$TRAVIS_REPO_SLUG.git $TRAVIS_REPO_SLUG
+        - cd $TRAVIS_REPO_SLUG
+        - git checkout master
         - npm i -g now
       script:
         - now --token=$NOW_TOKEN --prod
