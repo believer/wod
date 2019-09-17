@@ -13,17 +13,27 @@ let toString =
   | Scaled => "scaled";
 
 module NewTag = {
+  type t =
+    | New
+    | Old;
+
+  let tagState = (lastVisit, createdAt) =>
+    createdAt->Js.Date.fromString->Js.Date.getTime
+    > lastVisit->Js.Date.fromString->Js.Date.getTime
+      ? New : Old;
+
   [@react.component]
   let make = (~lastVisit, ~createdAt) => {
     switch (lastVisit) {
     | Some(last) =>
-      Js.Date.fromString(createdAt)
-      |> Js.Date.getTime > (Js.Date.fromString(last) |> Js.Date.getTime)
-        ? <div
-            className="mb-4 uppercase rounded bg-green-200 text-xs text-green-700 inline-block px-2 py-1">
-            {React.string("New")}
-          </div>
-        : React.null
+      switch (tagState(last, createdAt)) {
+      | New =>
+        <div
+          className="mb-4 uppercase rounded bg-green-200 text-xs text-green-700 inline-block px-2 py-1">
+          {React.string("New")}
+        </div>
+      | Old => React.null
+      }
     | None => React.null
     };
   };
