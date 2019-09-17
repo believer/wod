@@ -84,120 +84,36 @@ let make = (~query, ~workoutCategory, ~workoutType, ~resetQuery) => {
     [|query|],
   );
 
-  let wods =
-    Wods.wods
-    ->Belt.List.keep(({name}) =>
-        Search.filter(
-          noQuery |> List.exists(q => q === query) ? None : query,
-          name,
+  let filteredWods =
+    Belt.List.(
+      Wods.wods
+      ->keep(({name}) =>
+          Search.filter(
+            noQuery |> List.exists(q => q === query) ? None : query,
+            name,
+          )
         )
-      )
-    ->Belt.List.keep(({wodType}) =>
-        Filter.workoutType(workoutType, wodType)
-      )
-    ->Belt.List.keep(({category: wc}) =>
-        Filter.category(workoutCategory, wc)
-      );
+      ->keep(({wodType}) => Filter.workoutType(workoutType, wodType))
+      ->keep(({category}) => Filter.category(workoutCategory, category))
+    );
 
-  let workoutTypes =
-    Pill.[
-      Item.make(~label="All", ()),
-      Item.make(~value=Some(Route.ForTime), ~label="For time", ()),
-      Item.make(~value=Some(Route.EMOM), ~label="EMOM", ()),
-      Item.make(~value=Some(Route.AMRAP), ~label="AMRAP", ()),
-    ];
+  let filteredWodsLength = Belt.List.length(filteredWods);
 
-  let workoutCategories =
-    Pill.[
-      Item.make(~label="All", ()),
-      Item.make(~value=Some(Route.Hero), ~label="Hero", ()),
-      Item.make(~value=Some(Route.Girl), ~label="The Girls", ()),
-      Item.make(~value=Some(Route.WZA), ~label="Wodapalooza", ()),
-      Item.make(~value=Some(Route.Open), ~label="Open", ()),
-    ];
-
-  <Settings.Context.Provider value={Settings.system: system}>
+  <Settings.Context.Provider value={system: system}>
     <main className="mt-10 mb-20 grid grid-template-main">
       <div
         className="mb-10 md:flex justify-between items-center grid-column-main">
-        <div>
-          <div className="mb-2">
-            {workoutTypes
-             ->Belt.List.mapWithIndex((i, pill) =>
-                 <Pill
-                   className={
-                     i < workoutTypes->Belt.List.length - 1 ? "mr-4" : ""
-                   }
-                   key={pill.label}
-                   onClick={_ =>
-                     Route.go(Home((pill.value, workoutCategory)))
-                   }
-                   selected={
-                     switch (pill.value) {
-                     | None => Belt.Option.isNone(workoutType)
-                     | Some(value) => workoutType === Some(value)
-                     }
-                   }>
-                   {React.string(pill.label)}
-                 </Pill>
-               )
-             ->Belt.List.toArray
-             ->React.array}
-          </div>
-          <div>
-            {workoutCategories
-             ->Belt.List.mapWithIndex((i, pill) =>
-                 <Pill
-                   className={
-                     i < workoutCategories->Belt.List.length - 1 ? "mr-4" : ""
-                   }
-                   key={pill.label}
-                   onClick={_ => Route.go(Home((workoutType, pill.value)))}
-                   selected={
-                     switch (pill.value) {
-                     | None => Belt.Option.isNone(workoutCategory)
-                     | Some(value) => workoutCategory === Some(value)
-                     }
-                   }>
-                   {React.string(pill.label)}
-                 </Pill>
-               )
-             ->Belt.List.toArray
-             ->React.array}
-          </div>
-        </div>
-        <div className="flex items-center mt-4 md:mt-0">
-          {switch (globalWodVersion) {
-           | RX =>
-             <Button
-               className="mr-4"
-               onClick={_ => setGlobalWodVersion(Workout.toString(Scaled))}>
-               {React.string("Scaled")}
-             </Button>
-           | Scaled =>
-             <Button
-               className="mr-4"
-               onClick={_ => setGlobalWodVersion(Workout.toString(RX))}>
-               {React.string("RX")}
-             </Button>
-           }}
-          {switch (system) {
-           | Metric =>
-             <Button onClick={_ => setSystem(Settings.toString(Imperial))}>
-               {React.string("Imperial")}
-             </Button>
-           | Imperial =>
-             <Button onClick={_ => setSystem(Settings.toString(Metric))}>
-               {React.string("Metric")}
-             </Button>
-           }}
-        </div>
+        <WorkoutFilters workoutCategory workoutType />
+        <WorkoutSettings
+          globalWodVersion
+          setGlobalWodVersion
+          setSystem
+          system
+        />
       </div>
       {switch (query, workoutType, workoutCategory) {
-       | (Some(_), _, _)
-       | (None, Some(_), None)
-       | (None, None, Some(_))
-       | (None, Some(_), Some(_)) =>
+       | (None, None, None) => React.null
+       | (_, _, _) =>
          <div className="mb-10 grid-column-main">
            <Alert
              onClick={_ => {
@@ -206,15 +122,14 @@ let make = (~query, ~workoutCategory, ~workoutType, ~resetQuery) => {
              }}
              text={
                "Filtered **"
-               ++ wods->Belt.List.length->string_of_int
+               ++ filteredWodsLength->string_of_int
                ++ "** workouts"
              }
            />
          </div>
-       | (None, None, None) => React.null
        }}
       <div className="grid grid-column-main grid-gap grid-template-cards">
-        {switch (wods->Belt.List.length) {
+        {switch (filteredWodsLength) {
          | 0 =>
            <div
              className="bg-white text-center p-8 rounded text-gray-600 grid-column-bleed">
@@ -223,7 +138,7 @@ let make = (~query, ~workoutCategory, ~workoutType, ~resetQuery) => {
               )}
            </div>
          | _ =>
-           wods
+           filteredWods
            ->Belt.List.reverse
            ->Belt.List.map(wod =>
                <Workout

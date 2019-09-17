@@ -7,6 +7,12 @@ module Item = {
   let make = (~value=None, ~label, ()) => {value, label};
 };
 
+let matchSelected = (value, matcher) =>
+  switch (value) {
+  | None => Belt.Option.isNone(matcher)
+  | Some(value) => matcher === Some(value)
+  };
+
 [@react.component]
 let make =
     (~onClick=?, ~children, ~background=`Gray, ~className=?, ~selected=?) => {
@@ -21,7 +27,8 @@ let make =
   let className =
     Css.(
       merge([
-        "inline-block rounded-full px-3 py-1 text-sm font-semibold text-center",
+        "inline-block rounded-full px-3 py-1 text-sm font-semibold text-center
+        mr-4 last:mr-0",
         bg,
         className->Cn.unpack,
         {

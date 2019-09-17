@@ -34,10 +34,13 @@ module Header = {
   let make = (~wod: Wod.t) => {
     <header className="flex items-center justify-between">
       <div className="font-bold">
-        {switch (wod.name) {
-         | Some(name) => React.string(name)
-         | None => React.string(WodType.toString(wod.wodType))
-         }}
+        {(
+           switch (wod.name) {
+           | Some(name) => name
+           | None => WodType.toString(wod.wodType)
+           }
+         )
+         |> React.string}
         {switch (wod.timeCap, wod.wodType, wod.name) {
          | (Some(t), `AMRAP, None) =>
            t->string_of_int
@@ -59,24 +62,13 @@ module Header = {
              {React.string("Wodapalooza " ++ year->string_of_int)}
            </Pill>
          | `Open(year, num, style) =>
+           let base =
+             "Open " ++ year->string_of_int ++ "." ++ num->string_of_int;
+
            switch (style) {
-           | `Scaled =>
-             <Pill>
-               {React.string(
-                  "Open "
-                  ++ year->string_of_int
-                  ++ "."
-                  ++ num->string_of_int
-                  ++ " (Scaled)",
-                )}
-             </Pill>
-           | `RX =>
-             <Pill>
-               {React.string(
-                  "Open " ++ year->string_of_int ++ "." ++ num->string_of_int,
-                )}
-             </Pill>
-           }
+           | `Scaled => <Pill> {React.string({j|$base (Scaled)|j})} </Pill>
+           | `RX => <Pill> {React.string(base)} </Pill>
+           };
          | `Mayhem => React.null
          }
        | None => React.null
@@ -134,55 +126,43 @@ module RepScheme = {
 };
 
 module NamedAMRAP = {
+  module Element = {
+    [@react.component]
+    let make = (~title, ~time) => {
+      <div className="mt-4 text-gray-700 text-sm">
+        <span className="font-semibold"> {React.string(title)} </span>
+        {time->string_of_int
+         ++ " min"
+         |> Utils.padStartWithSpace
+         |> React.string}
+      </div>;
+    };
+  };
+
   [@react.component]
   let make = (~wod) => {
     let {timeCap, wodType, name}: Wod.t = wod;
 
     switch (timeCap, wodType, name) {
-    | (Some(t), `AMRAP, Some(_)) =>
-      <div className="mt-4 text-gray-700 text-sm">
-        <span className="font-semibold"> {React.string("AMRAP:")} </span>
-        {t->string_of_int ++ " min" |> Utils.padStartWithSpace |> React.string}
-      </div>
-    | (_, `EMOM(t), Some(_)) =>
-      <div className="mt-4 text-gray-700 text-sm">
-        <span className="font-semibold"> {React.string("EMOM:")} </span>
-        {t->string_of_int ++ " min" |> Utils.padStartWithSpace |> React.string}
-      </div>
+    | (Some(time), `AMRAP, Some(_)) => <Element title="AMRAP:" time />
+    | (_, `EMOM(time), Some(_)) => <Element title="EMOM:" time />
     | (Some(_), _, _)
     | (None, _, _) => React.null
     };
   };
 };
 
-module BuyIn = {
+module BuyInOut = {
   [@react.component]
-  let make = (~buyIn: option(WodPart.t)) => {
-    switch (buyIn) {
-    | Some(buyIn) =>
+  let make = (~buyInOut: option(WodPart.t), ~title) => {
+    switch (buyInOut) {
+    | Some({reps, equipment, weight, exercise}) =>
       <div className="mt-4">
-        <strong> {React.string("Buy-in: ")} </strong>
-        <WodParts.Unit reps={buyIn.reps} />
-        <WodParts.Equipment equipment={buyIn.equipment} />
-        {Exercise.toString(buyIn.exercise) |> React.string}
-        <WodParts.Weight weight={buyIn.weight} />
-      </div>
-    | None => React.null
-    };
-  };
-};
-
-module BuyOut = {
-  [@react.component]
-  let make = (~buyOut: option(WodPart.t)) => {
-    switch (buyOut) {
-    | Some(buyOut) =>
-      <div className="mt-4">
-        <strong> {React.string("Buy-out: ")} </strong>
-        <WodParts.Unit reps={buyOut.reps} />
-        <WodParts.Equipment equipment={buyOut.equipment} />
-        {Exercise.toString(buyOut.exercise) |> React.string}
-        <WodParts.Weight weight={buyOut.weight} />
+        <strong> {React.string(title)} </strong>
+        <WodParts.Unit reps />
+        <WodParts.Equipment equipment />
+        {Exercise.toString(exercise) |> React.string}
+        <WodParts.Weight weight />
       </div>
     | None => React.null
     };
@@ -261,11 +241,9 @@ let make = (~lastVisit, ~wod: Wod.t, ~globalWodVersion) => {
 
   React.useEffect2(
     () => {
-      {
-        switch (wod.scaledParts) {
-        | Some(_) => setWodVersion(_ => globalWodVersion)
-        | None => ()
-        };
+      switch (wod.scaledParts) {
+      | Some(_) => setWodVersion(_ => globalWodVersion)
+      | None => ()
       };
 
       None;
@@ -281,7 +259,7 @@ let make = (~lastVisit, ~wod: Wod.t, ~globalWodVersion) => {
       <Rounds rounds={wod.rounds} />
       <RepScheme repScheme={wod.repScheme} />
       <NamedAMRAP wod />
-      <BuyIn buyIn />
+      <BuyInOut buyInOut=buyIn title="Buy-in: " />
       <ul className="text-gray-700 mt-4">
         {switch (wodVersion) {
          | RX => WodItem.toElements(~parts=wod.parts, ~wod)
@@ -292,7 +270,7 @@ let make = (~lastVisit, ~wod: Wod.t, ~globalWodVersion) => {
            )
          }}
       </ul>
-      <BuyOut buyOut />
+      <BuyInOut buyInOut=buyOut title="Buy-out: " />
       <TimeCap wod />
       {switch (wod.description, wodVersion) {
        | (Some((Some(text), _)), RX)
