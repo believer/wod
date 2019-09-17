@@ -200,6 +200,7 @@ module WodItem = {
              switch (wod.repScheme, reps, exercise) {
              | (Some(_), _, e) =>
                switch (e) {
+               | `BurpeeOverRower
                | `Row
                | `Run
                | `SkiErg => e->Exercise.toString->Utils.capitalizeFirst

@@ -1462,4 +1462,62 @@ Complete as many rounds as possible in 3 minutes, then rest 1 minute. Start each
       ],
     (),
   ),
+  Wod.make(
+    ~name=Some("WZAOC 5 & 6"),
+    ~createdAt="2019-09-17T10:49:31.034Z",
+    ~wodType=`ForTime,
+    ~category=Some(`Wodapalooza(2019)),
+    ~description=
+      Some((
+        Some(
+          {j|
+            If not completed within 12 minutes, continue to workout 6.
+
+            **Workout 6**
+
+            _With remaining time of 15:00_
+
+            1 RM Clean and Jerk
+          |j},
+        ),
+        None,
+      )),
+    ~timeCap=Some(15),
+    ~repScheme=Some([21, 15, 9]),
+    ~parts=
+      WodPart.[
+        make(
+          ~reps=`RepScheme,
+          ~weight=(Some(`kg(43.0)), Some(`kg(30.0))),
+          ~exercise=`Thruster,
+          (),
+        ),
+        make(~reps=`RepScheme, ~exercise=`Row, ()),
+        make(
+          ~reps=`RepScheme,
+          ~weight=(Some(`bodyweight), Some(`bodyweight)),
+          ~exercise=`BurpeeOverRower,
+          (),
+        ),
+      ],
+    ~scaledParts=
+      Some(
+        WodPart.[
+          make(
+            ~reps=`RepScheme,
+            ~weight=(Some(`kg(30.0)), Some(`kg(20.0))),
+            ~exercise=`Thruster,
+            (),
+          ),
+          make(~reps=`RepScheme, ~exercise=`Row, ()),
+          make(
+            ~reps=`RepScheme,
+            ~weight=(Some(`bodyweight), Some(`bodyweight)),
+            ~exercise=`BurpeeOverRower,
+            (),
+          ),
+        ],
+      ),
+    (),
+  ),
 ];

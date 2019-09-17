@@ -8,6 +8,7 @@ type t = [
   | `BoxStepUp
   | `Burpee
   | `BurpeeBoxOver
+  | `BurpeeOverRower
   | `C2B
   | `Clean
   | `CleanAndJerk
@@ -66,6 +67,7 @@ let toString =
   | `BoxStepUp => "box step-up"
   | `Burpee => "burpee"
   | `BurpeeBoxOver => "burpee box over"
+  | `BurpeeOverRower => "burpee over rower"
   | `BarFacingBurpee => "bar-facing burpee"
   | `C2B => "C2B pull-up"
   | `Clean => "clean"
