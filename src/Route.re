@@ -8,6 +8,7 @@ type workoutCategory =
   | Girl
   | WZA
   | Open;
+
 type t =
   | Home((option(workoutType), option(workoutCategory)))
   | Glossary

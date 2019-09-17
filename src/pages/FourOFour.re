@@ -8,7 +8,7 @@ let make = () => {
       {React.string("This page does not exist. ")}
     </p>
     <p className="text-xl">
-      <Router.Link href="/" className="text-blue-500">
+      <Router.Link to_={Route.Home((None, None))} className="text-blue-500">
         {React.string("Back to start page")}
       </Router.Link>
     </p>

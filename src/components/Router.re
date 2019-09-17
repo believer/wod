@@ -1,13 +1,14 @@
-let handleLinkClick = e => {
+let handleLinkClick = (to_, e) => {
   ReactEvent.Mouse.preventDefault(e);
-  let anchor = ReactEvent.Mouse.currentTarget(e);
-  ReasonReactRouter.push(anchor##href);
+  Route.go(to_);
 };
 
 module Link = {
   [@react.component]
-  let make = (~className="", ~href, ~children) => {
-    <a className href onClick=handleLinkClick> children </a>;
+  let make = (~className="", ~to_, ~children) => {
+    let href = Route.toPath(to_);
+
+    <a className href onClick={handleLinkClick(to_)}> children </a>;
   };
 };
 
@@ -47,14 +48,7 @@ module NavLink = {
     let className =
       Cn.make([className, "text-blue-500"->Cn.ifTrue(isActive)]);
 
-    <a
-      ariaSelected=isActive
-      className
-      href
-      onClick={e => {
-        ReactEvent.Mouse.preventDefault(e);
-        Route.go(to_);
-      }}>
+    <a ariaSelected=isActive className href onClick={handleLinkClick(to_)}>
       children
     </a>;
   };
