@@ -13,7 +13,7 @@ let make = (~query, ~onChange) => {
   <div className="flex text-gray-700 items-center mt-4 sm:mt-0">
     <div
       className="bg-gray-200 flex items-center px-4 py-3 border-2 border-gray-200
-    focus-within:bg-white rounded focus-within:border-blue-400 relative">
+    focus-within:bg-white rounded focus-within:border-blue-400 focus-within:text-blue-700 relative">
       <svg
         className="w-4 mr-4 fill-current"
         xmlns="http://www.w3.org/2000/svg"
