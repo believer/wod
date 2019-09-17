@@ -1,12 +1,3 @@
-type state = {
-  globalWodVersion: Workout.t,
-  system: Settings.system,
-};
-
-type action =
-  | SetGlobalWodVersion(Workout.t)
-  | SetSystem(Settings.system);
-
 module Filter = {
   let workoutType = (workoutType: option(Route.workoutType), wodType) =>
     switch (workoutType, wodType) {
