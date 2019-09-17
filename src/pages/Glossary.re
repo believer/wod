@@ -60,8 +60,6 @@ let make = () => {
     |j};
 
   <div className="my-20 grid grid-template-narrow">
-    <div className="grid-column-main">
-      <Markdown className="markdown" text />
-    </div>
+    <div className="grid-column-main"> <Markdown text /> </div>
   </div>;
 };

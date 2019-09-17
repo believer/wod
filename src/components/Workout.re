@@ -170,7 +170,8 @@ module BuyInOut = {
 };
 
 module WodItem = {
-  let toElements = (~parts: list(WodPart.t), ~wod: Wod.t) => {
+  [@react.component]
+  let make = (~parts: list(WodPart.t), ~wod: Wod.t) => {
     parts
     ->Belt.List.map(({id, reps, equipment, exercise, weight}) =>
         <li key={id->CUID.Generate.toString}>
@@ -262,12 +263,12 @@ let make = (~lastVisit, ~wod: Wod.t, ~globalWodVersion) => {
       <BuyInOut buyInOut=buyIn title="Buy-in: " />
       <ul className="text-gray-700 mt-4">
         {switch (wodVersion) {
-         | RX => WodItem.toElements(~parts=wod.parts, ~wod)
+         | RX => <WodItem parts={wod.parts} wod />
          | Scaled =>
-           WodItem.toElements(
-             ~parts=wod.scaledParts->Belt.Option.getWithDefault([]),
-             ~wod,
-           )
+           <WodItem
+             parts={wod.scaledParts->Belt.Option.getWithDefault([])}
+             wod
+           />
          }}
       </ul>
       <BuyInOut buyInOut=buyOut title="Buy-out: " />
@@ -277,7 +278,7 @@ let make = (~lastVisit, ~wod: Wod.t, ~globalWodVersion) => {
        | (Some((_, Some(text))), Scaled)
        | (Some((None, Some(text))), RX)
        | (Some((Some(text), None)), Scaled) =>
-         <Markdown className="mt-4 text-xs text-gray-500 markdown" text />
+         <Markdown className="mt-4 text-xs text-gray-500" text />
        | (Some((None, None)), _)
        | (None, _) => React.null
        }}
@@ -292,14 +293,16 @@ let make = (~lastVisit, ~wod: Wod.t, ~globalWodVersion) => {
     {switch (wod.scaledParts) {
      | Some(_) =>
        <button
-         className="bg-gray-200 rounded-b py-3 text-sm text-gray-600
-                   font-semibold hover:bg-gray-300"
+         className="bg-gray-200 rounded-b py-3 text-sm text-gray-600 font-semibold hover:bg-gray-300"
          onClick={_ => setWodVersion(_ => wodVersion === RX ? Scaled : RX)}
          type_="button">
-         {switch (wodVersion) {
-          | RX => React.string("Switch to scaled")
-          | Scaled => React.string("Switch to RX")
-          }}
+         {(
+            switch (wodVersion) {
+            | RX => "Switch to scaled"
+            | Scaled => "Switch to RX"
+            }
+          )
+          |> React.string}
        </button>
      | None => React.null
      }}

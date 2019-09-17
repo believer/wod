@@ -13,7 +13,7 @@ module Element = {
 
 [@react.component]
 let make = (~className=?, ~text) => {
-  <div className={className->Cn.unpack}>
+  <div className={Cn.make(["markdown", className->Cn.unpack])}>
     {text->Dedent.make->Parser.make->Element.make}
   </div>;
 };
