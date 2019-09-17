@@ -1,6 +1,7 @@
  jobs:
   include:
     - stage: test
+      name: "Unit tests"
       language: node_js
       node_js:
         - 12
