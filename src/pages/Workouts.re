@@ -7,51 +7,6 @@ type action =
   | SetGlobalWodVersion(Workout.t)
   | SetSystem(Settings.system);
 
-module Style = {
-  open Css;
-
-  let wrap =
-    merge([
-      "mt-10 mb-20",
-      style([
-        display(`grid),
-        gridTemplateColumns([
-          `px(20),
-          `fr(1.0),
-          `minmax((`px(310), `px(1400))),
-          `fr(1.0),
-          `px(20),
-        ]),
-      ]),
-    ]);
-
-  let alerts = merge(["mb-10", style([gridColumn(3, 4)])]);
-
-  let filters =
-    merge([
-      "mb-10 md:flex justify-between items-center",
-      style([gridColumn(3, 4)]),
-    ]);
-
-  let emptyState =
-    merge([
-      "bg-white text-center p-8 rounded text-gray-600",
-      style([gridColumn(-1, 1)]),
-    ]);
-
-  let cards =
-    style([
-      display(`grid),
-      gridColumn(3, 4),
-      gridGap(`px(32)),
-      media("(max-width: 480px)", [gridTemplateColumns([`fr(1.0)])]),
-      unsafe("gridTemplateColumns", "repeat(auto-fill, minmax(310px, 1fr))"),
-    ]);
-
-  let versionNumber =
-    merge(["text-center text-gray-500 mt-10", style([gridColumn(3, 4)])]);
-};
-
 module Filter = {
   let workoutType = (workoutType: option(Route.workoutType), wodType) =>
     switch (workoutType, wodType) {
@@ -83,73 +38,24 @@ module Filter = {
 [@react.component]
 let make = (~query, ~workoutCategory, ~workoutType, ~resetQuery) => {
   let lastVisit = Cookie.getAsString("wod-last-visit");
+  let (system, setSystem) =
+    Storage.useStorage(
+      ~key="wod-system",
+      ~parser=Settings.fromString,
+      ~initialValue=Settings.Metric,
+    );
+  let (globalWodVersion, setGlobalWodVersion) =
+    Storage.useStorage(
+      ~key="wod-wod-version",
+      ~parser=Workout.fromString,
+      ~initialValue=Workout.RX,
+    );
 
   Cookie.setStringConfig(
     "wod-last-visit",
     Js.Date.make() |> Js.Date.toISOString,
     Cookie.Config.make(~expires=3650, ()),
   );
-
-  let (state, dispatch) =
-    ReactUpdate.useReducer(
-      {system: Metric, globalWodVersion: RX}, (action, state) =>
-      switch (action) {
-      | SetGlobalWodVersion(globalWodVersion) =>
-        UpdateWithSideEffects(
-          {...state, globalWodVersion},
-          _ => {
-            Storage.set(
-              "wod-wod-version",
-              switch (globalWodVersion) {
-              | RX => "rx"
-              | Scaled => "scaled"
-              },
-            )
-            |> ignore;
-
-            None;
-          },
-        )
-      | SetSystem(system) =>
-        UpdateWithSideEffects(
-          {...state, system},
-          _ => {
-            Storage.set("wod-system", Settings.toString(system)) |> ignore;
-
-            None;
-          },
-        )
-      }
-    );
-
-  React.useEffect0(() => {
-    Js.Promise.(
-      Storage.get("wod-system")
-      |> then_(value => {
-           dispatch(SetSystem(Settings.fromString(value)));
-           resolve();
-         })
-      |> ignore
-    );
-
-    Js.Promise.(
-      Storage.get("wod-wod-version")
-      |> then_(value => {
-           dispatch(
-             SetGlobalWodVersion(
-               switch (value) {
-               | "scaled" => Scaled
-               | _ => RX
-               },
-             ),
-           );
-           resolve();
-         })
-      |> ignore
-    );
-
-    None;
-  });
 
   let noQuery = [
     Some("girl"),
@@ -219,9 +125,10 @@ let make = (~query, ~workoutCategory, ~workoutType, ~resetQuery) => {
       Item.make(~value=Some(Route.Open), ~label="Open", ()),
     ];
 
-  <Settings.Context.Provider value={Settings.system: state.system}>
-    <main className=Style.wrap>
-      <div className=Style.filters>
+  <Settings.Context.Provider value={Settings.system: system}>
+    <main className="mt-10 mb-20 grid grid-template-main">
+      <div
+        className="mb-10 md:flex justify-between items-center grid-column-main">
         <div>
           <div className="mb-2">
             {workoutTypes
@@ -269,27 +176,27 @@ let make = (~query, ~workoutCategory, ~workoutType, ~resetQuery) => {
           </div>
         </div>
         <div className="flex items-center mt-4 md:mt-0">
-          {switch (state.globalWodVersion) {
+          {switch (globalWodVersion) {
            | RX =>
              <Button
                className="mr-4"
-               onClick={_ => dispatch(SetGlobalWodVersion(Scaled))}>
+               onClick={_ => setGlobalWodVersion(Workout.toString(Scaled))}>
                {React.string("Scaled")}
              </Button>
            | Scaled =>
              <Button
                className="mr-4"
-               onClick={_ => dispatch(SetGlobalWodVersion(RX))}>
+               onClick={_ => setGlobalWodVersion(Workout.toString(RX))}>
                {React.string("RX")}
              </Button>
            }}
-          {switch (state.system) {
+          {switch (system) {
            | Metric =>
-             <Button onClick={_ => dispatch(SetSystem(Imperial))}>
+             <Button onClick={_ => setSystem(Settings.toString(Imperial))}>
                {React.string("Imperial")}
              </Button>
            | Imperial =>
-             <Button onClick={_ => dispatch(SetSystem(Metric))}>
+             <Button onClick={_ => setSystem(Settings.toString(Metric))}>
                {React.string("Metric")}
              </Button>
            }}
@@ -300,7 +207,7 @@ let make = (~query, ~workoutCategory, ~workoutType, ~resetQuery) => {
        | (None, Some(_), None)
        | (None, None, Some(_))
        | (None, Some(_), Some(_)) =>
-         <div className=Style.alerts>
+         <div className="mb-10 grid-column-main">
            <Alert
              onClick={_ => {
                Route.go(Home((None, None)));
@@ -315,10 +222,11 @@ let make = (~query, ~workoutCategory, ~workoutType, ~resetQuery) => {
          </div>
        | (None, None, None) => React.null
        }}
-      <div className=Style.cards>
+      <div className="grid grid-column-main grid-gap grid-template-cards">
         {switch (wods->Belt.List.length) {
          | 0 =>
-           <div className=Style.emptyState>
+           <div
+             className="bg-white text-center p-8 rounded text-gray-600 grid-column-bleed">
              {React.string(
                 {j|I don't have any WODs with this combination yet 💪|j},
               )}
@@ -329,7 +237,7 @@ let make = (~query, ~workoutCategory, ~workoutType, ~resetQuery) => {
            ->Belt.List.map(wod =>
                <Workout
                  key={wod.id->CUID.Generate.toString}
-                 globalWodVersion={state.globalWodVersion}
+                 globalWodVersion
                  lastVisit
                  wod
                />
@@ -339,7 +247,7 @@ let make = (~query, ~workoutCategory, ~workoutType, ~resetQuery) => {
          }}
       </div>
       <a
-        className=Style.versionNumber
+        className="text-center text-gray-500 mt-10 grid-column-main"
         href="https://github.com/believer/wod/blob/master/CHANGELOG.md"
         target="_blank"
         rel="noreferrer noopener">

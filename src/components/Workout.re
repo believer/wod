@@ -2,6 +2,16 @@ type t =
   | RX
   | Scaled;
 
+let fromString =
+  fun
+  | "scaled" => Scaled
+  | _ => RX;
+
+let toString =
+  fun
+  | RX => "rx"
+  | Scaled => "scaled";
+
 module NewTag = {
   [@react.component]
   let make = (~lastVisit, ~createdAt) => {
