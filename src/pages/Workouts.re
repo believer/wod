@@ -1,14 +1,3 @@
-type workoutType =
-  | EMOM
-  | AMRAP
-  | ForTime;
-
-type workoutCategory =
-  | Hero
-  | Girl
-  | WZA
-  | Open;
-
 type state = {
   globalWodVersion: Workout.t,
   system: Settings.system,
@@ -64,7 +53,7 @@ module Style = {
 };
 
 module Filter = {
-  let workoutType = (workoutType, wodType) =>
+  let workoutType = (workoutType: option(Route.workoutType), wodType) =>
     switch (workoutType, wodType) {
     | (Some(EMOM), `AltEMOM(_))
     | (Some(EMOM), `EMOM(_)) => true
@@ -76,7 +65,7 @@ module Filter = {
     | (None, _) => true
     };
 
-  let category = (stateCategory, category) =>
+  let category = (stateCategory: option(Route.workoutCategory), category) =>
     switch (stateCategory, category) {
     | (Some(WZA), Some(`Wodapalooza(_))) => true
     | (Some(WZA), _) => false
@@ -91,57 +80,9 @@ module Filter = {
     };
 };
 
-module Router = {
-  module WorkoutType = {
-    let fromString =
-      fun
-      | "emom" => Some(EMOM)
-      | "for-time" => Some(ForTime)
-      | "amrap" => Some(AMRAP)
-      | _ => None;
-
-    let toString =
-      fun
-      | Some(EMOM) => "emom"
-      | Some(ForTime) => "for-time"
-      | Some(AMRAP) => "amrap"
-      | None => "all";
-  };
-
-  module Category = {
-    let fromString =
-      fun
-      | "hero" => Some(Hero)
-      | "girl" => Some(Girl)
-      | "wza" => Some(WZA)
-      | "open" => Some(Open)
-      | _ => None;
-
-    let toString =
-      fun
-      | Some(Hero) => "hero"
-      | Some(Girl) => "girl"
-      | Some(WZA) => "wza"
-      | Some(Open) => "open"
-      | None => "all";
-  };
-
-  let toRoute = (workoutType, category) => {
-    "/"
-    ++ WorkoutType.toString(workoutType)
-    ++ "/"
-    ++ Category.toString(category);
-  };
-};
-
 [@react.component]
-let make = (~query, ~category="", ~workoutType="", ~resetQuery) => {
+let make = (~query, ~workoutCategory, ~workoutType, ~resetQuery) => {
   let lastVisit = Cookie.getAsString("wod-last-visit");
-
-  let (workoutType, category) = (
-    Router.WorkoutType.fromString(workoutType),
-    Router.Category.fromString(category),
-  );
 
   Cookie.setStringConfig(
     "wod-last-visit",
@@ -224,24 +165,22 @@ let make = (~query, ~category="", ~workoutType="", ~resetQuery) => {
 
   React.useEffect1(
     () => {
-      ReasonReactRouter.(
-        switch (query) {
-        | None => ()
-        | Some(q) =>
-          switch (q->Js.String.toLowerCase) {
-          | "girl"
-          | "the girls"
-          | "girls" => push(Router.toRoute(workoutType, Some(Girl)))
-          | "hero"
-          | "heroes" => push(Router.toRoute(workoutType, Some(Hero)))
-          | "wza"
-          | "wodapalooza" => push(Router.toRoute(workoutType, Some(WZA)))
-          | "open"
-          | "games" => push(Router.toRoute(workoutType, Some(Open)))
-          | _ => ()
-          }
+      switch (query) {
+      | None => ()
+      | Some(q) =>
+        switch (q->Js.String.toLowerCase) {
+        | "girl"
+        | "the girls"
+        | "girls" => Route.go(Home((workoutType, Some(Girl))))
+        | "hero"
+        | "heroes" => Route.go(Home((workoutType, Some(Hero))))
+        | "wza"
+        | "wodapalooza" => Route.go(Home((workoutType, Some(WZA))))
+        | "open"
+        | "games" => Route.go(Home((workoutType, Some(Open))))
+        | _ => ()
         }
-      );
+      };
 
       None;
     },
@@ -259,23 +198,25 @@ let make = (~query, ~category="", ~workoutType="", ~resetQuery) => {
     ->Belt.List.keep(({wodType}) =>
         Filter.workoutType(workoutType, wodType)
       )
-    ->Belt.List.keep(({category: wc}) => Filter.category(category, wc));
+    ->Belt.List.keep(({category: wc}) =>
+        Filter.category(workoutCategory, wc)
+      );
 
   let workoutTypes =
     Pill.[
       Item.make(~label="All", ()),
-      Item.make(~value=Some(ForTime), ~label="For time", ()),
-      Item.make(~value=Some(EMOM), ~label="EMOM", ()),
-      Item.make(~value=Some(AMRAP), ~label="AMRAP", ()),
+      Item.make(~value=Some(Route.ForTime), ~label="For time", ()),
+      Item.make(~value=Some(Route.EMOM), ~label="EMOM", ()),
+      Item.make(~value=Some(Route.AMRAP), ~label="AMRAP", ()),
     ];
 
   let workoutCategories =
     Pill.[
       Item.make(~label="All", ()),
-      Item.make(~value=Some(Hero), ~label="Hero", ()),
-      Item.make(~value=Some(Girl), ~label="The Girls", ()),
-      Item.make(~value=Some(WZA), ~label="Wodapalooza", ()),
-      Item.make(~value=Some(Open), ~label="Open", ()),
+      Item.make(~value=Some(Route.Hero), ~label="Hero", ()),
+      Item.make(~value=Some(Route.Girl), ~label="The Girls", ()),
+      Item.make(~value=Some(Route.WZA), ~label="Wodapalooza", ()),
+      Item.make(~value=Some(Route.Open), ~label="Open", ()),
     ];
 
   <Settings.Context.Provider value={Settings.system: state.system}>
@@ -291,9 +232,7 @@ let make = (~query, ~category="", ~workoutType="", ~resetQuery) => {
                    }
                    key={pill.label}
                    onClick={_ =>
-                     ReasonReactRouter.push(
-                       Router.toRoute(pill.value, category),
-                     )
+                     Route.go(Home((pill.value, workoutCategory)))
                    }
                    selected={
                      switch (pill.value) {
@@ -315,15 +254,11 @@ let make = (~query, ~category="", ~workoutType="", ~resetQuery) => {
                      i < workoutCategories->Belt.List.length - 1 ? "mr-4" : ""
                    }
                    key={pill.label}
-                   onClick={_ =>
-                     ReasonReactRouter.push(
-                       Router.toRoute(workoutType, pill.value),
-                     )
-                   }
+                   onClick={_ => Route.go(Home((workoutType, pill.value)))}
                    selected={
                      switch (pill.value) {
-                     | None => Belt.Option.isNone(category)
-                     | Some(value) => category === Some(value)
+                     | None => Belt.Option.isNone(workoutCategory)
+                     | Some(value) => workoutCategory === Some(value)
                      }
                    }>
                    {React.string(pill.label)}
@@ -360,7 +295,7 @@ let make = (~query, ~category="", ~workoutType="", ~resetQuery) => {
            }}
         </div>
       </div>
-      {switch (query, workoutType, category) {
+      {switch (query, workoutType, workoutCategory) {
        | (Some(_), _, _)
        | (None, Some(_), None)
        | (None, None, Some(_))
@@ -368,7 +303,7 @@ let make = (~query, ~category="", ~workoutType="", ~resetQuery) => {
          <div className=Style.alerts>
            <Alert
              onClick={_ => {
-               Router.toRoute(None, None)->ReasonReactRouter.push;
+               Route.go(Home((None, None)));
                resetQuery();
              }}
              text={

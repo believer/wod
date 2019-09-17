@@ -27,12 +27,12 @@ module Style = {
 let make = () => {
   let url = ReasonReactRouter.useUrl();
   let (query, setQuery) = React.useState(() => None);
+  let path = Route.fromPath(url.path);
 
   <div>
-    {switch (url.path) {
-     | []
-     | [_]
-     | [_, _] =>
+    {switch (path) {
+     | Glossary
+     | Home((_, _)) =>
        <header className=Style.wrap>
          <div className=Style.inner>
            <div>
@@ -45,9 +45,8 @@ let make = () => {
                {React.string("Glossary")}
              </Router.NavLink>
            </div>
-           {switch (url.path) {
-            | []
-            | [_, _] =>
+           {switch (path) {
+            | Home((_, _)) =>
               <Search
                 onChange={e =>
                   switch (e->ReactEvent.Form.target##value) {
@@ -57,23 +56,23 @@ let make = () => {
                 }
                 query
               />
-            | _ => React.null
+            | Glossary
+            | NotFoundRoute => React.null
             }}
          </div>
        </header>
-     | _ => React.null
+     | NotFoundRoute => React.null
      }}
-    {switch (url.path) {
-     | [] => <Workouts query resetQuery={_ => setQuery(_ => None)} />
-     | ["glossary"] => <Glossary />
-     | [workoutType, category] =>
+    {switch (path) {
+     | Home((workoutType, workoutCategory)) =>
        <Workouts
-         resetQuery={_ => setQuery(_ => None)}
          query
+         resetQuery={_ => setQuery(_ => None)}
+         workoutCategory
          workoutType
-         category
        />
-     | _ => <FourOFour />
+     | Glossary => <Glossary />
+     | NotFoundRoute => <FourOFour />
      }}
   </div>;
 };
