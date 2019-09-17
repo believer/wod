@@ -1,3 +1,10 @@
+# [1.26.0](https://github.com/believer/wod/compare/v1.25.0...v1.26.0) (2019-09-17)
+
+
+### Features
+
+* **wod:** add wodapalooza oc 5 and 6 ([1bf0b06](https://github.com/believer/wod/commit/1bf0b06))
+
 # [1.25.0](https://github.com/believer/wod/compare/v1.24.0...v1.25.0) (2019-09-13)
 
 
