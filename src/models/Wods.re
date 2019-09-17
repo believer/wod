@@ -1520,4 +1520,22 @@ Complete as many rounds as possible in 3 minutes, then rest 1 minute. Start each
       ),
     (),
   ),
+  Wod.make(
+    ~name=Some("Monday Push and Pull"),
+    ~createdAt="2019-09-17T12:37:29.496Z",
+    ~wodType=`AMRAP,
+    ~timeCap=Some(8),
+    ~parts=
+      WodPart.[
+        make(~reps=`Cal2((8, 10)), ~exercise=`Row, ()),
+        make(
+          ~reps=`Num(8),
+          ~weight=(Some(`kg(12.5)), Some(`kg(10.0))),
+          ~exercise=`Thruster,
+          ~equipment=Some(`Dumbbell),
+          (),
+        ),
+      ],
+    (),
+  ),
 ];
