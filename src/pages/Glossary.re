@@ -1,78 +1,67 @@
-module Style = {
-  open Css;
-
-  let wrap =
-    merge([
-      "my-20",
-      style([
-        display(`grid),
-        gridTemplateColumns([
-          `px(20),
-          `fr(1.0),
-          `minmax((`px(300), `px(600))),
-          `fr(1.0),
-          `px(20),
-        ]),
-      ]),
-    ]);
-
-  let inner = style([gridColumn(3, 4)]);
-};
-
 [@react.component]
 let make = () => {
   let text = {j|
-# Glossary
+    # Glossary
 
-CrossFit contains a bunch of language that might seem confusing at first. Here are
-  some terms which you'll often see pop up.
+    CrossFit contains a bunch of language that might seem confusing at first. Here are
+      some terms which you'll often see pop up.
 
-## WOD
+    ## WOD
 
-Workout of the Day
+    Workout of the Day
 
-## RX
+    ## RX
 
-Doing a workout _as prescribed_, meaning the same reps and weight as posted in the workout description.
+    Doing a workout _as prescribed_, meaning the same reps and weight as posted in the workout description.
 
-## Scaled
-Scaling means adjusting the movement, weight or repetitions to
-accommodate your skill, abilities and strength. No one will think less of you for
-scaling a workout. Everyone does the workout depending on their current level.
+    ## Scaled
 
-## AMRAP
-**As Many Repetitions As Possible**, you are provided with a time frame in which you
-should try to achieve as many repetitions as possible.
+    Scaling means adjusting the movement, weight or repetitions to
+    accommodate your skill, abilities and strength. No one will think less of you for
+    scaling a workout. Everyone does the workout depending on their current level.
 
-## EMOM
-**Every Minute On The Minute**, at the start of every minute of a running clock
-you do some amount of work. It's common that the remainder of the minute is
-rest until the next minute starts.
+    ## AMRAP
 
-## RFT
-**Rounds for Time**, complete X rounds as fast as possible.
+    **As Many Repetitions As Possible**, you are provided with a time frame in which you
+    should try to achieve as many repetitions as possible.
 
-## Time cap
-Maximum time allowed to perform the work.
+    ## EMOM
 
-## Chipper
-A linear workout, usually with a lot of exercises or reps, something you "chip
-away at". There are no rounds, simply start at the top and when you reach the
-end you're done.
+    **Every Minute On The Minute**, at the start of every minute of a running clock
+    you do some amount of work. It's common that the remainder of the minute is
+    rest until the next minute starts.
 
-## The Girls
-A special group of CrossFit benchmark workouts. When asked why name workouts after girls, CrossFit founder Greg Glassman responded:
+    ## RFT
 
-> "I thought that anything left you flat on your back looking up to the sky asking, 'what just happened,' deserved a female name."
+    **Rounds for Time**, complete X rounds as fast as possible.
 
-## The Heroes
-CrossFit benchmark workouts created in honor of fallen soldiers or first
-responders, usually Americans. They are made to be performed with intense effort
-to honor the fallen Heroes. The most well-known hero workout is probably
-**Murph**.
-|j};
+    ## Time cap
 
-  <div className=Style.wrap>
-    <div className=Style.inner> <Markdown className="markdown" text /> </div>
+    Maximum time allowed to perform the work.
+
+    ## Chipper
+
+    A linear workout, usually with a lot of exercises or reps, something you "chip
+    away at". There are no rounds, simply start at the top and when you reach the
+    end you're done.
+
+    ## The Girls
+
+    A special group of CrossFit benchmark workouts. When asked why name workouts after girls, CrossFit founder Greg Glassman responded:
+
+    > "I thought that anything left you flat on your back looking up to the sky asking, 'what just happened,' deserved a female name."
+
+    ## The Heroes
+
+    CrossFit benchmark workouts created in honor of fallen soldiers or first
+    responders, usually Americans. They are made to be performed with intense effort
+    to honor the fallen Heroes. The most well-known hero workout is probably
+    **Murph**.
+    |j};
+
+  <div className="my-20 grid grid-template-narrow">
+    <div className="grid-column-main">
+      <Markdown className="markdown" text />
+    </div>
   </div>;
 };

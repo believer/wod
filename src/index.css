@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  /* || Tailwind */
+  --t4: 1rem;
+  --t5: 1.25rem;
+  --t8: 2rem;
+
+  --card: 280px;
+}
+
 html,
 body {
   @apply font-normal m-0 p-0 text-gray-900 bg-gray-100;
@@ -15,6 +24,7 @@ p:last-of-type {
   @apply mb-0;
 }
 
+/* || Markdown */
 .markdown ul {
   @apply list-disc ml-4 mt-4;
 }
@@ -37,4 +47,33 @@ p:last-of-type {
 
 .markdown strong {
   @apply font-semibold;
+}
+
+/* || CSS Grid */
+.grid {
+  display: grid;
+}
+
+.grid-template-main {
+  grid-template-columns: var(--t5) 1fr minmax(var(--card), 1400px) 1fr var(--t5);
+}
+
+.grid-template-narrow {
+  grid-template-columns: var(--t5) 1fr minmax(var(--card), 600px) 1fr var(--t5);
+}
+
+.grid-template-cards {
+  grid-template-columns: repeat(auto-fill, minmax(var(--card), 1fr));
+}
+
+.grid-column-main {
+  grid-column: 3 / 4;
+}
+
+.grid-column-bleed {
+  grid-column: -1 / 1;
+}
+
+.grid-gap {
+  grid-gap: var(--t8);
 }
