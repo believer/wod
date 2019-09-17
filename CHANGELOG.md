@@ -1,3 +1,11 @@
+# [1.27.0](https://github.com/believer/wod/compare/v1.26.0...v1.27.0) (2019-09-17)
+
+
+### Features
+
+* **a11y:** button focus color ([882e5be](https://github.com/believer/wod/commit/882e5be))
+* **wod:** add monday push and pull ([c5a907f](https://github.com/believer/wod/commit/c5a907f))
+
 # [1.26.0](https://github.com/believer/wod/compare/v1.25.0...v1.26.0) (2019-09-17)
 
 
