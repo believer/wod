@@ -1,15 +1,9 @@
 [@react.component]
-let make =
-    (
-      ~globalWodVersion: Workout.t,
-      ~setGlobalWodVersion,
-      ~setSystem,
-      ~system: Settings.system,
-    ) => {
+let make = (~globalWodVersion, ~setGlobalWodVersion, ~setSystem, ~system) => {
   <div className="flex items-center mt-4 md:mt-0">
     <div className="mr-4">
       {switch (globalWodVersion) {
-       | RX =>
+       | Workout.RX =>
          <Button
            onClick={_ => setGlobalWodVersion(Workout.toString(Scaled))}>
            {React.string("Scaled")}
@@ -21,7 +15,7 @@ let make =
        }}
     </div>
     {switch (system) {
-     | Metric =>
+     | Settings.Metric =>
        <Button onClick={_ => setSystem(Settings.toString(Imperial))}>
          {React.string("Imperial")}
        </Button>
