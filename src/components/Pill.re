@@ -14,14 +14,16 @@ let matchSelected = (value, matcher) =>
   };
 
 [@react.component]
-let make =
-    (~onClick=?, ~children, ~background=`Gray, ~className=?, ~selected=?) => {
+let make = (~onClick=?, ~children, ~color=`Gray, ~className=?, ~selected=?) => {
   let bg =
-    switch (background) {
+    switch (color) {
     | `Gray => "bg-gray-200 text-gray-700"
     | `Red => "bg-red-200 text-red-700"
     | `Green => "bg-green-200 text-green-700"
     | `Pink => "bg-pink-200 text-pink-700"
+    | `Indigo => "bg-indigo-200 text-indigo-700"
+    | `Blue => "bg-blue-200 text-blue-700"
+    | `Purple => "bg-purple-200 text-purple-700"
     };
 
   let className =

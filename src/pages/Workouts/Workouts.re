@@ -2,6 +2,7 @@ module Filter = {
   let workoutType = (workoutType: option(Route.workoutType), wodType) =>
     switch (workoutType, wodType) {
     | (Some(EMOM), `AltEMOM(_))
+    | (Some(EMOM), `E90(_))
     | (Some(EMOM), `EMOM(_)) => true
     | (Some(EMOM), _) => false
     | (Some(AMRAP), `AMRAP) => true
@@ -21,6 +22,10 @@ module Filter = {
     | (Some(Girl), _) => false
     | (Some(Hero), Some(`Hero)) => true
     | (Some(Hero), _) => false
+    | (Some(Strength), Some(`Strength)) => true
+    | (Some(Strength), _) => false
+    | (Some(Mayhem), Some(`Mayhem)) => true
+    | (Some(Mayhem), _) => false
     | (None, Some(_))
     | (None, None) => true
     };

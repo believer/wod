@@ -661,8 +661,9 @@ This Firefighter Hero WOD is dedicated to Keithroy Maynard, FDNY, Engine 33, who
   ),
   Wod.make(
     ~createdAt="2019-08-27T16:37:11.543Z",
-    ~name=Some("190617-Mayhem"),
+    ~name=Some("190617"),
     ~wodType=`EMOM(23),
+    ~category=Some(`Mayhem),
     ~externalLink=
       Some((
         "CrossFit Mayhem",
@@ -717,8 +718,9 @@ Each set EMOM 5 min, then 1 min rest before next EMOM.
   ),
   Wod.make(
     ~createdAt="2019-08-27T16:51:40.140Z",
-    ~name=Some("190617-Mayhem with Cleans"),
+    ~name=Some("190617 (clean version)"),
     ~wodType=`EMOM(23),
+    ~category=Some(`Mayhem),
     ~description=
       Some((
         Some(
@@ -1535,6 +1537,46 @@ Complete as many rounds as possible in 3 minutes, then rest 1 minute. Start each
           ~equipment=Some(`Dumbbell),
           (),
         ),
+      ],
+    (),
+  ),
+  Wod.make(
+    ~name=Some("Clean and front squat"),
+    ~createdAt="2019-09-24T11:39:35.229Z",
+    ~category=Some(`Strength),
+    ~description=
+      Some((
+        Some(
+          {j|Start out lighter and if possible increase weights in the later
+          sets. Hook grip on all pulling. Release in rack. Calm start but accelerate towards full extension and slight touch on middle of thighs. Snappy rack and landing. Maybe a "deep power landing".|j},
+        ),
+        None,
+      )),
+    ~wodType=`EMOM(12),
+    ~parts=
+      WodPart.[
+        make(~reps=`Num(1), ~exercise=`CleanHighPull, ()),
+        make(~reps=`Num(1), ~exercise=`CleanPower, ()),
+        make(~reps=`Num(1), ~exercise=`FrontSquat, ()),
+      ],
+    (),
+  ),
+  Wod.make(
+    ~name=Some("Dip squat and split jerk"),
+    ~createdAt="2019-09-24T11:48:04.553Z",
+    ~category=Some(`Strength),
+    ~description=
+      Some((
+        Some(
+          {j|Solid rack and firmly planted feet in jerk dip squat, which is basically a shallow front squat. Split jerk is with focus on timing and precision.|j},
+        ),
+        None,
+      )),
+    ~wodType=`E90(12),
+    ~parts=
+      WodPart.[
+        make(~reps=`Num(2), ~exercise=`JerkDipSquat, ()),
+        make(~reps=`Num(2), ~exercise=`SplitJerk, ()),
       ],
     (),
   ),

@@ -13,6 +13,8 @@ let workoutCategories =
     Item.make(~value=Some(Route.Girl), ~label="The Girls", ()),
     Item.make(~value=Some(Route.WZA), ~label="Wodapalooza", ()),
     Item.make(~value=Some(Route.Open), ~label="Open", ()),
+    Item.make(~value=Some(Route.Mayhem), ~label="Mayhem", ()),
+    Item.make(~value=Some(Route.Strength), ~label="Strength", ()),
   ];
 
 [@react.component]

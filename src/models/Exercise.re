@@ -13,6 +13,7 @@ type t = [
   | `Clean
   | `CleanAndJerk
   | `CleanHangPower
+  | `CleanHighPull
   | `CleanPower
   | `CleanSquat
   | `Deadlift
@@ -20,8 +21,10 @@ type t = [
   | `DoubleUnder
   | `DoubleUnderHeavy
   | `GroundToOverhead
+  | `FrontSquat
   | `HangingKneeRaise
   | `HandstandPushUp
+  | `JerkDipSquat
   | `KBS
   | `Lunge
   | `MuscleUp
@@ -45,6 +48,7 @@ type t = [
   | `SnatchHangPower
   | `SnatchPower
   | `SnatchSquat
+  | `SplitJerk
   | `Squat
   | `SumoDeadliftHighPull
   | `Swim
@@ -57,7 +61,7 @@ type t = [
   | `WeightedButterflySitUp
 ];
 
-let toString =
+let toString: t => string =
   fun
   | `AirSquat => "air squat"
   | `BackwardLunge => "backward lunge"
@@ -73,6 +77,7 @@ let toString =
   | `Clean => "clean"
   | `CleanAndJerk => "clean and jerk"
   | `CleanHangPower => "hang power clean"
+  | `CleanHighPull => "clean high pull"
   | `CleanPower => "power clean"
   | `CleanSquat => "squat clean"
   | `Deadlift => "deadlift"
@@ -80,8 +85,10 @@ let toString =
   | `DoubleUnder => "double under"
   | `DoubleUnderHeavy => "heavy double under"
   | `GroundToOverhead => "ground-to-overhead"
+  | `FrontSquat => "front squat"
   | `HandstandPushUp => "handstand push-up"
   | `HangingKneeRaise => "hanging knee raise"
+  | `JerkDipSquat => "jerk dip squat"
   | `KBS => "kettlebell swing"
   | `Lunge => "lunge"
   | `MuscleUp => "muscle-up"
@@ -105,6 +112,7 @@ let toString =
   | `SnatchHangPower => "hang power snatch"
   | `SnatchPower => "power snatch"
   | `SnatchSquat => "squat snatch"
+  | `SplitJerk => "split jerk"
   | `Squat => "squat"
   | `SumoDeadliftHighPull => "sumo deadlift high pull"
   | `Swim => "swim"

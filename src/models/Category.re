@@ -6,4 +6,5 @@ type t = [
   | `Mayhem
   | `Wodapalooza(int)
   | `Open(int, int, categoryStyle)
+  | `Strength
 ];

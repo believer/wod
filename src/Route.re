@@ -7,7 +7,9 @@ type workoutCategory =
   | Hero
   | Girl
   | WZA
-  | Open;
+  | Open
+  | Strength
+  | Mayhem;
 
 type t =
   | Home((option(workoutType), option(workoutCategory)))
@@ -37,6 +39,8 @@ module WorkoutCategory = {
     | "girl" => Some(Girl)
     | "wza" => Some(WZA)
     | "open" => Some(Open)
+    | "strength" => Some(Strength)
+    | "mayhem" => Some(Mayhem)
     | _ => None;
 
   let toString =
@@ -45,6 +49,8 @@ module WorkoutCategory = {
     | Some(Girl) => "girl"
     | Some(WZA) => "wza"
     | Some(Open) => "open"
+    | Some(Strength) => "strength"
+    | Some(Mayhem) => "mayhem"
     | None => "all";
 };
 

@@ -64,9 +64,8 @@ module Header = {
       {switch (wod.category) {
        | Some(c) =>
          switch (c) {
-         | `Hero => <Pill background=`Green> {React.string("Hero")} </Pill>
-         | `Girl =>
-           <Pill background=`Pink> {React.string("The Girls")} </Pill>
+         | `Hero => <Pill color=`Green> {React.string("Hero")} </Pill>
+         | `Girl => <Pill color=`Pink> {React.string("The Girls")} </Pill>
          | `Wodapalooza(year) =>
            <Pill>
              {React.string("Wodapalooza " ++ year->string_of_int)}
@@ -79,7 +78,9 @@ module Header = {
            | `Scaled => <Pill> {React.string({j|$base (Scaled)|j})} </Pill>
            | `RX => <Pill> {React.string(base)} </Pill>
            };
-         | `Mayhem => React.null
+         | `Strength =>
+           <Pill color=`Purple> {React.string("Strength")} </Pill>
+         | `Mayhem => <Pill color=`Blue> {React.string("Mayhem")} </Pill>
          }
        | None => React.null
        }}
@@ -156,6 +157,21 @@ module NamedAMRAP = {
     switch (timeCap, wodType, name) {
     | (Some(time), `AMRAP, Some(_)) => <Element title="AMRAP:" time />
     | (_, `EMOM(time), Some(_)) => <Element title="EMOM:" time />
+    | (_, `E90(minutes) as t, Some(_)) =>
+      <div className="mt-4 text-gray-700 text-sm">
+        <span className="font-semibold">
+          {WodType.toString(t) ++ ":" |> React.string}
+        </span>
+        {minutes->string_of_int
+         ++ " min"
+         |> Utils.padStartWithSpace
+         |> React.string}
+        {"("
+         ++ WodType.toRounds(t)->string_of_int
+         ++ " sets)"
+         |> Utils.padStartWithSpace
+         |> React.string}
+      </div>
     | (Some(_), _, _)
     | (None, _, _) => React.null
     };
