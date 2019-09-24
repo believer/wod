@@ -1580,4 +1580,23 @@ Complete as many rounds as possible in 3 minutes, then rest 1 minute. Start each
       ],
     (),
   ),
+  Wod.make(
+    ~name=Some("Ski, jump and snatch"),
+    ~createdAt="2019-09-24T12:24:42.300Z",
+    ~wodType=`ForTime,
+    ~rounds=Some(5),
+    ~timeCap=Some(15),
+    ~parts=
+      WodPart.[
+        make(~reps=`Cal2((10, 8)), ~exercise=`SkiErg, ()),
+        make(~reps=`Num(100), ~exercise=`SingleUnder, ()),
+        make(
+          ~reps=`OneSide((5, 5)),
+          ~exercise=`SnatchMuscle,
+          ~equipment=Some(`Dumbbell),
+          (),
+        ),
+      ],
+    (),
+  ),
 ];

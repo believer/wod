@@ -46,6 +46,7 @@ type t = [
   | `SkiErg
   | `SnatchAlt
   | `SnatchHangPower
+  | `SnatchMuscle
   | `SnatchPower
   | `SnatchSquat
   | `SplitJerk
@@ -111,6 +112,7 @@ let toString: t => string =
   | `SnatchAlt => "alt snatch"
   | `SnatchHangPower => "hang power snatch"
   | `SnatchPower => "power snatch"
+  | `SnatchMuscle => "muscle snatch"
   | `SnatchSquat => "squat snatch"
   | `SplitJerk => "split jerk"
   | `Squat => "squat"
