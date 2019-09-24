@@ -1593,6 +1593,7 @@ Complete as many rounds as possible in 3 minutes, then rest 1 minute. Start each
         make(
           ~reps=`OneSide((5, 5)),
           ~exercise=`SnatchMuscle,
+          ~weight=(Some(`kg(20.0)), Some(`kg(15.0))),
           ~equipment=Some(`Dumbbell),
           (),
         ),
