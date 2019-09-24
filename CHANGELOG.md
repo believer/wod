@@ -1,3 +1,15 @@
+# [1.30.0](https://github.com/believer/wod/compare/v1.29.0...v1.30.0) (2019-09-24)
+
+
+### Bug Fixes
+
+* **wod:** add missing weight ([b84fb49](https://github.com/believer/wod/commit/b84fb49))
+
+
+### Features
+
+* **wod:** add new rft wod ([8f0e0f8](https://github.com/believer/wod/commit/8f0e0f8))
+
 # [1.29.0](https://github.com/believer/wod/compare/v1.28.0...v1.29.0) (2019-09-24)
 
 
