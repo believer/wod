@@ -23,6 +23,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@auth0/auth0-spa-js": "^1.2.3",
     "bs-css": "9.0.1",
     "cuid": "2.1.6",
     "dedent": "0.7.0",
