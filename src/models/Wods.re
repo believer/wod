@@ -23,7 +23,7 @@ let wods = [
         make(
           ~reps=`OneSide((5, 5)),
           ~weight=(Some(`kg(16.0)), Some(`kg(12.0))),
-          ~exercise=`KBS,
+          ~exercise=`Swing,
           ~equipment=Some(`Kettlebell),
           (),
         ),
@@ -351,7 +351,7 @@ Scaled may exchange singles to 25 dubs.
         make(
           ~reps=`Num(40),
           ~weight=(Some(`kg(24.0)), Some(`kg(16.0))),
-          ~exercise=`KBS,
+          ~exercise=`Swing,
           ~equipment=Some(`Kettlebell),
           (),
         ),
@@ -365,7 +365,7 @@ Scaled may exchange singles to 25 dubs.
         make(
           ~reps=`Num(40),
           ~weight=(Some(`kg(24.0)), Some(`kg(16.0))),
-          ~exercise=`KBS,
+          ~exercise=`Swing,
           ~equipment=Some(`Kettlebell),
           (),
         ),
@@ -1595,6 +1595,32 @@ Complete as many rounds as possible in 3 minutes, then rest 1 minute. Start each
           ~exercise=`SnatchMuscle,
           ~weight=(Some(`kg(20.0)), Some(`kg(15.0))),
           ~equipment=Some(`Dumbbell),
+          (),
+        ),
+      ],
+    (),
+  ),
+  Wod.make(
+    ~name=Some("Dead ski swings"),
+    ~createdAt="2019-09-24T12:30:05.577Z",
+    ~wodType=`ForTime,
+    ~rounds=Some(10),
+    ~timeCap=Some(20),
+    ~parts=
+      WodPart.[
+        make(~reps=`Cal2((10, 8)), ~exercise=`SkiErg, ()),
+        make(
+          ~reps=`Num(5),
+          ~exercise=`Deadlift,
+          ~weight=(Some(`kg2(32.0)), Some(`kg2(24.0))),
+          ~equipment=Some(`Kettlebell),
+          (),
+        ),
+        make(
+          ~reps=`Num(10),
+          ~exercise=`Swing,
+          ~weight=(Some(`kg(24.0)), Some(`kg(16.0))),
+          ~equipment=Some(`Kettlebell),
           (),
         ),
       ],

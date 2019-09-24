@@ -25,7 +25,6 @@ type t = [
   | `HangingKneeRaise
   | `HandstandPushUp
   | `JerkDipSquat
-  | `KBS
   | `Lunge
   | `MuscleUp
   | `OverheadSquat
@@ -53,6 +52,7 @@ type t = [
   | `Squat
   | `SumoDeadliftHighPull
   | `Swim
+  | `Swing
   | `Thruster
   | `ToesToBar
   | `VUps
@@ -90,7 +90,6 @@ let toString: t => string =
   | `HandstandPushUp => "handstand push-up"
   | `HangingKneeRaise => "hanging knee raise"
   | `JerkDipSquat => "jerk dip squat"
-  | `KBS => "kettlebell swing"
   | `Lunge => "lunge"
   | `MuscleUp => "muscle-up"
   | `OverheadSquat => "overhead squat"
@@ -118,6 +117,7 @@ let toString: t => string =
   | `Squat => "squat"
   | `SumoDeadliftHighPull => "sumo deadlift high pull"
   | `Swim => "swim"
+  | `Swing => "swing"
   | `Thruster => "thruster"
   | `ToesToBar => "toes-to-bar"
   | `VUps => "v-up"

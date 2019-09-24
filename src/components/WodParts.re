@@ -10,11 +10,11 @@ module Equipment = {
       switch (eq) {
       | `BulgarianBag
       | `Unbroken
+      | `Kettlebell
       | `Dumbbell => " " ++ Equipment.toString(eq) |> str
       | `WallBall
       | `Barbell
-      | `JumpRope
-      | `Kettlebell => React.null
+      | `JumpRope => React.null
       }
     | None => React.null
     };
