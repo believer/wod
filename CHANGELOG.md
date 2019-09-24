@@ -1,3 +1,10 @@
+# [1.29.0](https://github.com/believer/wod/compare/v1.28.0...v1.29.0) (2019-09-24)
+
+
+### Features
+
+* **wod:** add wod ([bcd49bc](https://github.com/believer/wod/commit/bcd49bc))
+
 # [1.28.0](https://github.com/believer/wod/compare/v1.27.0...v1.28.0) (2019-09-24)
 
 
