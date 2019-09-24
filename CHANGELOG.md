@@ -1,3 +1,10 @@
+# [1.28.0](https://github.com/believer/wod/compare/v1.27.0...v1.28.0) (2019-09-24)
+
+
+### Features
+
+* **wod:** add two strength workouts with new filter ([f02e334](https://github.com/believer/wod/commit/f02e334))
+
 # [1.27.0](https://github.com/believer/wod/compare/v1.26.0...v1.27.0) (2019-09-17)
 
 
