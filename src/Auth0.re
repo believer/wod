@@ -1,44 +1,23 @@
-type options;
 type client;
 
 [@bs.module "@auth0/auth0-spa-js"]
-external createClient: unit => Js.Promise.t(client) = "default";
+external createClient: Js.t('a) => Js.Promise.t(client) = "default";
 
-type authState =
-  | IsAuthenticated
-  | NotLoggedIn;
+[@bs.send]
+external loginWithPopup: (client, unit) => Js.Promise.t('a) =
+  "loginWithPopup";
 
-type t = {authState};
+[@bs.send]
+external loginWithRedirect: (client, unit) => Js.Promise.t('a) =
+  "loginWithRedirect";
 
-module Context = {
-  include ReactContext.Make({
-    type context = t;
+[@bs.send]
+external handleRedirectCallback: (client, unit) => Js.Promise.t('a) =
+  "handleRedirectCallback";
 
-    let defaultValue = {authState: NotLoggedIn};
-  });
-};
+[@bs.send]
+external getUser: (client, unit) => Js.Promise.t(Js.t('a)) = "getUser";
 
-module Provider = {
-  [@react.component]
-  let make = (~children) => {
-    let (client, setClient) = React.useState(() => None);
-    let (state, _) =
-      React.useReducer((state, _action) => state, {authState: NotLoggedIn});
-
-    React.useEffect0(() => {
-      Js.Promise.(
-        createClient()
-        |> then_(client => {
-             setClient(_ => Some(client));
-
-             resolve(client);
-           })
-      )
-      |> ignore;
-
-      None;
-    });
-
-    <Context.Provider value=state> children </Context.Provider>;
-  };
-};
+[@bs.send]
+external isAuthenticated: (client, unit) => Js.Promise.t(bool) =
+  "isAuthenticated";

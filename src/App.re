@@ -1,5 +1,6 @@
 [@react.component]
 let make = () => {
+  let {login, authState}: Auth0Context.t = Auth0Context.useAuth();
   let url = ReasonReactRouter.useUrl();
   let (query, setQuery) = React.useState(() => None);
   let path = Route.fromPath(url.path);
@@ -8,7 +9,21 @@ let make = () => {
     {switch (path) {
      | Glossary
      | Home((_, _)) =>
-       <header className="mt-16 grid grid-template-main">
+       <header className="mt-20 grid grid-template-main">
+         <div className="grid-column-main flex justify-end mb-8">
+           {switch (authState) {
+            | Authenticated({email}) =>
+              <div className="h-10 w-10"> <Gravatar email /> </div>
+            | Authenticating
+            | NotLoggedIn =>
+              <button
+                className="bg-blue-700 text-white rounded px-4 py-2"
+                onClick={_ => login()}
+                type_="button">
+                {React.string("Login")}
+              </button>
+            }}
+         </div>
          <div
            className="flex items-center justify-between border-b pb-4 flex-wrap
            sm:h-16 grid-column-main">
