@@ -1469,6 +1469,11 @@ Complete as many rounds as possible in 3 minutes, then rest 1 minute. Start each
     ~createdAt="2019-09-17T10:49:31.034Z",
     ~wodType=`ForTime,
     ~category=Some(`Wodapalooza(2019)),
+    ~externalLink=
+      Some((
+        "Wodapalooza",
+        "https://wodapalooza.com/workout/2019-2020-indy-oc-wod-5-6/",
+      )),
     ~description=
       Some((
         Some(
