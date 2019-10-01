@@ -1,3 +1,10 @@
+## [1.30.1](https://github.com/believer/wod/compare/v1.30.0...v1.30.1) (2019-10-01)
+
+
+### Bug Fixes
+
+* add wodapalooza 5&6 link ([#4](https://github.com/believer/wod/issues/4)) ([4be00c9](https://github.com/believer/wod/commit/4be00c9))
+
 # [1.30.0](https://github.com/believer/wod/compare/v1.29.0...v1.30.0) (2019-09-24)
 
 
