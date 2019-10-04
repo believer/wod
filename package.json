@@ -54,6 +54,7 @@
     "bs-platform": "5.0.6",
     "cross-env": "5.2.0",
     "css-loader": "3.2.0",
+    "dotenv-webpack": "1.7.0",
     "html-webpack-plugin": "3.2.0",
     "is-ci-cli": "1.1.1",
     "postcss-loader": "3.0.0",

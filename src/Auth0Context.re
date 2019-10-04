@@ -82,9 +82,9 @@ module Provider = {
 
     React.useEffect0(() => {
       Auth0.createClient({
-        "domain": "believer.eu.auth0.com",
-        "client_id": "4A2TSaSPPC8UOSBfMeR7WkRRTEt4baxi",
-        "redirect_uri": "http://localhost:3000",
+        "domain": Config.Auth0.domain,
+        "client_id": Config.Auth0.client,
+        "redirect_uri": Config.Auth0.redirect,
       })
       |> then_(client => {
            setClient(_ => Some(client));
