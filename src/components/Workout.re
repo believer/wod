@@ -194,7 +194,7 @@ module WodItem = {
   let make = (~parts: list(WodPart.t), ~wod: Wod.t) => {
     parts
     ->Belt.List.map(({id, reps, equipment, exercise, weight}) =>
-        <li key={id->CUID.Generate.toString}>
+        <li key={id->CUID.toString}>
           <WodParts.Unit reps />
           <WodParts.Equipment equipment />
           {(

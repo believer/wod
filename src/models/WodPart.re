@@ -1,5 +1,5 @@
 type t = {
-  id: CUID.Generate.t,
+  id: CUID.t,
   weight: (option(Weight.t), option(Weight.t)),
   reps: ExerciseUnit.t,
   exercise: Exercise.t,
@@ -7,7 +7,7 @@ type t = {
 };
 
 let make = (~exercise, ~reps, ~weight=(None, None), ~equipment=None, ()) => {
-  id: CUID.Generate.make(),
+  id: CUID.make(),
   exercise,
   reps,
   weight,

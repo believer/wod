@@ -3,7 +3,7 @@ type t = {
   buyInOut: option((option(WodPart.t), option(WodPart.t))),
   createdAt: string,
   description: option((option(string), option(string))),
-  id: CUID.Generate.t,
+  id: CUID.t,
   externalLink: option((string, string)),
   name: option(string),
   wodType: WodType.t,
@@ -30,7 +30,7 @@ let make =
       ~scaledParts=None,
       (),
     ) => {
-  id: CUID.Generate.make(),
+  id: CUID.make(),
   buyInOut,
   category,
   createdAt,
