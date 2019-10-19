@@ -70,14 +70,8 @@ module Header = {
            <Pill>
              {React.string("Wodapalooza " ++ year->string_of_int)}
            </Pill>
-         | `Open(year, num, style) =>
-           let base =
-             "Open " ++ year->string_of_int ++ "." ++ num->string_of_int;
-
-           switch (style) {
-           | `Scaled => <Pill> {React.string({j|$base (Scaled)|j})} </Pill>
-           | `RX => <Pill> {React.string(base)} </Pill>
-           };
+         | `Open(year) =>
+           <Pill> {React.string("Open " ++ year->string_of_int)} </Pill>
          | `Strength =>
            <Pill color=`Purple> {React.string("Strength")} </Pill>
          | `Mayhem => <Pill color=`Blue> {React.string("Mayhem")} </Pill>
@@ -302,9 +296,9 @@ let make = (~lastVisit, ~wod: Wod.t, ~globalWodVersion) => {
       {switch (wod.description, wodVersion) {
        | (Some((Some(text), _)), RX)
        | (Some((_, Some(text))), Scaled)
-       | (Some((None, Some(text))), RX)
        | (Some((Some(text), None)), Scaled) =>
          <Markdown className="mt-4 text-xs text-gray-500" text />
+       | (Some((None, Some(_))), RX)
        | (Some((None, None)), _)
        | (None, _) => React.null
        }}

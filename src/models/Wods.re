@@ -428,9 +428,10 @@ Scaled may exchange singles to 25 dubs.
     (),
   ),
   Wod.make(
+    ~name=Some("Open 18.2"),
     ~createdAt="2019-08-20T22:00:00.000Z",
     ~wodType=`ForTime,
-    ~category=Some(`Open((18, 2, `Scaled))),
+    ~category=Some(`Open(18)),
     ~description=
       Some((
         Some(
@@ -1629,6 +1630,82 @@ Complete as many rounds as possible in 3 minutes, then rest 1 minute. Start each
           (),
         ),
       ],
+    (),
+  ),
+  Wod.make(
+    ~name=Some("Open 20.1"),
+    ~createdAt="2019-10-19T05:34:55.721Z",
+    ~wodType=`ForTime,
+    ~rounds=Some(10),
+    ~category=Some(`Open(20)),
+    ~timeCap=Some(15),
+    ~externalLink=
+      Some((
+        "CrossFit Games Open 20.1",
+        "https://games.crossfit.com/workouts/open/2020/1",
+      )),
+    ~description=Some((None, Some("May step over bar on burpees"))),
+    ~parts=
+      WodPart.[
+        make(
+          ~reps=`Num(8),
+          ~weight=(Some(`kg(43.0)), Some(`kg(29.0))),
+          ~exercise=`GroundToOverhead,
+          (),
+        ),
+        make(~reps=`Num(10), ~exercise=`BarFacingBurpee, ()),
+      ],
+    ~scaledParts=
+      Some(
+        WodPart.[
+          make(
+            ~reps=`Num(8),
+            ~weight=(Some(`kg(29.0)), Some(`kg(20.0))),
+            ~exercise=`GroundToOverhead,
+            (),
+          ),
+          make(~reps=`Num(10), ~exercise=`BarFacingBurpee, ()),
+        ],
+      ),
+    (),
+  ),
+  Wod.make(
+    ~name=Some("Open 20.2"),
+    ~createdAt="2019-10-19T05:45:48.630Z",
+    ~wodType=`AMRAP,
+    ~category=Some(`Open(20)),
+    ~timeCap=Some(20),
+    ~externalLink=
+      Some((
+        "CrossFit Games Open 20.2",
+        "https://games.crossfit.com/workouts/open/2020/2",
+      )),
+    ~parts=
+      WodPart.[
+        make(
+          ~reps=`Num(4),
+          ~weight=(Some(`kg(22.5)), Some(`kg(15.0))),
+          ~exercise=`Thruster,
+          ~equipment=Some(`Dumbbell),
+          (),
+        ),
+        make(~reps=`Num(6), ~exercise=`ToesToBar, ()),
+        make(~reps=`Num(24), ~exercise=`DoubleUnder, ()),
+      ],
+    ~scaledParts=
+      Some(
+        WodPart.[
+          make(
+            ~reps=`Num(4),
+            ~weight=(Some(`kg(15.0)), Some(`kg(10.0))),
+            ~exercise=`Thruster,
+            ~equipment=Some(`Dumbbell),
+            (),
+          ),
+          make(~reps=`Num(6), ~exercise=`HangingKneeRaise, ()),
+          make(~reps=`Num(24), ~exercise=`SingleUnder, ()),
+        ],
+      ),
     (),
   ),
 ];
