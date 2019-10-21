@@ -440,6 +440,11 @@ Scaled may exchange singles to 25 dubs.
         ),
         None,
       )),
+    ~externalLink=
+      Some((
+        "CrossFit Games Open 18.2",
+        "https://games.crossfit.com/workouts/open/2018/2",
+      )),
     ~timeCap=Some(12),
     ~repScheme=Some([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
     ~scaledParts=
