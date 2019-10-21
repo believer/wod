@@ -1,6 +1,7 @@
 type t = [
   | `Increasing(int)
   | `Meter(int)
+  | `MeterWithFeet(int)
   | `Min(int)
   | `OneSide(int, int)
   | `Num(int)

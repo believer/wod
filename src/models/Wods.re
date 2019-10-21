@@ -920,7 +920,7 @@ Add 3 repetitions to each of the barbell movements (3/3/30, 6/6/30, 9/9/30, 12/1
         make(
           ~reps=`Num(30),
           ~weight=(Some(`bodyweight), Some(`bodyweight)),
-          ~exercise=`C2B,
+          ~exercise=`ChestToBar,
           (),
         ),
         make(
@@ -1630,6 +1630,317 @@ Complete as many rounds as possible in 3 minutes, then rest 1 minute. Start each
           (),
         ),
       ],
+    (),
+  ),
+  Wod.make(
+    ~name=Some("Open 19.1"),
+    ~createdAt="2019-10-21T06:08:09.700Z",
+    ~wodType=`AMRAP,
+    ~category=Some(`Open(19)),
+    ~timeCap=Some(15),
+    ~externalLink=
+      Some((
+        "CrossFit Games Open 19.1",
+        "https://games.crossfit.com/workouts/open/2019/1",
+      )),
+    ~parts=
+      WodPart.[
+        make(
+          ~reps=`Num(19),
+          ~weight=(Some(`kg(9.0)), Some(`kg(6.0))),
+          ~exercise=`WallBall,
+          (),
+        ),
+        make(~reps=`Cal(19), ~exercise=`Row, ()),
+      ],
+    ~scaledParts=
+      Some(
+        WodPart.[
+          make(
+            ~reps=`Num(19),
+            ~weight=(Some(`kg(6.0)), Some(`kg(4.0))),
+            ~exercise=`WallBall,
+            (),
+          ),
+          make(~reps=`Cal(19), ~exercise=`Row, ()),
+        ],
+      ),
+    (),
+  ),
+  Wod.make(
+    ~name=Some("Open 19.2"),
+    ~createdAt="2019-10-21T06:10:50.847Z",
+    ~wodType=`AMRAP,
+    ~category=Some(`Open(19)),
+    ~timeCap=Some(20),
+    ~externalLink=
+      Some((
+        "CrossFit Games Open 19.2",
+        "https://games.crossfit.com/workouts/open/2019/2",
+      )),
+    ~description=
+      Some((
+        Some(
+          {j|
+Beginning on an 8-minute clock
+If completed before 8 minutes, add 4 minutes to the clock and proceed to:
+
+* 25 toes-to-bars
+* 50 double-unders
+* 11 squat cleans, 102/65 kg (225/145 lbs)
+
+If completed before 12 minutes, add 4 minutes to the clock and proceed to:
+
+* 25 toes-to-bars
+* 50 double-unders
+* 9 squat cleans, 124/79 kg (275/175 lbs)
+
+If completed before 16 minutes, add 4 minutes to the clock and proceed to:
+
+* 25 toes-to-bars
+* 50 double-unders
+* 7 squat cleans, 142/93 kg (315/205 lbs)
+
+Stop at 20 minutes
+    |j},
+        ),
+        Some(
+          {j|
+Beginning on an 8-minute clock
+If completed before 8 minutes, add 4 minutes to the clock and proceed to:
+
+* 25 hanging knee-raises
+* 50 single-unders
+* 11 squat cleans, 61/43 kg (135/95 lbs)
+
+If completed before 12 minutes, add 4 minutes to the clock and proceed to:
+
+* 25 hanging knee-raises
+* 50 single-unders
+* 9 squat cleans, 70/52 kg (155/115 lbs)
+
+If completed before 16 minutes, add 4 minutes to the clock and proceed to:
+
+* 25 hanging knee-raises
+* 50 single-unders
+* 7 squat cleans, 83/61 kg (185/135 lbs)
+
+Stop at 20 minutes
+          |j},
+        ),
+      )),
+    ~parts=
+      WodPart.[
+        make(~reps=`Num(25), ~exercise=`ToesToBar, ()),
+        make(~reps=`Num(50), ~exercise=`DoubleUnder, ()),
+        make(
+          ~reps=`Num(15),
+          ~weight=(Some(`kg(61.0)), Some(`kg(38.0))),
+          ~exercise=`CleanSquat,
+          (),
+        ),
+        make(~reps=`Num(25), ~exercise=`ToesToBar, ()),
+        make(~reps=`Num(50), ~exercise=`DoubleUnder, ()),
+        make(
+          ~reps=`Num(13),
+          ~weight=(Some(`kg(83.0)), Some(`kg(52.0))),
+          ~exercise=`CleanSquat,
+          (),
+        ),
+      ],
+    ~scaledParts=
+      Some(
+        WodPart.[
+          make(~reps=`Num(25), ~exercise=`HangingKneeRaise, ()),
+          make(~reps=`Num(50), ~exercise=`SingleUnder, ()),
+          make(
+            ~reps=`Num(15),
+            ~weight=(Some(`kg(43.0)), Some(`kg(25.0))),
+            ~exercise=`CleanSquat,
+            (),
+          ),
+          make(~reps=`Num(25), ~exercise=`HangingKneeRaise, ()),
+          make(~reps=`Num(50), ~exercise=`SingleUnder, ()),
+          make(
+            ~reps=`Num(13),
+            ~weight=(Some(`kg(52.0)), Some(`kg(34.0))),
+            ~exercise=`CleanSquat,
+            (),
+          ),
+        ],
+      ),
+    (),
+  ),
+  Wod.make(
+    ~name=Some("Open 19.3"),
+    ~createdAt="2019-10-21T06:31:32.900Z",
+    ~wodType=`ForTime,
+    ~category=Some(`Open(19)),
+    ~timeCap=Some(10),
+    ~externalLink=
+      Some((
+        "CrossFit Games Open 19.3",
+        "https://games.crossfit.com/workouts/open/2019/3",
+      )),
+    ~parts=
+      WodPart.[
+        make(
+          ~reps=`MeterWithFeet(60),
+          ~weight=(Some(`kg(22.5)), Some(`kg(15.0))),
+          ~exercise=`OverheadLunge,
+          ~equipment=Some(`Dumbbell),
+          (),
+        ),
+        make(
+          ~reps=`Num(50),
+          ~weight=(Some(`kgcm((22.5, 60.0))), Some(`kgcm((15.0, 45.0)))),
+          ~exercise=`BoxStepUp,
+          ~equipment=Some(`Dumbbell),
+          (),
+        ),
+        make(~reps=`Num(50), ~exercise=`HandstandPushUpStrict, ()),
+        make(~reps=`MeterWithFeet(60), ~exercise=`HandstandWalk, ()),
+      ],
+    ~scaledParts=
+      Some(
+        WodPart.[
+          make(
+            ~reps=`MeterWithFeet(60),
+            ~weight=(Some(`kg(22.5)), Some(`kg(15.0))),
+            ~exercise=`LungeFrontRack,
+            ~equipment=Some(`Dumbbell),
+            (),
+          ),
+          make(
+            ~reps=`Num(50),
+            ~weight=(
+              Some(`kgcm((22.5, 60.0))),
+              Some(`kgcm((15.0, 45.0))),
+            ),
+            ~exercise=`BoxStepUp,
+            ~equipment=Some(`Dumbbell),
+            (),
+          ),
+          make(
+            ~reps=`Num(50),
+            ~weight=(Some(`cm(12.5)), Some(`cm(12.5))),
+            ~exercise=`HandstandPushUpStrictElevated,
+            (),
+          ),
+          make(~reps=`MeterWithFeet(60), ~exercise=`BearCrawl, ()),
+        ],
+      ),
+    (),
+  ),
+  Wod.make(
+    ~name=Some("Open 19.4"),
+    ~createdAt="2019-10-21T07:09:37.930Z",
+    ~wodType=`ForTime,
+    ~category=Some(`Open(19)),
+    ~rounds=Some(6),
+    ~timeCap=Some(12),
+    ~externalLink=
+      Some((
+        "CrossFit Games Open 19.4",
+        "https://games.crossfit.com/workouts/open/2019/4",
+      )),
+    ~description=
+      Some((
+        Some(
+          "3 rounds of snatches and burpees. Then rest 3 minutes and do 3
+               rounds of muscle ups and burpees",
+        ),
+        Some(
+          "3 rounds of snatches and burpees. Then rest 3 minutes and do 3
+               rounds of pull ups and burpees",
+        ),
+      )),
+    ~parts=
+      WodPart.[
+        make(
+          ~reps=`Num(10),
+          ~weight=(Some(`kg(43.0)), Some(`kg(29.0))),
+          ~exercise=`Snatch,
+          ~equipment=Some(`Barbell),
+          (),
+        ),
+        make(
+          ~reps=`Num(12),
+          ~exercise=`BarFacingBurpee,
+          ~equipment=Some(`Barbell),
+          (),
+        ),
+        make(~reps=`Num(10), ~exercise=`BarMuscleUp, ()),
+        make(
+          ~reps=`Num(12),
+          ~exercise=`BarFacingBurpee,
+          ~equipment=Some(`Barbell),
+          (),
+        ),
+      ],
+    ~scaledParts=
+      Some(
+        WodPart.[
+          make(
+            ~reps=`Num(10),
+            ~weight=(Some(`kg(29.0)), Some(`kg(20.0))),
+            ~exercise=`Snatch,
+            ~equipment=Some(`Barbell),
+            (),
+          ),
+          make(
+            ~reps=`Num(12),
+            ~exercise=`BarFacingBurpee,
+            ~equipment=Some(`Barbell),
+            (),
+          ),
+          make(~reps=`Num(10), ~exercise=`PullUpChinOverBar, ()),
+          make(
+            ~reps=`Num(12),
+            ~exercise=`BarFacingBurpee,
+            ~equipment=Some(`Barbell),
+            (),
+          ),
+        ],
+      ),
+    (),
+  ),
+  Wod.make(
+    ~name=Some("Open 19.5"),
+    ~createdAt="2019-10-21T07:17:37.356Z",
+    ~wodType=`ForTime,
+    ~category=Some(`Open(19)),
+    ~timeCap=Some(20),
+    ~repScheme=Some([33, 27, 21, 15, 9]),
+    ~externalLink=
+      Some((
+        "CrossFit Games Open 19.5",
+        "https://games.crossfit.com/workouts/open/2019/5",
+      )),
+    ~parts=
+      WodPart.[
+        make(
+          ~reps=`RepScheme,
+          ~weight=(Some(`kg(43.0)), Some(`kg(29.0))),
+          ~exercise=`Thruster,
+          ~equipment=Some(`Barbell),
+          (),
+        ),
+        make(~reps=`RepScheme, ~exercise=`ChestToBar, ()),
+      ],
+    ~scaledParts=
+      Some(
+        WodPart.[
+          make(
+            ~reps=`RepScheme,
+            ~weight=(Some(`kg(29.0)), Some(`kg(20.0))),
+            ~exercise=`Thruster,
+            ~equipment=Some(`Barbell),
+            (),
+          ),
+          make(~reps=`RepScheme, ~exercise=`PullUpJumping, ()),
+        ],
+      ),
     (),
   ),
   Wod.make(

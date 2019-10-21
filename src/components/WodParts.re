@@ -2,62 +2,6 @@ let soi = string_of_int;
 let sof = Js.Float.toString;
 let str = React.string;
 
-module Equipment = {
-  [@react.component]
-  let make = (~equipment) => {
-    switch (equipment) {
-    | Some(eq) =>
-      switch (eq) {
-      | `BulgarianBag
-      | `Unbroken
-      | `Kettlebell
-      | `Dumbbell => " " ++ Equipment.toString(eq) |> str
-      | `WallBall
-      | `Barbell
-      | `JumpRope => React.null
-      }
-    | None => React.null
-    };
-  };
-};
-
-module Unit = {
-  [@react.component]
-  let make = (~reps) => {
-    (
-      switch (reps) {
-      | `Increasing(i) => "+" ++ i->soi
-      | `Min(min) => min->soi ++ " min "
-      | `RepScheme => ""
-      | `Cal(c) => c->soi ++ " cal "
-      | `Cal2(m, f) => m->soi ++ "/" ++ f->soi ++ " cal "
-      | `Num(st) => st->soi
-      | `Meter(m) => m->soi ++ "m "
-      | `OneSide(a, b) => a->soi ++ "/" ++ b->soi
-      | `Span(a, b) =>
-        switch (a, b) {
-        | (`Num(ast), `Num(bst)) => ast->soi ++ "-" ++ bst->soi
-        | (`Cal(ast), `Cal(bst)) => ast->soi ++ "-" ++ bst->soi ++ " cal "
-        | (`OneSide(aa, ab), `OneSide(ba, bb)) =>
-          aa->soi ++ "/" ++ ab->soi ++ "-" ++ ba->soi ++ "/" ++ bb->soi
-        | _ => ""
-        }
-      }
-    )
-    |> React.string;
-  };
-};
-
-let weightUnit =
-  fun
-  | `lbs => "lbs"
-  | `cm(_) => "cm"
-  | `inch => "in"
-  | `kg(_)
-  | `kg2(_) => "kg"
-  | `bodyweight
-  | `kg2cm(_, _) => "";
-
 let round5 = x => Js.Math.ceil_float(x /. 5.0) *. 5.0;
 
 module Pounds = {
@@ -84,6 +28,79 @@ module Inches = {
     | _ => (cm /. approx)->round5
     };
 };
+
+module Feet = {
+  let approx = 3.28084;
+
+  let make = m =>
+    switch (m) {
+    | _ => (m->float_of_int *. approx)->round5
+    };
+};
+
+module Equipment = {
+  [@react.component]
+  let make = (~equipment) => {
+    switch (equipment) {
+    | Some(eq) =>
+      switch (eq) {
+      | `BulgarianBag
+      | `Unbroken
+      | `Kettlebell
+      | `Dumbbell => " " ++ Equipment.toString(eq) |> str
+      | `WallBall
+      | `Barbell
+      | `JumpRope => React.null
+      }
+    | None => React.null
+    };
+  };
+};
+
+module Unit = {
+  [@react.component]
+  let make = (~reps) => {
+    let {system}: Settings.t = Settings.use();
+
+    (
+      switch (reps) {
+      | `Increasing(i) => "+" ++ i->soi
+      | `Min(min) => min->soi ++ " min "
+      | `RepScheme => ""
+      | `Cal(c) => c->soi ++ " cal "
+      | `Cal2(m, f) => m->soi ++ "/" ++ f->soi ++ " cal "
+      | `Num(st) => st->soi
+      | `Meter(m) => m->soi ++ "m "
+      | `MeterWithFeet(m) =>
+        switch (system) {
+        | Metric => m->soi ++ "m "
+        | Imperial => m->Feet.make->sof ++ " feet "
+        }
+      | `OneSide(a, b) => a->soi ++ "/" ++ b->soi
+      | `Span(a, b) =>
+        switch (a, b) {
+        | (`Num(ast), `Num(bst)) => ast->soi ++ "-" ++ bst->soi
+        | (`Cal(ast), `Cal(bst)) => ast->soi ++ "-" ++ bst->soi ++ " cal "
+        | (`OneSide(aa, ab), `OneSide(ba, bb)) =>
+          aa->soi ++ "/" ++ ab->soi ++ "-" ++ ba->soi ++ "/" ++ bb->soi
+        | _ => ""
+        }
+      }
+    )
+    |> React.string;
+  };
+};
+
+let weightUnit =
+  fun
+  | `lbs => "lbs"
+  | `cm(_) => "cm"
+  | `inch => "in"
+  | `kg(_)
+  | `kg2(_) => "kg"
+  | `bodyweight
+  | `kg2cm(_, _)
+  | `kgcm(_, _) => "";
 
 module Split = {
   let toString = (~m, ~f, ~w, ~prefix="(", ()) => {
@@ -117,9 +134,42 @@ module Split = {
 };
 
 let weightAndHeight =
-    (~maleWeight, ~maleHeight, ~femaleWeight, ~femaleHeight, ~system) => {
-  switch (system) {
-  | Settings.Metric =>
+    (~maleWeight, ~maleHeight, ~femaleWeight, ~femaleHeight, ~system, ~weight) => {
+  switch (system, weight) {
+  | (Settings.Metric, `kgcm) =>
+    str(
+      "("
+      ++ maleWeight->sof
+      ++ "/"
+      ++ femaleWeight->sof
+      ++ " "
+      ++ weightUnit(`kg(0))
+      ++ " - "
+      ++ maleHeight->sof
+      ++ "/"
+      ++ femaleHeight->sof
+      ++ " "
+      ++ weightUnit(`cm(0))
+      ++ ")",
+    )
+  | (Settings.Imperial, `kgcm) =>
+    str(
+      "("
+      ++ maleWeight->Pounds.make->sof
+      ++ "/"
+      ++ femaleWeight->Pounds.make->sof
+      ++ " "
+      ++ weightUnit(`lbs)
+      ++ " - "
+      ++ maleHeight->Inches.make->sof
+      ++ "/"
+      ++ femaleHeight->Inches.make->sof
+      ++ " "
+      ++ weightUnit(`inch)
+      ++ ")",
+    )
+
+  | (Settings.Metric, `kg2cm) =>
     str(
       "(2*"
       ++ maleWeight->sof
@@ -135,7 +185,7 @@ let weightAndHeight =
       ++ weightUnit(`cm(0))
       ++ ")",
     )
-  | Settings.Imperial =>
+  | (Settings.Imperial, `kg2cm) =>
     str(
       "(2*"
       ++ maleWeight->Pounds.make->sof
@@ -169,6 +219,15 @@ module Weight = {
       {switch (weight) {
        | (Some(male), Some(female)) =>
          switch (male, female) {
+         | (`kgcm(m, mcm), `kgcm(f, fcm)) =>
+           weightAndHeight(
+             ~maleWeight=m,
+             ~maleHeight=mcm,
+             ~femaleWeight=f,
+             ~femaleHeight=fcm,
+             ~system,
+             ~weight=`kgcm,
+           )
          | (`kg2cm(m, mcm), `kg2cm(f, fcm)) =>
            weightAndHeight(
              ~maleWeight=m,
@@ -176,6 +235,7 @@ module Weight = {
              ~femaleWeight=f,
              ~femaleHeight=fcm,
              ~system,
+             ~weight=`kgcm,
            )
          | (`kg(m), `kg(f))
          | (`kg2(m), `kg2(f))
@@ -189,6 +249,7 @@ module Weight = {
          | `kg(m)
          | `kg2(m)
          | `cm(m) => singleWeight(~m, ~weight)
+         | `kgcm(_, _)
          | `kg2cm(_, _)
          | `bodyweight => React.null
          }

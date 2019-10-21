@@ -26,7 +26,7 @@ p:last-of-type {
 
 /* || Markdown */
 .markdown ul {
-  @apply list-disc ml-4 mt-4;
+  @apply list-disc ml-4 mt-2;
 }
 
 .markdown li:not(:last-child) {
@@ -39,6 +39,10 @@ p:last-of-type {
 
 .markdown h2 {
   @apply text-xl font-semibold mb-2 mt-6;
+}
+
+.markdown p {
+  @apply my-2;
 }
 
 .markdown blockquote {

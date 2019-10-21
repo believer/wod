@@ -3,13 +3,14 @@ type t = [
   | `BackwardLunge
   | `BarFacingBurpee
   | `BarMuscleUp
+  | `BearCrawl
   | `BentOverRow
   | `BoxJump
   | `BoxStepUp
   | `Burpee
   | `BurpeeBoxOver
   | `BurpeeOverRower
-  | `C2B
+  | `ChestToBar
   | `Clean
   | `CleanAndJerk
   | `CleanHangPower
@@ -24,11 +25,17 @@ type t = [
   | `FrontSquat
   | `HangingKneeRaise
   | `HandstandPushUp
+  | `HandstandPushUpStrict
+  | `HandstandPushUpStrictElevated
+  | `HandstandWalk
   | `JerkDipSquat
   | `Lunge
+  | `LungeFrontRack
   | `MuscleUp
+  | `OverheadLunge
   | `OverheadSquat
   | `PullUp
+  | `PullUpChinOverBar
   | `PullUpJumping
   | `PushJerk
   | `PushPress
@@ -43,6 +50,7 @@ type t = [
   | `SingleUnder
   | `SitUp
   | `SkiErg
+  | `Snatch
   | `SnatchAlt
   | `SnatchHangPower
   | `SnatchMuscle
@@ -67,6 +75,7 @@ let toString: t => string =
   | `AirSquat => "air squat"
   | `BackwardLunge => "backward lunge"
   | `BarMuscleUp => "bar muscle-up"
+  | `BearCrawl => "bear crawl"
   | `BentOverRow => "bent-over row"
   | `BoxJump => "box jump"
   | `BoxStepUp => "box step-up"
@@ -74,7 +83,7 @@ let toString: t => string =
   | `BurpeeBoxOver => "burpee box over"
   | `BurpeeOverRower => "burpee over rower"
   | `BarFacingBurpee => "bar-facing burpee"
-  | `C2B => "C2B pull-up"
+  | `ChestToBar => "chest-to-bar pull-up"
   | `Clean => "clean"
   | `CleanAndJerk => "clean and jerk"
   | `CleanHangPower => "hang power clean"
@@ -88,12 +97,18 @@ let toString: t => string =
   | `GroundToOverhead => "ground-to-overhead"
   | `FrontSquat => "front squat"
   | `HandstandPushUp => "handstand push-up"
+  | `HandstandPushUpStrict => "strict handstand push-up"
+  | `HandstandPushUpStrictElevated => "elevated strict handstand push-up"
+  | `HandstandWalk => "handstand walk"
   | `HangingKneeRaise => "hanging knee raise"
   | `JerkDipSquat => "jerk dip squat"
   | `Lunge => "lunge"
+  | `LungeFrontRack => "front-rack lunge"
   | `MuscleUp => "muscle-up"
+  | `OverheadLunge => "overhead lunge"
   | `OverheadSquat => "overhead squat"
   | `PullUp => "pull-up"
+  | `PullUpChinOverBar => "chin-over-bar pull-up"
   | `PullUpJumping => "jumping pull-up"
   | `PushJerk => "push jerk"
   | `PushPress => "push press"
@@ -108,6 +123,7 @@ let toString: t => string =
   | `SingleUnder => "single under"
   | `SitUp => "sit-up"
   | `SkiErg => "SkiErg"
+  | `Snatch => "snatch"
   | `SnatchAlt => "alt snatch"
   | `SnatchHangPower => "hang power snatch"
   | `SnatchPower => "power snatch"
