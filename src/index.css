@@ -41,7 +41,7 @@ p:last-of-type {
   @apply text-xl font-semibold mb-2 mt-6;
 }
 
-.markdown p {
+.markdown p:not(:only-of-type) {
   @apply my-2;
 }
 
