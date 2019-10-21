@@ -64,17 +64,36 @@ module Header = {
       {switch (wod.category) {
        | Some(c) =>
          switch (c) {
-         | `Hero => <Pill color=`Green> {React.string("Hero")} </Pill>
-         | `Girl => <Pill color=`Pink> {React.string("The Girls")} </Pill>
+         | `Hero =>
+           <Pill
+             color=`Green onClick={_ => Route.go(Home((None, Some(Hero))))}>
+             {React.string("Hero")}
+           </Pill>
+         | `Girl =>
+           <Pill
+             color=`Pink onClick={_ => Route.go(Home((None, Some(Girl))))}>
+             {React.string("The Girls")}
+           </Pill>
          | `Wodapalooza(year) =>
-           <Pill>
+           <Pill onClick={_ => Route.go(Home((None, Some(WZA))))}>
              {React.string("Wodapalooza " ++ year->string_of_int)}
            </Pill>
          | `Open(year) =>
-           <Pill> {React.string("Open " ++ year->string_of_int)} </Pill>
+           <Pill onClick={_ => Route.go(Home((None, Some(Open))))}>
+             {React.string("Open " ++ year->string_of_int)}
+           </Pill>
          | `Strength =>
-           <Pill color=`Purple> {React.string("Strength")} </Pill>
-         | `Mayhem => <Pill color=`Blue> {React.string("Mayhem")} </Pill>
+           <Pill
+             color=`Purple
+             onClick={_ => Route.go(Home((None, Some(Strength))))}>
+             {React.string("Strength")}
+           </Pill>
+         | `Mayhem =>
+           <Pill
+             color=`Blue
+             onClick={_ => Route.go(Home((None, Some(Mayhem))))}>
+             {React.string("Mayhem")}
+           </Pill>
          }
        | None => React.null
        }}
