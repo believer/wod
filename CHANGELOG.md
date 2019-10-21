@@ -1,3 +1,10 @@
+## [1.32.2](https://github.com/believer/wod/compare/v1.32.1...v1.32.2) (2019-10-21)
+
+
+### Bug Fixes
+
+* markdown paragraph in filtered button ([e19be71](https://github.com/believer/wod/commit/e19be719fa8da7b8e1ff15e0544d42b4edac2344))
+
 ## [1.32.1](https://github.com/believer/wod/compare/v1.32.0...v1.32.1) (2019-10-21)
 
 
