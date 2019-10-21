@@ -1,6 +1,6 @@
 {
   "name": "wod",
-  "version": "1.32.0",
+  "version": "1.32.1",
   "description": "A collection of CrossFit WODs",
   "scripts": {
     "build": "bsb -make-world",

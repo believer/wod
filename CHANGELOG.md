@@ -1,3 +1,10 @@
+## [1.32.1](https://github.com/believer/wod/compare/v1.32.0...v1.32.1) (2019-10-21)
+
+
+### Bug Fixes
+
+* add link to 18.2 ([a9ee856](https://github.com/believer/wod/commit/a9ee856a39df588345c5d15719b7a52e0b944279))
+
 # [1.32.0](https://github.com/believer/wod/compare/v1.31.0...v1.32.0) (2019-10-21)
 
 
