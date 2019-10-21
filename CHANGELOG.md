@@ -1,3 +1,11 @@
+# [1.32.0](https://github.com/believer/wod/compare/v1.31.0...v1.32.0) (2019-10-21)
+
+
+### Features
+
+* **wod:** add crossfit open 2019 wods ([165abad](https://github.com/believer/wod/commit/165abad99ca2f11e40e22e9d0471224663bd05b2))
+* filter when clicking workout category ([3801765](https://github.com/believer/wod/commit/38017652e6f34a8519bdfee7f27ddf20a54aec7a))
+
 # [1.31.0](https://github.com/believer/wod/compare/v1.30.1...v1.31.0) (2019-10-19)
 
 
