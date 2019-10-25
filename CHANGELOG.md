@@ -1,3 +1,15 @@
+# [1.33.0](https://github.com/believer/wod/compare/v1.32.2...v1.33.0) (2019-10-25)
+
+
+### Bug Fixes
+
+* open 20.3 name ([2ee6296](https://github.com/believer/wod/commit/2ee6296f2809db1c76bbfb71935758e6dba04309))
+
+
+### Features
+
+* **wod:** add open 20.3 ([dad9510](https://github.com/believer/wod/commit/dad951013698b842cdef2fbf83baad6f64b4c222))
+
 ## [1.32.2](https://github.com/believer/wod/compare/v1.32.1...v1.32.2) (2019-10-21)
 
 
