@@ -2025,7 +2025,7 @@ Stop at 20 minutes
     (),
   ),
   Wod.make(
-    ~name=Some("Open 20.2"),
+    ~name=Some("Open 20.3"),
     ~createdAt="2019-10-25T14:18:31.008Z",
     ~wodType=`ForTime,
     ~category=Some(`Open(20)),
