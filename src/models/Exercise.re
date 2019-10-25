@@ -23,11 +23,12 @@ type t = [
   | `DoubleUnderHeavy
   | `GroundToOverhead
   | `FrontSquat
-  | `HangingKneeRaise
+  | `HandReleasePushUp
   | `HandstandPushUp
   | `HandstandPushUpStrict
   | `HandstandPushUpStrictElevated
   | `HandstandWalk
+  | `HangingKneeRaise
   | `JerkDipSquat
   | `Lunge
   | `LungeFrontRack
@@ -96,6 +97,7 @@ let toString: t => string =
   | `DoubleUnderHeavy => "heavy double under"
   | `GroundToOverhead => "ground-to-overhead"
   | `FrontSquat => "front squat"
+  | `HandReleasePushUp => "hand-release push-up"
   | `HandstandPushUp => "handstand push-up"
   | `HandstandPushUpStrict => "strict handstand push-up"
   | `HandstandPushUpStrictElevated => "elevated strict handstand push-up"
