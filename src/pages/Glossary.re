@@ -37,7 +37,8 @@ let make = () => {
 
     ## Time cap
 
-    Maximum time allowed to perform the work.
+    Maximum time allowed to perform the work. If you are unable to complete the
+    entire workout, your score is the total number of reps completed.
 
     ## Chipper
 
