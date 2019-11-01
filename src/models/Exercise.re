@@ -32,6 +32,7 @@ type t = [
   | `JerkDipSquat
   | `Lunge
   | `LungeFrontRack
+  | `MedicineBallStepUp
   | `MuscleUp
   | `OverheadLunge
   | `OverheadSquat
@@ -48,6 +49,7 @@ type t = [
   | `Run
   | `RussianTwist
   | `ShoulderToOverhead
+  | `SingleLegSquat
   | `SingleUnder
   | `SitUp
   | `SkiErg
@@ -106,6 +108,7 @@ let toString: t => string =
   | `JerkDipSquat => "jerk dip squat"
   | `Lunge => "lunge"
   | `LungeFrontRack => "front-rack lunge"
+  | `MedicineBallStepUp => "medicine-ball step-up"
   | `MuscleUp => "muscle-up"
   | `OverheadLunge => "overhead lunge"
   | `OverheadSquat => "overhead squat"
@@ -122,6 +125,7 @@ let toString: t => string =
   | `Run => "run"
   | `RussianTwist => "russian twist"
   | `ShoulderToOverhead => "shoulder-to-overhead"
+  | `SingleLegSquat => "single-leg squat"
   | `SingleUnder => "single under"
   | `SitUp => "sit-up"
   | `SkiErg => "SkiErg"

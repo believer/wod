@@ -2141,4 +2141,139 @@ Stop at 20 minutes
       ),
     (),
   ),
+  Wod.make(
+    ~name=Some("Open 20.4"),
+    ~createdAt="2019-11-01T06:53:20.948Z",
+    ~wodType=`ForTime,
+    ~category=Some(`Open(20)),
+    ~timeCap=Some(20),
+    ~externalLink=
+      Some((
+        "CrossFit Games Open 20.4",
+        "https://games.crossfit.com/workouts/open/2020/4",
+      )),
+    ~parts=
+      WodPart.[
+        make(
+          ~reps=`Num(30),
+          ~weight=(Some(`cm(60.0)), Some(`cm(45.0))),
+          ~exercise=`BoxJump,
+          (),
+        ),
+        make(
+          ~reps=`Num(15),
+          ~weight=(Some(`kg(43.0)), Some(`kg(29.0))),
+          ~exercise=`CleanAndJerk,
+          (),
+        ),
+        make(
+          ~reps=`Num(30),
+          ~weight=(Some(`cm(60.0)), Some(`cm(45.0))),
+          ~exercise=`BoxJump,
+          (),
+        ),
+        make(
+          ~reps=`Num(15),
+          ~weight=(Some(`kg(61.0)), Some(`kg(38.0))),
+          ~exercise=`CleanAndJerk,
+          (),
+        ),
+        make(
+          ~reps=`Num(30),
+          ~weight=(Some(`cm(60.0)), Some(`cm(45.0))),
+          ~exercise=`BoxJump,
+          (),
+        ),
+        make(
+          ~reps=`Num(10),
+          ~weight=(Some(`kg(83.0)), Some(`kg(52.0))),
+          ~exercise=`CleanAndJerk,
+          (),
+        ),
+        make(~reps=`Num(30), ~exercise=`SingleLegSquat, ()),
+        make(
+          ~reps=`Num(10),
+          ~weight=(Some(`kg(102.0)), Some(`kg(65.0))),
+          ~exercise=`CleanAndJerk,
+          (),
+        ),
+        make(~reps=`Num(30), ~exercise=`SingleLegSquat, ()),
+        make(
+          ~reps=`Num(5),
+          ~weight=(Some(`kg(124.0)), Some(`kg(79.0))),
+          ~exercise=`CleanAndJerk,
+          (),
+        ),
+        make(~reps=`Num(30), ~exercise=`SingleLegSquat, ()),
+        make(
+          ~reps=`Num(5),
+          ~weight=(Some(`kg(142.0)), Some(`kg(93.0))),
+          ~exercise=`CleanAndJerk,
+          (),
+        ),
+      ],
+    ~scaledParts=
+      Some(
+        WodPart.[
+          make(
+            ~reps=`Num(30),
+            ~weight=(Some(`cm(60.0)), Some(`cm(45.0))),
+            ~exercise=`BoxJump,
+            (),
+          ),
+          make(
+            ~reps=`Num(15),
+            ~weight=(Some(`kg(29.0)), Some(`kg(15.0))),
+            ~exercise=`CleanAndJerk,
+            (),
+          ),
+          make(
+            ~reps=`Num(30),
+            ~weight=(Some(`cm(60.0)), Some(`cm(45.0))),
+            ~exercise=`BoxJump,
+            (),
+          ),
+          make(
+            ~reps=`Num(15),
+            ~weight=(Some(`kg(43.0)), Some(`kg(25.0))),
+            ~exercise=`CleanAndJerk,
+            (),
+          ),
+          make(
+            ~reps=`Num(30),
+            ~weight=(Some(`cm(60.0)), Some(`cm(45.0))),
+            ~exercise=`BoxJump,
+            (),
+          ),
+          make(
+            ~reps=`Num(10),
+            ~weight=(Some(`kg(52.0)), Some(`kg(34.0))),
+            ~exercise=`CleanAndJerk,
+            (),
+          ),
+          make(~reps=`Num(30), ~exercise=`MedicineBallStepUp, ()),
+          make(
+            ~reps=`Num(10),
+            ~weight=(Some(`kg(61.0)), Some(`kg(43.0))),
+            ~exercise=`CleanAndJerk,
+            (),
+          ),
+          make(~reps=`Num(30), ~exercise=`MedicineBallStepUp, ()),
+          make(
+            ~reps=`Num(5),
+            ~weight=(Some(`kg(70.0)), Some(`kg(52.0))),
+            ~exercise=`CleanAndJerk,
+            (),
+          ),
+          make(~reps=`Num(30), ~exercise=`MedicineBallStepUp, ()),
+          make(
+            ~reps=`Num(5),
+            ~weight=(Some(`kg(83.0)), Some(`kg(61.0))),
+            ~exercise=`CleanAndJerk,
+            (),
+          ),
+        ],
+      ),
+    (),
+  ),
 ];
