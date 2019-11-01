@@ -1,3 +1,10 @@
+## [1.34.1](https://github.com/believer/wod/compare/v1.34.0...v1.34.1) (2019-11-01)
+
+
+### Bug Fixes
+
+* add some more glossary info ([0473977](https://github.com/believer/wod/commit/0473977f241f9435de76d09f6a67dc18d8c7d856))
+
 # [1.34.0](https://github.com/believer/wod/compare/v1.33.0...v1.34.0) (2019-11-01)
 
 
