@@ -2276,4 +2276,49 @@ Stop at 20 minutes
       ),
     (),
   ),
+  Wod.make(
+    ~name=Some("Open 20.5"),
+    ~createdAt="2019-11-08T06:35:40.001Z",
+    ~wodType=`ForTime,
+    ~category=Some(`Open(20)),
+    ~timeCap=Some(20),
+    ~description=
+      Some((
+        Some(
+          "Partition work any way. Wall ball target 3.05/2.75 m
+    (10/9 ft)",
+        ),
+        None,
+      )),
+    ~externalLink=
+      Some((
+        "CrossFit Games Open 20.5",
+        "https://games.crossfit.com/workouts/open/2020/5",
+      )),
+    ~parts=
+      WodPart.[
+        make(~reps=`Num(40), ~exercise=`MuscleUp, ()),
+        make(~reps=`Cal(80), ~exercise=`Row, ()),
+        make(
+          ~reps=`Num(120),
+          ~weight=(Some(`kg(9.0)), Some(`kg(6.0))),
+          ~exercise=`WallBall,
+          (),
+        ),
+      ],
+    ~scaledParts=
+      Some(
+        WodPart.[
+          make(~reps=`Num(40), ~exercise=`PullUpChinOverBar, ()),
+          make(~reps=`Cal(80), ~exercise=`Row, ()),
+          make(
+            ~reps=`Num(120),
+            ~weight=(Some(`kg(6.0)), Some(`kg(4.0))),
+            ~exercise=`WallBall,
+            (),
+          ),
+        ],
+      ),
+    (),
+  ),
 ];
