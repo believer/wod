@@ -1,3 +1,10 @@
+# [1.35.0](https://github.com/believer/wod/compare/v1.34.1...v1.35.0) (2019-11-08)
+
+
+### Features
+
+* **wod:** add open 20.5 ([4e531e8](https://github.com/believer/wod/commit/4e531e8820d7511ee76dd58d839cd1870909e758))
+
 ## [1.34.1](https://github.com/believer/wod/compare/v1.34.0...v1.34.1) (2019-11-01)
 
 
