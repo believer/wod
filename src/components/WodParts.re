@@ -46,13 +46,13 @@ module Equipment = {
     switch (equipment) {
     | Some(eq) =>
       switch (eq) {
-      | `BulgarianBag
-      | `Unbroken
-      | `Kettlebell
-      | `Dumbbell => " " ++ Equipment.toString(eq) |> str
-      | `WallBall
-      | `Barbell
-      | `JumpRope => React.null
+      | Equipment.BulgarianBag
+      | Unbroken
+      | Kettlebell
+      | Dumbbell => " " ++ Equipment.toString(eq) |> str
+      | WallBall
+      | Barbell
+      | JumpRope => React.null
       }
     | None => React.null
     };
