@@ -106,7 +106,7 @@ module AltEMOM = {
     switch (wod.wodType, wod.name) {
     | (#AltEMOM(min), _) =>
       <div className="text-sm text-gray-500">
-        {(min / wod.parts->Belt.List.length)->string_of_int
+        {(min / wod.parts->Belt.Array.length)->string_of_int
          ++ " of each"
          |> React.string}
       </div>
@@ -131,10 +131,10 @@ module Rounds = {
 module RepScheme = {
   @react.component
   let make = (~repScheme) => {
-    switch (repScheme) {
+    switch repScheme {
     | Some(scheme) =>
       <div className="mt-4 text-gray-700">
-        {scheme->Belt.List.reduceWithIndex("", (acc, curr, i) =>
+        {scheme->Belt.Array.reduceWithIndex("", (acc, curr, i) =>
            switch (i) {
            | 0 => curr->string_of_int
            | _ => acc ++ "-" ++ curr->string_of_int
@@ -209,9 +209,9 @@ module BuyInOut = {
 
 module WodItem = {
   @react.component
-  let make = (~parts: list<WodPart.t>, ~wod: Wod.t) => {
+  let make = (~parts: array<WodPart.t>, ~wod: Wod.t) => {
     parts
-    ->Belt.List.map(({id, reps, equipment, exercise, weight}) =>
+    ->Belt.Array.map(({id, reps, equipment, exercise, weight}) =>
         <li key={id->CUID.toString}>
           <WodParts.Unit reps />
           <WodParts.Equipment equipment />
@@ -241,7 +241,6 @@ module WodItem = {
           <WodParts.Weight weight />
         </li>
       )
-    ->Belt.List.toArray
     ->React.array
   }
 }
@@ -302,7 +301,7 @@ let make = (~lastVisit, ~wod: Wod.t, ~globalWodVersion) => {
          | RX => <WodItem parts={wod.parts} wod />
          | Scaled =>
            <WodItem
-             parts={wod.scaledParts->Belt.Option.getWithDefault(list[])}
+             parts={wod.scaledParts->Belt.Option.getWithDefault([])}
              wod
            />
          }}

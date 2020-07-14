@@ -68,9 +68,9 @@ module WorkoutCategory = {
 
 let fromPath = path =>
   switch path {
-  | list[] => Home((None, None))
-  | list["glossary"] => Glossary
-  | list[workoutType, workoutCategory] =>
+  | list{} => Home((None, None))
+  | list{ "glossary" } => Glossary
+  | list{ workoutType, workoutCategory } =>
     Home((
       WorkoutType.fromString(workoutType),
       WorkoutCategory.fromString(workoutCategory),

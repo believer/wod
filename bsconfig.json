@@ -15,14 +15,15 @@
   ],
   "package-specs": [
     {
-      "module": "es6"
+      "module": "es6",
+      "in-source": true
     }
   ],
   "suffix": ".bs.js",
   "namespace": true,
   "bs-dependencies": [
     "reason-react",
-    "bs-css",
+    "bs-css-emotion",
     "re-classnames",
     "reason-react-update"
   ],

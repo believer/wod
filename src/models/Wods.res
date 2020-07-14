@@ -1,12 +1,12 @@
 open WodPart
 
-let wods = list[
+let wods = [
   Wod.make(
     ~createdAt="2019-08-18T22:00:00.000Z",
     ~wodType=#AMRAP,
     ~timeCap=Some(30),
     ~parts=
-      list[
+      [
         make(~reps=#Meter(500), ~exercise=#Row, ()),
         make(
           ~reps=#OneSide((5, 5)),
@@ -43,7 +43,7 @@ let wods = list[
     ~wodType=#ForTime,
     ~rounds=Some(5),
     ~parts=
-      list[
+      [
         make(
           ~reps=#Num(10),
           ~weight=(Some(#kg(9.0)), Some(#kg(6.0))),
@@ -66,7 +66,7 @@ let wods = list[
     ~wodType=#ForTime,
     ~rounds=Some(10),
     ~parts=
-      list[
+      [
         make(~reps=#Cal(9), ~weight=(None, None), ~exercise=#Row, ()),
         make(
           ~reps=#Num(6),
@@ -99,7 +99,7 @@ let wods = list[
       )),
     ~rounds=Some(5),
     ~parts=
-      list[
+      [
         make(
           ~reps=#Num(12),
           ~weight=(Some(#kg(70.0)), Some(#kg(47.0))),
@@ -140,7 +140,7 @@ let wods = list[
         None,
       )),
     ~parts=
-      list[
+      [
         make(
           ~reps=#Meter(800),
           ~weight=(Some(#bodyweight), Some(#bodyweight)),
@@ -179,7 +179,7 @@ let wods = list[
     ~name=Some("Chip Through Monday"),
     ~wodType=#ForTime,
     ~parts=
-      list[
+      [
         make(
           ~reps=#Num(5),
           ~weight=(Some(#bodyweight), Some(#bodyweight)),
@@ -276,7 +276,7 @@ Scaled may exchange singles to 25 dubs.
     ~timeCap=Some(14),
     ~scaledParts=
       Some(
-        list[
+        [
           make(~reps=#Cal2((30, 20)), ~exercise=#SkiErg, ()),
           make(~reps=#Meter(250), ~exercise=#Swim, ()),
           make(
@@ -301,7 +301,7 @@ Scaled may exchange singles to 25 dubs.
         ],
       ),
     ~parts=
-      list[
+      [
         make(~reps=#Cal2((40, 30)), ~exercise=#SkiErg, ()),
         make(~reps=#Meter(250), ~exercise=#Swim, ()),
         make(
@@ -331,7 +331,7 @@ Scaled may exchange singles to 25 dubs.
     ~wodType=#ForTime,
     ~rounds=Some(5),
     ~parts=
-      list[
+      [
         make(~reps=#Num(100), ~exercise=#SingleUnder, ()),
         make(
           ~reps=#Num(5),
@@ -348,7 +348,7 @@ Scaled may exchange singles to 25 dubs.
     ~name=Some("Waterworks"),
     ~wodType=#ForTime,
     ~parts=
-      list[
+      [
         make(~reps=#Cal2((50, 35)), ~exercise=#Row, ()),
         make(
           ~reps=#Num(40),
@@ -379,7 +379,7 @@ Scaled may exchange singles to 25 dubs.
     ~createdAt="2019-08-19T22:00:00.000Z",
     ~wodType=#AltEMOM(24),
     ~parts=
-      list[
+      [
         make(
           ~reps=#Span((#Num(8), #Num(12))),
           ~weight=(Some(#bodyweight), Some(#bodyweight)),
@@ -415,9 +415,9 @@ Scaled may exchange singles to 25 dubs.
     ~wodType=#ForTime,
     ~description=Some((Some("Rest 3 min between rounds"), None)),
     ~rounds=Some(2),
-    ~repScheme=Some(list[21, 15, 9]),
+    ~repScheme=Some([21, 15, 9]),
     ~parts=
-      list[
+      [
         make(~reps=#RepScheme, ~exercise=#SkiErg, ()),
         make(
           ~reps=#RepScheme,
@@ -448,10 +448,10 @@ Scaled may exchange singles to 25 dubs.
         "https://games.crossfit.com/workouts/open/2018/2",
       )),
     ~timeCap=Some(12),
-    ~repScheme=Some(list[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
+    ~repScheme=Some([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
     ~scaledParts=
       Some(
-        list[
+        [
           make(
             ~reps=#RepScheme,
             ~weight=(Some(#kg2(15.0)), Some(#kg2(10.0))),
@@ -468,7 +468,7 @@ Scaled may exchange singles to 25 dubs.
         ],
       ),
     ~parts=
-      list[
+      [
         make(
           ~reps=#RepScheme,
           ~weight=(Some(#kg2(22.5)), Some(#kg2(15.0))),
@@ -489,9 +489,9 @@ Scaled may exchange singles to 25 dubs.
     ~createdAt="2019-08-20T22:00:00.000Z",
     ~wodType=#ForTime,
     ~timeCap=Some(6),
-    ~repScheme=Some(list[100, 10, 80, 8, 60, 6, 40, 4, 20, 2]),
+    ~repScheme=Some([100, 10, 80, 8, 60, 6, 40, 4, 20, 2]),
     ~parts=
-      list[
+      [
         make(
           ~reps=#RepScheme,
           ~weight=(Some(#bodyweight), Some(#bodyweight)),
@@ -514,7 +514,7 @@ Scaled may exchange singles to 25 dubs.
     ~wodType=#ForTime,
     ~category=Some(#Girl),
     ~parts=
-      list[
+      [
         make(
           ~reps=#Num(30),
           ~weight=(Some(#kg(61.0)), Some(#kg(43.0))),
@@ -530,7 +530,7 @@ Scaled may exchange singles to 25 dubs.
     ~wodType=#ForTime,
     ~rounds=Some(3),
     ~parts=
-      list[
+      [
         make(
           ~reps=#Num(15),
           ~weight=(Some(#kg2(15.0)), Some(#kg2(10.0))),
@@ -580,7 +580,7 @@ This Firefighter Hero WOD is dedicated to Keithroy Maynard, FDNY, Engine 33, who
       )),
     ~rounds=Some(5),
     ~parts=
-      list[
+      [
         make(
           ~reps=#Num(44),
           ~weight=(Some(#cm(60.0)), Some(#cm(45.0))),
@@ -608,7 +608,7 @@ This Firefighter Hero WOD is dedicated to Keithroy Maynard, FDNY, Engine 33, who
     ~wodType=#ForTime,
     ~rounds=Some(7),
     ~parts=
-      list[
+      [
         make(
           ~reps=#Num(7),
           ~weight=(Some(#kg(40.0)), Some(#kg(30.0))),
@@ -642,7 +642,7 @@ This Firefighter Hero WOD is dedicated to Keithroy Maynard, FDNY, Engine 33, who
       )),
     ~timeCap=Some(8),
     ~parts=
-      list[
+      [
         make(
           ~reps=#OneSide((5, 5)),
           ~weight=(Some(#kg(15.0)), Some(#kg(10.0))),
@@ -692,7 +692,7 @@ Each set EMOM 5 min, then 1 min rest before next EMOM.
         None,
       )),
     ~parts=
-      list[
+      [
         make(
           ~reps=#Num(5),
           ~exercise=#SnatchPower,
@@ -744,7 +744,7 @@ Each set EMOM 5 min, then 1 min rest before next EMOM.
         None,
       )),
     ~parts=
-      list[
+      [
         make(
           ~reps=#Num(5),
           ~exercise=#CleanPower,
@@ -782,7 +782,7 @@ Each set EMOM 5 min, then 1 min rest before next EMOM.
     ~category=Some(#Wodapalooza(2019)),
     ~scaledParts=
       Some(
-        list[
+        [
           make(
             ~reps=#Increasing(3),
             ~weight=(Some(#kg(20.0)), Some(#kg(13.0))),
@@ -822,7 +822,7 @@ Add 3 repetitions to each of the barbell movements (3/3/30, 6/6/30, 9/9/30, 12/1
       )),
     ~timeCap=Some(9),
     ~parts=
-      list[
+      [
         make(
           ~reps=#Increasing(3),
           ~weight=(Some(#kg(34.0)), Some(#kg(25.0))),
@@ -854,7 +854,7 @@ Add 3 repetitions to each of the barbell movements (3/3/30, 6/6/30, 9/9/30, 12/1
     ~category=Some(#Wodapalooza(2019)),
     ~scaledParts=
       Some(
-        list[
+        [
           make(
             ~reps=#Num(40),
             ~weight=(Some(#kg(15.0)), Some(#kg(10.0))),
@@ -903,7 +903,7 @@ Add 3 repetitions to each of the barbell movements (3/3/30, 6/6/30, 9/9/30, 12/1
       )),
     ~timeCap=Some(16),
     ~parts=
-      list[
+      [
         make(
           ~reps=#Num(40),
           ~weight=(Some(#kg(22.5)), Some(#kg(15.0))),
@@ -953,7 +953,7 @@ Add 3 repetitions to each of the barbell movements (3/3/30, 6/6/30, 9/9/30, 12/1
     ~category=Some(#Wodapalooza(2019)),
     ~scaledParts=
       Some(
-        list[
+        [
           make(
             ~reps=#Num(12),
             ~weight=(Some(#kg(34.0)), Some(#kg(25.0))),
@@ -1012,7 +1012,7 @@ If you complete the three rounds at a given weight within the 4 min window, incr
         ),
       )),
     ~parts=
-      list[
+      [
         make(
           ~reps=#Num(12),
           ~weight=(Some(#kg(43.0)), Some(#kg(30.0))),
@@ -1044,7 +1044,7 @@ If you complete the three rounds at a given weight within the 4 min window, incr
     ~category=Some(#Wodapalooza(2019)),
     ~scaledParts=
       Some(
-        list[
+        [
           make(
             ~reps=#Num(100),
             ~weight=(Some(#kg(6.0)), Some(#kg(4.0))),
@@ -1076,7 +1076,7 @@ If you complete the three rounds at a given weight within the 4 min window, incr
       )),
     ~timeCap=Some(20),
     ~parts=
-      list[
+      [
         make(
           ~reps=#Num(150),
           ~weight=(Some(#kg(9.0)), Some(#kg(6.0))),
@@ -1111,9 +1111,9 @@ _Fran_ is arguably the most famous of the original six CrossFit "Girls" WODs.
         ),
         None,
       )),
-    ~repScheme=Some(list[21, 15, 9]),
+    ~repScheme=Some([21, 15, 9]),
     ~parts=
-      list[
+      [
         make(
           ~reps=#RepScheme,
           ~weight=(Some(#kg(43.0)), Some(#kg(30.0))),
@@ -1150,7 +1150,7 @@ version allowed 5 minutes rest between sets.
       )),
     ~rounds=Some(5),
     ~parts=
-      list[
+      [
         make(
           ~reps=#Num(20),
           ~weight=(Some(#bodyweight), Some(#bodyweight)),
@@ -1196,7 +1196,7 @@ _Angie_, one of CrossFit's first six "Girls" WODs, was first posted on the Cross
         None,
       )),
     ~parts=
-      list[
+      [
         make(
           ~reps=#Num(100),
           ~weight=(Some(#bodyweight), Some(#bodyweight)),
@@ -1243,7 +1243,7 @@ _Chelsea_, one of CrossFit's first six "Girls" WODs, was first posted on crossfi
         None,
       )),
     ~parts=
-      list[
+      [
         make(
           ~reps=#Num(5),
           ~weight=(Some(#bodyweight), Some(#bodyweight)),
@@ -1279,9 +1279,9 @@ _Diane_, one of CrossFit's original six "Girls" WODs, was first posted on crossf
         ),
         None,
       )),
-    ~repScheme=Some(list[21, 15, 9]),
+    ~repScheme=Some([21, 15, 9]),
     ~parts=
-      list[
+      [
         make(
           ~reps=#RepScheme,
           ~weight=(Some(#kg(100.0)), Some(#kg(70.0))),
@@ -1312,9 +1312,9 @@ _Elizabeth_, one of CrossFit's original six "Girls" WODs. It was first posted on
         ),
         None,
       )),
-    ~repScheme=Some(list[21, 15, 9]),
+    ~repScheme=Some([21, 15, 9]),
     ~parts=
-      list[
+      [
         make(
           ~reps=#RepScheme,
           ~weight=(Some(#kg(60.0)), Some(#kg(43.0))),
@@ -1347,9 +1347,9 @@ _Amanda_ is one of the classic CrossFit "Girl" workouts, but not one of the
         ),
         None,
       )),
-    ~repScheme=Some(list[9, 7, 5]),
+    ~repScheme=Some([9, 7, 5]),
     ~parts=
-      list[
+      [
         make(
           ~reps=#RepScheme,
           ~weight=(Some(#bodyweight), Some(#bodyweight)),
@@ -1380,7 +1380,7 @@ _Amanda_ is one of the classic CrossFit "Girl" workouts, but not one of the
       )),
     ~timeCap=Some(20),
     ~parts=
-      list[
+      [
         make(
           ~reps=#Num(5),
           ~weight=(Some(#bodyweight), Some(#bodyweight)),
@@ -1418,7 +1418,7 @@ Complete as many rounds as possible in 3 minutes, then rest 1 minute. Start each
     ~timeCap=Some(3),
     ~rounds=Some(5),
     ~parts=
-      list[
+      [
         make(
           ~reps=#Num(3),
           ~weight=(Some(#kg(60.0)), Some(#kg(43.0))),
@@ -1455,7 +1455,7 @@ Complete as many rounds as possible in 3 minutes, then rest 1 minute. Start each
     ~rounds=Some(10),
     ~timeCap=Some(20),
     ~parts=
-      list[
+      [
         make(~reps=#Cal2((9, 7)), ~exercise=#Row, ()),
         make(
           ~reps=#Num(6),
@@ -1498,9 +1498,9 @@ Complete as many rounds as possible in 3 minutes, then rest 1 minute. Start each
         None,
       )),
     ~timeCap=Some(15),
-    ~repScheme=Some(list[21, 15, 9]),
+    ~repScheme=Some([21, 15, 9]),
     ~parts=
-      list[
+      [
         make(
           ~reps=#RepScheme,
           ~weight=(Some(#kg(43.0)), Some(#kg(30.0))),
@@ -1517,7 +1517,7 @@ Complete as many rounds as possible in 3 minutes, then rest 1 minute. Start each
       ],
     ~scaledParts=
       Some(
-        list[
+        [
           make(
             ~reps=#RepScheme,
             ~weight=(Some(#kg(30.0)), Some(#kg(20.0))),
@@ -1541,7 +1541,7 @@ Complete as many rounds as possible in 3 minutes, then rest 1 minute. Start each
     ~wodType=#AMRAP,
     ~timeCap=Some(8),
     ~parts=
-      list[
+      [
         make(~reps=#Cal2((8, 10)), ~exercise=#Row, ()),
         make(
           ~reps=#Num(8),
@@ -1567,7 +1567,7 @@ Complete as many rounds as possible in 3 minutes, then rest 1 minute. Start each
       )),
     ~wodType=#EMOM(12),
     ~parts=
-      list[
+      [
         make(~reps=#Num(1), ~exercise=#CleanHighPull, ()),
         make(~reps=#Num(1), ~exercise=#CleanPower, ()),
         make(~reps=#Num(1), ~exercise=#FrontSquat, ()),
@@ -1587,7 +1587,7 @@ Complete as many rounds as possible in 3 minutes, then rest 1 minute. Start each
       )),
     ~wodType=#E90(12),
     ~parts=
-      list[
+      [
         make(~reps=#Num(2), ~exercise=#JerkDipSquat, ()),
         make(~reps=#Num(2), ~exercise=#SplitJerk, ()),
       ],
@@ -1600,7 +1600,7 @@ Complete as many rounds as possible in 3 minutes, then rest 1 minute. Start each
     ~rounds=Some(5),
     ~timeCap=Some(15),
     ~parts=
-      list[
+      [
         make(~reps=#Cal2((10, 8)), ~exercise=#SkiErg, ()),
         make(~reps=#Num(100), ~exercise=#SingleUnder, ()),
         make(
@@ -1620,7 +1620,7 @@ Complete as many rounds as possible in 3 minutes, then rest 1 minute. Start each
     ~rounds=Some(10),
     ~timeCap=Some(20),
     ~parts=
-      list[
+      [
         make(~reps=#Cal2((10, 8)), ~exercise=#SkiErg, ()),
         make(
           ~reps=#Num(5),
@@ -1651,7 +1651,7 @@ Complete as many rounds as possible in 3 minutes, then rest 1 minute. Start each
         "https://games.crossfit.com/workouts/open/2019/1",
       )),
     ~parts=
-      list[
+      [
         make(
           ~reps=#Num(19),
           ~weight=(Some(#kg(9.0)), Some(#kg(6.0))),
@@ -1662,7 +1662,7 @@ Complete as many rounds as possible in 3 minutes, then rest 1 minute. Start each
       ],
     ~scaledParts=
       Some(
-        list[
+        [
           make(
             ~reps=#Num(19),
             ~weight=(Some(#kg(6.0)), Some(#kg(4.0))),
@@ -1737,7 +1737,7 @@ Stop at 20 minutes
         ),
       )),
     ~parts=
-      list[
+      [
         make(~reps=#Num(25), ~exercise=#ToesToBar, ()),
         make(~reps=#Num(50), ~exercise=#DoubleUnder, ()),
         make(
@@ -1757,7 +1757,7 @@ Stop at 20 minutes
       ],
     ~scaledParts=
       Some(
-        list[
+        [
           make(~reps=#Num(25), ~exercise=#HangingKneeRaise, ()),
           make(~reps=#Num(50), ~exercise=#SingleUnder, ()),
           make(
@@ -1790,7 +1790,7 @@ Stop at 20 minutes
         "https://games.crossfit.com/workouts/open/2019/3",
       )),
     ~parts=
-      list[
+      [
         make(
           ~reps=#MeterWithFeet(60),
           ~weight=(Some(#kg(22.5)), Some(#kg(15.0))),
@@ -1810,7 +1810,7 @@ Stop at 20 minutes
       ],
     ~scaledParts=
       Some(
-        list[
+        [
           make(
             ~reps=#MeterWithFeet(60),
             ~weight=(Some(#kg(22.5)), Some(#kg(15.0))),
@@ -1863,7 +1863,7 @@ Stop at 20 minutes
         ),
       )),
     ~parts=
-      list[
+      [
         make(
           ~reps=#Num(10),
           ~weight=(Some(#kg(43.0)), Some(#kg(29.0))),
@@ -1887,7 +1887,7 @@ Stop at 20 minutes
       ],
     ~scaledParts=
       Some(
-        list[
+        [
           make(
             ~reps=#Num(10),
             ~weight=(Some(#kg(29.0)), Some(#kg(20.0))),
@@ -1918,14 +1918,14 @@ Stop at 20 minutes
     ~wodType=#ForTime,
     ~category=Some(#Open(19)),
     ~timeCap=Some(20),
-    ~repScheme=Some(list[33, 27, 21, 15, 9]),
+    ~repScheme=Some([33, 27, 21, 15, 9]),
     ~externalLink=
       Some((
         "CrossFit Games Open 19.5",
         "https://games.crossfit.com/workouts/open/2019/5",
       )),
     ~parts=
-      list[
+      [
         make(
           ~reps=#RepScheme,
           ~weight=(Some(#kg(43.0)), Some(#kg(29.0))),
@@ -1937,7 +1937,7 @@ Stop at 20 minutes
       ],
     ~scaledParts=
       Some(
-        list[
+        [
           make(
             ~reps=#RepScheme,
             ~weight=(Some(#kg(29.0)), Some(#kg(20.0))),
@@ -1964,7 +1964,7 @@ Stop at 20 minutes
       )),
     ~description=Some((None, Some("May step over bar on burpees"))),
     ~parts=
-      list[
+      [
         make(
           ~reps=#Num(8),
           ~weight=(Some(#kg(43.0)), Some(#kg(29.0))),
@@ -1975,7 +1975,7 @@ Stop at 20 minutes
       ],
     ~scaledParts=
       Some(
-        list[
+        [
           make(
             ~reps=#Num(8),
             ~weight=(Some(#kg(29.0)), Some(#kg(20.0))),
@@ -1999,7 +1999,7 @@ Stop at 20 minutes
         "https://games.crossfit.com/workouts/open/2020/2",
       )),
     ~parts=
-      list[
+      [
         make(
           ~reps=#Num(4),
           ~weight=(Some(#kg(22.5)), Some(#kg(15.0))),
@@ -2012,7 +2012,7 @@ Stop at 20 minutes
       ],
     ~scaledParts=
       Some(
-        list[
+        [
           make(
             ~reps=#Num(4),
             ~weight=(Some(#kg(15.0)), Some(#kg(10.0))),
@@ -2038,7 +2038,7 @@ Stop at 20 minutes
         "https://games.crossfit.com/workouts/open/2020/3",
       )),
     ~parts=
-      list[
+      [
         make(
           ~reps=#Num(21),
           ~weight=(Some(#kg(102.0)), Some(#kg(70.0))),
@@ -2090,7 +2090,7 @@ Stop at 20 minutes
       ],
     ~scaledParts=
       Some(
-        list[
+        [
           make(
             ~reps=#Num(21),
             ~weight=(Some(#kg(61.0)), Some(#kg(43.0))),
@@ -2155,7 +2155,7 @@ Stop at 20 minutes
         "https://games.crossfit.com/workouts/open/2020/4",
       )),
     ~parts=
-      list[
+      [
         make(
           ~reps=#Num(30),
           ~weight=(Some(#cm(60.0)), Some(#cm(45.0))),
@@ -2216,7 +2216,7 @@ Stop at 20 minutes
       ],
     ~scaledParts=
       Some(
-        list[
+        [
           make(
             ~reps=#Num(30),
             ~weight=(Some(#cm(60.0)), Some(#cm(45.0))),
@@ -2298,7 +2298,7 @@ Stop at 20 minutes
         "https://games.crossfit.com/workouts/open/2020/5",
       )),
     ~parts=
-      list[
+      [
         make(~reps=#Num(40), ~exercise=#MuscleUp, ()),
         make(~reps=#Cal(80), ~exercise=#Row, ()),
         make(
@@ -2310,7 +2310,7 @@ Stop at 20 minutes
       ],
     ~scaledParts=
       Some(
-        list[
+        [
           make(~reps=#Num(40), ~exercise=#PullUpChinOverBar, ()),
           make(~reps=#Cal(80), ~exercise=#Row, ()),
           make(

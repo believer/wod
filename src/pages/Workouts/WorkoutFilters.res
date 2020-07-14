@@ -1,27 +1,25 @@
 open Pill
 
 let workoutTypes =
-  list[
-    Item.make(~label="All", ()),
-    Item.make(~value=Some(Route.WodType.ForTime), ~label="For time", ()),
-    Item.make(~value=Some(Route.WodType.EMOM), ~label="EMOM", ()),
-    Item.make(~value=Some(Route.WodType.AMRAP), ~label="AMRAP", ()),
-  ]
+list{ Item.make(~label="All", ()),
+  Item.make(~value=Some(Route.WodType.ForTime), ~label="For time", ()),
+  Item.make(~value=Some(Route.WodType.EMOM), ~label="EMOM", ()),
+  Item.make(~value=Some(Route.WodType.AMRAP), ~label="AMRAP", ()),
+}
 
 let workoutCategories =
-  list[
-    Item.make(~label="All", ()),
-    Item.make(~value=Some(Route.WodCategory.Hero), ~label="Hero", ()),
-    Item.make(~value=Some(Route.WodCategory.Girl), ~label="The Girls", ()),
-    Item.make(~value=Some(Route.WodCategory.WZA), ~label="Wodapalooza", ()),
-    Item.make(~value=Some(Route.WodCategory.Open), ~label="Open", ()),
-    Item.make(~value=Some(Route.WodCategory.Mayhem), ~label="Mayhem", ()),
-    Item.make(
+list{ Item.make(~label="All", ()),
+  Item.make(~value=Some(Route.WodCategory.Hero), ~label="Hero", ()),
+  Item.make(~value=Some(Route.WodCategory.Girl), ~label="The Girls", ()),
+  Item.make(~value=Some(Route.WodCategory.WZA), ~label="Wodapalooza", ()),
+  Item.make(~value=Some(Route.WodCategory.Open), ~label="Open", ()),
+  Item.make(~value=Some(Route.WodCategory.Mayhem), ~label="Mayhem", ()),
+  Item.make(
       ~value=Some(Route.WodCategory.Strength),
       ~label="Strength",
       (),
-    ),
-  ]
+      ),
+}
 
 @react.component
 let make = (~workoutCategory, ~workoutType) => {

@@ -53,8 +53,7 @@ let make = (~query, ~workoutCategory, ~workoutType, ~resetQuery) => {
     Cookie.Config.make(~expires=3650, ()),
   )
 
-  let noQuery = list[
-    Some("girl"),
+  let noQuery = list{ Some("girl"),
     Some("girls"),
     Some("the girls"),
     Some("hero"),
@@ -63,7 +62,7 @@ let make = (~query, ~workoutCategory, ~workoutType, ~resetQuery) => {
     Some("wodapalooza"),
     Some("open"),
     Some("games"),
-  ]
+  }
 
   React.useEffect1(
     () => {
@@ -91,16 +90,16 @@ let make = (~query, ~workoutCategory, ~workoutType, ~resetQuery) => {
 
   let filteredWods =
     Wods.wods
-    ->Belt.List.keep(({name}) =>
+    ->Belt.Array.keep(({name}) =>
         Search.filter(
           noQuery |> List.exists(q => q === query) ? None : query,
           name,
         )
       )
-    ->Belt.List.keep(({wodType}) => Filter.workoutType(workoutType, wodType))
-    ->Belt.List.keep(({category}) => Filter.category(workoutCategory, category))
+    ->Belt.Array.keep(({wodType}) => Filter.workoutType(workoutType, wodType))
+    ->Belt.Array.keep(({category}) => Filter.category(workoutCategory, category))
 
-  let filteredWodsLength = Belt.List.length(filteredWods)
+  let filteredWodsLength = Belt.Array.length(filteredWods)
 
   <Settings.Context.Provider value={system: system}>
     <main className="mt-10 mb-20 grid grid-template-main">
@@ -142,8 +141,8 @@ let make = (~query, ~workoutCategory, ~workoutType, ~resetQuery) => {
            </div>
          | _ =>
            filteredWods
-           ->Belt.List.reverse
-           ->Belt.List.map(wod =>
+           ->Belt.Array.reverse
+           ->Belt.Array.map(wod =>
                <Workout
                  key={wod.id->CUID.toString}
                  globalWodVersion
@@ -151,7 +150,6 @@ let make = (~query, ~workoutCategory, ~workoutType, ~resetQuery) => {
                  wod
                />
              )
-           ->Belt.List.toArray
            ->React.array
          }}
       </div>
@@ -161,7 +159,7 @@ let make = (~query, ~workoutCategory, ~workoutType, ~resetQuery) => {
         target="_blank"
         rel="noreferrer noopener">
         {React.string(
-           Wods.wods->Belt.List.length->string_of_int
+           Wods.wods->Belt.Array.length->string_of_int
            ++ " workouts - v"
            ++ Utils.version,
          )}

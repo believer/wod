@@ -13,7 +13,7 @@ module Element = {
 
 @react.component
 let make = (~className=?, ~text) => {
-  <div className={Cn.make(list["markdown", className->Cn.unpack])}>
+  <div className={Cn.fromList(list{ "markdown", className->Cn.take })}>
     {text->Dedent.make->Parser.make->Element.make}
   </div>
 }

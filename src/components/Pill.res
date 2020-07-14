@@ -1,3 +1,5 @@
+open Css
+
 module Item = {
   type t<'value> = {
     value: option<'value>,
@@ -27,19 +29,18 @@ let backgroundColor = color =>
 @react.component
 let make = (~onClick=?, ~children, ~color=#Gray, ~className=?, ~selected=?) => {
   let className =
-    Css.merge(list[
-      "inline-block rounded-full px-3 py-1 text-sm font-semibold text-center
-      mr-4 last:mr-0",
-      backgroundColor(color),
-      className->Cn.unpack,
-      {
+    merge(list{ "inline-block rounded-full px-3 py-1 text-sm font-semibold text-center
+        mr-4 last:mr-0",
+        backgroundColor(color),
+        className->Cn.take,
+        {
         switch (selected) {
         | Some(selected) =>
-          "bg-blue-200 text-blue-700 hover:bg-blue-300"->Cn.ifTrue(selected)
+        "bg-blue-200 text-blue-700 hover:bg-blue-300"->Cn.on(selected)
         | None => ""
         }
-      },
-    ])
+        },
+        })
 
   switch (onClick) {
   | Some(onClick) => <button className onClick> children </button>

@@ -1,1 +1,1 @@
-type t = list<int>
+type t = array<int>

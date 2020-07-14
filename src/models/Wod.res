@@ -10,8 +10,8 @@ type rec t = {
   timeCap: option<int>,
   rounds: option<int>,
   repScheme: option<RepScheme.t>,
-  parts: list<WodPart.t>,
-  scaledParts: option<list<WodPart.t>>,
+  parts: array<WodPart.t>,
+  scaledParts: option<array<WodPart.t>>,
 }
 
 let make =

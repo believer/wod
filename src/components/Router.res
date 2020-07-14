@@ -28,10 +28,10 @@ module ExternalLink = {
 module NavLink = {
   let isActiveLink = (path, href) => {
     switch (path, href) {
-    | (list[_, _], "/")
-    | (list[_, _], "/all/all")
-    | (list[], "/all/all")
-    | (list[], "/") => true
+    | (list{ _, _ }, "/")
+    | (list{ _, _ }, "/all/all")
+    | (list{}, "/all/all")
+    | (list{}, "/") => true
     | (p, _) =>
       p
       |> List.exists(pathPart =>
@@ -46,7 +46,7 @@ module NavLink = {
     let href = Route.toPath(to_)
     let isActive = isActiveLink(url.path, href)
     let className =
-      Cn.make(list[className, "text-blue-500"->Cn.ifTrue(isActive)])
+      Cn.fromList(list{ className, "text-blue-500"->Cn.on(isActive) })
 
     <a ariaSelected=isActive className href onClick={handleLinkClick(to_)}>
       children
