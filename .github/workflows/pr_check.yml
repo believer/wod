@@ -1,0 +1,32 @@
+name: Run tests on PR
+
+on:
+  pull_request:
+    branches: 
+      - master
+
+jobs:
+  test:
+    name: Test on node ${{ matrix.node_version }} and ${{ matrix.os }}
+
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x]
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Run tests and linting
+      run: |
+        npm ci
+        npm run lint --if-present
+        npm test
+      env:
+        CI: true

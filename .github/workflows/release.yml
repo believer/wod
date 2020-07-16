@@ -1,0 +1,39 @@
+name: Release
+
+on:
+  push:
+    branches: 
+      - master
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest 
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+
+    - name: Run tests and linting
+      run: |
+        npm ci
+        npm run build
+        npm test
+      env:
+        CI: true
+
+    - name: Create release using semantic-release
+      run: npx semantic-release
+      env:
+        # GITHUB_TOKEN is added automatically by GitHub
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Release to Now
+      run: |
+        git clone https://github.com/$REPOSITORY.git $REPOSITORY
+        cd $REPOSITORY
+        npm i -g now
+        now --token=$NOW_TOKEN --prod
+      env:
+        NOW_TOKEN: ${{ secrets.NOW_TOKEN }}
+        REPOSITORY: ${{ secrets.GITHUB_REPOSITORY }}
