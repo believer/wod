@@ -13,8 +13,5 @@
       "dest": "/index.html"
     }
   ],
-  "regions": ["arn"],
-  "github": {
-    "enabled": false
-  }
+  "regions": ["arn"]
 }
