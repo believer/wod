@@ -32,7 +32,6 @@ jobs:
       run: |
         git clone https://github.com/$GITHUB_REPOSITORY.git $GITHUB_REPOSITORY
         cd $GITHUB_REPOSITORY
-        npm i -g now
-        now --token=$NOW_TOKEN --prod
+        npx now --token=$NOW_TOKEN --prod
       env:
         NOW_TOKEN: ${{ secrets.NOW_TOKEN }}
