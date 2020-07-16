@@ -1,6 +1,6 @@
 # Wod Collection
 
-[![Build Status](https://travis-ci.com/believer/wod.svg?branch=master)](https://travis-ci.com/believer/wod)
+[![](https://github.com/believer/wod/workflows/Release/badge.svg)](https://github.com/believer/wod/actions?workflow=Release)
 
 This is a collection of CrossFit style WODs (Workout of the Day). Mostly based on what I do or want to do :muscle:
 
