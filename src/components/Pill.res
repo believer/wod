@@ -6,16 +6,16 @@ module Item = {
     label: string,
   }
 
-  let make = (~value=None, ~label, ()) => {value, label}
+  let make = (~value=None, ~label, ()) => {value: value, label: label}
 }
 
 let matchSelected = (value, matcher) =>
-  switch (value) {
+  switch value {
   | None => Belt.Option.isNone(matcher)
   | Some(value) => matcher === Some(value)
   }
 
-let backgroundColor = color => 
+let backgroundColor = color =>
   switch color {
   | #Gray => "bg-gray-200 text-gray-700 hover:bg-gray-300"
   | #Red => "bg-red-200 text-red-700 hover:bg-red-300"
@@ -28,22 +28,20 @@ let backgroundColor = color =>
 
 @react.component
 let make = (~onClick=?, ~children, ~color=#Gray, ~className=?, ~selected=?) => {
-  let className =
-    merge(list{ "inline-block rounded-full px-3 py-1 text-sm font-semibold text-center
+  let className = merge(list{
+    "inline-block rounded-full px-3 py-1 text-sm font-semibold text-center
         mr-4 last:mr-0",
-        backgroundColor(color),
-        className->Cn.take,
-        {
-        switch (selected) {
-        | Some(selected) =>
-        "bg-blue-200 text-blue-700 hover:bg-blue-300"->Cn.on(selected)
-        | None => ""
-        }
-        },
-        })
+    backgroundColor(color),
+    className->Cn.take,
+    switch selected {
+    | Some(selected) => "bg-blue-200 text-blue-700 hover:bg-blue-300"->Cn.on(selected)
+    | None => ""
+    },
+  })
 
-  switch (onClick) {
+  switch onClick {
   | Some(onClick) => <button className onClick> children </button>
   | None => <div className> children </div>
   }
 }
+
