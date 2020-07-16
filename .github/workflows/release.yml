@@ -27,11 +27,3 @@ jobs:
       env:
         # GITHUB_TOKEN is added automatically by GitHub
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Release to Now
-      run: |
-        git clone https://github.com/$GITHUB_REPOSITORY.git $GITHUB_REPOSITORY
-        cd $GITHUB_REPOSITORY
-        npx now --token=$NOW_TOKEN --prod
-      env:
-        NOW_TOKEN: ${{ secrets.NOW_TOKEN }}
