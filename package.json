@@ -38,7 +38,7 @@
     "reason-react-update": "2.0.0"
   },
   "devDependencies": {
-    "@babel/core": "7.10.4",
+    "@babel/core": "7.10.5",
     "@babel/preset-env": "7.10.4",
     "@fullhuman/postcss-purgecss": "2.3.0",
     "@glennsl/bs-jest": "0.5.1",
@@ -56,9 +56,9 @@
     "is-ci-cli": "2.1.2",
     "postcss-loader": "3.0.0",
     "style-loader": "1.2.1",
-    "tailwindcss": "1.4.6",
+    "tailwindcss": "1.5.1",
     "webpack": "4.43.0",
-    "webpack-cli": "3.3.9",
+    "webpack-cli": "3.3.12",
     "webpack-dev-server": "3.11.0"
   }
 }
