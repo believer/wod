@@ -1,3 +1,10 @@
+## [1.35.2](https://github.com/believer/wod/compare/v1.35.1...v1.35.2) (2020-07-16)
+
+
+### Bug Fixes
+
+* tailwindcss purging ([d4f6bf6](https://github.com/believer/wod/commit/d4f6bf6688d2169e668592335ccc37ecdef166e9))
+
 ## [1.35.1](https://github.com/believer/wod/compare/v1.35.0...v1.35.1) (2020-07-16)
 
 
