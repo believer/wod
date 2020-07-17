@@ -1,17 +1,17 @@
 type rec t = {
-  category: option<Category.t>,
   buyInOut: option<(option<WodPart.t>, option<WodPart.t>)>,
+  category: option<Category.t>,
   createdAt: string,
   description: option<(option<string>, option<string>)>,
-  id: CUID.t,
   externalLink: option<(string, string)>,
+  id: CUID.t,
   name: option<string>,
-  wodType: WodType.t,
-  timeCap: option<int>,
-  rounds: option<int>,
-  repScheme: option<RepScheme.t>,
   parts: array<WodPart.t>,
+  repScheme: option<RepScheme.t>,
+  rounds: option<int>,
   scaledParts: option<array<WodPart.t>>,
+  timeCap: option<int>,
+  wodType: WodType.t,
 }
 
 let make =
