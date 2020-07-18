@@ -29,8 +29,7 @@ let backgroundColor = color =>
 @react.component
 let make = (~onClick=?, ~children, ~color=#Gray, ~className=?, ~selected=?) => {
   let className = merge(list{
-    "inline-block rounded-full px-3 py-1 text-sm font-semibold text-center
-        mr-4 last:mr-0",
+    "inline-block rounded-full px-3 py-1 text-xs font-semibold text-center mr-4 last:mr-0 whitespace-no-wrap",
     backgroundColor(color),
     className->Cn.take,
     switch selected {

@@ -60,42 +60,6 @@ module Header = {
          | (None, _, _) => React.null
          }}
       </div>
-      {switch (wod.category) {
-       | Some(c) =>
-         switch (c) {
-         | #Hero =>
-           <Pill
-             color=#Green onClick={_ => Route.go(Home((None, Some(Hero))))}>
-             {React.string("Hero")}
-           </Pill>
-         | #Girl =>
-           <Pill
-             color=#Pink onClick={_ => Route.go(Home((None, Some(Girl))))}>
-             {React.string("The Girls")}
-           </Pill>
-         | #Wodapalooza(year) =>
-           <Pill onClick={_ => Route.go(Home((None, Some(WZA))))}>
-             {React.string("Wodapalooza " ++ year->string_of_int)}
-           </Pill>
-         | #Open(year) =>
-           <Pill onClick={_ => Route.go(Home((None, Some(Open))))}>
-             {React.string("Open " ++ year->string_of_int)}
-           </Pill>
-         | #Strength =>
-           <Pill
-             color=#Purple
-             onClick={_ => Route.go(Home((None, Some(Strength))))}>
-             {React.string("Strength")}
-           </Pill>
-         | #Mayhem =>
-           <Pill
-             color=#Blue
-             onClick={_ => Route.go(Home((None, Some(Mayhem))))}>
-             {React.string("Mayhem")}
-           </Pill>
-         }
-       | None => React.null
-       }}
     </header>
   }
 }
@@ -337,6 +301,44 @@ let make = (~lastVisit, ~wod: Wod.t, ~globalWodVersion) => {
          </Router.ExternalLink>
        | None => React.null
        }}
+      <div className="mt-4">
+      {switch (wod.category) {
+        | Some(c) =>
+           switch (c) {
+             | #Hero =>
+               <Pill
+               color=#Green onClick={_ => Route.go(Home((None, Some(Hero))))}>
+               {React.string("Hero")}
+             </Pill>
+               | #Girl =>
+               <Pill
+               color=#Pink onClick={_ => Route.go(Home((None, Some(Girl))))}>
+               {React.string("The Girls")}
+             </Pill>
+               | #Wodapalooza(year) =>
+               <Pill onClick={_ => Route.go(Home((None, Some(WZA))))}>
+               {React.string("Wodapalooza " ++ year->string_of_int)}
+             </Pill>
+               | #Open(year) =>
+               <Pill onClick={_ => Route.go(Home((None, Some(Open))))}>
+               {React.string("Open " ++ year->string_of_int)}
+             </Pill>
+               | #Strength =>
+               <Pill
+               color=#Purple
+               onClick={_ => Route.go(Home((None, Some(Strength))))}>
+               {React.string("Strength")}
+             </Pill>
+               | #Mayhem =>
+               <Pill
+               color=#Blue
+               onClick={_ => Route.go(Home((None, Some(Mayhem))))}>
+               {React.string("Mayhem")}
+             </Pill>
+           }
+        | None => React.null
+       }}
+      </div>
     </div>
     {switch wod.scaledParts {
      | Some(_) =>
