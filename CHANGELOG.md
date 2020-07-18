@@ -1,3 +1,11 @@
+## [1.36.1](https://github.com/believer/wod/compare/v1.36.0...v1.36.1) (2020-07-18)
+
+
+### Bug Fixes
+
+* move wod category ([bc8b0f7](https://github.com/believer/wod/commit/bc8b0f7f692270a92e172b2712440d7c3fa7175c))
+* update pump sesh triplet with scaled option ([cc0814a](https://github.com/believer/wod/commit/cc0814af851f6d804f257d61bd46cc5f19d08695))
+
 # [1.36.0](https://github.com/believer/wod/compare/v1.35.2...v1.36.0) (2020-07-18)
 
 
