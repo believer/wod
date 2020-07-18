@@ -1,3 +1,10 @@
+# [1.36.0](https://github.com/believer/wod/compare/v1.35.2...v1.36.0) (2020-07-18)
+
+
+### Features
+
+* add some wodapalooza 2020 wods ([7836ed6](https://github.com/believer/wod/commit/7836ed68b80cbe630b81c5b732a029a64c486923))
+
 ## [1.35.2](https://github.com/believer/wod/compare/v1.35.1...v1.35.2) (2020-07-16)
 
 
