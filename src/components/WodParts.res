@@ -36,7 +36,7 @@ module Feet = {
 
   let make = m =>
     switch m {
-    | _ => (m->float_of_int *. approx)->round5
+    | _ => (m *. approx)->round5
     }
 }
 
@@ -69,13 +69,15 @@ module Unit = {
     | #Min(min) => min->soi ++ " min "
     | #RepScheme => ""
     | #Cal(c) => c->soi ++ " cal "
-    | #Cal2(m, f) => m->soi ++ "/" ++ f->soi ++ " cal "
+    | #Cal2(m, f) => `${m->soi}/${f->soi} cal `
     | #Num(st) => st->soi
+    | #Num2(m, f) => `${m->soi}/${f->soi} `
+    | #Max => "Max "
     | #Meter(m) => m->soi ++ "m "
     | #MeterWithFeet(m) =>
       switch system {
       | Metric => m->soi ++ "m "
-      | Imperial => m->Feet.make->sof ++ " feet "
+      | Imperial => m->float_of_int->Feet.make->sof ++ " feet "
       }
     | #OneSide(a, b) => a->soi ++ "/" ++ b->soi
     | #Span(a, b) =>
@@ -95,7 +97,9 @@ let weightUnit = weight =>
   switch weight {
   | #lbs => "lbs"
   | #cm(_) => "cm"
+  | #m(_) => "m"
   | #inch => "in"
+  | #feet => "ft"
   | #kg(_)
   | #kg2(_) => "kg"
   | #bodyweight
@@ -129,6 +133,8 @@ module Split = {
         toString(~m=Pounds.make(m), ~f=Pounds.make(f), ~w=#lbs, ())
       | #cm(_) =>
         toString(~m=Inches.make(m), ~f=Inches.make(f), ~w=#inch, ())
+      | #m(_) => toString(~m=Feet.make(m), ~f=Feet.make(f), ~w=#feet,
+      ())
       | _ => toString(~m, ~f, ~w, ())
       }
     }
@@ -205,10 +211,18 @@ let weightAndHeight =
   }
 }
 
-let singleWeight = (~m, ~weight as w) =>
-  switch w {
-  | #kg2(_) => str("(2*" ++ m->sof ++ " " ++ weightUnit(w) ++ ")")
-  | _ => str("(" ++ m->sof ++ " " ++ weightUnit(w) ++ ")")
+let singleWeight = (~m, ~weight as w, ~system) =>
+  switch system {
+  | Settings.Metric => 
+    switch w {
+    | #kg2(_) => str("(2*" ++ m->sof ++ " " ++ weightUnit(w) ++ ")")
+    | _ => str("(" ++ m->sof ++ " " ++ weightUnit(w) ++ ")")
+    }
+  | Imperial =>
+    switch w {
+    | #m(_) => str(`(${m->Feet.make->sof} ${weightUnit(#feet)})`)
+    | _ => str("(" ++ m->sof ++ " " ++ weightUnit(w) ++ ")")
+    }
   }
 
 module Weight = {
@@ -240,6 +254,7 @@ module Weight = {
            )
          | (#kg(m), #kg(f))
          | (#kg2(m), #kg2(f))
+         | (#m(m), #m(f))
          | (#cm(m), #cm(f)) => Split.make(~m, ~f, ~weight=male, ~system)
          | (#bodyweight, #bodyweight) => React.null
          | (_, _) => str("Non-uniform weights")
@@ -249,7 +264,8 @@ module Weight = {
          switch weight {
          | #kg(m)
          | #kg2(m)
-         | #cm(m) => singleWeight(~m, ~weight)
+         | #m(m)
+         | #cm(m) => singleWeight(~m, ~weight, ~system)
          | #kgcm(_, _)
          | #kg2cm(_, _)
          | #bodyweight => React.null

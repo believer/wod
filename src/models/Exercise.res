@@ -4,6 +4,7 @@ type t = [
   | #BarFacingBurpee
   | #BarMuscleUp
   | #BearCrawl
+  | #BenchPress
   | #BentOverRow
   | #BoxJump
   | #BoxStepUp
@@ -34,6 +35,7 @@ type t = [
   | #LungeFrontRack
   | #MedicineBallStepUp
   | #MuscleUp
+  | #MuscleUpRing
   | #OverheadLunge
   | #OverheadSquat
   | #PullUp
@@ -45,6 +47,7 @@ type t = [
   | #Rest
   | #RingDip
   | #RingRow
+  | #RopeClimbLegless
   | #Row
   | #Run
   | #RussianTwist
@@ -79,6 +82,7 @@ let toString: t => string = exercise =>
   | #BackwardLunge => "backward lunge"
   | #BarMuscleUp => "bar muscle-up"
   | #BearCrawl => "bear crawl"
+  | #BenchPress => "bench press"
   | #BentOverRow => "bent-over row"
   | #BoxJump => "box jump"
   | #BoxStepUp => "box step-up"
@@ -110,6 +114,7 @@ let toString: t => string = exercise =>
   | #LungeFrontRack => "front-rack lunge"
   | #MedicineBallStepUp => "medicine-ball step-up"
   | #MuscleUp => "muscle-up"
+  | #MuscleUpRing => "ring muscle-up"
   | #OverheadLunge => "overhead lunge"
   | #OverheadSquat => "overhead squat"
   | #PullUp => "pull-up"
@@ -121,6 +126,7 @@ let toString: t => string = exercise =>
   | #Rest => "rest"
   | #RingDip => "ring dip"
   | #RingRow => "ring row"
+  | #RopeClimbLegless => "legless rope climb"
   | #Row => "row"
   | #Run => "run"
   | #RussianTwist => "russian twist"

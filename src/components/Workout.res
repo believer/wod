@@ -256,7 +256,20 @@ module TimeCap = {
         </span>
         {t->string_of_int ++ " min" |> React.string}
       </div>
-    | (Some(_), _)
+    | (Some(t), #ForDistance) => 
+      <div className="mt-4 text-sm">
+        {React.string("For max meters")} 
+        <div className="text-gray-700">
+          <span className="font-semibold">
+          {"Time cap:"->Utils.padEndWithSpace->React.string}
+        </span>
+        {t->string_of_int ++ " min" |> React.string}
+        </div>
+      </div>
+    | (Some(_), #AltEMOM(_))
+    | (Some(_), #EMOM(_))
+    | (Some(_), #AMRAP)
+    | (Some(_), #E90(_))
     | (None, _) => React.null
     }
   }

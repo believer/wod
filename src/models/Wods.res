@@ -2323,4 +2323,57 @@ Stop at 20 minutes
       ),
     (),
   ),
+  Wod.make(
+    ~name=Some("Luce"),
+    ~createdAt="2020-07-18T12:19:00.000Z",
+    ~wodType=#ForTime,
+    ~rounds=Some(3),
+    ~category=Some(#Wodapalooza(2020)),
+    ~timeCap=Some(35),
+    ~description=Some((Some("With a GORUCK (9/6 kg - 20/14 lbs)"), None)),
+    ~externalLink=Some(("Wodapalooza",
+    "https://wodapalooza.com/workout/2019-2020-wza-miami-luce/")),
+    ~parts=[
+      make(~reps=#Meter(1000), ~exercise=#Run, ()),
+      make(~reps=#Num2(10, 7), ~exercise=#MuscleUpRing, ())
+      make(~reps=#Num(100), ~exercise=#Squat, ())
+    ],
+    ()
+  ),
+  Wod.make(
+    ~name=Some("Pace Race"),
+    ~createdAt="2020-07-18T12:35:00.000Z",
+    ~wodType=#ForDistance,
+    ~category=Some(#Wodapalooza(2020)),
+    ~timeCap=Some(12),
+    ~description=Some((Some(`Row until you are caught by the computer-generated pace-boat.
+
+It will increase pace throughout the event`), None)),
+    ~externalLink=Some(("Wodapalooza",
+    "https://wodapalooza.com/workout/2019-2020-wza-miami-pace-race/")),
+    ~parts=[
+      make(~reps=#Max, ~exercise=#Row, ()),
+    ],
+    ()
+  )
+  Wod.make(
+    ~name=Some("Pump Sesh Triplet"),
+    ~createdAt="2020-07-18T12:42:00.000Z",
+    ~wodType=#ForTime,
+    ~category=Some(#Wodapalooza(2020)),
+    ~rounds=Some(3),
+    ~timeCap=Some(8),
+    ~externalLink=Some(("Wodapalooza",
+    "https://wodapalooza.com/workout/2019-2020-wza-miami-pump-sesh-triplet/")),
+    ~parts=[
+      make(~reps=#Num2(2,1), ~exercise=#RopeClimbLegless,
+      ~weight=(Some(#m(5.0)), None),  ()),
+      make(~reps=#Num(15), ~exercise=#BenchPress,
+      ~equipment=Some(Dumbbell), ~weight=(Some(#kg(31.0)), Some(#kg(22.5))), ())
+      make(~reps=#Num(9), ~exercise=#Thruster,
+      ~equipment=Some(Dumbbell), ~weight=(Some(#kg(31.0)),
+      Some(#kg(22.5))), ())
+    ],
+    ()
+  ),
 ]
