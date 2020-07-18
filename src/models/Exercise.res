@@ -47,6 +47,7 @@ type t = [
   | #Rest
   | #RingDip
   | #RingRow
+  | #RopeClimb
   | #RopeClimbLegless
   | #Row
   | #Run
@@ -126,6 +127,7 @@ let toString: t => string = exercise =>
   | #Rest => "rest"
   | #RingDip => "ring dip"
   | #RingRow => "ring row"
+  | #RopeClimb => "rope climb"
   | #RopeClimbLegless => "legless rope climb"
   | #Row => "row"
   | #Run => "run"

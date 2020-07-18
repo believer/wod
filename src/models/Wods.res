@@ -2374,6 +2374,15 @@ It will increase pace throughout the event`), None)),
       ~equipment=Some(Dumbbell), ~weight=(Some(#kg(31.0)),
       Some(#kg(22.5))), ())
     ],
+    ~scaledParts=Some([
+      make(~reps=#Num2(2,1), ~exercise=#RopeClimb,
+        ~weight=(Some(#m(4.0)), None),  ()),
+      make(~reps=#Num(15), ~exercise=#BenchPress,
+        ~equipment=Some(Dumbbell), ~weight=(Some(#kg(18.0)), Some(#kg(11.0))), ())
+      make(~reps=#Num(9), ~exercise=#Thruster,
+        ~equipment=Some(Dumbbell), ~weight=(Some(#kg(18.0)),
+          Some(#kg(11.0))), ())
+    ]),
     ()
   ),
 ]
