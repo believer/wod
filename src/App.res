@@ -5,13 +5,12 @@ let make = () => {
   let path = Route.fromPath(url.path)
 
   <>
-    {switch (path) {
+    {switch path {
      | Glossary
      | Home((_, _)) =>
        <header className="mt-16 grid grid-template-main">
          <div
-           className="flex items-center justify-between border-b pb-4 flex-wrap
-           sm:h-16 grid-column-main">
+           className="flex flex-wrap items-center justify-between pb-4 border-b sm:h-16 grid-column-main">
            <div>
              <Router.NavLink className="mr-8" to_={Route.Home((None, None))}>
                {React.string("Workouts")}
@@ -20,7 +19,7 @@ let make = () => {
                {React.string("Glossary")}
              </Router.NavLink>
            </div>
-           {switch (path) {
+           {switch path {
             | Home((_, _)) =>
               <Search onChange={v => setQuery(_ => v)} query />
             | Glossary
@@ -30,7 +29,7 @@ let make = () => {
        </header>
      | NotFoundRoute => React.null
      }}
-    {switch (path) {
+    {switch path {
      | Home((workoutType, workoutCategory)) =>
        <Workouts
          query
