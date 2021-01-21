@@ -34,18 +34,16 @@ module Filter = {
 @react.component
 let make = (~query, ~workoutCategory, ~workoutType, ~resetQuery) => {
   let lastVisit = Cookie.getAsString("wod-last-visit")
-  let (system, setSystem) =
-    Storage.useStorage(
-      ~key="wod-system",
-      ~parser=Settings.fromString,
-      ~initialValue=Settings.Metric,
-    )
-  let (globalWodVersion, setGlobalWodVersion) =
-    Storage.useStorage(
-      ~key="wod-wod-version",
-      ~parser=Workout.fromString,
-      ~initialValue=Workout.RX,
-    )
+  let (system, setSystem) = Storage.useStorage(
+    ~key="wod-system",
+    ~parser=Settings.fromString,
+    ~initialValue=Settings.Metric,
+  )
+  let (globalWodVersion, setGlobalWodVersion) = Storage.useStorage(
+    ~key="wod-wod-version",
+    ~parser=Workout.fromString,
+    ~initialValue=Workout.RX,
+  )
 
   Cookie.setStringConfig(
     "wod-last-visit",
@@ -53,7 +51,8 @@ let make = (~query, ~workoutCategory, ~workoutType, ~resetQuery) => {
     Cookie.Config.make(~expires=3650, ()),
   )
 
-  let noQuery = list{ Some("girl"),
+  let noQuery = list{
+    Some("girl"),
     Some("girls"),
     Some("the girls"),
     Some("hero"),
@@ -64,38 +63,36 @@ let make = (~query, ~workoutCategory, ~workoutType, ~resetQuery) => {
     Some("games"),
   }
 
-  React.useEffect1(
-    () => {
-      switch query {
-      | None => ()
-      | Some(q) =>
-        switch Js.String.toLowerCase(q) {
-        | "girl"
-        | "the girls"
-        | "girls" => Route.go(Home((workoutType, Some(Girl))))
-        | "hero"
-        | "heroes" => Route.go(Home((workoutType, Some(Hero))))
-        | "wza"
-        | "wodapalooza" => Route.go(Home((workoutType, Some(WZA))))
-        | "open"
-        | "games" => Route.go(Home((workoutType, Some(Open))))
-        | _ => ()
-        }
+  React.useEffect1(() => {
+    switch query {
+    | None => ()
+    | Some(q) =>
+      switch Js.String.toLowerCase(q) {
+      | "girl"
+      | "the girls"
+      | "girls" =>
+        Route.go(Home((workoutType, Some(Girl))))
+      | "hero"
+      | "heroes" =>
+        Route.go(Home((workoutType, Some(Hero))))
+      | "wza"
+      | "wodapalooza" =>
+        Route.go(Home((workoutType, Some(WZA))))
+      | "open"
+      | "games" =>
+        Route.go(Home((workoutType, Some(Open))))
+      | _ => ()
       }
+    }
 
-      None
-    },
-    [query],
-  )
+    None
+  }, [query])
 
   let filteredWods =
     Wods.wods
     ->Belt.Array.keep(({name}) =>
-        Search.filter(
-          noQuery |> List.exists(q => q === query) ? None : query,
-          name,
-        )
-      )
+      Search.filter(noQuery |> List.exists(q => q === query) ? None : query, name)
+    )
     ->Belt.Array.keep(({wodType}) => Filter.workoutType(workoutType, wodType))
     ->Belt.Array.keep(({category}) => Filter.category(workoutCategory, category))
 
@@ -103,55 +100,37 @@ let make = (~query, ~workoutCategory, ~workoutType, ~resetQuery) => {
 
   <Settings.Context.Provider value={system: system}>
     <main className="mt-10 mb-20 grid grid-template-main">
-      <div
-        className="items-center justify-between mb-10 md:flex grid-column-main">
+      <div className="items-center justify-between mb-10 md:flex grid-column-main">
         <WorkoutFilters workoutCategory workoutType />
-        <WorkoutSettings
-          globalWodVersion
-          setGlobalWodVersion
-          setSystem
-          system
-        />
+        <WorkoutSettings globalWodVersion setGlobalWodVersion setSystem system />
       </div>
       {switch (query, workoutType, workoutCategory) {
-       | (None, None, None) => React.null
-       | (_, _, _) =>
-         <div className="mb-10 grid-column-main">
-           <Alert
-             onClick={_ => {
-               Route.go(Home((None, None)))
-               resetQuery()
-             }}
-             text={
-               "Filtered **"
-               ++ filteredWodsLength->string_of_int
-               ++ "** workouts"
-             }
-           />
-         </div>
-       }}
+      | (None, None, None) => React.null
+      | (_, _, _) =>
+        <div className="mb-10 grid-column-main">
+          <Alert
+            onClick={_ => {
+              Route.go(Home((None, None)))
+              resetQuery()
+            }}
+            text={"Filtered **" ++ filteredWodsLength->string_of_int ++ "** workouts"}
+          />
+        </div>
+      }}
       <div className="grid grid-column-main grid-gap grid-template-cards">
-        {switch (filteredWodsLength) {
-         | 0 =>
-           <div
-             className="p-8 text-center text-gray-600 bg-white rounded grid-column-bleed">
-             {React.string(
-                j`I don't have any WODs with this combination yet 💪`
-              )}
-           </div>
-         | _ =>
-           filteredWods
-           ->Belt.Array.reverse
-           ->Belt.Array.map(wod =>
-               <Workout
-                 key={wod.id->CUID.toString}
-                 globalWodVersion
-                 lastVisit
-                 wod
-               />
-             )
-           ->React.array
-         }}
+        {switch filteredWodsLength {
+        | 0 =>
+          <div className="p-8 text-center text-gray-600 bg-white rounded grid-column-bleed">
+            {React.string(j`I don't have any WODs with this combination yet 💪`)}
+          </div>
+        | _ =>
+          filteredWods
+          ->Belt.Array.reverse
+          ->Belt.Array.map(wod =>
+            <Workout key={wod.id->CUID.toString} globalWodVersion lastVisit wod />
+          )
+          ->React.array
+        }}
       </div>
       <a
         className="mt-10 text-center text-gray-500 grid-column-main"
@@ -159,10 +138,8 @@ let make = (~query, ~workoutCategory, ~workoutType, ~resetQuery) => {
         target="_blank"
         rel="noreferrer noopener">
         {React.string(
-           Wods.wods->Belt.Array.length->string_of_int
-           ++ " workouts - v"
-           ++ Utils.version,
-         )}
+          Wods.wods->Belt.Array.length->string_of_int ++ " workouts - v" ++ Utils.version,
+        )}
       </a>
     </main>
   </Settings.Context.Provider>

@@ -15,10 +15,7 @@ let make = (~query, ~onChange) => {
     <div
       className="bg-gray-200 flex items-center px-4 py-3 border-2 border-gray-200
     focus-within:bg-white rounded focus-within:border-blue-400 focus-within:text-blue-700 relative">
-      <svg
-        className="w-4 mr-4 fill-current"
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 20 20">
+      <svg className="w-4 mr-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
         <path
           d="M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"
         />
@@ -32,8 +29,7 @@ let make = (~query, ~onChange) => {
           switch (e->ReactEvent.Form.target)["value"] {
           | "" => onChange(None)
           | v => onChange(Some(v))
-          }
-        }
+          }}
         placeholder="Find workout"
         value={query->Belt.Option.getWithDefault("")}
       />

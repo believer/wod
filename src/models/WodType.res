@@ -1,4 +1,4 @@
-type t = [ | #AMRAP | #EMOM(int) | #AltEMOM(int) | #ForTime | #E90(int) | #ForDistance]
+type t = [#AMRAP | #EMOM(int) | #AltEMOM(int) | #ForTime | #E90(int) | #ForDistance]
 
 let toString: t => string = wodType =>
   switch wodType {

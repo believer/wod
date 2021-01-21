@@ -69,12 +69,9 @@ module WorkoutCategory = {
 let fromPath = path =>
   switch path {
   | list{} => Home((None, None))
-  | list{ "glossary" } => Glossary
-  | list{ workoutType, workoutCategory } =>
-    Home((
-      WorkoutType.fromString(workoutType),
-      WorkoutCategory.fromString(workoutCategory),
-    ))
+  | list{"glossary"} => Glossary
+  | list{workoutType, workoutCategory} =>
+    Home((WorkoutType.fromString(workoutType), WorkoutCategory.fromString(workoutCategory)))
   | _ => NotFoundRoute
   }
 
@@ -82,8 +79,7 @@ let toPath = route =>
   switch route {
   | Glossary => "/glossary"
   | Home((None, None)) => "/"
-  | Home((wt, wc)) =>
-    "/" ++ WorkoutType.toString(wt) ++ "/" ++ WorkoutCategory.toString(wc)
+  | Home((wt, wc)) => "/" ++ WorkoutType.toString(wt) ++ "/" ++ WorkoutCategory.toString(wc)
   | NotFoundRoute => "/"
   }
 

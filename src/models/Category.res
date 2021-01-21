@@ -1,8 +1,1 @@
-type t = [
-  | #Hero
-  | #Girl
-  | #Mayhem
-  | #Wodapalooza(int)
-  | #Open(int)
-  | #Strength
-]
+type t = [#Hero | #Girl | #Mayhem | #Wodapalooza(int) | #Open(int) | #Strength]

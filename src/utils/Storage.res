@@ -1,7 +1,7 @@
-@bs.module("localforage")
+@module("localforage")
 external setItem: (string, string) => Js.Promise.t<string> = "setItem"
 
-@bs.module("localforage")
+@module("localforage")
 external getItem: string => Js.Promise.t<string> = "getItem"
 
 let set = (key, value) => setItem(key, value)
@@ -15,9 +15,9 @@ let useStorage = (~initialValue, ~key, ~parser) => {
   React.useEffect0(() => {
     get(key)
     |> then_(value => {
-         setValue(_ => parser(value))
-         resolve()
-       })
+      setValue(_ => parser(value))
+      resolve()
+    })
     |> ignore
 
     None

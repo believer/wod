@@ -49,7 +49,8 @@ module Equipment = {
       | Equipment.BulgarianBag
       | Unbroken
       | Kettlebell
-      | Dumbbell => " " ++ Equipment.toString(eq) |> str
+      | Dumbbell =>
+        " " ++ Equipment.toString(eq) |> str
       | WallBall
       | Barbell
       | JumpRope => React.null
@@ -88,8 +89,7 @@ module Unit = {
         aa->soi ++ "/" ++ ab->soi ++ "-" ++ ba->soi ++ "/" ++ bb->soi
       | _ => ""
       }
-    }
-    |> React.string
+    } |> React.string
   }
 }
 
@@ -113,107 +113,99 @@ module Split = {
   }
 
   let make = (~m, ~f, ~weight as w, ~system) =>
-    switch (system) {
+    switch system {
     | Settings.Metric =>
-      switch (w) {
+      switch w {
       | #kg2(_) => toString(~m, ~f, ~w, ~prefix="(2*", ())
       | _ => toString(~m, ~f, ~w, ())
       }
     | Settings.Imperial =>
-      switch (w) {
-      | #kg2(_) =>
-        toString(
-          ~m=Pounds.make(m),
-          ~f=Pounds.make(f),
-          ~w=#lbs,
-          ~prefix="(2*",
-          (),
-        )
-      | #kg(_) =>
-        toString(~m=Pounds.make(m), ~f=Pounds.make(f), ~w=#lbs, ())
-      | #cm(_) =>
-        toString(~m=Inches.make(m), ~f=Inches.make(f), ~w=#inch, ())
-      | #m(_) => toString(~m=Feet.make(m), ~f=Feet.make(f), ~w=#feet,
-      ())
+      switch w {
+      | #kg2(_) => toString(~m=Pounds.make(m), ~f=Pounds.make(f), ~w=#lbs, ~prefix="(2*", ())
+      | #kg(_) => toString(~m=Pounds.make(m), ~f=Pounds.make(f), ~w=#lbs, ())
+      | #cm(_) => toString(~m=Inches.make(m), ~f=Inches.make(f), ~w=#inch, ())
+      | #m(_) => toString(~m=Feet.make(m), ~f=Feet.make(f), ~w=#feet, ())
       | _ => toString(~m, ~f, ~w, ())
       }
     }
 }
 
-let weightAndHeight =
-    (~maleWeight, ~maleHeight, ~femaleWeight, ~femaleHeight, ~system, ~weight) => {
+let weightAndHeight = (
+  ~maleWeight,
+  ~maleHeight,
+  ~femaleWeight,
+  ~femaleHeight,
+  ~system,
+  ~weight,
+) => {
   switch (system, weight) {
   | (Settings.Metric, #kgcm) =>
     str(
-      "("
-      ++ maleWeight->sof
-      ++ "/"
-      ++ femaleWeight->sof
-      ++ " "
-      ++ weightUnit(#kg(0))
-      ++ " - "
-      ++ maleHeight->sof
-      ++ "/"
-      ++ femaleHeight->sof
-      ++ " "
-      ++ weightUnit(#cm(0))
-      ++ ")",
+      "(" ++
+      maleWeight->sof ++
+      "/" ++
+      femaleWeight->sof ++
+      " " ++
+      weightUnit(#kg(0)) ++
+      " - " ++
+      maleHeight->sof ++
+      "/" ++
+      femaleHeight->sof ++
+      " " ++
+      weightUnit(#cm(0)) ++ ")",
     )
   | (Settings.Imperial, #kgcm) =>
     str(
-      "("
-      ++ maleWeight->Pounds.make->sof
-      ++ "/"
-      ++ femaleWeight->Pounds.make->sof
-      ++ " "
-      ++ weightUnit(#lbs)
-      ++ " - "
-      ++ maleHeight->Inches.make->sof
-      ++ "/"
-      ++ femaleHeight->Inches.make->sof
-      ++ " "
-      ++ weightUnit(#inch)
-      ++ ")",
+      "(" ++
+      maleWeight->Pounds.make->sof ++
+      "/" ++
+      femaleWeight->Pounds.make->sof ++
+      " " ++
+      weightUnit(#lbs) ++
+      " - " ++
+      maleHeight->Inches.make->sof ++
+      "/" ++
+      femaleHeight->Inches.make->sof ++
+      " " ++
+      weightUnit(#inch) ++ ")",
     )
 
   | (Settings.Metric, #kg2cm) =>
     str(
-      "(2*"
-      ++ maleWeight->sof
-      ++ "/"
-      ++ femaleWeight->sof
-      ++ " "
-      ++ weightUnit(#kg(0))
-      ++ " - "
-      ++ maleHeight->sof
-      ++ "/"
-      ++ femaleHeight->sof
-      ++ " "
-      ++ weightUnit(#cm(0))
-      ++ ")",
+      "(2*" ++
+      maleWeight->sof ++
+      "/" ++
+      femaleWeight->sof ++
+      " " ++
+      weightUnit(#kg(0)) ++
+      " - " ++
+      maleHeight->sof ++
+      "/" ++
+      femaleHeight->sof ++
+      " " ++
+      weightUnit(#cm(0)) ++ ")",
     )
   | (Settings.Imperial, #kg2cm) =>
     str(
-      "(2*"
-      ++ maleWeight->Pounds.make->sof
-      ++ "/"
-      ++ femaleWeight->Pounds.make->sof
-      ++ " "
-      ++ weightUnit(#lbs)
-      ++ " - "
-      ++ maleHeight->Inches.make->sof
-      ++ "/"
-      ++ femaleHeight->Inches.make->sof
-      ++ " "
-      ++ weightUnit(#inch)
-      ++ ")",
+      "(2*" ++
+      maleWeight->Pounds.make->sof ++
+      "/" ++
+      femaleWeight->Pounds.make->sof ++
+      " " ++
+      weightUnit(#lbs) ++
+      " - " ++
+      maleHeight->Inches.make->sof ++
+      "/" ++
+      femaleHeight->Inches.make->sof ++
+      " " ++
+      weightUnit(#inch) ++ ")",
     )
   }
 }
 
 let singleWeight = (~m, ~weight as w, ~system) =>
   switch system {
-  | Settings.Metric => 
+  | Settings.Metric =>
     switch w {
     | #kg2(_) => str("(2*" ++ m->sof ++ " " ++ weightUnit(w) ++ ")")
     | _ => str("(" ++ m->sof ++ " " ++ weightUnit(w) ++ ")")
@@ -232,46 +224,48 @@ module Weight = {
 
     <span className="text-gray-500">
       {switch weight {
-       | (Some(male), Some(female)) =>
-         switch (male, female) {
-         | (#kgcm(m, mcm), #kgcm(f, fcm)) =>
-           weightAndHeight(
-             ~maleWeight=m,
-             ~maleHeight=mcm,
-             ~femaleWeight=f,
-             ~femaleHeight=fcm,
-             ~system,
-             ~weight=#kgcm,
-           )
-         | (#kg2cm(m, mcm), #kg2cm(f, fcm)) =>
-           weightAndHeight(
-             ~maleWeight=m,
-             ~maleHeight=mcm,
-             ~femaleWeight=f,
-             ~femaleHeight=fcm,
-             ~system,
-             ~weight=#kgcm,
-           )
-         | (#kg(m), #kg(f))
-         | (#kg2(m), #kg2(f))
-         | (#m(m), #m(f))
-         | (#cm(m), #cm(f)) => Split.make(~m, ~f, ~weight=male, ~system)
-         | (#bodyweight, #bodyweight) => React.null
-         | (_, _) => str("Non-uniform weights")
-         }
-       | (None, Some(weight))
-       | (Some(weight), None) =>
-         switch weight {
-         | #kg(m)
-         | #kg2(m)
-         | #m(m)
-         | #cm(m) => singleWeight(~m, ~weight, ~system)
-         | #kgcm(_, _)
-         | #kg2cm(_, _)
-         | #bodyweight => React.null
-         }
-       | (None, None) => React.null
-       }}
+      | (Some(male), Some(female)) =>
+        switch (male, female) {
+        | (#kgcm(m, mcm), #kgcm(f, fcm)) =>
+          weightAndHeight(
+            ~maleWeight=m,
+            ~maleHeight=mcm,
+            ~femaleWeight=f,
+            ~femaleHeight=fcm,
+            ~system,
+            ~weight=#kgcm,
+          )
+        | (#kg2cm(m, mcm), #kg2cm(f, fcm)) =>
+          weightAndHeight(
+            ~maleWeight=m,
+            ~maleHeight=mcm,
+            ~femaleWeight=f,
+            ~femaleHeight=fcm,
+            ~system,
+            ~weight=#kgcm,
+          )
+        | (#kg(m), #kg(f))
+        | (#kg2(m), #kg2(f))
+        | (#m(m), #m(f))
+        | (#cm(m), #cm(f)) =>
+          Split.make(~m, ~f, ~weight=male, ~system)
+        | (#bodyweight, #bodyweight) => React.null
+        | (_, _) => str("Non-uniform weights")
+        }
+      | (None, Some(weight))
+      | (Some(weight), None) =>
+        switch weight {
+        | #kg(m)
+        | #kg2(m)
+        | #m(m)
+        | #cm(m) =>
+          singleWeight(~m, ~weight, ~system)
+        | #kgcm(_, _)
+        | #kg2cm(_, _)
+        | #bodyweight => React.null
+        }
+      | (None, None) => React.null
+      }}
     </span>
   }
 }

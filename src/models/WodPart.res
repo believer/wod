@@ -8,11 +8,10 @@ type t = {
 
 let make = (~exercise, ~reps, ~weight=(None, None), ~equipment=None, ()) => {
   id: CUID.make(),
-  exercise,
-  reps,
-  weight,
-  equipment,
+  exercise: exercise,
+  reps: reps,
+  weight: weight,
+  equipment: equipment,
 }
 
 let rest = min => make(~reps=#Min(min), ~exercise=#Rest, ())
-

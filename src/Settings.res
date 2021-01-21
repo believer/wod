@@ -2,7 +2,7 @@ type system =
   | Metric
   | Imperial
 
-type t = {system}
+type t = {system: system}
 
 let toString = system =>
   switch system {

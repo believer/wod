@@ -1,6 +1,6 @@
 @react.component
 let make = () => {
-  let text = j`
+  let text = `
     # Glossary
 
     CrossFit contains a bunch of language that might seem confusing at first. Here are

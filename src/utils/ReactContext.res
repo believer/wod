@@ -10,19 +10,12 @@ module Make = (Config: Config) => {
     let make = t->React.Context.provider
 
     @bs.obj
-    external makeProps:
-      (
-        ~value: Config.context,
-        ~children: React.element,
-        ~key: string=?,
-        unit
-      ) =>
-      {
-        .
-        "value": Config.context,
-        "children": React.element,
-      } =
-      ""
+    external makeProps: (
+      ~value: Config.context,
+      ~children: React.element,
+      ~key: string=?,
+      unit,
+    ) => {"value": Config.context, "children": React.element} = ""
   }
 
   let use = () => React.useContext(t)

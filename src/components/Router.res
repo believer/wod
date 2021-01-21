@@ -15,11 +15,7 @@ module Link = {
 module ExternalLink = {
   @react.component
   let make = (~href, ~children) => {
-    <a
-      className="text-blue-600 text-xs block mt-2"
-      target="_blank"
-      rel="noreferrer noopener"
-      href>
+    <a className="text-blue-600 text-xs block mt-2" target="_blank" rel="noreferrer noopener" href>
       children
     </a>
   }
@@ -28,15 +24,12 @@ module ExternalLink = {
 module NavLink = {
   let isActiveLink = (path, href) => {
     switch (path, href) {
-    | (list{ _, _ }, "/")
-    | (list{ _, _ }, "/all/all")
+    | (list{_, _}, "/")
+    | (list{_, _}, "/all/all")
     | (list{}, "/all/all")
     | (list{}, "/") => true
     | (p, _) =>
-      p
-      |> List.exists(pathPart =>
-           href |> Js.String.split("/") |> Js.Array.includes(pathPart)
-         )
+      p |> List.exists(pathPart => href |> Js.String.split("/") |> Js.Array.includes(pathPart))
     }
   }
 
@@ -45,11 +38,8 @@ module NavLink = {
     let url = ReasonReactRouter.useUrl()
     let href = Route.toPath(to_)
     let isActive = isActiveLink(url.path, href)
-    let className =
-      Cn.fromList(list{ className, "text-blue-500"->Cn.on(isActive) })
+    let className = Cn.fromList(list{className, "text-blue-500"->Cn.on(isActive)})
 
-    <a ariaSelected=isActive className href onClick={handleLinkClick(to_)}>
-      children
-    </a>
+    <a ariaSelected=isActive className href onClick={handleLinkClick(to_)}> children </a>
   }
 }

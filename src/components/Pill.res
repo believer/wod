@@ -43,4 +43,3 @@ let make = (~onClick=?, ~children, ~color=#Gray, ~className=?, ~selected=?) => {
   | None => <div className> children </div>
   }
 }
-
