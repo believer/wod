@@ -7,9 +7,9 @@ module Make = (Config: Config) => {
   let t = React.createContext(Config.defaultValue)
 
   module Provider = {
-    let make = t->React.Context.provider
+    let make = React.Context.provider(t)
 
-    @bs.obj
+    @obj
     external makeProps: (
       ~value: Config.context,
       ~children: React.element,

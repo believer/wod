@@ -14,6 +14,7 @@ type t = [
   | #ChestToBar
   | #Clean
   | #CleanAndJerk
+  | #CleanHang
   | #CleanHangPower
   | #CleanHighPull
   | #CleanPower
@@ -30,6 +31,7 @@ type t = [
   | #HandstandPushUpStrictElevated
   | #HandstandWalk
   | #HangingKneeRaise
+  | #Jerk
   | #JerkDipSquat
   | #Lunge
   | #LungeFrontRack
@@ -73,6 +75,7 @@ type t = [
   | #VUps
   | #VUpsSide
   | #WallBall
+  | #WallWalk
   | #WeightedStepUp
   | #WeightedButterflySitUp
 ]
@@ -94,6 +97,7 @@ let toString: t => string = exercise =>
   | #ChestToBar => "chest-to-bar pull-up"
   | #Clean => "clean"
   | #CleanAndJerk => "clean and jerk"
+  | #CleanHang => "hang clean"
   | #CleanHangPower => "hang power clean"
   | #CleanHighPull => "clean high pull"
   | #CleanPower => "power clean"
@@ -110,6 +114,7 @@ let toString: t => string = exercise =>
   | #HandstandPushUpStrictElevated => "elevated strict handstand push-up"
   | #HandstandWalk => "handstand walk"
   | #HangingKneeRaise => "hanging knee raise"
+  | #Jerk => "jerk"
   | #JerkDipSquat => "jerk dip squat"
   | #Lunge => "lunge"
   | #LungeFrontRack => "front-rack lunge"
@@ -153,6 +158,7 @@ let toString: t => string = exercise =>
   | #VUps => "v-up"
   | #VUpsSide => "side v-up"
   | #WallBall => "wall ball"
+  | #WallWalk => "wall walk"
   | #WeightedStepUp => "weighted step-up"
   | #WeightedButterflySitUp => "weighted butterfly sit-up"
   }
