@@ -1,3 +1,10 @@
+# [1.37.0](https://github.com/believer/wod/compare/v1.36.1...v1.37.0) (2021-04-12)
+
+
+### Features
+
+* **wod:** add crossfit open 2021 ([a725e81](https://github.com/believer/wod/commit/a725e81a6b6a4dc7fbd425e4eba527173a003164))
+
 ## [1.36.1](https://github.com/believer/wod/compare/v1.36.0...v1.36.1) (2020-07-18)
 
 
