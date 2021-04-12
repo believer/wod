@@ -23,5 +23,3 @@ module Context = {
     let defaultValue = {system: Metric}
   })
 }
-
-let use = () => React.useContext(Context.t)

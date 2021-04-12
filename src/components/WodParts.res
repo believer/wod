@@ -63,7 +63,7 @@ module Equipment = {
 module Unit = {
   @react.component
   let make = (~reps) => {
-    let {system}: Settings.t = Settings.use()
+    let {system}: Settings.t = Settings.Context.use()
 
     switch reps {
     | #Increasing(i) => "+" ++ i->soi
@@ -220,7 +220,7 @@ let singleWeight = (~m, ~weight as w, ~system) =>
 module Weight = {
   @react.component
   let make = (~weight) => {
-    let {system}: Settings.t = Settings.use()
+    let {system}: Settings.t = Settings.Context.use()
 
     <span className="text-gray-500">
       {switch weight {
