@@ -1,13 +1,12 @@
 module.exports = {
-  purge: ["./src/**/*.js", "./src/index.css"],
+  mode: 'jit',
+  purge: ['./src/**/*.bs.js'],
+  darkMode: 'media',
   theme: {
     extend: {},
   },
   variants: {
-    backgroundColor: ["responsive", "focus-within", "hover", "focus"],
-    borderColor: ["responsive", "focus-within", "hover", "focus"],
-    margin: ["responsive", "last"],
-    textColor: ["responsive", "focus-within", "hover", "focus"],
+    extend: {},
   },
   plugins: [],
-};
+}
