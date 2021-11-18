@@ -35,7 +35,7 @@ module NavLink = {
 
   @react.component
   let make = (~className, ~to_, ~children) => {
-    let url = ReasonReactRouter.useUrl()
+    let url = RescriptReactRouter.useUrl()
     let href = Route.toPath(to_)
     let isActive = isActiveLink(url.path, href)
     let className = Cn.fromList(list{className, "text-blue-500"->Cn.on(isActive)})
