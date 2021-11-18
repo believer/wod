@@ -83,4 +83,4 @@ let toPath = route =>
   | NotFoundRoute => "/"
   }
 
-let go = path => path->toPath->ReasonReactRouter.push
+let go = path => path->toPath->RescriptReactRouter.push
